@@ -1,0 +1,36 @@
+---
+import type { Cta } from '../lib/types';
+
+type Props = {
+  cta: Cta;
+  class?: string;
+  /** Required whenever the CTA may be external — pass copy.a11y.externalLink. */
+  externalLabel: string;
+};
+
+const { cta, class: className = 'btn btn--dark', externalLabel } = Astro.props;
+if (!externalLabel) {
+  throw new Error('CtaLink requires externalLabel from localized content');
+}
+const disabled = Boolean(cta.disabled);
+const external = Boolean(cta.external) && !disabled;
+---
+
+{
+  disabled ? (
+    <span class={className} aria-disabled="true" title={cta.note || cta.label}>
+      {cta.label}
+    </span>
+  ) : (
+    <a
+      class={className}
+      href={cta.href}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+    >
+      <span>{cta.label}</span>
+      {external ? <span class="btn__arrow" aria-hidden="true">→</span> : null}
+      {external ? <span class="sr-only">({externalLabel})</span> : null}
+    </a>
+  )
+}

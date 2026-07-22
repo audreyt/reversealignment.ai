@@ -1,0 +1,39 @@
+---
+import { assetPath } from '../lib/i18n';
+import type { Locale } from '../lib/types';
+
+type Props = {
+  asset: string;
+  alt: string;
+  class?: string;
+  locale?: Locale;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'auto' | 'sync';
+};
+
+const {
+  asset,
+  alt,
+  class: className = '',
+  locale,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+} = Astro.props;
+
+// Missing keys throw at build time via assetPath — no silent placeholders.
+const src = assetPath(asset, locale);
+---
+
+<img
+  src={src}
+  alt={alt}
+  class={className}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+/>

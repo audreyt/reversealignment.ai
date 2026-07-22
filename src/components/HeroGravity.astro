@@ -1,0 +1,204 @@
+---
+type Point = { x: number; y: number };
+type Particle = {
+  color: string;
+  delay: number;
+  duration: number;
+  keyPoints: string;
+  opacity: number;
+  path: string;
+  radius: number;
+};
+
+const FIELD_CENTER_X = 107.4;
+const FIELD_CENTER_Y = 50;
+const THROAT_RADIUS = 0.055;
+const SAMPLE_COUNT = 180;
+const keyTimes = Array.from({ length: SAMPLE_COUNT + 1 }, (_, index) =>
+  (index / SAMPLE_COUNT).toFixed(4)
+).join(';');
+
+const project = (radius: number, angle: number): Point => {
+  const cosine = Math.cos(angle);
+  const sine = Math.sin(angle);
+  const depth = 17 * Math.pow(1 - Math.min(radius, 1), 2.15);
+
+  return {
+    x: FIELD_CENTER_X + radius * (56 * cosine - 10 * sine),
+    y: FIELD_CENTER_Y + radius * (12 * cosine + 44 * sine) + depth,
+  };
+};
+
+const pathFromPoints = (points: Point[], close = false) =>
+  `${points
+    .map(
+      (point, index) =>
+        `${index === 0 ? 'M' : 'L'}${point.x.toFixed(3)},${point.y.toFixed(3)}`
+    )
+    .join(' ')}${close ? ' Z' : ''}`;
+
+const ringRadii = [0.06, 0.09, 0.13, 0.18, 0.24, 0.31, 0.39, 0.48, 0.58, 0.69, 0.81, 0.94, 1];
+const rings = ringRadii.map((radius) =>
+  pathFromPoints(
+    Array.from({ length: 121 }, (_, index) => project(radius, (index / 120) * Math.PI * 2)),
+    true
+  )
+);
+const spokes = Array.from({ length: 28 }, (_, spoke) =>
+  pathFromPoints(
+    Array.from({ length: 73 }, (_, index) =>
+      project(THROAT_RADIUS + (index / 72) * (1 - THROAT_RADIUS), (spoke / 28) * Math.PI * 2)
+    )
+  )
+);
+
+let seed = 0x5241_495f;
+const random = () => {
+  seed = (Math.imul(seed, 1_664_525) + 1_013_904_223) >>> 0;
+  return seed / 0x1_0000_0000;
+};
+
+const colors = ['#f4f3f3', '#cdfc56', '#6d28f5'] as const;
+const baseParticleCount = 54;
+const supplementalPhases = [0.035, 0.085, 0.135, 0.185];
+const supplementalAngles = [1.75, 2.15, 4.55, 4.9];
+const phases = [
+  ...Array.from({ length: baseParticleCount }, (_, index) => (index + 0.5) / baseParticleCount),
+  ...supplementalPhases,
+];
+const lerp = (start: number, end: number, amount: number) =>
+  start + (end - start) * amount;
+const smooth = (amount: number) => amount * amount * (3 - 2 * amount);
+const radiusAtProgress = (radiusStart: number, progress: number) => {
+  if (progress < 0.225) return lerp(radiusStart, 0.8, smooth(progress / 0.225));
+  if (progress < 0.575) return lerp(0.8, 0.55, smooth((progress - 0.225) / 0.35));
+  if (progress < 0.925) return lerp(0.55, 0.25, smooth((progress - 0.575) / 0.35));
+  return lerp(0.25, THROAT_RADIUS, smooth((progress - 0.925) / 0.075));
+};
+
+const particles: Particle[] = phases.map((phase, index) => {
+  const radiusStart = 0.92 + random() * 0.08;
+  const duration = 30 + random() * 18;
+  const baseAngularVelocity = 0.06 + random() * 0.04;
+  const radii = Array.from({ length: SAMPLE_COUNT + 1 }, (_, sample) =>
+    radiusAtProgress(radiusStart, sample / SAMPLE_COUNT)
+  );
+  const angularTravel = [0];
+  const timeStep = duration / SAMPLE_COUNT;
+  for (let sample = 1; sample <= SAMPLE_COUNT; sample += 1) {
+    const radius = (radii[sample - 1] + radii[sample]) / 2;
+    const velocity = baseAngularVelocity * Math.pow(1 / Math.max(radius, 0.08), 1.25);
+    angularTravel.push(angularTravel[sample - 1] + velocity * timeStep);
+  }
+
+  const phaseSample = Math.round(phase * SAMPLE_COUNT);
+  const outerBand = phase < 0.575;
+  const angleBucket = index % 10;
+  const targetAngle =
+    index >= baseParticleCount
+      ? supplementalAngles[index - baseParticleCount]
+      : outerBand
+        ? angleBucket < 6
+          ? 1.65 + random() * 1.25
+          : angleBucket < 8
+            ? 4.4 + random() * 0.65
+            : random() * Math.PI * 2
+        : random() * Math.PI * 2;
+  const angleStart = targetAngle + angularTravel[phaseSample];
+  const points = radii.map((radius, sample) =>
+    project(radius, angleStart - angularTravel[sample])
+  );
+
+  const distances = points.slice(1).map((point, pointIndex) =>
+    Math.hypot(point.x - points[pointIndex].x, point.y - points[pointIndex].y)
+  );
+  const totalDistance = distances.reduce((total, distance) => total + distance, 0);
+  let travelled = 0;
+  const keyPoints = [
+    0,
+    ...distances.map((distance) => {
+      travelled += distance;
+      return travelled / totalDistance;
+    }),
+  ]
+    .map((value) => value.toFixed(5))
+    .join(';');
+
+  return {
+    color: colors[index % colors.length],
+    delay: -(phase * duration),
+    duration,
+    keyPoints,
+    opacity: 0.8 + random() * 0.2,
+    path: pathFromPoints(points),
+    radius: 0.48 + random() * 0.62,
+  };
+});
+---
+
+<svg
+  class="hero__gravity"
+  data-hero-gravity
+  viewBox="0 0 165.217 100"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g class="hero-field">
+    {rings.map((path) => <path d={path} />)}
+    {spokes.map((path) => <path d={path} />)}
+  </g>
+
+  <ellipse
+    class="hero-field__horizon"
+    cx={FIELD_CENTER_X}
+    cy={FIELD_CENTER_Y + 17}
+    rx="1.7"
+    ry="1.15"
+  />
+
+  {
+    particles.map((particle) => (
+      <circle
+        class="hero-particle"
+        cx="0"
+        cy="0"
+        r={particle.radius.toFixed(3)}
+        fill={particle.color}
+      >
+        <animateMotion
+          begin={`${particle.delay.toFixed(3)}s`}
+          calcMode="linear"
+          dur={`${particle.duration.toFixed(3)}s`}
+          keyPoints={particle.keyPoints}
+          keyTimes={keyTimes}
+          path={particle.path}
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          begin={`${particle.delay.toFixed(3)}s`}
+          dur={`${particle.duration.toFixed(3)}s`}
+          keyTimes="0;0.04;0.9;1"
+          repeatCount="indefinite"
+          values={`0;${particle.opacity.toFixed(3)};${particle.opacity.toFixed(3)};0`}
+        />
+      </circle>
+    ))
+  }
+</svg>
+
+<script is:inline>
+  (() => {
+    const field = document.querySelector('[data-hero-gravity]');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const syncMotion = () => {
+      if (!(field instanceof SVGSVGElement)) return;
+      if (reducedMotion.matches) field.pauseAnimations();
+      else field.unpauseAnimations();
+    };
+
+    syncMotion();
+    reducedMotion.addEventListener('change', syncMotion);
+  })();
+</script>

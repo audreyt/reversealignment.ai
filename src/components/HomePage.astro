@@ -1,0 +1,410 @@
+---
+import CtaLink from './CtaLink.astro';
+import LocalForm from './LocalForm.astro';
+import HeroGravity from './HeroGravity.astro';
+import Media from './Media.astro';
+import SiteFooter from './SiteFooter.astro';
+import SiteHeader from './SiteHeader.astro';
+import type { Locale } from '../lib/types';
+import { assetPath, getContent } from '../lib/i18n';
+
+type Props = { locale?: Locale };
+const locale = Astro.props.locale ?? 'en';
+const copy = getContent(locale);
+const primaryCta = copy.hero.primaryCta;
+const secondaryCta = copy.hero.secondaryCta;
+if (!primaryCta?.label || !secondaryCta?.label) {
+  throw new Error('hero.primaryCta and hero.secondaryCta are required in content');
+}
+---
+
+<div id="top" class="page">
+  <SiteHeader copy={copy} />
+
+  <main id="main">
+    <!-- HERO: vector gravity field + paper card + diagram overlay -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__stage">
+        <div class="hero__media">
+          <HeroGravity />
+          <p class="sr-only">{copy.a11y.heroMotionLabel}</p>
+        </div>
+
+        <div class="hero__diagram" aria-hidden="true">
+          <Media asset="hero-diagram" alt="" loading="eager" />
+        </div>
+
+        <div class="hero__card">
+          <h1 id="hero-title" class="hero__title">{copy.hero.headline}</h1>
+          <p class="hero__body">{copy.hero.body}</p>
+          <div class="hero__actions">
+            <CtaLink cta={primaryCta} class="btn btn--lime-ink" externalLabel={copy.a11y.externalLink} />
+            <CtaLink cta={secondaryCta} class="btn btn--ghost-dark" externalLabel={copy.a11y.externalLink} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDEA / INTRODUCTION on paper sheet with binder edge + collage media -->
+    <section id="idea" class="section section--sheet" aria-labelledby="idea-title">
+      <div class="sheet">
+        <div class="sheet__binder" aria-hidden="true"></div>
+        <div class="sheet__content">
+          <div class="idea__background" aria-hidden="true">
+            <Media asset="intro-collage" alt="" class="idea__background-art" />
+            <Media asset="intro-texture" alt="" class="idea__background-texture" />
+          </div>
+          <header class="section-head section-head--row">
+            <h2 id="idea-title" class="display display--lg">{copy.idea.title}</h2>
+            <p class="eyebrow">{copy.idea.eyebrow}</p>
+          </header>
+
+          <div class="idea-lead-grid">
+            <div class="stack-md">
+              <p class="lede">{copy.idea.lead}</p>
+              {copy.idea.body.map((paragraph) => <p class="body">{paragraph}</p>)}
+              <p class="body">
+                {copy.idea.definitionLead}<span class="term">{copy.idea.definitionTerm}</span
+                >{copy.idea.definitionRest}
+              </p>
+            </div>
+          </div>
+
+          <div class="idea-band idea-band--history">
+            <Media asset="history-strip" alt="" class="idea-band__background" />
+            <div class="idea-band__content idea-history-grid">
+              <h3 class="lede">{copy.idea.historyTitle}</h3>
+              <div class="stack-sm">
+                {copy.idea.historyBody.map((paragraph) => <p class="body">{paragraph}</p>)}
+              </div>
+            </div>
+          </div>
+
+          <div class="idea-band idea-band--failures">
+            <Media asset="failures-panel" alt="" class="idea-band__background" />
+            <div class="idea-band__content idea-failures-grid">
+              <div class="stack-sm">
+                {copy.idea.failuresIntro.map((line) => <p class="lede">{line}</p>)}
+              </div>
+              <div class="failures">
+                {
+                  copy.idea.failures.map((failure) => (
+                    <article class="failure">
+                      <p class="eyebrow">{failure.number}</p>
+                      <h3 class="failure__title">{failure.title}</h3>
+                      <p class="failure__body">{failure.body}</p>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="idea-band idea-band--close">
+            <Media asset="failures-texture" alt="" class="idea-band__background" aria-hidden="true" />
+            <div class="idea-band__content failures-close">
+              {copy.idea.failuresClose.map((line) => <p class="lede">{line}</p>)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT NEEDS BUILDING -->
+    <section id="building" class="section section--photo" aria-labelledby="building-title">
+      <div class="section__bg" aria-hidden="true">
+        <Media asset="building-bg" alt="" />
+      </div>
+      <div class="section__inner section__inner--over">
+        <header class="building-head">
+          <div class="stack-sm">
+            <h2 id="building-title" class="display display--lg">{copy.building.title}</h2>
+            <p class="lede">{copy.building.lead}</p>
+          </div>
+          <div class="stack-sm">
+            <p class="eyebrow eyebrow--muted">{copy.building.eyebrow}</p>
+            <p class="body--mono">{copy.building.summary}</p>
+            <p class="body--mono">{copy.building.hoverHint}</p>
+          </div>
+        </header>
+
+        <div class="challenge-grid" role="list" aria-label={copy.a11y.challengeGrid}>
+          {
+            copy.building.challenges.map((challenge) => (
+              <article class="challenge-card" role="listitem" tabindex="0">
+                <div class="challenge-card__media">
+                  <Media asset={challenge.image} alt="" />
+                  <p class="challenge-card__body">{challenge.body}</p>
+                </div>
+                <div class="challenge-card__meta">
+                  <span class="challenge-card__number">{challenge.number}</span>
+                  <h3 class="challenge-card__title">{challenge.title}</h3>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- DISTINCTIVE CLAIM -->
+    <section id="claim" class="section section--photo section--claim" aria-labelledby="claim-title">
+      <div class="section__bg" aria-hidden="true">
+        <Media asset="claim-bg" alt="" />
+      </div>
+      <div class="section__texture" aria-hidden="true">
+        <Media asset="claim-texture" alt="" />
+      </div>
+      <div class="section__inner section__inner--over">
+        <p class="eyebrow eyebrow--muted">{copy.claim.eyebrow.join(' ')}</p>
+        <div class="claim-top">
+          <h2 id="claim-title" class="display display--lg">{copy.claim.title}</h2>
+          <p class="lede">{copy.claim.lead}</p>
+        </div>
+        <div class="claim-grid">
+          {copy.claim.columns.map((paragraph) => <p class="body body--sm">{paragraph}</p>)}
+        </div>
+        <div class="claim-cta">
+          <CtaLink cta={copy.claim.cta} class="btn btn--light btn--block" externalLabel={copy.a11y.externalLink} />
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPERS -->
+    <section id="papers" class="section section--photo section--papers" aria-labelledby="papers-title">
+      <div class="section__bg section__bg--soft" aria-hidden="true">
+        <Media asset="papers-bg" alt="" />
+      </div>
+      <div class="section__inner section__inner--over stack-lg">
+        <header class="section-head section-head--center">
+          <p class="eyebrow">{copy.papers.eyebrow}</p>
+          <h2 id="papers-title" class="display display--lg">{copy.papers.title}</h2>
+        </header>
+
+        <div class="paper-grid">
+          {
+            copy.papers.items.map((paper) => (
+              <article class={`paper-card paper-card--${paper.tone}`} data-paper-id={paper.id}>
+                <div>
+                  <p class="body">{paper.venue}</p>
+                  <h3 class="paper-card__title">{paper.title}</h3>
+                </div>
+                <div class="paper-card__media">
+                  {paper.image ? (
+                    <Media asset={paper.image} alt="" />
+                  ) : (
+                    <div class="paper-card__placeholder">{paper.cta.note ?? paper.cta.label}</div>
+                  )}
+                </div>
+                <p class="body body--sm">{paper.body}</p>
+                <CtaLink
+                  cta={paper.cta}
+                  class={paper.tone === 'lime' ? 'btn btn--dark' : 'btn btn--light'}
+                  externalLabel={copy.a11y.externalLink}
+                />
+              </article>
+            ))
+          }
+        </div>
+
+        <div class="resource-list">
+          {
+            copy.papers.resources.map((resource) => (
+              <article class="resource">
+                <div class="resource__copy">
+                  <h3>{resource.title}</h3>
+                  <p class="body">{resource.body}</p>
+                </div>
+                {
+                  resource.id === 'playbook' ? (
+                    <div class="resource__art" aria-hidden="true">
+                      <Media asset="playbook-art" alt="" />
+                    </div>
+                  ) : null
+                }
+                <CtaLink
+                  cta={resource.cta}
+                  class="btn btn--dark"
+                  externalLabel={copy.a11y.externalLink}
+                />
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="section section--story story" aria-labelledby="story-title">
+      <div class="section__inner">
+        <div class="story__portraits" aria-hidden="true">
+          <div class="story__portrait"><Media asset="story-portrait-1" alt="" /></div>
+          <div class="story__portrait"><Media asset="story-portrait-2" alt="" /></div>
+          <div class="story__portrait"><Media asset="story-portrait-3" alt="" /></div>
+        </div>
+        <h2 id="story-title" class="display display--story">{copy.story.title}</h2>
+        <div class="story__copy">
+          <p class="lede">{copy.story.lead}</p>
+          <div class="story__resources">
+            <div class="story__guide">
+              <div class="stack-sm">
+                {copy.story.guideTitle.map((line) => <p class="lede">{line}</p>)}
+              </div>
+              <p class="body body--sm">
+                <span class="term">{copy.story.guideTerm}</span>{copy.story.guideRest}
+              </p>
+              <CtaLink
+                cta={copy.story.guideCta}
+                class="btn btn--light story__guide-cta"
+                externalLabel={copy.a11y.externalLink}
+              />
+            </div>
+            <div class="story__video-row">
+              <a
+                class="story__thumb"
+                href={copy.story.videoCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Media asset="story-video-thumb" alt="" />
+                <span class="sr-only">{copy.story.videoCta.label} ({copy.a11y.externalLink})</span>
+              </a>
+              <div class="stack-sm">
+                <p class="body--mono">{copy.story.videoCaption}</p>
+                <CtaLink
+                  cta={copy.story.videoCta}
+                  class="btn btn--light story__video-cta"
+                  externalLabel={copy.a11y.externalLink}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story__film" aria-hidden="true">
+          {
+            [5, 4, 3, 2, 1].map((n) => (
+              <figure>
+                <Media asset={`story-filmstrip-${n}`} alt="" />
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- FAST-GRANTS -->
+    <section id="grants" class="section section--dark section--grants" aria-labelledby="grants-title">
+      <div class="section__inner grants-grid">
+        <div class="stack-md grants-copy">
+          <p class="eyebrow eyebrow--muted">{copy.grants.eyebrow}</p>
+          {copy.grants.body.map((paragraph) => (
+            <p class="body--mono grants-copy__body">{paragraph}</p>
+          ))}
+          <p class="body--mono grants-copy__note">{copy.grants.filmsNote}</p>
+          <LocalForm form={copy.grants.notifyForm} variant="on-dark" />
+        </div>
+        <div class="grants-panel">
+          <h2 id="grants-title" class="display display--md">{copy.grants.title}</h2>
+          <div class="grants-panel__body">
+            <p class="body">{copy.grants.fundingLine}</p>
+            {copy.grants.panelBody.map((paragraph) => <p class="body">{paragraph}</p>)}
+          </div>
+          <CtaLink
+            cta={copy.grants.applyCta}
+            class="btn btn--dark"
+            externalLabel={copy.a11y.externalLink}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- COALITION -->
+    <section id="coalition" class="section section--sheet section--coalition" aria-labelledby="coalition-title">
+      <div class="section__bg section__bg--coalition" aria-hidden="true">
+        <Media asset="coalition-texture" alt="" />
+      </div>
+      <div class="sheet sheet--over">
+        <div class="sheet__binder" aria-hidden="true"></div>
+        <div class="sheet__content stack-lg">
+          <div class="coalition-head">
+            <div class="stack-sm">
+              <h2 id="coalition-title" class="display display--lg">{copy.coalition.title}</h2>
+              <p class="lede">{copy.coalition.lead}</p>
+            </div>
+            <p class="body--mono">{copy.coalition.body}</p>
+          </div>
+
+          <p class="sectors">
+            {copy.coalition.sectors.map((sector) => <span>{sector}</span>)}
+          </p>
+
+          <div class="people-grid" role="list" aria-label={copy.a11y.coalitionGrid}>
+            {
+              copy.coalition.people
+                .filter((tile) => tile.kind !== 'cta')
+                .map((tile) => (
+                  <article class="person" role="listitem">
+                    <div class="person__photo">
+                      <Media asset={tile.image} alt="" />
+                    </div>
+                    <div class="person__meta">
+                      <h3 class="person__name">{tile.name}</h3>
+                      <p class="person__role">{tile.role}</p>
+                    </div>
+                  </article>
+                ))
+            }
+            {
+              copy.coalition.people
+                .filter((tile) => tile.kind === 'cta')
+                .map((tile) => (
+                  <div class="person person--cta" role="listitem">
+                    <a class="person__cta" href={tile.href}>{tile.label}</a>
+                  </div>
+                ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section id="join" class="section section--photo section--join" aria-labelledby="join-title">
+      <div class="section__bg" aria-hidden="true">
+        <Media asset="join-bg" alt="" />
+      </div>
+      <div class="section__inner section__inner--over join-grid">
+        <div class="stack-md">
+          <p class="eyebrow eyebrow--muted">{copy.join.eyebrow}</p>
+          <h2 id="join-title" class="display display--lg">{copy.join.title}</h2>
+          <p class="body">{copy.join.body}</p>
+        </div>
+        <div class="join-panel stack-md">
+          <p class="body--mono">{copy.join.lead}</p>
+          <LocalForm form={copy.join.form} />
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="section closing" aria-labelledby="closing-title">
+      <div class="section__bg" aria-hidden="true">
+        <Media asset="closing-bg" alt="" />
+      </div>
+      <div class="section__inner section__inner--over">
+        <h2 id="closing-title" class="display display--xl closing__title">
+          {
+            copy.closing.lines.map((line, index) => (
+              <>
+                {index > 0 ? <br /> : null}
+                {line}
+              </>
+            ))
+          }
+        </h2>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter copy={copy} />
+</div>

@@ -1,0 +1,14 @@
+{
+  "readymag-form-post": {
+    "status": "no-stable-public-endpoint",
+    "note": "Native HTML action is document URL placeholder; Readymag JS submit not observable. Static site uses mailto:hello@reversealignment.ai for notify/join (honest fallback). Grant CTA uses Typeform. Do not POST to reversealignment.ai/.",
+    "widgets": [
+      "6a5e5f58a1b75cf7cb5f32ec",
+      "6a5dade9b8053b765f0a9807"
+    ]
+  },
+  "icons": {
+    "status": "resolved",
+    "note": "exact 34x34 transparent PNGs"
+  }
+}

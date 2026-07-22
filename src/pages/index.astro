@@ -1,0 +1,11 @@
+---
+import HomePage from '../components/HomePage.astro';
+import Base from '../layouts/Base.astro';
+import { getDefaultLocale } from '../lib/i18n';
+
+const locale = getDefaultLocale();
+---
+
+<Base locale={locale}>
+  <HomePage locale={locale} />
+</Base>

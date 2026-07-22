@@ -1,0 +1,15 @@
+---
+import type { SiteContent } from '../lib/types';
+
+type Props = { copy: SiteContent };
+const { copy } = Astro.props;
+const { name } = copy.brand;
+if (!name) {
+  throw new Error('brand.name is required in content');
+}
+---
+
+<header class="site-header">
+  <a class="brand" href="#top">{name}</a>
+  <a class="btn btn--join" href={copy.nav.join.href}>{copy.nav.join.label}</a>
+</header>

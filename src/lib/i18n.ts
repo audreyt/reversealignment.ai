@@ -1,0 +1,126 @@
+import content from '../data/content.json';
+import site from '../data/site.json';
+import type { Locale, SiteContent } from './types';
+
+const DEFAULT_LOCALE = 'en' as const satisfies Locale;
+
+const catalog = content as Record<Locale, SiteContent>;
+
+const localeList = Object.keys(catalog) as Locale[];
+
+/** Throws when the default locale is absent from the catalog keys. */
+export function assertDefaultLocalePresent(
+  locales: readonly string[],
+  defaultLocale: string = DEFAULT_LOCALE
+): void {
+  if (!locales.includes(defaultLocale)) {
+    throw new Error(`Default locale "${defaultLocale}" missing from content catalog`);
+  }
+}
+
+assertDefaultLocalePresent(localeList, DEFAULT_LOCALE);
+
+export function getDefaultLocale(): Locale {
+  return DEFAULT_LOCALE;
+}
+
+export function listLocales(): Locale[] {
+  return [...localeList];
+}
+
+/** Locales other than the default (served under `/{locale}/`). */
+export function listAlternateLocales(): Locale[] {
+  return localeList.filter((locale) => locale !== DEFAULT_LOCALE);
+}
+
+export function isLocale(value: string): value is Locale {
+  return Object.hasOwn(catalog, value);
+}
+
+export function getSite() {
+  return site;
+}
+
+export function getContent(locale: Locale = DEFAULT_LOCALE): SiteContent {
+  const entry = catalog[locale];
+  if (!entry) {
+    throw new Error(`Missing content for locale: ${String(locale)}`);
+  }
+  return entry;
+}
+
+export function assetPath(key: string, locale: Locale = DEFAULT_LOCALE): string {
+  const path = getContent(locale).assets[key];
+  if (!path) {
+    throw new Error(`Missing asset mapping for key: ${key}`);
+  }
+  return path;
+}
+
+/** Path prefix for a locale: '' for default, '/zh' etc. for alternates. */
+export function localePathPrefix(locale: Locale): string {
+  if (locale === DEFAULT_LOCALE) return '';
+  return `/${String(locale)}`;
+}
+
+/** Absolute site path for a locale home (always trailing slash). */
+export function localeHomePath(locale: Locale): string {
+  if (locale === DEFAULT_LOCALE) return '/';
+  return `/${String(locale)}/`;
+}
+
+export function toBcp47(locale: Locale): string {
+  // Extend when adding locales (e.g. zh-TW).
+  return String(locale);
+}
+
+/**
+ * Structural path keys used for catalog parity across locales.
+ * Arrays encode length as `path[N]` and recurse into every element so a
+ * translation cannot silently drop list items (challenges, people, nav,
+ * form options, …) while still allowing translated string values to differ.
+ */
+export function collectShapePaths(value: unknown, prefix = ''): string[] {
+  if (value === null || typeof value !== 'object') {
+    return prefix ? [prefix] : [];
+  }
+  if (Array.isArray(value)) {
+    const lenKey = prefix ? `${prefix}[${value.length}]` : `[${value.length}]`;
+    const paths: string[] = [lenKey];
+    value.forEach((item, index) => {
+      const itemPrefix = prefix ? `${prefix}[${index}]` : `[${index}]`;
+      paths.push(...collectShapePaths(item, itemPrefix));
+    });
+    return paths;
+  }
+  const paths: string[] = [];
+  for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+    const next = prefix ? `${prefix}.${key}` : key;
+    paths.push(...collectShapePaths(child, next));
+  }
+  return paths;
+}
+
+export function catalogShapePaths(locale: Locale = DEFAULT_LOCALE): string[] {
+  return collectShapePaths(getContent(locale)).sort();
+}
+
+/** Valid HTML id fragment from a form field name or explicit id. */
+export function formFieldDomId(formId: string, field: { name: string; id?: string }): string {
+  const raw = (field.id || field.name).trim();
+  const slug = raw
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    // Drop apostrophes so "I'd" → "id" rather than "i-d"
+    .replace(/['\u2019\u2018]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .replace(/-{2,}/g, '-');
+  if (!slug) {
+    throw new Error(`Form field in "${formId}" needs a name/id that slugifies to a non-empty id`);
+  }
+  // HTML ids must start with a letter
+  const safe = /^[a-z]/.test(slug) ? slug : `f-${slug}`;
+  return `${formId}-${safe}`;
+}

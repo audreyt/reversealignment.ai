@@ -1,0 +1,81 @@
+---
+import site from '../data/site.json';
+import {
+  getContent,
+  getDefaultLocale,
+  listLocales,
+  localeHomePath,
+  toBcp47,
+} from '../lib/i18n';
+import type { Locale } from '../lib/types';
+
+type Props = {
+  title?: string;
+  description?: string;
+  locale?: Locale;
+};
+
+const locale = Astro.props.locale ?? getDefaultLocale();
+const copy = getContent(locale);
+const title = Astro.props.title ?? copy.meta.title;
+const description = Astro.props.description ?? copy.meta.description;
+const canonical = new URL(Astro.url.pathname, site.url).toString();
+const ogImage = new URL(copy.meta.ogImage, site.url).toString();
+const locales = listLocales();
+const bcp47 = toBcp47(locale);
+---
+
+<!doctype html>
+<html lang={bcp47}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={site.themeColor} />
+    <link rel="canonical" href={canonical} />
+    {
+      locales.map((code) => (
+        <link
+          rel="alternate"
+          hreflang={toBcp47(code)}
+          href={new URL(localeHomePath(code), site.url).toString()}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(localeHomePath(getDefaultLocale()), site.url).toString()}
+    />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={bcp47} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>
+    <slot />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: site.name,
+        url: site.url,
+        description,
+        inLanguage: bcp47,
+      })}
+    />
+  </body>
+</html>
