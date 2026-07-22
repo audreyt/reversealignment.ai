@@ -62,7 +62,6 @@ export type Person = {
   image: string;
 };
 
-
 export type CoalitionPerson = {
   kind: 'person';
   name: string;

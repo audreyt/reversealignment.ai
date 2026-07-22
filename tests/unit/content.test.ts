@@ -269,7 +269,6 @@ describe('i18n helpers coverage', () => {
     );
   });
 
-
   test('collectInvariantPaths covers empty and array roots', () => {
     expect(collectInvariantPaths(null)).toEqual({});
     expect(collectInvariantPaths('leaf')).toEqual({});
@@ -283,7 +282,6 @@ describe('i18n helpers coverage', () => {
     expect(listLocales().sort()).toEqual(['en', 'zh-tw'].sort());
     expect(getDefaultLocale()).toBe('zh-tw');
   });
-
 });
 
 describe('asset mappings', () => {
