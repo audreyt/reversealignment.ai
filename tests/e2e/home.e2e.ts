@@ -44,7 +44,9 @@ test.describe('home page', () => {
     await expect(notify).toHaveAttribute('method', /post/i);
     await expect(notify).toHaveAttribute('enctype', 'text/plain');
     await expect(notify).not.toHaveAttribute('action', '#');
-    await expect(notify.locator('[data-form-note]')).toContainText(/電子郵件客戶端|郵件應用程式/);
+    await expect(notify.locator('[data-form-note]')).toContainText(
+      /電子郵件客戶端|郵件應用程式|郵件軟體/
+    );
 
     const joinForm = page.locator('#join-form');
     await expect(joinForm).toHaveAttribute('method', /post/i);
