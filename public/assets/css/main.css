@@ -2608,7 +2608,6 @@ main {
     width: 1120px;
     height: 230px;
     background:
-      radial-gradient(circle at 13px 12px, #111 0 8px, transparent 8px) 0 0 / 26px 33px repeat-y,
       linear-gradient(#111, #111) 495px 0 / 1px 100% no-repeat,
       linear-gradient(rgba(205, 252, 86, 0.8), rgba(205, 252, 86, 0.8)),
       url('../images/join-form-texture.png') 0 0 / 1120px 230px no-repeat;
@@ -4028,9 +4027,18 @@ html[lang='zh-TW'] {
   }
 }
 
-/* Hero title carries manual \n breaks (content.json) */
-html[lang='zh-TW'] .hero__title {
+/* Titles carry manual \n breaks (content.json) */
+html[lang='zh-TW'] .hero__title,
+html[lang='zh-TW'] .display--story {
   white-space: pre-line;
+}
+
+/* zh #idea title is one line (EN is two); lift the divider off the lead copy
+   into the title/lead gap (title bottom 87px, lead top 180px in sheet coords) */
+@media (min-width: 900px) {
+  html[lang='zh-TW'] #idea .sheet__content::before {
+    top: 147px;
+  }
 }
 
 /* 390px painted canvas: title box is 287.6px; fit the widest manual line */
