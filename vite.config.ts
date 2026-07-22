@@ -35,8 +35,8 @@ export default defineConfig({
     ],
   },
   staged: {
-    '**/*': 'vp fmt',
-    '*.{ts,tsx,js,jsx}': 'vp lint --fix',
+    '**/*': 'vp fmt --no-error-on-unmatched-pattern',
+    '*.{ts,tsx,js,jsx}': 'vp lint --fix --no-error-on-unmatched-pattern',
   },
   server: {
     host: '127.0.0.1',
