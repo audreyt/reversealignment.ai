@@ -42,11 +42,18 @@ export type Paper = {
   tone: 'lime' | 'violet';
 };
 
+export type SlideSet = {
+  directory: string;
+  count: number;
+  document: string;
+};
+
 export type ResourceLink = {
   id: string;
   title: string;
   body: string;
   cta: Cta;
+  slides: SlideSet;
 };
 
 export type Person = {
@@ -166,6 +173,18 @@ export type SiteContent = {
     title: string;
     items: Paper[];
     resources: ResourceLink[];
+    viewer: {
+      dialogLabel: string;
+      closeLabel: string;
+      previousLabel: string;
+      nextLabel: string;
+      downloadLabel: string;
+      openHint: string;
+      statusTemplate: string;
+      slideLabelTemplate: string;
+      thumbnailRegionLabelTemplate: string;
+      thumbnailLabelTemplate: string;
+    };
   };
   story: {
     title: string;

@@ -233,6 +233,129 @@ test.describe('home page', () => {
     await expect(mobileBody).toHaveCSS('opacity', '1');
   });
 
+  test('local slide viewers preserve source geometry and keyboard navigation', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await expect(page.locator('a[href*="drive.google"], a[href*="dropbox"]')).toHaveCount(0);
+
+    const playbookTrigger = page.locator('[data-slideshow-open="playbook"]').first();
+    await playbookTrigger.click();
+    const playbook = page.locator('#slideshow-playbook');
+    await expect(playbook).toBeVisible();
+    await expect(playbook.locator('.slideshow__status')).toHaveText('Slide 1 of 20');
+    await expect(playbook.locator('[data-slide-index]')).toHaveCount(20);
+
+    const playbookImage = playbook.locator('[data-slideshow-image]');
+    await expect(playbookImage).toHaveAttribute('src', /assets\/slides\/playbook\/slide-01\.jpg$/);
+    const imageGeometry = await playbookImage.evaluate((image) => {
+      if (!(image instanceof HTMLImageElement)) return null;
+      return {
+        naturalRatio: image.naturalWidth / image.naturalHeight,
+        objectFit: getComputedStyle(image).objectFit,
+      };
+    });
+    expect(imageGeometry).not.toBeNull();
+    if (!imageGeometry) throw new Error('Playbook slide image is unavailable');
+    expect(imageGeometry.naturalRatio).toBeCloseTo(16 / 9, 5);
+    expect(imageGeometry.objectFit).toBe('contain');
+
+    await page.keyboard.press('End');
+    await expect(playbook.locator('.slideshow__status')).toHaveText('Slide 20 of 20');
+    await expect(playbook.locator('[data-slideshow-next]')).toBeDisabled();
+    await playbook.locator('[data-slideshow-close]').click();
+    await expect(playbookTrigger).toBeFocused();
+
+    await page.locator('[data-slideshow-open="deck"]').click();
+    const deck = page.locator('#slideshow-deck');
+    await expect(deck).toBeVisible();
+    await expect(deck.locator('[data-slide-index]')).toHaveCount(12);
+    await expect(deck.locator('.slideshow__download')).toHaveAttribute(
+      'href',
+      /assets\/documents\/grand-challenges-deck\.pdf$/
+    );
+  });
+
+  test('grants content stays separated and aligned', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+
+    const geometry = await page.locator('#grants').evaluate((section) => {
+      const eyebrow = section.querySelector('.grants-copy > .eyebrow');
+      const copyContainer = section.querySelector('.grants-copy');
+      const copy = section.querySelector('.grants-copy__body');
+      const form = section.querySelector('.grants-copy > form');
+      const panel = section.querySelector('.grants-panel');
+      const title = section.querySelector('#grants-title');
+      const body = section.querySelector('.grants-panel__body');
+      if (!eyebrow || !copyContainer || !copy || !form || !panel || !title || !body) return null;
+
+      const eyebrowRect = eyebrow.getBoundingClientRect();
+      const copyContainerRect = copyContainer.getBoundingClientRect();
+      const copyRect = copy.getBoundingClientRect();
+      const formRect = form.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      const titleRect = title.getBoundingClientRect();
+      const bodyRect = body.getBoundingClientRect();
+      const panelDivider = Number.parseFloat(getComputedStyle(panel, '::after').top);
+      const copyDivider = Number.parseFloat(getComputedStyle(copyContainer, '::after').top);
+      return {
+        panelAboveHeading: eyebrowRect.top - panelRect.top,
+        titleBodyGap: bodyRect.top - titleRect.bottom,
+        dividerAfterTitle: panelRect.top + panelDivider - titleRect.bottom,
+        bodyAfterDivider: bodyRect.top - (panelRect.top + panelDivider),
+        copyAfterDivider: copyRect.top - (copyContainerRect.top + copyDivider),
+        formAfterCopy: formRect.top - copyRect.bottom,
+      };
+    });
+
+    expect(geometry).not.toBeNull();
+    if (!geometry) throw new Error('Grants geometry is unavailable');
+    expect(geometry.panelAboveHeading).toBeGreaterThan(30);
+    expect(geometry.titleBodyGap).toBeGreaterThan(30);
+    expect(geometry.dividerAfterTitle).toBeGreaterThan(10);
+    expect(geometry.bodyAfterDivider).toBeGreaterThan(20);
+    expect(geometry.copyAfterDivider).toBeGreaterThan(20);
+    expect(geometry.formAfterCopy).toBeGreaterThan(40);
+  });
+
+  test('mobile slideshow fills the viewport without cropping its slides', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+    await page.locator('[data-slideshow-open="playbook"]').first().click();
+
+    const viewer = page.locator('#slideshow-playbook');
+    await expect(viewer).toBeVisible();
+    const geometry = await viewer.evaluate((dialog) => {
+      const shell = dialog.querySelector('.slideshow__shell');
+      const image = dialog.querySelector('[data-slideshow-image]');
+      const footer = dialog.querySelector('.slideshow__footer');
+      if (!shell || !(image instanceof HTMLImageElement) || !footer) return null;
+      const shellRect = shell.getBoundingClientRect();
+      const imageRect = image.getBoundingClientRect();
+      const footerRect = footer.getBoundingClientRect();
+      return {
+        shell: [shellRect.left, shellRect.top, shellRect.right, shellRect.bottom],
+        image: [imageRect.left, imageRect.top, imageRect.right, imageRect.bottom],
+        footerBottom: footerRect.bottom,
+        naturalRatio: image.naturalWidth / image.naturalHeight,
+        objectFit: getComputedStyle(image).objectFit,
+        bodyOverflow: getComputedStyle(document.body).overflow,
+      };
+    });
+
+    expect(geometry).not.toBeNull();
+    if (!geometry) throw new Error('Mobile slideshow geometry is unavailable');
+    expect(geometry.shell).toEqual([0, 0, 390, 844]);
+    expect(geometry.image[0]).toBeGreaterThanOrEqual(0);
+    expect(geometry.image[1]).toBeGreaterThanOrEqual(0);
+    expect(geometry.image[2]).toBeLessThanOrEqual(390);
+    expect(geometry.image[3]).toBeLessThanOrEqual(844);
+    expect(geometry.footerBottom).toBeLessThanOrEqual(844);
+    expect(geometry.naturalRatio).toBeCloseTo(16 / 9, 5);
+    expect(geometry.objectFit).toBe('contain');
+    expect(geometry.bodyOverflow).toBe('hidden');
+  });
+
   test('mobile sticky chrome is brand + JOIN without hamburger menu', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');

@@ -4,13 +4,15 @@ import LocalForm from './LocalForm.astro';
 import HeroGravity from './HeroGravity.astro';
 import Media from './Media.astro';
 import SiteFooter from './SiteFooter.astro';
+import SlideshowViewer from './SlideshowViewer.astro';
 import SiteHeader from './SiteHeader.astro';
 import type { Locale } from '../lib/types';
-import { assetPath, getContent } from '../lib/i18n';
+import { assetPath, getContent, relativeRootPath } from '../lib/i18n';
 
 type Props = { locale?: Locale };
 const locale = Astro.props.locale ?? 'en';
 const copy = getContent(locale);
+const rootPath = relativeRootPath(locale);
 const primaryCta = copy.hero.primaryCta;
 const secondaryCta = copy.hero.secondaryCta;
 if (!primaryCta?.label || !secondaryCta?.label) {
@@ -222,11 +224,17 @@ if (!primaryCta?.label || !secondaryCta?.label) {
                     </div>
                   ) : null
                 }
-                <CtaLink
-                  cta={resource.cta}
+                <button
                   class="btn btn--dark"
-                  externalLabel={copy.a11y.externalLink}
-                />
+                  type="button"
+                  data-slideshow-open={resource.id}
+                  aria-haspopup="dialog"
+                  aria-controls={`slideshow-${resource.id}`}
+                >
+                  <span>{resource.cta.label}</span>
+                  <span class="btn__arrow" aria-hidden="true">→</span>
+                  <span class="sr-only">({copy.papers.viewer.openHint})</span>
+                </button>
               </article>
             ))
           }
@@ -253,11 +261,17 @@ if (!primaryCta?.label || !secondaryCta?.label) {
               <p class="body body--sm">
                 <span class="term">{copy.story.guideTerm}</span>{copy.story.guideRest}
               </p>
-              <CtaLink
-                cta={copy.story.guideCta}
+              <button
                 class="btn btn--light story__guide-cta"
-                externalLabel={copy.a11y.externalLink}
-              />
+                type="button"
+                data-slideshow-open="playbook"
+                aria-haspopup="dialog"
+                aria-controls="slideshow-playbook"
+              >
+                <span>{copy.story.guideCta.label}</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+                <span class="sr-only">({copy.papers.viewer.openHint})</span>
+              </button>
             </div>
             <div class="story__video-row">
               <a
@@ -407,4 +421,9 @@ if (!primaryCta?.label || !secondaryCta?.label) {
   </main>
 
   <SiteFooter copy={copy} />
+  {
+    copy.papers.resources.map((resource) => (
+      <SlideshowViewer resource={resource} copy={copy.papers.viewer} rootPath={rootPath} />
+    ))
+  }
 </div>

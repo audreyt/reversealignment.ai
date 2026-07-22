@@ -343,4 +343,17 @@ describe('asset mappings', () => {
       expect(existsSync(resolve(PUBLIC, path.replace(/^\.\//, '')))).toBe(true);
     }
   });
+
+  test('local presentation documents include every declared slide', () => {
+    const copy = getContent('en');
+    for (const resource of copy.papers.resources) {
+      expect(existsSync(resolve(PUBLIC, 'assets/documents', resource.slides.document))).toBe(true);
+      for (let number = 1; number <= resource.slides.count; number++) {
+        const filename = `slide-${String(number).padStart(2, '0')}.jpg`;
+        expect(
+          existsSync(resolve(PUBLIC, 'assets/slides', resource.slides.directory, filename))
+        ).toBe(true);
+      }
+    }
+  });
 });

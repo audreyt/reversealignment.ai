@@ -1,0 +1,247 @@
+---
+import type { ResourceLink, SiteContent } from '../lib/types';
+
+type Props = {
+  resource: ResourceLink;
+  copy: SiteContent['papers']['viewer'];
+  rootPath: './' | '../';
+};
+
+const { resource, copy, rootPath } = Astro.props;
+const slideNumbers = Array.from({ length: resource.slides.count }, (_, index) => index + 1);
+const slides = slideNumbers.map(
+  (number) =>
+    `${rootPath}assets/slides/${resource.slides.directory}/slide-${String(number).padStart(2, '0')}.jpg`
+);
+const documentPath = `${rootPath}assets/documents/${resource.slides.document}`;
+const dialogId = `slideshow-${resource.id}`;
+const firstSlideLabel = copy.slideLabelTemplate
+  .replace('{title}', resource.title)
+  .replace('{current}', '1')
+  .replace('{total}', String(resource.slides.count));
+---
+
+<slide-viewer
+  data-viewer-id={resource.id}
+  data-title={resource.title}
+  data-slides={JSON.stringify(slides)}
+  data-status-template={copy.statusTemplate}
+  data-slide-label-template={copy.slideLabelTemplate}
+>
+  <dialog
+    id={dialogId}
+    class="slideshow"
+    aria-label={`${resource.title}: ${copy.dialogLabel}`}
+  >
+    <div class="slideshow__shell">
+      <header class="slideshow__header">
+        <div>
+          <p class="slideshow__eyebrow">{copy.dialogLabel}</p>
+          <h2 class="slideshow__title">{resource.title}</h2>
+        </div>
+        <p class="slideshow__status" aria-live="polite">
+          {copy.statusTemplate
+            .replace('{current}', '1')
+            .replace('{total}', String(resource.slides.count))}
+        </p>
+        <button class="slideshow__close" type="button" data-slideshow-close>
+          <span>{copy.closeLabel}</span>
+          <span aria-hidden="true">×</span>
+        </button>
+      </header>
+
+      <div class="slideshow__stage" data-slideshow-stage>
+        <button
+          class="slideshow__nav slideshow__nav--previous"
+          type="button"
+          data-slideshow-previous
+          aria-label={copy.previousLabel}
+          disabled
+        >
+          <span aria-hidden="true">←</span>
+        </button>
+        <figure class="slideshow__frame">
+          <img
+            data-slideshow-image
+            src={slides[0]}
+            alt={firstSlideLabel}
+            width="1920"
+            height="1080"
+            decoding="async"
+          />
+        </figure>
+        <button
+          class="slideshow__nav slideshow__nav--next"
+          type="button"
+          data-slideshow-next
+          aria-label={copy.nextLabel}
+        >
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <footer class="slideshow__footer">
+        <div
+          class="slideshow__thumbnails"
+          aria-label={copy.thumbnailRegionLabelTemplate.replace('{title}', resource.title)}
+        >
+          {
+            slideNumbers.map((number, index) => (
+              <button
+                type="button"
+                class="slideshow__thumbnail"
+                data-slide-index={index}
+                aria-label={copy.thumbnailLabelTemplate.replace('{number}', String(number))}
+                aria-current={index === 0 ? 'true' : undefined}
+              >
+                <img
+                  src={slides[index]}
+                  alt=""
+                  width="160"
+                  height="90"
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <span aria-hidden="true">{String(number).padStart(2, '0')}</span>
+              </button>
+            ))
+          }
+        </div>
+        <a class="slideshow__download" href={documentPath} download>
+          <span>{copy.downloadLabel}</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </footer>
+    </div>
+  </dialog>
+</slide-viewer>
+
+<script>
+  class SlideViewerElement extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.initialized === 'true') return;
+      this.dataset.initialized = 'true';
+
+      const viewerId = this.dataset.viewerId;
+      const title = this.dataset.title ?? '';
+      const slides = JSON.parse(this.dataset.slides ?? '[]') as string[];
+      const statusTemplate = this.dataset.statusTemplate ?? '';
+      const slideLabelTemplate = this.dataset.slideLabelTemplate ?? '';
+      const dialog = this.querySelector('dialog');
+      const image = this.querySelector<HTMLImageElement>('[data-slideshow-image]');
+      const status = this.querySelector<HTMLElement>('.slideshow__status');
+      const previous = this.querySelector<HTMLButtonElement>('[data-slideshow-previous]');
+      const next = this.querySelector<HTMLButtonElement>('[data-slideshow-next]');
+      const close = this.querySelector<HTMLButtonElement>('[data-slideshow-close]');
+      const stage = this.querySelector<HTMLElement>('[data-slideshow-stage]');
+      const thumbnails = [...this.querySelectorAll<HTMLButtonElement>('[data-slide-index]')];
+
+      if (
+        !viewerId ||
+        slides.length === 0 ||
+        !(dialog instanceof HTMLDialogElement) ||
+        !image ||
+        !status ||
+        !previous ||
+        !next ||
+        !close ||
+        !stage
+      ) {
+        throw new Error('Slideshow viewer is missing required controls');
+      }
+
+      let currentIndex = 0;
+      let returnFocus: HTMLElement | null = null;
+      let pointerStart: number | null = null;
+
+      const render = (requestedIndex: number) => {
+        currentIndex = Math.max(0, Math.min(slides.length - 1, requestedIndex));
+        const current = String(currentIndex + 1);
+        const total = String(slides.length);
+        image.src = slides[currentIndex];
+        image.alt = slideLabelTemplate
+          .replace('{title}', title)
+          .replace('{current}', current)
+          .replace('{total}', total);
+        status.textContent = statusTemplate
+          .replace('{current}', current)
+          .replace('{total}', total);
+        previous.disabled = currentIndex === 0;
+        next.disabled = currentIndex === slides.length - 1;
+
+        for (const thumbnail of thumbnails) {
+          const selected = Number(thumbnail.dataset.slideIndex) === currentIndex;
+          if (selected) {
+            thumbnail.setAttribute('aria-current', 'true');
+            thumbnail.scrollIntoView({ block: 'nearest', inline: 'center' });
+          } else {
+            thumbnail.removeAttribute('aria-current');
+          }
+        }
+
+        for (const adjacentIndex of [currentIndex - 1, currentIndex + 1]) {
+          if (slides[adjacentIndex]) new Image().src = slides[adjacentIndex];
+        }
+      };
+
+      const open = (trigger?: HTMLElement) => {
+        returnFocus = trigger ?? null;
+        render(0);
+        dialog.showModal();
+        close.focus();
+      };
+
+      document.addEventListener('click', (event) => {
+        const target = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-slideshow-open]') : null;
+        if (target?.dataset.slideshowOpen !== viewerId) return;
+        event.preventDefault();
+        open(target);
+      });
+
+      previous.addEventListener('click', () => render(currentIndex - 1));
+      next.addEventListener('click', () => render(currentIndex + 1));
+      close.addEventListener('click', () => dialog.close());
+      for (const thumbnail of thumbnails) {
+        thumbnail.addEventListener('click', () => render(Number(thumbnail.dataset.slideIndex)));
+      }
+
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+      dialog.addEventListener('close', () => returnFocus?.focus());
+      dialog.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          render(currentIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          render(currentIndex + 1);
+        } else if (event.key === 'Home') {
+          event.preventDefault();
+          render(0);
+        } else if (event.key === 'End') {
+          event.preventDefault();
+          render(slides.length - 1);
+        }
+      });
+
+      stage.addEventListener('pointerdown', (event) => {
+        if (event.target instanceof Element && event.target.closest('button, a')) return;
+        pointerStart = event.clientX;
+      });
+      stage.addEventListener('pointerup', (event) => {
+        if (pointerStart === null) return;
+        const distance = event.clientX - pointerStart;
+        pointerStart = null;
+        if (Math.abs(distance) < 50) return;
+        render(currentIndex + (distance < 0 ? 1 : -1));
+      });
+
+      if (location.hash === `#slideshow-${viewerId}`) open();
+    }
+  }
+
+  if (!customElements.get('slide-viewer')) {
+    customElements.define('slide-viewer', SlideViewerElement);
+  }
+</script>

@@ -254,8 +254,12 @@
           "body": "What AI Can’t Build, a storyteller’s guide that turns these challenges into dramatic material for writers and creators, with a high-concept pitch and a writers’-room prompt for each one.",
           "cta": {
             "label": "Open the playbook",
-            "href": "https://drive.google.com/file/d/1LgmjdETzKms2cunZ66B7g1IC10odbYJq/view?usp=sharing",
-            "external": true
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
           }
         },
         {
@@ -264,11 +268,27 @@
           "body": "The summary presentation behind the recommendations.",
           "cta": {
             "label": "View the deck",
-            "href": "https://www.dropbox.com/scl/fi/a6dbu8ii3p1dhi705ug28/GrandChallengesegw.pptx?rlkey=98gtxcvzskxmaj4p60td2ymfi&dl=0",
-            "external": true
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
           }
         }
-      ]
+      ],
+      "viewer": {
+        "dialogLabel": "Presentation viewer",
+        "closeLabel": "Close",
+        "previousLabel": "Previous slide",
+        "nextLabel": "Next slide",
+        "downloadLabel": "Download PDF",
+        "openHint": "opens an on-page slideshow",
+        "statusTemplate": "Slide {current} of {total}",
+        "slideLabelTemplate": "{title}, slide {current} of {total}",
+        "thumbnailRegionLabelTemplate": "{title} slides",
+        "thumbnailLabelTemplate": "Go to slide {number}"
+      }
     },
     "story": {
       "title": "The Biggest Story Nobody’s Telling",
@@ -281,8 +301,7 @@
       "guideRest": " takes each challenge and hands writers a high-concept pitch and a set of prompts to drop into the writers’ room: the woman fighting for the right to be different people in different parts of her life, the documentary maker whose airtight film meets an equally airtight rebuttal, the data contributor who is rich, essential, and completely anonymous.",
       "guideCta": {
         "label": "Open the playbook",
-        "href": "https://drive.google.com/file/d/1LgmjdETzKms2cunZ66B7g1IC10odbYJq/view?usp=sharing",
-        "external": true
+        "href": "#slideshow-playbook"
       },
       "videoCaption": "See how we brought these ideas into a room with 100 TV writers.",
       "videoCta": {
