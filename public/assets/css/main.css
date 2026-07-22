@@ -1975,25 +1975,6 @@ main {
     letter-spacing: 0.279px;
     text-transform: uppercase;
   }
-  #grants .grants-copy > .form {
-    position: absolute;
-    top: 243px;
-    left: 5px;
-    width: 509px;
-    max-width: none;
-    gap: 0.8rem;
-  }
-  #grants .grants-copy .form__field label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
   #grants .grants-panel {
     position: relative;
     display: block;
@@ -2170,72 +2151,6 @@ main {
   border-radius: 0.25rem;
 }
 
-/* Forms */
-.form {
-  display: grid;
-  gap: 0.65rem;
-  max-width: 26rem;
-}
-.form--on-dark .form__control {
-  background: var(--paper);
-}
-.form__field {
-  display: grid;
-  gap: 0.35rem;
-}
-.form__field label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-}
-.form__control {
-  width: 100%;
-  min-height: 2.6rem;
-  padding: 0.7rem 1rem;
-  border: 0;
-  border-radius: var(--radius-pill);
-  background: var(--paper-strong);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-.form__control::placeholder {
-  color: rgba(14, 14, 14, 0.45);
-}
-select.form__control {
-  appearance: none;
-  background-image:
-    linear-gradient(45deg, transparent 50%, #0e0e0e 50%),
-    linear-gradient(135deg, #0e0e0e 50%, transparent 50%);
-  background-position:
-    calc(100% - 18px) 55%,
-    calc(100% - 13px) 55%;
-  background-size:
-    5px 5px,
-    5px 5px;
-  background-repeat: no-repeat;
-  padding-right: 2rem;
-}
-textarea.form__control {
-  min-height: 5.5rem;
-  border-radius: 1.25rem;
-  resize: vertical;
-}
-
-.form__note {
-  margin: 0;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 1.45;
-  text-transform: none;
-  color: rgba(14, 14, 14, 0.72);
-}
-.form--on-dark .form__note {
-  color: rgba(244, 243, 243, 0.82);
-}
 
 @media (min-width: 900px) {
   #join.section--join {
@@ -2712,39 +2627,13 @@ textarea.form__control {
     letter-spacing: 0.281px;
     text-transform: uppercase;
   }
-  #join .join-panel > .form {
+  #join .join-panel > .btn {
     position: absolute;
     z-index: 2;
-    top: 161px;
+    top: 390px;
     left: 567px;
     width: 484px;
-    max-width: none;
-    gap: 15.5px;
-  }
-  #join .join-panel .form__field label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  #join .join-panel .form__control {
-    min-height: 50px;
-  }
-  #join .join-panel .form__note {
-    position: absolute;
-    top: 390px;
-    left: 0;
-    width: 484px;
-    margin: 0;
-  }
-  #join .join-panel .form > .btn {
     min-height: 54px;
-    transform: translateY(-2px);
   }
   #join #join-title {
     width: 481px;
@@ -4074,9 +3963,6 @@ html[lang='zh-TW'] .hero__title {
 html[lang='zh-TW'] .body--mono,
 html[lang='zh-TW'] .eyebrow,
 html[lang='zh-TW'] .btn,
-html[lang='zh-TW'] .form__field label,
-html[lang='zh-TW'] .form__control,
-html[lang='zh-TW'] .form__note,
 html[lang='zh-TW'] .person__role,
 html[lang='zh-TW'] .footer-col h2,
 html[lang='zh-TW'] .footer-col a,
@@ -4112,16 +3998,15 @@ html[lang='zh-TW'] .btn {
   line-height: 1.3;
 }
 
-/* zh-TW typography layout: grow fixed canvas where CJK needs room */
+/* zh-TW typography layout: grow fixed canvas where CJK needs room.
+   (--h-join override removed with the local join form; base height fits the CTA panel.) */
 html[lang='zh-TW'] {
-  --h-join: 1680px;
   --h-grants: 980px;
   --h-papers: 1980px;
 }
 
 @media (min-width: 900px) {
   html[lang='zh-TW'] {
-    --h-join: 116.666667vw; /* 1680/1440 */
     --h-grants: 68.055556vw; /* 980/1440 */
     --h-papers: 137.5vw; /* 1980/1440 */
   }
@@ -4135,9 +4020,8 @@ html[lang='zh-TW'] {
     overflow: clip;
   }
 
-  /* Panel is absolutely placed; keep form note readable without uppercase tracking */
-  html[lang='zh-TW'] #join .join-panel > .body--mono,
-  html[lang='zh-TW'] #join .join-panel .form__note {
+  /* Panel is absolutely placed; keep lead copy readable without uppercase tracking */
+  html[lang='zh-TW'] #join .join-panel > .body--mono {
     letter-spacing: 0;
     line-height: 1.45;
     text-transform: none;

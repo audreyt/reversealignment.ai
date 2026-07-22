@@ -323,39 +323,6 @@
         "You don’t have to explain the policy. You just have to make people feel what’s at stake."
       ],
       "filmsNote": "First films arriving soon.",
-      "notifyForm": {
-        "id": "notify",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20notify%20me",
-        "method": "post",
-        "submitLabel": "Sign up to be notified",
-        "fields": [
-          {
-            "name": "First Name",
-            "label": "First Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "given-name"
-          },
-          {
-            "name": "Last Name",
-            "label": "Last Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "family-name"
-          },
-          {
-            "name": "Email",
-            "label": "Email",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          }
-        ],
-        "errorMessage": "Please correct the errors in this form.",
-        "successMessage": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt.",
-        "enctype": "text/plain",
-        "mailClientNote": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt."
-      },
       "applyCta": {
         "label": "Apply for a grant",
         "href": "https://popshift.typeform.com/to/NvKBeode",
@@ -528,68 +495,10 @@
       "title": "Add Your Name",
       "lead": "If you believe we should build for our social systems as ambitiously as we build for our algorithms, lend your name and help carry the work into your own field.",
       "body": "Reverse alignment is not one project. It is a portfolio of bets, in every sector, that only a broad coalition can sustain.",
-      "form": {
-        "id": "join-form",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20join%20the%20coalition",
-        "method": "post",
-        "submitLabel": "Join",
-        "fields": [
-          {
-            "name": "Full Name",
-            "label": "Full Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "name"
-          },
-          {
-            "name": "Affiliation",
-            "label": "Affiliation",
-            "type": "text",
-            "required": false,
-            "autocomplete": "organization"
-          },
-          {
-            "name": "Sector",
-            "label": "Sector",
-            "type": "select",
-            "required": true,
-            "options": [
-              "Research",
-              "Technology",
-              "Government",
-              "Philanthropy",
-              "Civil Society",
-              "Business",
-              "Entertainment",
-              "Media"
-            ]
-          },
-          {
-            "name": "Email",
-            "label": "Email",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          },
-          {
-            "name": "I’d also like to contribute by...",
-            "label": "I’d also like to contribute by...",
-            "type": "select",
-            "required": false,
-            "options": [
-              "Lend your name to the statement",
-              "Bring a challenge into your own organization or sector",
-              "Contribute expertise, writing, or research",
-              "Help fund the work",
-              "Stay informed as the coalition grows",
-              "All of the above"
-            ]
-          }
-        ],
-        "errorMessage": "Please correct the errors in this form.",
-        "successMessage": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt.",
-        "enctype": "text/plain",
-        "mailClientNote": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt."
+      "cta": {
+        "label": "Join at reversealignment.ai",
+        "href": "https://www.reversealignment.ai/",
+        "external": true
       }
     },
     "closing": {
@@ -1067,39 +976,6 @@
         "你不必解釋政策。你只要讓人感受到，賭上的是什麼。"
       ],
       "filmsNote": "首批影片即將上線。",
-      "notifyForm": {
-        "id": "notify",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E9%80%9A%E7%9F%A5%E6%88%91",
-        "method": "post",
-        "submitLabel": "登記接收通知",
-        "fields": [
-          {
-            "name": "First Name",
-            "label": "名",
-            "type": "text",
-            "required": true,
-            "autocomplete": "given-name"
-          },
-          {
-            "name": "Last Name",
-            "label": "姓氏",
-            "type": "text",
-            "required": true,
-            "autocomplete": "family-name"
-          },
-          {
-            "name": "Email",
-            "label": "電子郵件",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          }
-        ],
-        "errorMessage": "請修正表單中的錯誤。",
-        "successMessage": "送出後會開啟你的郵件軟體，並自動帶入這些內容。在你於郵件軟體中按下傳送之前，資料都不會寄出——本站也不會確認是否收到。",
-        "enctype": "text/plain",
-        "mailClientNote": "送出後會開啟你的郵件軟體，並自動帶入這些內容。在你於郵件軟體中按下傳送之前，資料都不會寄出——本站也不會確認是否收到。"
-      },
       "applyCta": {
         "label": "申請補助",
         "href": "https://popshift.typeform.com/to/NvKBeode",
@@ -1272,68 +1148,10 @@
       "title": "留下你的名字",
       "lead": "如果你相信，打造社會系統的抱負，不該輸給打造演算法的抱負，請留下你的名字，把這份工作帶進你自己的領域。",
       "body": "反向對齊不是單一計畫，而是遍布各領域的一整組賭注——唯有夠廣的聯盟，才撐得起來。",
-      "form": {
-        "id": "join-form",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E5%8A%A0%E5%85%A5%E8%81%AF%E7%9B%9F",
-        "method": "post",
-        "submitLabel": "加入",
-        "fields": [
-          {
-            "name": "Full Name",
-            "label": "全名",
-            "type": "text",
-            "required": true,
-            "autocomplete": "name"
-          },
-          {
-            "name": "Affiliation",
-            "label": "所屬單位",
-            "type": "text",
-            "required": false,
-            "autocomplete": "organization"
-          },
-          {
-            "name": "Sector",
-            "label": "領域",
-            "type": "select",
-            "required": true,
-            "options": [
-              "研究",
-              "科技",
-              "政府",
-              "慈善",
-              "公民社會",
-              "企業",
-              "娛樂",
-              "媒體"
-            ]
-          },
-          {
-            "name": "Email",
-            "label": "電子郵件",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          },
-          {
-            "name": "I’d also like to contribute by...",
-            "label": "我也想透過以下方式貢獻……",
-            "type": "select",
-            "required": false,
-            "options": [
-              "連署這份聲明",
-              "把挑戰帶進自己的組織或領域",
-              "貢獻專業、寫作或研究",
-              "出資支持這項工作",
-              "隨時掌握聯盟動態",
-              "以上皆是"
-            ]
-          }
-        ],
-        "errorMessage": "請修正表單中的錯誤。",
-        "successMessage": "送出後會開啟你的郵件軟體，並自動帶入這些內容。在你於郵件軟體中按下傳送之前，資料都不會寄出——本站也不會確認是否收到。",
-        "enctype": "text/plain",
-        "mailClientNote": "送出後會開啟你的郵件軟體，並自動帶入這些內容。在你於郵件軟體中按下傳送之前，資料都不會寄出——本站也不會確認是否收到。"
+      "cta": {
+        "label": "在 reversealignment.ai 加入聯盟（英文）",
+        "href": "https://www.reversealignment.ai/",
+        "external": true
       }
     },
     "closing": {

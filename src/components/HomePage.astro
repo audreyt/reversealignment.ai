@@ -1,6 +1,5 @@
 ---
 import CtaLink from './CtaLink.astro';
-import LocalForm from './LocalForm.astro';
 import HeroGravity from './HeroGravity.astro';
 import Media from './Media.astro';
 import SiteFooter from './SiteFooter.astro';
@@ -311,7 +310,6 @@ if (!primaryCta?.label || !secondaryCta?.label) {
             <p class="body--mono grants-copy__body">{paragraph}</p>
           ))}
           <p class="body--mono grants-copy__note">{copy.grants.filmsNote}</p>
-          <LocalForm form={copy.grants.notifyForm} variant="on-dark" />
         </div>
         <div class="grants-panel">
           <h2 id="grants-title" class="display display--md">{copy.grants.title}</h2>
@@ -381,7 +379,7 @@ if (!primaryCta?.label || !secondaryCta?.label) {
         </div>
         <div class="join-panel stack-md">
           <p class="body--mono">{copy.join.lead}</p>
-          <LocalForm form={copy.join.form} />
+          <CtaLink cta={copy.join.cta} class="btn btn--dark btn--block" externalLabel={copy.a11y.externalLink} />
         </div>
       </div>
     </section>

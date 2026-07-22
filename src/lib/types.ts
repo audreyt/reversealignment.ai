@@ -62,33 +62,6 @@ export type Person = {
   image: string;
 };
 
-export type FormField = {
-  /** Readable submitted name (mailto text/plain body key). */
-  name: string;
-  label: string;
-  type: 'text' | 'email' | 'textarea' | 'select';
-  required?: boolean;
-  options?: string[];
-  autocomplete?: string;
-  /**
-   * Optional stable DOM id fragment. When omitted, derived by slugifying `name`.
-   * MUST be a valid HTML id token (no spaces); never use the human `name` raw.
-   */
-  id?: string;
-};
-
-export type FormSpec = {
-  id: string;
-  action: string;
-  method?: 'get' | 'post';
-  enctype?: string;
-  submitLabel: string;
-  fields: FormField[];
-  errorMessage?: string;
-  successMessage?: string;
-  /** Honest static-mail copy: submit opens a mail client; not a server receipt. */
-  mailClientNote?: string;
-};
 
 export type CoalitionPerson = {
   kind: 'person';
@@ -198,7 +171,6 @@ export type SiteContent = {
     fundingLine: string;
     panelBody: string[];
     filmsNote: string;
-    notifyForm: FormSpec;
     applyCta: Cta;
   };
   coalition: {
@@ -213,7 +185,7 @@ export type SiteContent = {
     title: string;
     lead: string;
     body: string;
-    form: FormSpec;
+    cta: Cta;
   };
   closing: {
     lines: string[];

@@ -39,33 +39,14 @@ test.describe('home page', () => {
       await expect(page.locator(`img[src*="${asset}"]`).first()).toHaveCount(1);
     }
 
-    const notify = page.locator('#notify');
-    await expect(notify).toHaveAttribute('action', /mailto:/);
-    await expect(notify).toHaveAttribute('method', /post/i);
-    await expect(notify).toHaveAttribute('enctype', 'text/plain');
-    await expect(notify).not.toHaveAttribute('action', '#');
-    await expect(notify.locator('[data-form-note]')).toContainText(
-      /電子郵件客戶端|郵件應用程式|郵件軟體/
-    );
-
-    const joinForm = page.locator('#join-form');
-    await expect(joinForm).toHaveAttribute('method', /post/i);
-    await expect(joinForm).toHaveAttribute('enctype', 'text/plain');
-
-    // Labels associate via stable slug ids (not raw human field names)
-    for (const formSel of ['#notify', '#join-form']) {
-      const form = page.locator(formSel);
-      const labels = form.locator('label[for]');
-      const count = await labels.count();
-      expect(count).toBeGreaterThan(0);
-      for (let i = 0; i < count; i++) {
-        const forId = await labels.nth(i).getAttribute('for');
-        expect(forId).toBeTruthy();
-        expect(forId).toMatch(/^[A-Za-z][\w-]*$/);
-        expect(forId).not.toMatch(/\s/);
-        await expect(form.locator(`#${forId!}`)).toHaveCount(1);
-      }
-    }
+    // Signup routes upstream: no local capture forms, join CTA links to the coalition home
+    await expect(page.locator('form')).toHaveCount(0);
+    await expect(page.locator('#notify, #join-form')).toHaveCount(0);
+    const joinCta = page.locator('#join .join-panel a.btn');
+    await expect(joinCta).toHaveAttribute('href', 'https://www.reversealignment.ai/');
+    await expect(joinCta).toHaveAttribute('target', '_blank');
+    await expect(joinCta).toHaveAttribute('rel', /noopener/);
+    await expect(joinCta).toContainText('加入聯盟');
 
     // Sticky chrome matches live: brand + JOIN only (no section link row)
     await expect(page.locator('.site-header .brand')).toBeVisible();
@@ -454,16 +435,16 @@ test.describe('home page', () => {
       const eyebrow = section.querySelector('.grants-copy > .eyebrow');
       const copyContainer = section.querySelector('.grants-copy');
       const copy = section.querySelector('.grants-copy__body');
-      const form = section.querySelector('.grants-copy > form');
+      const note = section.querySelector('.grants-copy > .grants-copy__note');
       const panel = section.querySelector('.grants-panel');
       const title = section.querySelector('#grants-title');
       const body = section.querySelector('.grants-panel__body');
-      if (!eyebrow || !copyContainer || !copy || !form || !panel || !title || !body) return null;
+      if (!eyebrow || !copyContainer || !copy || !note || !panel || !title || !body) return null;
 
       const eyebrowRect = eyebrow.getBoundingClientRect();
       const copyContainerRect = copyContainer.getBoundingClientRect();
       const copyRect = copy.getBoundingClientRect();
-      const formRect = form.getBoundingClientRect();
+      const noteRect = note.getBoundingClientRect();
       const panelRect = panel.getBoundingClientRect();
       const titleRect = title.getBoundingClientRect();
       const bodyRect = body.getBoundingClientRect();
@@ -475,7 +456,7 @@ test.describe('home page', () => {
         dividerAfterTitle: panelRect.top + panelDivider - titleRect.bottom,
         bodyAfterDivider: bodyRect.top - (panelRect.top + panelDivider),
         copyAfterDivider: copyRect.top - (copyContainerRect.top + copyDivider),
-        formAfterCopy: formRect.top - copyRect.bottom,
+        noteAfterCopy: noteRect.top - copyRect.bottom,
       };
     });
 
@@ -486,7 +467,7 @@ test.describe('home page', () => {
     expect(geometry.dividerAfterTitle).toBeGreaterThan(10);
     expect(geometry.bodyAfterDivider).toBeGreaterThan(20);
     expect(geometry.copyAfterDivider).toBeGreaterThan(20);
-    expect(geometry.formAfterCopy).toBeGreaterThan(40);
+    expect(geometry.noteAfterCopy).toBeGreaterThan(0);
   });
 
   test('mobile slideshow fills the viewport without cropping its slides', async ({ page }) => {
