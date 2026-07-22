@@ -858,15 +858,18 @@ main {
   }
   #idea .failures-close {
     margin-top: 0;
+    padding-top: 4.444444vw;
   }
   #idea .failures-close::before {
     content: '';
     position: absolute;
     z-index: -1;
-    top: 49px;
-    left: -33px;
-    width: 1306px;
-    height: 50px;
+    top: 0;
+    left: 84.42px;
+    right: 43.2px;
+    height: 12.777778vw;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
     background: rgb(212, 250, 117);
   }
   .sheet {
@@ -922,6 +925,7 @@ main {
     height: 34.305556vw;
     min-height: 34.305556vw;
     max-height: 34.305556vw;
+    border-top: 0;
   }
   #idea .idea-band--failures .stack-sm {
     align-content: start;
@@ -1273,15 +1277,15 @@ main {
 
 
 @media (min-width: 900px) {
-  /* Challenges — live cardW 350, mediaH 283, rowPitch 357, first media off 414 */
+  /* Challenges — live cardW 350, mediaH 283, metaH 39, rowPitch 353 */
   #building .challenge-grid {
     display: grid;
     grid-template-columns: repeat(3, 350px);
     column-gap: 35px;
-    row-gap: 7px; /* 350px card + 7px gap = live 357px pitch */
+    row-gap: 31px;
     width: 1120px;
     max-width: 100%;
-    margin-top: 129px; /* first media at live buildingStart + 414px */
+    margin-top: 103px;
     margin-left: 85px; /* live card cols ~162/544/932 */
     flex: 0 0 auto;
     align-content: start;
@@ -1299,9 +1303,9 @@ main {
   #building .challenge-card {
     width: 350px;
     max-width: 350px;
-    grid-template-rows: 283px 67px;
+    grid-template-rows: 283px 39px;
     min-height: 0;
-    height: 350px;
+    height: 322px;
   }
   #building .challenge-card__media {
     height: 283px;
@@ -1310,7 +1314,7 @@ main {
   }
   #building .challenge-card__meta {
     min-height: 0;
-    height: 67px;
+    height: 39px;
     box-sizing: border-box;
   }
   /* Building — painted 3203→5262. Title y3272 = sec+69 */
@@ -1776,10 +1780,10 @@ main {
     background: rgba(244, 243, 243, 0.28);
   }
   #story .story__copy::before {
-    top: -68px;
+    top: -51px;
   }
   #story .story__copy::after {
-    top: 178px;
+    top: 161px;
   }
   #story .story__resources {
     position: relative;
@@ -2431,7 +2435,7 @@ main {
   }
   #coalition .sectors {
     position: absolute;
-    top: 16.5359vw;
+    top: 22.7165vw;
     left: 2.734375vw;
     display: flex;
     align-items: center;
@@ -2456,7 +2460,7 @@ main {
   }
   #coalition .people-grid {
     position: absolute;
-    top: 25.64235vw;
+    top: 31.82295vw;
     left: 2.734375vw;
     display: grid;
     grid-template-columns: repeat(4, 21.582031vw);
@@ -3504,12 +3508,13 @@ main {
   .closing__title {
     width: 341.25px;
     max-width: 341.25px;
-    height: 170.625px;
+    height: auto;
+    min-height: 170.625px;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    font-size: 34.125px;
-    line-height: 34.125px;
+    overflow: visible;
+    font-size: min(34.125px, 7.9vw);
+    line-height: min(34.125px, 7.9vw);
     letter-spacing: -0.609375px;
   }
 
@@ -4033,11 +4038,11 @@ html[lang='zh-TW'] .display--story {
   white-space: pre-line;
 }
 
-/* zh #idea title is one line (EN is two); lift the divider off the lead copy
-   into the title/lead gap (title bottom 87px, lead top 180px in sheet coords) */
+/* zh #idea title is one line (EN is two); keep the divider at the same 65/35
+   position in the responsive title/lead gap (147px on the 1440px canvas). */
 @media (min-width: 900px) {
   html[lang='zh-TW'] #idea .sheet__content::before {
-    top: 147px;
+    top: calc(20.5px + 8.784722vw);
   }
 }
 
