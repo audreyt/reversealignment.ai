@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "reversealignment.ai",
+      "name": "reversealignment.tw",
       "dependencies": {
         "astro": "^7.0.6",
       },

@@ -7,10 +7,10 @@ import SiteFooter from './SiteFooter.astro';
 import SlideshowViewer from './SlideshowViewer.astro';
 import SiteHeader from './SiteHeader.astro';
 import type { Locale } from '../lib/types';
-import { assetPath, getContent, relativeRootPath } from '../lib/i18n';
+import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../lib/i18n';
 
 type Props = { locale?: Locale };
-const locale = Astro.props.locale ?? 'en';
+const locale = Astro.props.locale ?? getDefaultLocale();
 const copy = getContent(locale);
 const rootPath = relativeRootPath(locale);
 const primaryCta = copy.hero.primaryCta;

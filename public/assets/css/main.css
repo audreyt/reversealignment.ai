@@ -76,8 +76,8 @@
   --violet-soft: #8a59ff;
   --line: rgba(244, 243, 243, 0.18);
   --line-dark: rgba(14, 14, 14, 0.18);
-  --font-display: 'plfh', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: 'plfh', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', ui-monospace, SFMono-Regular, Menlo, monospace;
   /* Live Readymag stage is designWidth≈1024 scaled onto 1440; content inset ≈28 design */
   --stage: 1440px;
   --max: 1360px;
@@ -923,12 +923,6 @@ main {
     min-height: 34.305556vw;
     max-height: 34.305556vw;
   }
-  #idea .idea-band--close {
-    background: #000;
-  }
-  #idea .idea-band--close > .idea-band__background {
-    transform: translateY(-310px);
-  }
   #idea .idea-band--failures .stack-sm {
     align-content: start;
     gap: 0;
@@ -1194,7 +1188,7 @@ main {
 #building .challenge-card:nth-child(3) .challenge-card__body,
 #building .challenge-card:nth-child(8) .challenge-card__body,
 #building .challenge-card:nth-child(12) .challenge-card__body {
-  background: #c3260c;
+  background: #c62b15;
 }
 #building .challenge-card:nth-child(4) .challenge-card__body,
 #building .challenge-card:nth-child(9) .challenge-card__body {
@@ -1203,12 +1197,12 @@ main {
 }
 #building .challenge-card:nth-child(5) .challenge-card__body,
 #building .challenge-card:nth-child(10) .challenge-card__body {
-  background: #bc6cb4;
+  background: #c572b9;
   color: var(--ink);
 }
 #building .challenge-card:nth-child(6) .challenge-card__body,
 #building .challenge-card:nth-child(11) .challenge-card__body {
-  background: #070836;
+  background: #090d3a;
 }
 .challenge-card__meta {
   display: flex;
@@ -1233,6 +1227,9 @@ main {
   letter-spacing: -0.02em;
 }
 @media (min-width: 900px) {
+  .challenge-card__body {
+    opacity: 1;
+  }
   .site-header .brand {
     font-size: 11.163px;
     letter-spacing: 0;
@@ -2721,7 +2718,7 @@ textarea.form__control {
   #join .join-panel > .form {
     position: absolute;
     z-index: 2;
-    top: 237px;
+    top: 161px;
     left: 567px;
     width: 484px;
     max-width: none;
@@ -2747,7 +2744,6 @@ textarea.form__control {
     left: 0;
     width: 484px;
     margin: 0;
-    color: var(--paper);
   }
   #join .join-panel .form > .btn {
     min-height: 54px;
@@ -3504,7 +3500,7 @@ textarea.form__control {
     background: #000;
   }
   #idea .idea-band--close > .idea-band__background {
-    transform: translateY(-100px);
+    transform: translateY(-60px);
   }
   #idea .idea-band--close .failures-close {
     position: absolute;
@@ -3534,21 +3530,6 @@ textarea.form__control {
   #building .building-head {
     margin-left: 9.375px;
     width: 341.25px;
-  }
-  #building #building-title {
-    opacity: 0;
-  }
-  #building .building-head > .stack-sm:first-child .lede {
-    transform: translateY(26px);
-  }
-  #building .building-head > .stack-sm:nth-child(2) .eyebrow {
-    transform: translateY(-202px);
-  }
-  #building .building-head > .stack-sm:nth-child(2) .eyebrow + .body--mono {
-    transform: translateY(-25px);
-  }
-  #building .building-head > .stack-sm:nth-child(2) .body--mono:last-child {
-    transform: translateY(-34px);
   }
   #claim #claim-title {
     width: 230.34375px;
@@ -4066,5 +4047,115 @@ body:has(.slideshow[open]) {
   }
   .slideshow__download {
     min-height: 2.6rem;
+  }
+}
+
+
+/* zh-TW typography: CJK-friendly wrapping without changing Latin defaults */
+html[lang='zh-TW'] body {
+  line-height: 1.55;
+  letter-spacing: 0;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  line-break: strict;
+}
+
+html[lang='zh-TW'] .display {
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+html[lang='zh-TW'] .lede,
+html[lang='zh-TW'] .body,
+html[lang='zh-TW'] .body--sm,
+html[lang='zh-TW'] .hero__body,
+html[lang='zh-TW'] .hero__title {
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+html[lang='zh-TW'] .body--mono,
+html[lang='zh-TW'] .eyebrow,
+html[lang='zh-TW'] .btn,
+html[lang='zh-TW'] .form__field label,
+html[lang='zh-TW'] .form__control,
+html[lang='zh-TW'] .form__note,
+html[lang='zh-TW'] .person__role,
+html[lang='zh-TW'] .footer-col h2,
+html[lang='zh-TW'] .footer-col a,
+html[lang='zh-TW'] .footer-copy,
+html[lang='zh-TW'] .slideshow__eyebrow,
+html[lang='zh-TW'] .slideshow__status,
+html[lang='zh-TW'] .slideshow__close,
+html[lang='zh-TW'] .slideshow__download {
+  letter-spacing: 0.04em;
+  text-transform: none;
+  line-height: 1.5;
+}
+
+html[lang='zh-TW'] .challenge-card__title,
+html[lang='zh-TW'] .paper-card__title,
+html[lang='zh-TW'] .failure__title,
+html[lang='zh-TW'] .person__name {
+  letter-spacing: 0;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+html[lang='zh-TW'] .challenge-card__body,
+html[lang='zh-TW'] .failure__body {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+}
+
+html[lang='zh-TW'] .btn {
+  white-space: normal;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* zh-TW typography layout: grow fixed canvas where CJK needs room */
+html[lang='zh-TW'] {
+  --h-join: 1680px;
+  --h-grants: 980px;
+  --h-papers: 1980px;
+}
+
+@media (min-width: 900px) {
+  html[lang='zh-TW'] {
+    --h-join: 116.666667vw; /* 1680/1440 */
+    --h-grants: 68.055556vw; /* 980/1440 */
+    --h-papers: 137.5vw; /* 1980/1440 */
+  }
+
+  html[lang='zh-TW'] #join.section--join,
+  html[lang='zh-TW'] #grants.section--grants,
+  html[lang='zh-TW'] #papers.section--papers {
+    max-height: none;
+    /* Allow vertical growth for CJK; clip absolute section art so it cannot widen the document. */
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  /* Panel is absolutely placed; keep form note readable without uppercase tracking */
+  html[lang='zh-TW'] #join .join-panel > .body--mono,
+  html[lang='zh-TW'] #join .join-panel .form__note {
+    letter-spacing: 0;
+    line-height: 1.45;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 899px) {
+  html[lang='zh-TW'] #join.section--join,
+  html[lang='zh-TW'] #grants.section--grants,
+  html[lang='zh-TW'] #papers.section--papers {
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+    padding-bottom: 3rem;
   }
 }

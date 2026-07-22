@@ -272,5 +272,5 @@ test('buildAstroSite runs the injected Astro build function', async () => {
 });
 
 test('getProjectRoot points at this repository', () => {
-  expect(getProjectRoot()).toMatch(/reversealignment\.ai\/?$/);
+  expect(getProjectRoot()).toMatch(/reversealignment\.ai(?:-zh-tw)?\/?$/);
 });

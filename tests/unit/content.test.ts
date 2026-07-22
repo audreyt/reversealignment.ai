@@ -5,53 +5,68 @@ import { describe, expect, test } from 'vite-plus/test';
 import {
   assertDefaultLocalePresent,
   assetPath,
+  catalogInvariants,
   catalogShapePaths,
+  collectInvariantPaths,
   collectShapePaths,
   formFieldDomId,
   getContent,
   getDefaultLocale,
   getSite,
+  hreflangAlternates,
   isLocale,
-  listAlternateLocales,
   listLocales,
-  localeHomePath,
-  localePathPrefix,
+  normalizeMailtoAction,
   relativeRootPath,
   toBcp47,
+  toOgLocale,
 } from '../../src/lib/i18n';
 import type { Locale } from '../../src/lib/types';
 
 const PUBLIC = resolve(import.meta.dirname, '../../public');
 
 describe('content catalog', () => {
-  test('default locale is English and listed', () => {
-    expect(getDefaultLocale()).toBe('en');
-    expect(listLocales()).toContain('en');
+  test('default locale is Traditional Chinese; en remains for parity only', () => {
+    expect(getDefaultLocale()).toBe('zh-tw');
+    expect(listLocales()).toEqual(expect.arrayContaining(['zh-tw', 'en']));
+    expect(isLocale('zh-tw')).toBe(true);
     expect(isLocale('en')).toBe(true);
     expect(isLocale('nope')).toBe(false);
   });
 
-  test('site metadata is present', () => {
-    const site = getSite();
+  test('site metadata points at reversealignment.tw with English cross-domain URL', () => {
+    const site = getSite() as {
+      name: string;
+      url: string;
+      lang: string;
+      englishSiteUrl: string;
+    };
     expect(site.name).toBe('Reverse Alignment');
-    expect(site.url).toContain('reversealignment.ai');
+    expect(site.url).toBe('https://reversealignment.tw');
+    expect(site.lang).toBe('zh-TW');
+    expect(site.englishSiteUrl).toBe('https://www.reversealignment.ai');
   });
 
   test('brand mark segments are explicit content fields', () => {
     const copy = getContent('en');
     expect(copy.brand.mark).toBe('Reverse');
     expect(copy.brand.rest).toBe('Alignment');
+    const zh = getContent('zh-tw');
+    expect(zh.brand.mark).toBe('Reverse');
+    expect(zh.brand.rest).toBe('Alignment');
   });
 
   test('all visible hero CTAs live in content', () => {
-    const copy = getContent('en');
-    expect(copy.hero.primaryCta.label.length).toBeGreaterThan(0);
-    expect(copy.hero.secondaryCta.label.length).toBeGreaterThan(0);
-    expect(copy.hero.primaryCta.href.length).toBeGreaterThan(0);
-    expect(copy.hero.secondaryCta.href.length).toBeGreaterThan(0);
+    for (const locale of listLocales()) {
+      const copy = getContent(locale);
+      expect(copy.hero.primaryCta.label.length).toBeGreaterThan(0);
+      expect(copy.hero.secondaryCta.label.length).toBeGreaterThan(0);
+      expect(copy.hero.primaryCta.href.length).toBeGreaterThan(0);
+      expect(copy.hero.secondaryCta.href.length).toBeGreaterThan(0);
+    }
   });
 
-  test('typo fix Fast-grants is present (not FAST-RANTS)', () => {
+  test('typo fix Fast-grants is present in English (not FAST-RANTS)', () => {
     const copy = getContent('en');
     expect(copy.grants.title.toLowerCase()).toContain('fast-grants');
     expect(copy.grants.title.toLowerCase()).not.toContain('fast-rants');
@@ -63,47 +78,57 @@ describe('content catalog', () => {
   });
 
   test('forms have honest mailto POST text/plain fallback', () => {
-    const copy = getContent('en');
-    for (const form of [copy.grants.notifyForm, copy.join.form]) {
-      expect(form.action.length).toBeGreaterThan(0);
-      expect(form.action).toMatch(/^mailto:/i);
-      expect(form.action).not.toBe('#');
-      expect(form.action).not.toBe('https://www.reversealignment.ai/');
-      expect(form.action).not.toBe('/');
-      expect((form.method || '').toLowerCase()).toBe('post');
-      expect((form.enctype || '').toLowerCase()).toBe('text/plain');
-      expect(form.mailClientNote?.toLowerCase()).toMatch(/mail client|email client/);
-      expect(form.mailClientNote?.toLowerCase()).not.toMatch(
-        /received|we.?ll be in touch|thanks for joining/
-      );
-      for (const field of form.fields) {
-        expect(field.name.length).toBeGreaterThan(0);
-        expect(field.name).toMatch(/[A-Za-z]/);
-        expect(field.name).not.toMatch(/^[a-z]+[A-Z]/); // avoid opaque camelCase body keys
-        const domId = formFieldDomId(form.id, field);
-        expect(domId).toMatch(new RegExp(`^${form.id}-[a-z][a-z0-9-]*$`));
-        expect(domId).not.toMatch(/\s/);
+    for (const locale of listLocales()) {
+      const copy = getContent(locale);
+      for (const form of [copy.grants.notifyForm, copy.join.form]) {
+        expect(form.action.length).toBeGreaterThan(0);
+        expect(form.action).toMatch(/^mailto:/i);
+        expect(form.action).toContain('hello@reversealignment.ai');
+        expect(form.action).not.toBe('#');
+        expect(form.action).not.toBe('https://reversealignment.tw/');
+        expect(form.action).not.toBe('https://www.reversealignment.ai/');
+        expect(form.action).not.toBe('/');
+        expect((form.method || '').toLowerCase()).toBe('post');
+        expect((form.enctype || '').toLowerCase()).toBe('text/plain');
+        expect(form.mailClientNote?.length).toBeGreaterThan(0);
+        expect(form.mailClientNote).not.toMatch(/received|we.?ll be in touch|thanks for joining/i);
+        if (locale === 'en') {
+          expect(form.mailClientNote?.toLowerCase()).toMatch(/mail client|email client/);
+        } else {
+          expect(form.mailClientNote).toMatch(/電子郵|郵件/);
+        }
+        for (const field of form.fields) {
+          expect(field.name.length).toBeGreaterThan(0);
+          expect(field.name).toMatch(/[A-Za-z]/);
+          expect(field.name).not.toMatch(/^[a-z]+[A-Z]/);
+          const domId = formFieldDomId(form.id, field);
+          expect(domId).toMatch(new RegExp(`^${form.id}-[a-z][a-z0-9-]*$`));
+          expect(domId).not.toMatch(/\s/);
+        }
       }
     }
   });
 
   test('story has no unused guideBody field', () => {
-    const copy = getContent('en') as { story: Record<string, unknown> };
-    expect(copy.story).not.toHaveProperty('guideBody');
-    expect(typeof copy.story.guideTerm).toBe('string');
-    expect(typeof copy.story.guideRest).toBe('string');
+    for (const locale of listLocales()) {
+      const copy = getContent(locale) as { story: Record<string, unknown> };
+      expect(copy.story).not.toHaveProperty('guideBody');
+      expect(typeof copy.story.guideTerm).toBe('string');
+      expect(typeof copy.story.guideRest).toBe('string');
+    }
   });
 
   test('notFound copy is localized in content', () => {
-    const copy = getContent('en');
-    expect(copy.notFound.heading.length).toBeGreaterThan(0);
-    expect(copy.notFound.backLabel.length).toBeGreaterThan(0);
+    for (const locale of listLocales()) {
+      const copy = getContent(locale);
+      expect(copy.notFound.heading.length).toBeGreaterThan(0);
+      expect(copy.notFound.backLabel.length).toBeGreaterThan(0);
+    }
   });
 
   test('twelve challenges and coalition people are structured', () => {
     const copy = getContent('en');
     expect(copy.building.challenges).toHaveLength(12);
-    // Live grid order: 001-003, 004/005/006 LTR, then 007-012
     expect(copy.building.challenges.map((c) => c.number)).toEqual([
       '001',
       '002',
@@ -142,13 +167,16 @@ describe('content catalog', () => {
       expect(challenge.body.length).toBeGreaterThan(0);
       expect(challenge.image.length).toBeGreaterThan(0);
     }
-  });
 
-  test('locale home paths: default at root, alternates prefixed', () => {
-    expect(localeHomePath('en')).toBe('/');
-    for (const locale of listAlternateLocales()) {
-      expect(localeHomePath(locale)).toBe(`/${locale}/`);
-    }
+    const zh = getContent('zh-tw');
+    expect(zh.building.challenges).toHaveLength(12);
+    expect(zh.building.challenges.map((c) => c.number)).toEqual(
+      copy.building.challenges.map((c) => c.number)
+    );
+    expect(zh.coalition.people).toHaveLength(24);
+    expect(zh.coalition.people.map((p) => p.name)).toEqual(
+      copy.coalition.people.map((p) => p.name)
+    );
   });
 });
 
@@ -163,16 +191,13 @@ describe('catalog parity', () => {
     const dropped = collectShapePaths({
       items: [{ id: 'a', tags: ['x', 'y'] }],
     });
-    // Length tokens differ when an item is dropped.
     expect(full).toContain('items[2]');
     expect(dropped).toContain('items[1]');
     expect(full).not.toContain('items[1]');
     expect(dropped).not.toContain('items[2]');
     expect(full).not.toEqual(dropped);
-    // Second element paths exist only on the full catalog.
     expect(full).toContain('items[1].id');
     expect(dropped).not.toContain('items[1].id');
-    // Nested array lengths are also encoded.
     expect(full).toContain('items[0].tags[2]');
     expect(dropped).toContain('items[0].tags[2]');
   });
@@ -189,33 +214,68 @@ describe('catalog parity', () => {
       const assets = Object.keys(getContent(locale).assets).sort();
       expect(assets, `asset key parity for ${locale}`).toEqual(baselineAssets);
 
-      // Every asset file must exist for every locale mapping.
       for (const [key, path] of Object.entries(getContent(locale).assets)) {
         const rel = path.replace(/^\//, '');
         expect(existsSync(resolve(PUBLIC, rel)), `${locale}:${key} -> ${path}`).toBe(true);
       }
     }
   });
+
+  test('locale-specific og-image mapping stays on distinct existing files', () => {
+    const en = getContent('en');
+    const zh = getContent('zh-tw');
+    expect(en.meta.ogImage).toBe('/assets/images/og-image.jpg');
+    expect(en.assets['og-image']).toBe('/assets/images/og-image.jpg');
+    expect(zh.meta.ogImage).toBe('/assets/images/og-image-zh-tw.jpg');
+    expect(zh.assets['og-image']).toBe('/assets/images/og-image-zh-tw.jpg');
+    expect(Object.keys(zh.assets).sort()).toEqual(Object.keys(en.assets).sort());
+    for (const locale of listLocales()) {
+      const copy = getContent(locale);
+      const rel = copy.assets['og-image'].replace(/^\//, '');
+      expect(existsSync(resolve(PUBLIC, rel)), `${locale} og-image file`).toBe(true);
+      const metaRel = copy.meta.ogImage.replace(/^\//, '');
+      expect(existsSync(resolve(PUBLIC, metaRel)), `${locale} meta.ogImage file`).toBe(true);
+      expect(copy.meta.ogImage).toBe(copy.assets['og-image']);
+    }
+  });
+
+  test('non-translatable structural values match across locales', () => {
+    const baseline = catalogInvariants(getDefaultLocale());
+    expect(Object.keys(baseline).length).toBeGreaterThan(50);
+    for (const locale of listLocales()) {
+      expect(catalogInvariants(locale), `invariants for ${locale}`).toEqual(baseline);
+    }
+    expect(baseline['grants.notifyForm.action']).toBe('mailto:hello@reversealignment.ai');
+    expect(baseline['join.form.action']).toBe('mailto:hello@reversealignment.ai');
+    expect(baseline['nav.join.href']).toBe('#join');
+    expect(baseline['hero.primaryCta.href']).toBe('#join');
+  });
 });
 
 describe('i18n helpers coverage', () => {
   test('assertDefaultLocalePresent throws when default missing', () => {
-    expect(() => assertDefaultLocalePresent(['fr'], 'en')).toThrow(/missing from content catalog/);
-    expect(() => assertDefaultLocalePresent(['en'], 'en')).not.toThrow();
+    expect(() => assertDefaultLocalePresent(['fr'], 'zh-tw')).toThrow(
+      /missing from content catalog/
+    );
+    expect(() => assertDefaultLocalePresent(['zh-tw'], 'zh-tw')).not.toThrow();
   });
 
   test('getContent throws for unknown locale cast', () => {
     expect(() => getContent('zz' as Locale)).toThrow(/Missing content for locale/);
   });
 
-  test('locale path helpers handle default and alternate codes', () => {
-    expect(localePathPrefix('en')).toBe('');
-    expect(localeHomePath('en')).toBe('/');
-    expect(localePathPrefix('zh' as Locale)).toBe('/zh');
-    expect(localeHomePath('zh' as Locale)).toBe('/zh/');
+  test('served site is root-only with cross-domain hreflang', () => {
+    expect(relativeRootPath('zh-tw')).toBe('./');
     expect(relativeRootPath('en')).toBe('./');
-    expect(relativeRootPath('zh' as Locale)).toBe('../');
     expect(toBcp47('en')).toBe('en');
+    expect(toBcp47('zh-tw')).toBe('zh-TW');
+    expect(toOgLocale('zh-tw')).toBe('zh_TW');
+    expect(toOgLocale('en')).toBe('en');
+    expect(hreflangAlternates()).toEqual([
+      { hreflang: 'zh-TW', href: 'https://reversealignment.tw/' },
+      { hreflang: 'en', href: 'https://www.reversealignment.ai/' },
+      { hreflang: 'x-default', href: 'https://reversealignment.tw/' },
+    ]);
   });
 
   test('collectShapePaths covers empty prefix leaves and empty arrays', () => {
@@ -229,9 +289,37 @@ describe('i18n helpers coverage', () => {
     );
   });
 
-  test('listAlternateLocales is empty while only English exists', () => {
-    expect(listAlternateLocales()).toEqual([]);
-    expect(listLocales()).toEqual(['en']);
+  test('normalizeMailtoAction strips localized query subjects', () => {
+    expect(
+      normalizeMailtoAction(
+        'mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E9%80%9A%E7%9F%A5%E6%88%91'
+      )
+    ).toBe('mailto:hello@reversealignment.ai');
+    expect(
+      normalizeMailtoAction(
+        'mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20notify%20me'
+      )
+    ).toBe('mailto:hello@reversealignment.ai');
+    expect(normalizeMailtoAction('https://example.com/form')).toBe('https://example.com/form');
+    expect(normalizeMailtoAction('mailto:Hello@ReverseAlignment.AI')).toBe(
+      'mailto:hello@reversealignment.ai'
+    );
+    expect(normalizeMailtoAction(null)).toBeNull();
+    expect(normalizeMailtoAction(42)).toBe(42);
+  });
+
+  test('collectInvariantPaths covers empty and array roots', () => {
+    expect(collectInvariantPaths(null)).toEqual({});
+    expect(collectInvariantPaths('leaf')).toEqual({});
+    expect(collectInvariantPaths([{ id: 'a' }, { href: '#x' }])).toEqual({
+      '[0].id': 'a',
+      '[1].href': '#x',
+    });
+  });
+
+  test('catalog retains en for parity while only zh-tw is default', () => {
+    expect(listLocales().sort()).toEqual(['en', 'zh-tw'].sort());
+    expect(getDefaultLocale()).toBe('zh-tw');
   });
 
   test('formFieldDomId slugifies human names and keeps explicit ids', () => {
@@ -252,7 +340,7 @@ describe('i18n helpers coverage', () => {
 
 describe('asset mappings', () => {
   test('every mapped asset file exists under public/', () => {
-    const copy = getContent('en');
+    const copy = getContent(getDefaultLocale());
     const missing: string[] = [];
     for (const [key, path] of Object.entries(copy.assets)) {
       const rel = path.replace(/^\//, '');
@@ -337,7 +425,7 @@ describe('asset mappings', () => {
   });
 
   test('local presentation documents include every declared slide', () => {
-    const copy = getContent('en');
+    const copy = getContent(getDefaultLocale());
     for (const resource of copy.papers.resources) {
       expect(existsSync(resolve(PUBLIC, 'assets/documents', resource.slides.document))).toBe(true);
       for (let number = 1; number <= resource.slides.count; number++) {

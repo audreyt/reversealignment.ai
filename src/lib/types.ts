@@ -152,6 +152,7 @@ export type SiteContent = {
     lead: string;
     summary: string;
     hoverHint: string;
+    clickHint: string;
     challengesIntro: string;
     challenges: Challenge[];
   };
@@ -186,6 +187,7 @@ export type SiteContent = {
     guideTitle: string[];
     guideTerm: string;
     guideRest: string;
+    guideCta: Cta;
     videoCaption: string;
     videoCta: Cta;
   };
