@@ -177,6 +177,71 @@ test.describe('home page', () => {
     expect(layout.oldAsideCount).toBe(0);
   });
 
+  test('desktop idea bands retain source geometry after media decode', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await Promise.all(
+        [...document.querySelectorAll<HTMLImageElement>('#idea img')].map((image) =>
+          image.decode().catch(() => undefined)
+        )
+      );
+    });
+
+    const geometry = await page.locator('#idea').evaluate((section) => {
+      const history = section.querySelector('.idea-band--history');
+      const failures = section.querySelector('.idea-band--failures');
+      const close = section.querySelector('.idea-band--close');
+      const intro = [...section.querySelectorAll('.idea-band--failures .stack-sm .lede')];
+      const rows = [...section.querySelectorAll('.failure')];
+      if (!history || !failures || !close || intro.length !== 2 || rows.length !== 3) return null;
+
+      const globalRect = (element: Element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          top: rect.top + window.scrollY,
+          bottom: rect.bottom + window.scrollY,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        };
+      };
+
+      return {
+        section: globalRect(section),
+        history: globalRect(history),
+        failures: globalRect(failures),
+        close: globalRect(close),
+        intro: intro.map(globalRect),
+        rows: rows.map((row) => ({
+          row: globalRect(row),
+          number: globalRect(row.querySelector('.eyebrow')!),
+          title: globalRect(row.querySelector('.failure__title')!),
+          body: globalRect(row.querySelector('.failure__body')!),
+        })),
+      };
+    });
+
+    expect(geometry).not.toBeNull();
+    if (!geometry) throw new Error('Desktop idea geometry is unavailable');
+    expect(geometry.section.top).toBeCloseTo(1149, 0);
+    expect(geometry.section.bottom).toBeCloseTo(3204, 0);
+    expect(geometry.history.top).toBeCloseTo(1904, 0);
+    expect(geometry.history.height).toBeCloseTo(274, 0);
+    expect(geometry.failures.top).toBeCloseTo(2178, 0);
+    expect(geometry.failures.height).toBeCloseTo(532, 0);
+    expect(geometry.close.top).toBeCloseTo(2710, 0);
+    expect(geometry.close.bottom).toBeCloseTo(3204, 0);
+    expect(geometry.intro[1].top - geometry.intro[0].bottom).toBeLessThanOrEqual(1);
+
+    for (const row of geometry.rows) {
+      expect(row.number.top).toBeCloseTo(row.title.top, 0);
+      expect(row.body.bottom).toBeLessThan(geometry.failures.bottom);
+    }
+    expect(geometry.rows[2].body.bottom).toBeLessThan(geometry.close.top);
+  });
+
   test('Noema cover hover and desktop type match the source scale', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');

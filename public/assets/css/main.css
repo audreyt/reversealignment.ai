@@ -657,9 +657,10 @@ main {
 }
 @media (min-width: 900px) {
   #idea .idea-band {
-    margin-left: -84.42px;
-    margin-right: -2.35rem;
-    width: calc(100% + 84.42px + 2.35rem);
+    position: absolute;
+    left: -42px;
+    width: calc(100% + 42px);
+    margin: 0;
   }
   .idea-band--history {
     min-height: 288px;
@@ -735,7 +736,9 @@ main {
     min-height: 0;
     display: grid;
     grid-template-columns: 42px 1fr;
-    width: 89vw;
+    width: 89.652778vw;
+    margin-right: 0;
+    margin-left: calc(5.347222vw - var(--gutter));
   }
   #idea .sheet__content {
     position: relative;
@@ -806,8 +809,10 @@ main {
     margin-top: 1.7442vw;
   }
   #idea .idea-band--history {
-    min-height: 288px;
-    margin-top: 6.216vw;
+    top: calc(52.430556vw - 27.1875px);
+    height: 19.027778vw;
+    min-height: 19.027778vw;
+    max-height: 19.027778vw;
     border-top: 0;
   }
   #idea .idea-band--history::before {
@@ -848,7 +853,8 @@ main {
     letter-spacing: -0.0071em;
   }
   #idea .idea-failures-grid {
-    margin-top: 0.75rem;
+    align-items: start;
+    margin-top: 0;
   }
   #idea .failures-close {
     margin-top: 0;
@@ -892,8 +898,65 @@ main {
     gap: 2rem;
   }
   .idea-failures-grid {
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 2rem;
+    grid-template-columns: 30.03vw 45.541vw;
+    gap: 2.139vw;
+  }
+  #idea .idea-band--failures {
+    top: calc(71.458333vw - 27.1875px);
+    height: 36.944444vw;
+    min-height: 36.944444vw;
+    max-height: 36.944444vw;
+  }
+  #idea .idea-band--close {
+    top: calc(108.402778vw - 27.1875px);
+    height: 34.305556vw;
+    min-height: 34.305556vw;
+    max-height: 34.305556vw;
+  }
+  #idea .idea-band--failures .stack-sm {
+    align-content: start;
+    gap: 0;
+  }
+  #idea .idea-band--failures .stack-sm .lede {
+    font-size: 1.7442vw;
+    line-height: 1.7442vw;
+    letter-spacing: -0.0167em;
+  }
+  #idea .failures {
+    align-content: start;
+    gap: 0;
+  }
+  #idea .failure {
+    position: relative;
+    border-top-color: rgba(14, 14, 14, 0.8);
+    padding: 0 0 1.9vw;
+  }
+  #idea .failure + .failure {
+    padding-top: 1.9vw;
+  }
+  #idea .failure .eyebrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-size: 1.7442vw;
+    line-height: 1.9444vw;
+    letter-spacing: -0.0167em;
+  }
+  #idea .failure + .failure .eyebrow {
+    top: 1.9vw;
+  }
+  #idea .failure__title {
+    margin: 0 0 0 2.9vw;
+    font-size: 1.7442vw;
+    line-height: 1.9444vw;
+    letter-spacing: -0.0167em;
+  }
+  #idea .failure__body {
+    margin: 0.85vw 0 0;
+    font-size: 1.111111vw;
+    line-height: 1.527778vw;
+    letter-spacing: 0.02em;
   }
   .claim-top {
     grid-template-columns: 1fr 1fr;
