@@ -108,6 +108,7 @@
       "lead": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "summary": "Large, coordinated investments in the human and institutional side of the AI transformation. They span identity, privacy, markets, governance, work, and knowledge. They share an architecture, and they share a method. No single sector can deliver any one of them alone.",
       "hoverHint": "*Hover to read more",
+      "clickHint": "*Click to read more",
       "challengesIntro": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "challenges": [
         {
@@ -447,11 +448,6 @@
           "name": "Samuel Roland",
           "role": "Fellow, Foundation for American Innovation",
           "image": "person-samuel-roland"
-        },
-        {
-          "kind": "cta",
-          "label": "join the coalition",
-          "href": "#join"
         },
         {
           "kind": "person",

@@ -132,18 +132,10 @@ describe('content catalog', () => {
       'Education',
       'Labor transition',
     ]);
-    const people = copy.coalition.people.filter((t) => t.kind === 'person');
-    const ctas = copy.coalition.people.filter((t) => t.kind === 'cta');
-    expect(people.length).toBeGreaterThanOrEqual(20);
-    expect(ctas.length).toBeGreaterThanOrEqual(1);
-    const samuelIdx = copy.coalition.people.findIndex(
-      (t) => t.kind === 'person' && t.name === 'Samuel Roland'
-    );
+    expect(copy.coalition.people).toHaveLength(24);
+    const samuelIdx = copy.coalition.people.findIndex((person) => person.name === 'Samuel Roland');
     expect(samuelIdx).toBeGreaterThanOrEqual(0);
-    expect(copy.coalition.people[samuelIdx + 1]).toMatchObject({
-      kind: 'cta',
-      href: '#join',
-    });
+    expect(copy.coalition.people[samuelIdx + 1]?.name).toBe('Chris White');
     for (const challenge of copy.building.challenges) {
       expect(challenge.number).toMatch(/^\d{3}$/);
       expect(challenge.title.length).toBeGreaterThan(0);

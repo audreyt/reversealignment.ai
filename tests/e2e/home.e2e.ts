@@ -72,9 +72,6 @@ test.describe('home page', () => {
     await expect(page.locator('.nav a')).toHaveCount(0);
     await expect(page.locator('[data-nav-toggle]')).toHaveCount(0);
 
-    // In-grid coalition CTA after Samuel Roland band
-    await expect(page.locator('.person__cta').first()).toBeVisible();
-
     const remoteFonts = await page.locator('link[href*="fonts.googleapis.com"]').count();
     expect(remoteFonts).toBe(0);
 
@@ -242,6 +239,58 @@ test.describe('home page', () => {
     expect(geometry.rows[2].body.bottom).toBeLessThan(geometry.close.top);
   });
 
+  test('coalition header follows the source canvas', async ({ page }) => {
+    for (const width of [1440, 1568]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      await page.evaluate(() => document.fonts.ready);
+
+      const geometry = await page.locator('#coalition').evaluate((section) => {
+        const scale = window.innerWidth / 1024;
+        const sectionRect = section.getBoundingClientRect();
+        const relativeRect = (selector: string) => {
+          const rect = section.querySelector(selector)!.getBoundingClientRect();
+          return {
+            left: rect.left / scale,
+            top: (rect.top - sectionRect.top) / scale,
+            width: rect.width / scale,
+            height: rect.height / scale,
+          };
+        };
+        return {
+          title: relativeRect('#coalition-title'),
+          lead: relativeRect('.coalition-head .lede'),
+          body: relativeRect('.coalition-head > .body--mono'),
+          sectors: relativeRect('.sectors'),
+          firstPerson: relativeRect('article.person'),
+          paper: relativeRect('.coalition-paper'),
+          edge: relativeRect('.coalition-edge'),
+          documentWidth: document.documentElement.scrollWidth,
+          viewportWidth: window.innerWidth,
+        };
+      });
+
+      const expectRectClose = (
+        actual: { left: number; top: number; width: number; height: number },
+        expected: { left: number; top: number; width: number; height: number }
+      ) => {
+        expect(actual.left).toBeCloseTo(expected.left, 1);
+        expect(actual.top).toBeCloseTo(expected.top, 1);
+        expect(actual.width).toBeCloseTo(expected.width, 1);
+        expect(actual.height).toBeCloseTo(expected.height, 1);
+      };
+
+      expectRectClose(geometry.title, { left: 28, top: 57.75, width: 606, height: 48 });
+      expectRectClose(geometry.lead, { left: 28, top: 153.5, width: 304, height: 54 });
+      expectRectClose(geometry.body, { left: 608, top: 153.75, width: 388, height: 112 });
+      expectRectClose(geometry.sectors, { left: 28, top: 227.07, width: 968, height: 41 });
+      expectRectClose(geometry.firstPerson, { left: 28, top: 320.31, width: 221, height: 274 });
+      expectRectClose(geometry.paper, { left: -11, top: 0, width: 1046, height: 741 });
+      expectRectClose(geometry.edge, { left: -7, top: -102.25, width: 1038, height: 520 });
+      expect(geometry.documentWidth).toBe(geometry.viewportWidth);
+    }
+  });
+
   test('Noema cover hover and desktop type match the source scale', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
@@ -272,21 +321,33 @@ test.describe('home page', () => {
     await expect(page.locator('.site-header .brand')).toHaveCSS('font-size', '11.163px');
   });
 
-  test('challenge cards reveal details on hover and focus', async ({ page }) => {
+  test('all challenge cards reveal their text only on hover or focus', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
 
-    const card = page.locator('.challenge-card').first();
-    const body = card.locator('.challenge-card__body');
-    await card.scrollIntoViewIfNeeded();
-    await expect(body).toHaveCSS('opacity', '0');
+    const desktopCards = page.locator('.challenge-card');
+    const desktopBodies = page.locator('.challenge-card__body');
+    await expect(desktopCards).toHaveCount(12);
+    await desktopCards.first().scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        desktopBodies.evaluateAll((elements) =>
+          elements.map((element) => getComputedStyle(element).opacity)
+        )
+      )
+      .toEqual(Array(12).fill('0'));
 
-    await card.hover();
-    await expect(body).toHaveCSS('opacity', '1');
+    for (let index = 0; index < 12; index += 1) {
+      const card = desktopCards.nth(index);
+      const body = desktopBodies.nth(index);
+      await card.hover();
+      await expect(body).toHaveCSS('opacity', '1');
+      await page.mouse.move(1400, 80);
+      await expect(body).toHaveCSS('opacity', '0');
+    }
 
-    await page.mouse.move(1400, 80);
-    await card.focus();
-    await expect(body).toHaveCSS('opacity', '1');
+    await desktopCards.first().focus();
+    await expect(desktopBodies.first()).toHaveCSS('opacity', '1');
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
@@ -296,6 +357,30 @@ test.describe('home page', () => {
     await expect(mobileBody).toHaveCSS('opacity', '0');
     await mobileCard.focus();
     await expect(mobileBody).toHaveCSS('opacity', '1');
+  });
+
+  test('join intro and disclosure stay clear of the form controls', async ({ page }) => {
+    await page.setViewportSize({ width: 1386, height: 922 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+
+    const geometry = await page.locator('#join .join-panel').evaluate((panel) => {
+      const bounds = (selector: string) => {
+        const rect = panel.querySelector(selector)!.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom };
+      };
+      return {
+        intro: bounds(':scope > .body--mono'),
+        firstField: bounds('.form__field'),
+        button: bounds('.form > .btn'),
+        note: bounds('.form__note'),
+        noteColor: getComputedStyle(panel.querySelector('.form__note')!).color,
+      };
+    });
+
+    expect(geometry.intro.bottom).toBeLessThanOrEqual(geometry.firstField.top);
+    expect(geometry.button.bottom).toBeLessThanOrEqual(geometry.note.top);
+    expect(geometry.noteColor).toBe('rgb(244, 243, 243)');
   });
 
   test('local slide viewers preserve source geometry and keyboard navigation', async ({ page }) => {

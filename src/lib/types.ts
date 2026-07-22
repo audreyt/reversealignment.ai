@@ -90,18 +90,12 @@ export type FormSpec = {
   mailClientNote?: string;
 };
 
-export type CoalitionTile =
-  | {
-      kind: 'person';
-      name: string;
-      role: string;
-      image: string;
-    }
-  | {
-      kind: 'cta';
-      label: string;
-      href: string;
-    };
+export type CoalitionPerson = {
+  kind: 'person';
+  name: string;
+  role: string;
+  image: string;
+};
 
 export type FooterColumn = {
   title: string;
@@ -210,8 +204,7 @@ export type SiteContent = {
     lead: string;
     body: string;
     sectors: string[];
-    /** Grid tiles in live visual order, including in-band CTA cells. */
-    people: CoalitionTile[];
+    people: CoalitionPerson[];
   };
   join: {
     eyebrow: string;
