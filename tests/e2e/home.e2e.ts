@@ -373,26 +373,33 @@ test.describe('home page', () => {
     await expect(page.locator('.site-header .brand')).toHaveCSS('font-size', '11.163px');
   });
 
-  test('challenge card faces follow the responsive source state', async ({ page }) => {
+  test('all challenge cards reveal their text only on hover or focus', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
 
-    const desktopCard = page.locator('.challenge-card').first();
-    const desktopBody = desktopCard.locator('.challenge-card__body');
-    await desktopCard.scrollIntoViewIfNeeded();
-    await expect(desktopBody).toHaveCSS('opacity', '1');
+    const cards = page.locator('#building .challenge-card');
+    await expect(cards).toHaveCount(12);
 
-    await desktopCard.focus();
-    await expect(desktopBody).toHaveCSS('opacity', '1');
+    for (let index = 0; index < 12; index += 1) {
+      const card = cards.nth(index);
+      const body = card.locator('.challenge-card__body');
+      await card.scrollIntoViewIfNeeded();
+      await expect(body).toHaveCSS('opacity', '0');
 
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/');
-    const mobileCard = page.locator('.challenge-card').first();
-    const mobileBody = mobileCard.locator('.challenge-card__body');
-    await mobileCard.scrollIntoViewIfNeeded();
-    await expect(mobileBody).toHaveCSS('opacity', '0');
-    await mobileCard.focus();
-    await expect(mobileBody).toHaveCSS('opacity', '1');
+      await card.focus();
+      await expect(body).toHaveCSS('opacity', '1');
+
+      await page.locator('body').click({ position: { x: 0, y: 0 } });
+      await expect(body).toHaveCSS('opacity', '0');
+
+      const supportsHover = await page.evaluate(() => matchMedia('(hover: hover)').matches);
+      if (supportsHover) {
+        await card.hover();
+        await expect(body).toHaveCSS('opacity', '1');
+        await page.mouse.move(0, 0);
+        await expect(body).toHaveCSS('opacity', '0');
+      }
+    }
   });
 
   test('local slide viewers preserve source geometry and keyboard navigation', async ({ page }) => {
