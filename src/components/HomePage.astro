@@ -217,13 +217,6 @@ if (!primaryCta?.label || !secondaryCta?.label) {
                   <h3>{resource.title}</h3>
                   <p class="body">{resource.body}</p>
                 </div>
-                {
-                  resource.id === 'playbook' ? (
-                    <div class="resource__art" aria-hidden="true">
-                      <Media asset="playbook-art" alt="" />
-                    </div>
-                  ) : null
-                }
                 <button
                   class="btn btn--dark"
                   type="button"

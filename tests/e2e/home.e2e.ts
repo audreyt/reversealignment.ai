@@ -356,6 +356,63 @@ test.describe('home page', () => {
     expect(geometry.bodyOverflow).toBe('hidden');
   });
 
+  test('mobile paper resources stay complete above the Safari viewport edge', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 699 });
+    await page.goto('/');
+
+    const geometry = await page.evaluate(async () => {
+      const shell = document.querySelector('.page');
+      const header = document.querySelector('.site-header');
+      const lastPaper = document.querySelector('#papers .paper-card:nth-child(2)');
+      const storyTitle = document.querySelector('#story-title');
+      const resources = [...document.querySelectorAll('#papers .resource')];
+      if (!shell || !header || !lastPaper || !storyTitle || resources.length !== 2) return null;
+
+      shell.scrollTop = 6940;
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+      const rect = (element: Element) => {
+        const bounds = element.getBoundingClientRect();
+        return { top: bounds.top, bottom: bounds.bottom };
+      };
+
+      return {
+        bodyOverflow: getComputedStyle(document.body).overflow,
+        windowScroll: window.scrollY,
+        shell: rect(shell),
+        shellScroll: shell.scrollTop,
+        shellScrollHeight: shell.scrollHeight,
+        header: rect(header),
+        lastPaper: rect(lastPaper),
+        storyTitle: rect(storyTitle),
+        resources: resources.map((resource) => ({
+          row: rect(resource),
+          title: rect(resource.querySelector('h3')!),
+          body: rect(resource.querySelector('.body')!),
+          button: rect(resource.querySelector('.btn')!),
+        })),
+      };
+    });
+
+    expect(geometry).not.toBeNull();
+    if (!geometry) throw new Error('Mobile paper resource geometry is unavailable');
+    expect(geometry.bodyOverflow).toBe('hidden');
+    expect(geometry.windowScroll).toBe(0);
+    expect(geometry.shell).toEqual({ top: 0, bottom: 699 });
+    expect(geometry.shellScroll).toBe(6940);
+    expect(geometry.shellScrollHeight).toBeGreaterThan(15_000);
+    expect(geometry.lastPaper.bottom).toBeLessThanOrEqual(geometry.header.bottom);
+    expect(geometry.storyTitle.top).toBeGreaterThanOrEqual(geometry.shell.bottom);
+
+    for (const resource of geometry.resources) {
+      expect(resource.row.top).toBeGreaterThanOrEqual(geometry.header.bottom);
+      expect(resource.row.bottom).toBeLessThanOrEqual(geometry.shell.bottom);
+      for (const content of [resource.title, resource.body, resource.button]) {
+        expect(content.top).toBeGreaterThanOrEqual(resource.row.top);
+        expect(content.bottom).toBeLessThanOrEqual(resource.row.bottom);
+      }
+    }
+  });
+
   test('mobile sticky chrome is brand + JOIN without hamburger menu', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');
