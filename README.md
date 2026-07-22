@@ -2,7 +2,7 @@
 
 Static recreation of [Reverse Alignment](https://reversealignment.tw/) — a coalition site for the institutional side of AI transformation.
 
-This deployment serves **Traditional Chinese (zh-TW) only** at the apex. The separate English site lives at [reversealignment.ai](https://www.reversealignment.ai/).
+This deployment serves **Traditional Mandarin (zh-TW) only** at the apex. The separate English site lives at [reversealignment.ai](https://www.reversealignment.ai/).
 
 Built with [Astro 7](https://astro.build/) and [Vite+](https://viteplus.dev/).
 
