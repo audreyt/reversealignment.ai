@@ -5,6 +5,7 @@ import {
   getDefaultLocale,
   listLocales,
   localeHomePath,
+  relativeRootPath,
   toBcp47,
 } from '../lib/i18n';
 import type { Locale } from '../lib/types';
@@ -23,6 +24,7 @@ const canonical = new URL(Astro.url.pathname, site.url).toString();
 const ogImage = new URL(copy.meta.ogImage, site.url).toString();
 const locales = listLocales();
 const bcp47 = toBcp47(locale);
+const rootPath = relativeRootPath(locale);
 ---
 
 <!doctype html>
@@ -48,7 +50,7 @@ const bcp47 = toBcp47(locale);
       hreflang="x-default"
       href={new URL(localeHomePath(getDefaultLocale()), site.url).toString()}
     />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/png" href={`${rootPath}favicon.png`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
@@ -60,7 +62,7 @@ const bcp47 = toBcp47(locale);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href={`${rootPath}assets/css/main.css`} />
   </head>
   <body>
     <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>

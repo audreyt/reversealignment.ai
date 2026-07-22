@@ -49,12 +49,17 @@ export function getContent(locale: Locale = DEFAULT_LOCALE): SiteContent {
   return entry;
 }
 
+/** Root-relative prefix from the current locale route to shared static files. */
+export function relativeRootPath(locale: Locale = DEFAULT_LOCALE): './' | '../' {
+  return locale === DEFAULT_LOCALE ? './' : '../';
+}
+
 export function assetPath(key: string, locale: Locale = DEFAULT_LOCALE): string {
   const path = getContent(locale).assets[key];
   if (!path) {
     throw new Error(`Missing asset mapping for key: ${key}`);
   }
-  return path;
+  return `${relativeRootPath(locale)}${path.replace(/^\/+/, '')}`;
 }
 
 /** Path prefix for a locale: '' for default, '/zh' etc. for alternates. */

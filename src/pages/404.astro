@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getContent, getDefaultLocale } from '../lib/i18n';
+import { getContent, getDefaultLocale, relativeRootPath } from '../lib/i18n';
 
 const locale = getDefaultLocale();
 const copy = getContent(locale);
 const nf = copy.notFound;
+const rootPath = relativeRootPath(locale);
 ---
 
 <Base locale={locale} title={`${nf.title} — ${copy.brand.name}`}>
@@ -13,7 +14,7 @@ const nf = copy.notFound;
       <p class="eyebrow eyebrow--muted">{nf.code}</p>
       <h1 class="display display--lg">{nf.heading}</h1>
       <p class="body">{nf.body}</p>
-      <p><a class="btn btn--lime" href="/">{nf.backLabel}</a></p>
+      <p><a class="btn btn--lime" href={rootPath}>{nf.backLabel}</a></p>
     </div>
   </main>
 </Base>

@@ -16,6 +16,7 @@ import {
   listLocales,
   localeHomePath,
   localePathPrefix,
+  relativeRootPath,
   toBcp47,
 } from '../../src/lib/i18n';
 import type { Locale } from '../../src/lib/types';
@@ -220,6 +221,8 @@ describe('i18n helpers coverage', () => {
     expect(localeHomePath('en')).toBe('/');
     expect(localePathPrefix('zh' as Locale)).toBe('/zh');
     expect(localeHomePath('zh' as Locale)).toBe('/zh/');
+    expect(relativeRootPath('en')).toBe('./');
+    expect(relativeRootPath('zh' as Locale)).toBe('../');
     expect(toBcp47('en')).toBe('en');
   });
 
@@ -336,8 +339,8 @@ describe('asset mappings', () => {
     ];
     for (const key of keys) {
       const path = assetPath(key);
-      expect(path.startsWith('/assets/')).toBe(true);
-      expect(existsSync(resolve(PUBLIC, path.replace(/^\//, '')))).toBe(true);
+      expect(path.startsWith('./assets/')).toBe(true);
+      expect(existsSync(resolve(PUBLIC, path.replace(/^\.\//, '')))).toBe(true);
     }
   });
 });

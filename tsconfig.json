@@ -10,6 +10,7 @@
     "src/**/*.ts",
     "astro.config.mjs",
     "vite.config.ts",
+    "scripts/**/*.ts",
     "tests/**/*.ts",
     "playwright.config.ts"
   ],

@@ -26,16 +26,16 @@ test.describe('home page', () => {
     await expect(page.locator('video')).toHaveCount(0);
 
     for (const asset of [
-      '/assets/images/hero-diagram',
-      '/assets/images/intro-collage',
-      '/assets/images/history-strip',
-      '/assets/images/failures-panel',
-      '/assets/images/building-bg',
-      '/assets/images/claim-bg',
-      '/assets/images/papers-bg',
-      '/assets/images/coalition-texture',
-      '/assets/images/join-bg',
-      '/assets/images/closing-bg',
+      'assets/images/hero-diagram',
+      'assets/images/intro-collage',
+      'assets/images/history-strip',
+      'assets/images/failures-panel',
+      'assets/images/building-bg',
+      'assets/images/claim-bg',
+      'assets/images/papers-bg',
+      'assets/images/coalition-texture',
+      'assets/images/join-bg',
+      'assets/images/closing-bg',
     ]) {
       await expect(page.locator(`img[src*="${asset}"]`).first()).toHaveCount(1);
     }

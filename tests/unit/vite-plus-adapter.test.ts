@@ -1,6 +1,10 @@
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { expect, test } from 'vite-plus/test';
 import type { ConfigEnv, Plugin } from 'vite';
 import viteConfig from '../../vite.config';
+import { relativizeDistAssets } from '../../scripts/relativize-dist-assets';
 import {
   buildAstroSite,
   createAstroBuildBridge,
@@ -116,6 +120,9 @@ test('Astro build bridge runs Astro and marks every environment built', async ()
     buildAstro: async () => {
       calls.push('astro');
     },
+    relativize: async () => {
+      calls.push('relative');
+    },
   });
   const config = (await resolvePluginConfig(plugin, {
     command: 'build',
@@ -133,7 +140,7 @@ test('Astro build bridge runs Astro and marks every environment built', async ()
 
   await config.builder.buildApp({ environments });
 
-  expect(calls).toEqual(['astro']);
+  expect(calls).toEqual(['astro', 'relative']);
   expect(Object.values(environments).every((environment) => environment.isBuilt)).toBe(true);
 });
 
@@ -170,6 +177,80 @@ test('Astro build bridge propagates a failing Astro build', async () => {
 
   await expect(config.builder.buildApp({ environments })).rejects.toThrow('Astro build failed');
   expect(environments.client.isBuilt).toBe(false);
+});
+
+test('Astro build bridge does not publish when URL rewriting fails', async () => {
+  const plugin = createAstroBuildBridge({
+    buildAstro: async () => {},
+    relativize: async () => {
+      throw new Error('Relative URL validation failed');
+    },
+  });
+  const config = (await resolvePluginConfig(plugin, {
+    command: 'build',
+    mode: 'production',
+    isPreview: false,
+  } as ConfigEnv)) as {
+    builder: {
+      buildApp(builder: { environments: Record<string, { isBuilt: boolean }> }): Promise<void>;
+    };
+  };
+  const environments = { client: { isBuilt: false } };
+
+  await expect(config.builder.buildApp({ environments })).rejects.toThrow(
+    'Relative URL validation failed'
+  );
+  expect(environments.client.isBuilt).toBe(false);
+});
+
+test('dist relativizer rewrites nested HTML and CSS but preserves the source archive', async () => {
+  const dist = await mkdtemp(join(tmpdir(), 'reversealignment-dist-'));
+  const cssDirectory = join(dist, 'assets/css');
+  const archiveDirectory = join(dist, 'assets/original');
+  const localeDirectory = join(dist, 'zh');
+
+  try {
+    await Promise.all([
+      mkdir(cssDirectory, { recursive: true }),
+      mkdir(archiveDirectory, { recursive: true }),
+      mkdir(localeDirectory, { recursive: true }),
+    ]);
+    await Promise.all([
+      writeFile(
+        join(dist, 'index.html'),
+        '<link href="/assets/css/main.css"><a href="/zh/?view=all#top">ZH</a>' +
+          '<a href="/">Home</a><img src="//cdn.example/image.png">' +
+          '<style>body{background:url("/assets/images/paper.png")}</style>'
+      ),
+      writeFile(join(localeDirectory, 'index.html'), '<a href="/">Home</a>'),
+      writeFile(
+        join(cssDirectory, 'main.css'),
+        "@font-face{src:url('/assets/fonts/font.woff2#latin')}b{src:url(/assets/icon.png)}"
+      ),
+      writeFile(join(archiveDirectory, 'source.css'), "a{background:url('/original.png')}"),
+      writeFile(join(dist, 'notes.txt'), 'href="/not-a-runtime-file"'),
+    ]);
+
+    await relativizeDistAssets(dist);
+
+    expect(await readFile(join(dist, 'index.html'), 'utf8')).toBe(
+      '<link href="./assets/css/main.css"><a href="./zh/?view=all#top">ZH</a>' +
+        '<a href="./">Home</a><img src="//cdn.example/image.png">' +
+        '<style>body{background:url("./assets/images/paper.png")}</style>'
+    );
+    expect(await readFile(join(localeDirectory, 'index.html'), 'utf8')).toBe(
+      '<a href="../">Home</a>'
+    );
+    expect(await readFile(join(cssDirectory, 'main.css'), 'utf8')).toBe(
+      "@font-face{src:url('../fonts/font.woff2#latin')}b{src:url(../icon.png)}"
+    );
+    expect(await readFile(join(archiveDirectory, 'source.css'), 'utf8')).toBe(
+      "a{background:url('/original.png')}"
+    );
+    expect(await readFile(join(dist, 'notes.txt'), 'utf8')).toBe('href="/not-a-runtime-file"');
+  } finally {
+    await rm(dist, { recursive: true, force: true });
+  }
 });
 
 test("startAstroDevServer starts Astro's dev server via the injected dev function", async () => {

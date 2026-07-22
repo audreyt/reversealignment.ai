@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { build as astroBuild, dev as astroDev } from 'astro';
 import type { ConfigEnv, Plugin, ViteBuilder } from 'vite';
+import { relativizeDistAssets } from '../../scripts/relativize-dist-assets';
 
 const PROJECT_ROOT = fileURLToPath(new URL('../..', import.meta.url));
 
@@ -15,6 +16,7 @@ type AstroDevServer = {
 
 export type AstroBuildBridgeDependencies = {
   buildAstro?: () => Promise<void>;
+  relativize?: () => Promise<void>;
 };
 
 /**
@@ -102,7 +104,7 @@ export async function buildAstroSite(build: typeof astroBuild = astroBuild): Pro
  */
 export function createAstroBuildBridge(dependencies: AstroBuildBridgeDependencies = {}): Plugin {
   const buildAstro = dependencies.buildAstro ?? buildAstroSite;
-
+  const relativize = dependencies.relativize ?? relativizeDistAssets;
   return {
     name: 'reversealignment:astro-build',
     apply: 'build',
@@ -113,6 +115,7 @@ export function createAstroBuildBridge(dependencies: AstroBuildBridgeDependencie
         builder: {
           async buildApp(builder: ViteBuilder): Promise<void> {
             await buildAstro();
+            await relativize();
 
             for (const buildEnvironment of Object.values(builder.environments)) {
               buildEnvironment.isBuilt = true;

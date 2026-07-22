@@ -2,63 +2,63 @@
 
 @font-face {
   font-family: 'plfh';
-  src: url('/assets/fonts/plfh-300.woff2') format('woff2');
+  src: url('../fonts/plfh-300.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'plfh';
-  src: url('/assets/fonts/plfh-500.woff2') format('woff2');
+  src: url('../fonts/plfh-500.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'plfh';
-  src: url('/assets/fonts/plfh-600.woff2') format('woff2');
+  src: url('../fonts/plfh-600.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'plfh';
-  src: url('/assets/fonts/plfh-700.woff2') format('woff2');
+  src: url('../fonts/plfh-700.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono-400.woff2') format('woff2');
+  src: url('../fonts/ibm-plex-mono-400.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono-500.woff2') format('woff2');
+  src: url('../fonts/ibm-plex-mono-500.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono-500italic.woff2') format('woff2');
+  src: url('../fonts/ibm-plex-mono-500italic.woff2') format('woff2');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono-600.woff2') format('woff2');
+  src: url('../fonts/ibm-plex-mono-600.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'IBM Plex Mono';
-  src: url('/assets/fonts/ibm-plex-mono-700.woff2') format('woff2');
+  src: url('../fonts/ibm-plex-mono-700.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -606,7 +606,7 @@ main {
     max-width: none;
     margin: 0;
     padding: 1.45rem 1.15rem 1.6rem;
-    background: url('/assets/images/hero-diagram.png') center / cover;
+    background: url('../images/hero-diagram.png') center / cover;
     box-shadow: none;
   }
   .hero__title {
@@ -1252,7 +1252,7 @@ main {
   #building .section__bg {
     left: 39px;
     right: 40px;
-    background: url('/assets/images/building-bg.webp') top center / 100% 956px repeat-y;
+    background: url('../images/building-bg.webp') top center / 100% 956px repeat-y;
   }
   #building .section__bg img {
     display: none;
@@ -2069,7 +2069,7 @@ textarea.form__control {
 @media (min-width: 900px) {
   /* Coalition people — 24 persons as 4×6; photo 295, pitch 422; CTA overlay */
   #coalition .section__bg--coalition {
-    background: url('/assets/images/coalition-texture.webp') -10px 0 / 1471px 1042px repeat-y;
+    background: url('../images/coalition-texture.webp') -10px 0 / 1471px 1042px repeat-y;
   }
   #coalition .section__bg--coalition img {
     display: none;
@@ -2458,7 +2458,7 @@ textarea.form__control {
       radial-gradient(circle at 13px 12px, #111 0 8px, transparent 8px) 0 0 / 26px 33px repeat-y,
       linear-gradient(#111, #111) 495px 0 / 1px 100% no-repeat,
       linear-gradient(rgba(205, 252, 86, 0.8), rgba(205, 252, 86, 0.8)),
-      url('/assets/images/join-form-texture.png') 0 0 / 1120px 230px no-repeat;
+      url('../images/join-form-texture.png') 0 0 / 1120px 230px no-repeat;
     pointer-events: none;
   }
   #join .join-panel > .body--mono {
@@ -2622,7 +2622,7 @@ textarea.form__control {
     min-height: 436.3125px;
     padding: 24.375px 16.5625px 20px 120.65625px;
     background-size: 425.34375px 436.3125px;
-    background-image: url('/assets/images/hero-diagram-mobile.png');
+    background-image: url('../images/hero-diagram-mobile.png');
     background-repeat: no-repeat;
   }
   .hero__title {
@@ -3019,7 +3019,7 @@ textarea.form__control {
     left: -7.3125px;
     width: 404.625px;
     height: 3305.25px;
-    background: url('/assets/images/coalition-texture.webp') center top / 404.625px 550.875px repeat-y;
+    background: url('../images/coalition-texture.webp') center top / 404.625px 550.875px repeat-y;
   }
   #coalition > .section__bg--coalition img {
     display: none;
