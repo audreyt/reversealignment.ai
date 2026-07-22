@@ -29,7 +29,7 @@ jobs:
       - run: vp install --frozen-lockfile
       - run: vp check
       - run: vp run test:unit
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage
@@ -51,7 +51,7 @@ jobs:
           run-install: false
       - run: vp install --frozen-lockfile
       - run: vp build
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
