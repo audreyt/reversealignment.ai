@@ -5,7 +5,7 @@ test.describe('home page', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('我們打造 AI 的速度');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('我們造 AI 的速度');
     await expect(page.locator('#idea')).toBeVisible();
     await expect(page.locator('#building')).toBeVisible();
     await expect(page.locator('#claim')).toBeVisible();
