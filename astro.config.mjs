@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://www.reversealignment.ai',
+  site: 'https://reversealignment.tw',
   base: './',
   output: 'static',
   trailingSlash: 'always',

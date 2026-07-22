@@ -1,6 +1,8 @@
-# reversealignment.ai
+# reversealignment.tw
 
-Static recreation of [Reverse Alignment](https://www.reversealignment.ai/) — a coalition site for the institutional side of AI transformation.
+Static recreation of [Reverse Alignment](https://reversealignment.tw/) — a coalition site for the institutional side of AI transformation.
+
+This deployment serves **Traditional Chinese (zh-TW) only** at the apex. The separate English site lives at [reversealignment.ai](https://www.reversealignment.ai/).
 
 Built with [Astro 7](https://astro.build/) and [Vite+](https://viteplus.dev/).
 
@@ -36,4 +38,4 @@ vp build
 
 ## Content and locales
 
-All visible copy lives in `src/data/content.json` keyed by locale. Locale codes are derived from those keys (`src/lib/types.ts` / `src/lib/i18n.ts`). English is served at `/`; additional locales get static routes at `/{locale}/` via `src/pages/[locale]/index.astro` with `hreflang` alternates in the base layout. Adding a locale means adding a catalog entry (and assets) — no component string edits.
+All visible copy lives in `src/data/content.json` keyed by locale. This site builds and serves the `zh-tw` catalog at `/` (and the global 404). The `en` catalog entry is retained for translation parity tests only — it is not routed here. Cross-domain `hreflang` points English readers at `https://www.reversealignment.ai/`. There is no on-site language toggle.

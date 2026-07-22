@@ -108,6 +108,7 @@
       "lead": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "summary": "Large, coordinated investments in the human and institutional side of the AI transformation. They span identity, privacy, markets, governance, work, and knowledge. They share an architecture, and they share a method. No single sector can deliver any one of them alone.",
       "hoverHint": "*Hover to read more",
+      "clickHint": "*Click to read more",
       "challengesIntro": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "challenges": [
         {
@@ -449,11 +450,6 @@
           "image": "person-samuel-roland"
         },
         {
-          "kind": "cta",
-          "label": "join the coalition",
-          "href": "#join"
-        },
-        {
           "kind": "person",
           "name": "Chris White",
           "role": "Lab Director, Microsoft Research",
@@ -744,6 +740,750 @@
       "heading": "Page not found",
       "body": "That URL is not part of this site.",
       "backLabel": "Back to Reverse Alignment",
+      "code": "404"
+    }
+  },
+  "zh-tw": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "我們打造 AI 的速度，遠超過社會準備好接住它的速度。反向對齊（reverse alignment）是刻意重新設計制度、規範、技能與治理，讓社會能安全吸納 AI，並廣泛共享其成果。",
+      "ogImage": "/assets/images/og-image-zh-tw.jpg"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "join": {
+        "label": "加入",
+        "href": "#join"
+      },
+      "links": [
+        {
+          "id": "idea",
+          "label": "理念",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "該建造什麼",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "主張",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "閱讀論證",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "快速補助",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "聯盟",
+          "href": "#coalition"
+        }
+      ]
+    },
+    "hero": {
+      "headline": "我們打造 AI 的速度，遠超過社會準備好接住它的速度。",
+      "body": "每花一美元提升 AI 能力，只有一小部分流向那些決定其效益是被共享、還是被浪費的制度、技能與規範。這道落差是一種選擇。我們是一個致力於弭平落差的聯盟。",
+      "primaryCta": {
+        "label": "加入聯盟",
+        "href": "#join"
+      },
+      "secondaryCta": {
+        "label": "閱讀論證",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "理念／導論",
+      "title": "對齊的另一面",
+      "lead": "AI 領域的多數心力與資本，都投向兩件事：讓系統更強大，以及讓這些系統對齊人類價值。",
+      "body": [
+        "兩者都很重要。但即便是完美對齊的系統，若被釋放到尚未準備好承接它的經濟、政府與資訊系統中，仍會表現不佳，甚至造成實質傷害。"
+      ],
+      "definitionLead": "我們把這件被忽略的工作稱為",
+      "definitionTerm": "reverse alignment",
+      "definitionRest": "（反向對齊）：刻意重新設計制度、規範、技能與治理，讓社會能安全吸納 AI，並廣泛共享其成果。",
+      "historyTitle": "這並不是全新的問題。",
+      "historyBody": [
+        "工業化、電氣化與網際網路，都曾需要數十年的制度發明，好處才真正降臨。裝配線時代的公司，長得像裝配線；治理網際網路的制度，也長得像網際網路。",
+        "歷史告訴我們：這些調適不是技術變革的可選配件，而是成功的前提條件。"
+      ],
+      "failuresIntro": [
+        "若放著不管，",
+        "這種落差會造成三種可預見的失敗。"
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "有生產力，卻無繁榮",
+          "body": "工作重組的速度，快過人重新培訓或流動的速度，成果也到不了多數人手上。"
+        },
+        {
+          "number": "2",
+          "title": "有執行，卻無驗證",
+          "body": "當生成文字、影像與程式碼的成本崩跌，稀缺的投入就變成人類驗證、標示出處，並為產出負責的能力。"
+        },
+        {
+          "number": "3",
+          "title": "有能力，卻無約束",
+          "body": "同樣能讓制度更有能力的工具，也可能集中權力——除非上訴與異議的權利同步推進。"
+        }
+      ],
+      "failuresClose": [
+        "這些都不是命定結局。",
+        "每一項都是忽視的後果，而忽視可以被扭轉。"
+      ]
+    },
+    "building": {
+      "eyebrow": "建議摘要",
+      "title": "該建造什麼",
+      "lead": "未來十年的人類繁榮，取決於一組社會技術重大挑戰。",
+      "summary": "針對 AI 轉型的人與制度面，需要大規模、協調一致的投資。範圍涵蓋身分、隱私、市場、治理、工作與知識。它們共享一套架構，也共享一套方法。沒有任何單一領域能獨力完成其中任何一項。",
+      "hoverHint": "*游標移上以閱讀更多",
+      "clickHint": "*點擊以閱讀更多",
+      "challengesIntro": "未來十年的人類繁榮，取決於一組社會技術重大挑戰。",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "身分",
+          "body": "當假證件、生物特徵與合成人格的成本趨近於零，我們需要能證明「此刻有一位真實、獨特的人在場」，卻不必揭露對方是誰的方法。",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "隱私",
+          "body": "AI 等於給了每個人一位私人偵探；答案不是全面隱密，也不是完全曝光，而是讓人只揭露情境所需、不多也不少的工具。",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "內容溯源",
+          "body": "當足以亂真的偽造幾乎零成本，知道內容從何而來，就成為共享現實的關鍵。",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "資料價值",
+          "body": "訓練這些模型的人類紀錄，幾乎是零成本被取用的；創造它們的人，理應得到真實市場與持久補償——而公司自己的度量，早已證明這做得到。",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "AI 代理協作",
+          "body": "AI 代理最有用的時刻，是它們能匯集彼此所知；這需要像人類那樣建立信任——跨越供應商，而不是困在圍牆花園裡。",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "集體理解形成",
+          "body": "獎勵憤慨、又模糊誰與誰立場相近的媒體，可以重新設計：既公允呈現真實分歧，也讓共同基礎浮現。",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "民主",
+          "body": "蓬勃社群所生成的權威，必須轉化為對資源的實質權力；這意味著現代化參與機制、代表機制，以及不起眼卻不可或缺的落實工作。",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "法律與自由",
+          "body": "AI 降低監控與執法成本的方式，偏向行政權；要恢復平衡，就得為監督、異議與上訴建立對等的能力。",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "職場",
+          "body": "AI 生產力增益的瓶頸，不在個人速度，而在組織能否被重新設計，以吸納創造力與能動性的湧現。",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "研究",
+          "body": "模型生成假說與草稿的速度，已超過同儕審查能消化的速度；同樣的工具若瞄得準，也能獎勵真正原創、打破藩籬的工作。",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "教育",
+          "body": "AI 拆解了教學、學習與認證的舊捆綁，迫使學校說清楚哪些能力才重要，並證明人們真正知道什麼。",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "勞動轉型",
+          "body": "為單一雇主大規模裁員而建的勞動力體系，應付不了 AI 帶來的持續、細緻的工作重塑；它需要可攜、可解讀的憑證，以及即時再培訓。",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "獨特的",
+        "主張"
+      ],
+      "title": "依其工具之形而立的制度",
+      "lead": "社會吸納通用型技術，有一定的模式：成功的制度，往往映照出那個時代主導的思考架構。",
+      "columns": [
+        "工業時代把認知組織在標準化會計與裝配線上，於是長出對應的層級、分部式制度：公司、中央銀行，以及布雷頓森林體系下的特許多邊機構。網際網路時代把認知組織在分層協定與分散式路由上，於是長出對應的分層、協作式組織：標準制定機構、通訊合作社，以及 RFC 的開放流程。",
+        "神經網路帶來了第三套語法。它們用豐富空間中的位置來表示事物，而不是單一標籤。它們藉由衡量每個輸入如何作用於其他輸入來綜合差異，找出共同結構，卻不把差異平均掉。它們透過追溯每一份貢獻對結果的影響來完成貢獻歸屬。",
+        "當制度與技術共享同一套語法，成果就會到來；若不共享，成果就會停滯。電氣化工廠在近二十年裡幾乎沒帶來增益，因為它們仍沿用蒸汽動力廠的佈局；要到工廠依分散式電動機重新設計，生產力才真正出現。",
+        "這個聯盟的賭注是：能吸納 AI 的制度，將是那些把同樣手法落實到社會尺度的制度。工作就是有意識地去建造它們。"
+      ],
+      "cta": {
+        "label": "閱讀完整論證——即將推出",
+        "href": "#papers",
+        "disabled": true,
+        "note": "即將推出"
+      }
+    },
+    "papers": {
+      "eyebrow": "論文",
+      "title": "閱讀論證",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "刊於 Noema —",
+          "title": "〈未來十年，人類繁榮需要什麼〉（英文）",
+          "body": "對問題與議程更完整的公開陳述：三種失敗模式、從大眾民主到臺灣數位治理的歷史先例，以及完整的社會技術重大挑戰。最適合由此開始。",
+          "cta": {
+            "label": "在 Noema 閱讀英文原文",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "刊於 Science —",
+          "title": "〈依其工具之形〉",
+          "body": "議程背後清晰的工程原則：為何制度會長得像當代的認知技術，以及按神經網路之形來建造意味著什麼。這是獨特的論點，並附歷史紀錄與技術對應。",
+          "cta": {
+            "label": "即將推出",
+            "href": "#",
+            "disabled": true,
+            "note": "即將推出"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "創作手冊",
+          "body": "《AI 建不出的事》（英文）是給說故事者的指南，把這些挑戰轉成創作者可用的戲劇素材，並為每一項提供高概念提案與編劇室提示。",
+          "cta": {
+            "label": "開啟創作手冊（英文原文）",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "簡報",
+          "body": "建議背後的摘要簡報（英文原文）。",
+          "cta": {
+            "label": "檢視簡報（英文原文）",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "簡報檢視器（英文原文）",
+        "closeLabel": "關閉",
+        "previousLabel": "上一張投影片",
+        "nextLabel": "下一張投影片",
+        "downloadLabel": "下載英文版 PDF",
+        "openHint": "開啟頁內投影片（英文原文）",
+        "statusTemplate": "第 {current} 張，共 {total} 張",
+        "slideLabelTemplate": "{title}，第 {current} 張，共 {total} 張",
+        "thumbnailRegionLabelTemplate": "{title} 投影片",
+        "thumbnailLabelTemplate": "前往第 {number} 張"
+      }
+    },
+    "story": {
+      "title": "還沒人說的最大故事",
+      "lead": "我們依賴的每一個制度，曾經都難以想像——直到故事讓足夠多人在乎，並動手建造。AI 的人類挑戰不是抽象的政策議題；它們是未來十年最重要故事的素材，而其中多數尚未被說出。",
+      "guideTitle": [
+        "我們為能說出這些故事的人，",
+        "做了一份指南。"
+      ],
+      "guideTerm": "《AI 建不出的事》",
+      "guideRest": "逐一取材每一項挑戰，為寫作者提供高概念提案與一組可丟進編劇室的提示：那位爭取在人生不同場域做不同自己的女性；那位紀錄片作者，其滴水不漏的影片碰上同樣滴水不漏的反駁；以及那位富有、不可或缺、卻完全匿名的資料貢獻者。",
+      "guideCta": {
+        "label": "開啟創作手冊（英文原文）",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "看看我們如何把這些想法帶進百人電視編劇的現場。",
+      "videoCta": {
+        "label": "觀看影片",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "認識這些挑戰",
+      "title": "給說故事者的快速補助",
+      "body": [
+        "我們也與獨立創作者合作，逐一用白話具體呈現這些挑戰。每支短片聚焦單一問題——從線上證明你是真人，到公平支付訓練 AI 的資料貢獻者——說明為何重要，以及可能的解方。"
+      ],
+      "fundingLine": "我們資助把這些想法織進作品裡的說故事者。",
+      "panelBody": [
+        "如果你寫作、拍片、做遊戲，或創作人們會看的內容，並想納入或重新詮釋這裡的任何挑戰，我們希望支持你。",
+        "你不必解釋政策。你只要讓人感受到利害所在。"
+      ],
+      "filmsNote": "首批影片即將推出。",
+      "notifyForm": {
+        "id": "notify",
+        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E9%80%9A%E7%9F%A5%E6%88%91",
+        "method": "post",
+        "submitLabel": "登記以接收通知",
+        "fields": [
+          {
+            "name": "First Name",
+            "label": "名",
+            "type": "text",
+            "required": true,
+            "autocomplete": "given-name"
+          },
+          {
+            "name": "Last Name",
+            "label": "姓氏",
+            "type": "text",
+            "required": true,
+            "autocomplete": "family-name"
+          },
+          {
+            "name": "Email",
+            "label": "電子郵件",
+            "type": "email",
+            "required": true,
+            "autocomplete": "email"
+          }
+        ],
+        "errorMessage": "請修正表單中的錯誤。",
+        "successMessage": "送出後會開啟你的電子郵件應用程式，並填入這些內容。在你真正寄出之前，資料尚未送出——本站不會確認是否收到。",
+        "enctype": "text/plain",
+        "mailClientNote": "送出後會開啟你的電子郵件應用程式，並填入這些內容。在你真正寄出之前，資料尚未送出——本站不會確認是否收到。"
+      },
+      "applyCta": {
+        "label": "申請補助",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "聯盟",
+      "lead": "這份工作，是由很少坐在同一張桌子上的人共同形塑的。",
+      "body": "AI 研究者與社會科學家、技術專家與公職人員、資助者與公民社會行動者，來自不同地區與政治觀點。這種廣度並非偶然。我們主張的方法——在真實差異中尋找共同基礎，而不壓抑差異——正是產出這份工作本身的方法。",
+      "sectors": [
+        "研究",
+        "科技",
+        "政府",
+        "慈善",
+        "公民社會",
+        "企業",
+        "娛樂",
+        "媒體"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "共同創辦人，RadicalxChange Foundation",
+          "image": "person-glen-weyl"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "前數位發展部部長（臺灣）",
+          "image": "person-audrey-tang"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "夥伴關係負責人，The Dais",
+          "image": "person-jake-hirsch-allen"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "總裁，Patrick J. McGovern Foundation",
+          "image": "person-vilas-dhar"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "副教授，史丹佛大學",
+          "image": "person-melissa-valentine"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Google Fellow；加州大學柏克萊分校榮譽教授",
+          "image": "person-david-patterson"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "副教授，哈佛商學院",
+          "image": "person-tiona-zuzul"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "執行長，RadicalxChange Foundation",
+          "image": "person-jess-scully"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "策略未來負責人，OpenAI",
+          "image": "person-dean-ball"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "創辦人暨執行長，Pathos Labs",
+          "image": "person-romain-vakilitabar"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "研究負責人，Office of Eric Schmidt",
+          "image": "person-andrew-sorota"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "研究員，Foundation for American Innovation",
+          "image": "person-samuel-roland"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "實驗室主任，Microsoft Research",
+          "image": "person-chris-white"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "總裁，Project Liberty",
+          "image": "person-tomicah-tillemann"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "創辦人暨負責人，Minerva Fund",
+          "image": "person-galen-hines-pierce"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "前白宮 AI 顧問",
+          "image": "person-ben-buchanan"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "教授，芝加哥大學",
+          "image": "person-james-evans"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "院長，哈佛學院",
+          "image": "person-david-deming"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "特任教授，慶應義塾大學",
+          "image": "person-ken-suzuki"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "副總裁暨 Fellow，Google",
+          "image": "person-blaise-aguera"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "教授，哈佛大學",
+          "image": "person-danielle-allen"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "共同創辦人，Collective Intelligence Project",
+          "image": "person-divya-siddarth"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "創辦人暨執行長，O’Reilly Media",
+          "image": "person-tim-oreilly"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "創辦人暨管理合夥人，Ex/Ante",
+          "image": "person-zoe-weinberg"
+        }
+      ]
+    },
+    "join": {
+      "eyebrow": "加入聯盟",
+      "title": "留下你的名字",
+      "lead": "如果你相信，我們應以同樣的雄心建設社會系統、打造演算法，請留下名字，並把這份工作帶進你自己的領域。",
+      "body": "反向對齊不是單一計畫。它是橫跨每個領域的一組賭注，只有廣大聯盟撐得住。",
+      "form": {
+        "id": "join-form",
+        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E5%8A%A0%E5%85%A5%E8%81%AF%E7%9B%9F",
+        "method": "post",
+        "submitLabel": "加入",
+        "fields": [
+          {
+            "name": "Full Name",
+            "label": "全名",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name"
+          },
+          {
+            "name": "Affiliation",
+            "label": "所屬單位",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization"
+          },
+          {
+            "name": "Sector",
+            "label": "領域",
+            "type": "select",
+            "required": true,
+            "options": [
+              "研究",
+              "科技",
+              "政府",
+              "慈善",
+              "公民社會",
+              "企業",
+              "娛樂",
+              "媒體"
+            ]
+          },
+          {
+            "name": "Email",
+            "label": "電子郵件",
+            "type": "email",
+            "required": true,
+            "autocomplete": "email"
+          },
+          {
+            "name": "I’d also like to contribute by...",
+            "label": "我也想透過以下方式貢獻……",
+            "type": "select",
+            "required": false,
+            "options": [
+              "在聲明上連署",
+              "把挑戰帶進自己的組織或領域",
+              "貢獻專業、寫作或研究",
+              "協助資助這項工作",
+              "持續掌握聯盟動態",
+              "以上皆是"
+            ]
+          }
+        ],
+        "errorMessage": "請修正表單中的錯誤。",
+        "successMessage": "送出後會開啟你的電子郵件應用程式，並填入這些內容。在你真正寄出之前，資料尚未送出——本站不會確認是否收到。",
+        "enctype": "text/plain",
+        "mailClientNote": "送出後會開啟你的電子郵件應用程式，並填入這些內容。在你真正寄出之前，資料尚未送出——本站不會確認是否收到。"
+      }
+    },
+    "closing": {
+      "lines": [
+        "是時候以同樣的雄心，",
+        "建設社會系統，",
+        "一如我們打造演算法。"
+      ]
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "我們是誰",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "聯盟",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "使命",
+          "links": [
+            {
+              "id": "idea",
+              "label": "對齊的另一面",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "該建造什麼",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "依其工具之形而立的制度",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "採取行動",
+          "links": [
+            {
+              "id": "papers",
+              "label": "閱讀論證",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "給說故事者的快速補助",
+              "href": "#grants"
+            },
+            {
+              "id": "join",
+              "label": "加入聯盟",
+              "href": "#join"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 版權所有。"
+    },
+    "a11y": {
+      "skipToContent": "跳至主要內容",
+      "mainNav": "主要導覽",
+      "openMenu": "開啟選單",
+      "closeMenu": "關閉選單",
+      "externalLink": "在新分頁開啟",
+      "heroMotionLabel": "動態重力場",
+      "challengeGrid": "社會技術重大挑戰",
+      "coalitionGrid": "聯盟成員",
+      "formErrors": "請修正表單中的錯誤。"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image-zh-tw.jpg",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png"
+    },
+    "notFound": {
+      "title": "找不到頁面",
+      "heading": "找不到頁面",
+      "body": "找不到這個頁面，或它已不在本站。",
+      "backLabel": "回到 Reverse Alignment",
       "code": "404"
     }
   }

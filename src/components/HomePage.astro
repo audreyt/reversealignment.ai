@@ -7,10 +7,10 @@ import SiteFooter from './SiteFooter.astro';
 import SlideshowViewer from './SlideshowViewer.astro';
 import SiteHeader from './SiteHeader.astro';
 import type { Locale } from '../lib/types';
-import { assetPath, getContent, relativeRootPath } from '../lib/i18n';
+import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../lib/i18n';
 
 type Props = { locale?: Locale };
-const locale = Astro.props.locale ?? 'en';
+const locale = Astro.props.locale ?? getDefaultLocale();
 const copy = getContent(locale);
 const rootPath = relativeRootPath(locale);
 const primaryCta = copy.hero.primaryCta;
@@ -126,7 +126,10 @@ if (!primaryCta?.label || !secondaryCta?.label) {
           <div class="stack-sm">
             <p class="eyebrow eyebrow--muted">{copy.building.eyebrow}</p>
             <p class="body--mono">{copy.building.summary}</p>
-            <p class="body--mono">{copy.building.hoverHint}</p>
+            <p class="body--mono">
+              <span class="building-hint building-hint--hover">{copy.building.hoverHint}</span>
+              <span class="building-hint building-hint--click">{copy.building.clickHint}</span>
+            </p>
           </div>
         </header>
 
@@ -328,7 +331,8 @@ if (!primaryCta?.label || !secondaryCta?.label) {
     <!-- COALITION -->
     <section id="coalition" class="section section--sheet section--coalition" aria-labelledby="coalition-title">
       <div class="section__bg section__bg--coalition" aria-hidden="true">
-        <Media asset="coalition-texture" alt="" />
+        <Media asset="coalition-texture" alt="" class="coalition-paper" />
+        <Media asset="failures-texture" alt="" class="coalition-edge" />
       </div>
       <div class="sheet sheet--over">
         <div class="sheet__binder" aria-hidden="true"></div>
@@ -347,28 +351,17 @@ if (!primaryCta?.label || !secondaryCta?.label) {
 
           <div class="people-grid" role="list" aria-label={copy.a11y.coalitionGrid}>
             {
-              copy.coalition.people
-                .filter((tile) => tile.kind !== 'cta')
-                .map((tile) => (
-                  <article class="person" role="listitem">
-                    <div class="person__photo">
-                      <Media asset={tile.image} alt="" />
-                    </div>
-                    <div class="person__meta">
-                      <h3 class="person__name">{tile.name}</h3>
-                      <p class="person__role">{tile.role}</p>
-                    </div>
-                  </article>
-                ))
-            }
-            {
-              copy.coalition.people
-                .filter((tile) => tile.kind === 'cta')
-                .map((tile) => (
-                  <div class="person person--cta" role="listitem">
-                    <a class="person__cta" href={tile.href}>{tile.label}</a>
+              copy.coalition.people.map((person) => (
+                <article class="person" role="listitem">
+                  <div class="person__photo">
+                    <Media asset={person.image} alt="" />
                   </div>
-                ))
+                  <div class="person__meta">
+                    <h3 class="person__name">{person.name}</h3>
+                    <p class="person__role">{person.role}</p>
+                  </div>
+                </article>
+              ))
             }
           </div>
         </div>
