@@ -1,22 +1,23 @@
 ---
 type Point = { x: number; y: number };
 type Particle = {
+  angleStart: number;
   color: string;
-  delay: number;
+  colorIndex: number;
   duration: number;
-  keyPoints: string;
   opacity: number;
-  path: string;
-  radius: number;
+  phase: number;
+  pointRadius: number;
+  radiusStart: number;
+  velocity: number;
+  x: number;
+  y: number;
 };
 
 const FIELD_CENTER_X = 107.4;
 const FIELD_CENTER_Y = 50;
 const THROAT_RADIUS = 0.055;
-const SAMPLE_COUNT = 180;
-const keyTimes = Array.from({ length: SAMPLE_COUNT + 1 }, (_, index) =>
-  (index / SAMPLE_COUNT).toFixed(4)
-).join(';');
+const INTEGRATION_STEPS = 48;
 
 const project = (radius: number, angle: number): Point => {
   const cosine = Math.cos(angle);
@@ -75,23 +76,31 @@ const radiusAtProgress = (radiusStart: number, progress: number) => {
   if (progress < 0.925) return lerp(0.55, 0.25, smooth((progress - 0.575) / 0.35));
   return lerp(0.25, THROAT_RADIUS, smooth((progress - 0.925) / 0.075));
 };
+const angularTravelAtProgress = (
+  radiusStart: number,
+  duration: number,
+  velocity: number,
+  progress: number
+) => {
+  const timeStep = (duration * progress) / INTEGRATION_STEPS;
+  let travel = 0;
+  for (let sample = 0; sample < INTEGRATION_STEPS; sample += 1) {
+    const sampleProgress = ((sample + 0.5) / INTEGRATION_STEPS) * progress;
+    const radius = radiusAtProgress(radiusStart, sampleProgress);
+    travel += velocity * Math.pow(1 / Math.max(radius, 0.08), 1.25) * timeStep;
+  }
+  return travel;
+};
+const opacityAtProgress = (opacity: number, progress: number) => {
+  if (progress < 0.04) return opacity * (progress / 0.04);
+  if (progress > 0.9) return opacity * ((1 - progress) / 0.1);
+  return opacity;
+};
 
 const particles: Particle[] = phases.map((phase, index) => {
   const radiusStart = 0.92 + random() * 0.08;
   const duration = 30 + random() * 18;
-  const baseAngularVelocity = 0.06 + random() * 0.04;
-  const radii = Array.from({ length: SAMPLE_COUNT + 1 }, (_, sample) =>
-    radiusAtProgress(radiusStart, sample / SAMPLE_COUNT)
-  );
-  const angularTravel = [0];
-  const timeStep = duration / SAMPLE_COUNT;
-  for (let sample = 1; sample <= SAMPLE_COUNT; sample += 1) {
-    const radius = (radii[sample - 1] + radii[sample]) / 2;
-    const velocity = baseAngularVelocity * Math.pow(1 / Math.max(radius, 0.08), 1.25);
-    angularTravel.push(angularTravel[sample - 1] + velocity * timeStep);
-  }
-
-  const phaseSample = Math.round(phase * SAMPLE_COUNT);
+  const velocity = 0.06 + random() * 0.04;
   const outerBand = phase < 0.575;
   const angleBucket = index % 10;
   const targetAngle =
@@ -104,101 +113,445 @@ const particles: Particle[] = phases.map((phase, index) => {
             ? 4.4 + random() * 0.65
             : random() * Math.PI * 2
         : random() * Math.PI * 2;
-  const angleStart = targetAngle + angularTravel[phaseSample];
-  const points = radii.map((radius, sample) =>
-    project(radius, angleStart - angularTravel[sample])
-  );
-
-  const distances = points.slice(1).map((point, pointIndex) =>
-    Math.hypot(point.x - points[pointIndex].x, point.y - points[pointIndex].y)
-  );
-  const totalDistance = distances.reduce((total, distance) => total + distance, 0);
-  let travelled = 0;
-  const keyPoints = [
-    0,
-    ...distances.map((distance) => {
-      travelled += distance;
-      return travelled / totalDistance;
-    }),
-  ]
-    .map((value) => value.toFixed(5))
-    .join(';');
+  const opacity = 0.8 + random() * 0.2;
+  const pointRadius = 0.48 + random() * 0.62;
+  const position = project(radiusAtProgress(radiusStart, phase), targetAngle);
 
   return {
+    angleStart: targetAngle + angularTravelAtProgress(radiusStart, duration, velocity, phase),
     color: colors[index % colors.length],
-    delay: -(phase * duration),
+    colorIndex: index % colors.length,
     duration,
-    keyPoints,
-    opacity: 0.8 + random() * 0.2,
-    path: pathFromPoints(points),
-    radius: 0.48 + random() * 0.62,
+    opacity,
+    phase,
+    pointRadius,
+    radiusStart,
+    velocity,
+    x: position.x,
+    y: position.y,
   };
 });
+const round = (value: number) => Number(value.toFixed(6));
+const particleData = JSON.stringify(
+  particles.flatMap((particle) => [
+    round(particle.phase),
+    round(particle.radiusStart),
+    round(particle.duration),
+    round(particle.velocity),
+    round(particle.angleStart),
+    round(particle.pointRadius),
+    round(particle.opacity),
+    particle.colorIndex,
+  ])
+);
 ---
 
-<svg
+<div
   class="hero__gravity"
   data-hero-gravity
-  viewBox="0 0 165.217 100"
-  preserveAspectRatio="xMidYMid slice"
+  data-gravity-mode="fallback"
+  data-particle-count={particles.length}
   aria-hidden="true"
-  focusable="false"
 >
-  <g class="hero-field">
-    {rings.map((path) => <path d={path} />)}
-    {spokes.map((path) => <path d={path} />)}
-  </g>
+  <svg
+    class="hero__gravity-mesh"
+    viewBox="0 0 165.217 100"
+    preserveAspectRatio="xMidYMid slice"
+    focusable="false"
+  >
+    <g class="hero-field">
+      {rings.map((path) => <path d={path} />)}
+      {spokes.map((path) => <path d={path} />)}
+    </g>
 
-  <ellipse
-    class="hero-field__horizon"
-    cx={FIELD_CENTER_X}
-    cy={FIELD_CENTER_Y + 17}
-    rx="1.7"
-    ry="1.15"
-  />
+    <ellipse
+      class="hero-field__horizon"
+      cx={FIELD_CENTER_X}
+      cy={FIELD_CENTER_Y + 17}
+      rx="1.7"
+      ry="1.15"
+    />
 
-  {
-    particles.map((particle) => (
-      <circle
-        class="hero-particle"
-        cx="0"
-        cy="0"
-        r={particle.radius.toFixed(3)}
-        fill={particle.color}
-      >
-        <animateMotion
-          begin={`${particle.delay.toFixed(3)}s`}
-          calcMode="linear"
-          dur={`${particle.duration.toFixed(3)}s`}
-          keyPoints={particle.keyPoints}
-          keyTimes={keyTimes}
-          path={particle.path}
-          repeatCount="indefinite"
-        />
-        <animate
-          attributeName="opacity"
-          begin={`${particle.delay.toFixed(3)}s`}
-          dur={`${particle.duration.toFixed(3)}s`}
-          keyTimes="0;0.04;0.9;1"
-          repeatCount="indefinite"
-          values={`0;${particle.opacity.toFixed(3)};${particle.opacity.toFixed(3)};0`}
-        />
-      </circle>
-    ))
-  }
-</svg>
+    <g class="hero-particles--fallback">
+      {
+        particles.map((particle) => (
+          <circle
+            class="hero-particle"
+            cx={particle.x.toFixed(3)}
+            cy={particle.y.toFixed(3)}
+            r={particle.pointRadius.toFixed(3)}
+            fill={particle.color}
+            opacity={opacityAtProgress(particle.opacity, particle.phase).toFixed(3)}
+          />
+        ))
+      }
+    </g>
+  </svg>
+
+  <canvas class="hero__gravity-canvas" data-gravity-canvas></canvas>
+  <script type="application/json" data-gravity-particles set:html={particleData}></script>
+</div>
 
 <script is:inline>
   (() => {
     const field = document.querySelector('[data-hero-gravity]');
+    if (!(field instanceof HTMLElement)) return;
+
+    const canvas = field.querySelector('[data-gravity-canvas]');
+    const serializedParticles = field.querySelector('[data-gravity-particles]');
+    if (!(canvas instanceof HTMLCanvasElement) || !(serializedParticles instanceof HTMLScriptElement)) {
+      return;
+    }
+
+    const DATA_STRIDE = 8;
+    const VIEWBOX_WIDTH = 165.217;
+    const VIEWBOX_HEIGHT = 100;
+    const MAX_PIXEL_RATIO = 1.5;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-    const syncMotion = () => {
-      if (!(field instanceof SVGSVGElement)) return;
-      if (reducedMotion.matches) field.pauseAnimations();
-      else field.unpauseAnimations();
+    let parsedParticles;
+    try {
+      parsedParticles = JSON.parse(serializedParticles.textContent || '[]');
+    } catch {
+      return;
+    }
+    if (
+      !Array.isArray(parsedParticles) ||
+      parsedParticles.length !== Number(field.dataset.particleCount) * DATA_STRIDE ||
+      !parsedParticles.every(Number.isFinite)
+    ) {
+      return;
+    }
+
+    const vertexSource = `
+      precision highp float;
+
+      attribute vec4 aOrbit;
+      attribute vec4 aVisual;
+      uniform float uTime;
+      uniform vec2 uResolution;
+      uniform float uViewScale;
+      uniform vec2 uViewOffset;
+      uniform float uPixelRatio;
+      varying vec3 vColor;
+      varying float vOpacity;
+      varying float vPointSize;
+
+      float ease(float amount) {
+        return amount * amount * (3.0 - 2.0 * amount);
+      }
+
+      float radiusAt(float radiusStart, float progress) {
+        if (progress < 0.225) {
+          return mix(radiusStart, 0.8, ease(progress / 0.225));
+        }
+        if (progress < 0.575) {
+          return mix(0.8, 0.55, ease((progress - 0.225) / 0.35));
+        }
+        if (progress < 0.925) {
+          return mix(0.55, 0.25, ease((progress - 0.575) / 0.35));
+        }
+        return mix(0.25, 0.055, ease((progress - 0.925) / 0.075));
+      }
+
+      float angularTravel(float radiusStart, float duration, float velocity, float progress) {
+        float stepSize = progress / 48.0;
+        float travel = 0.0;
+        for (int sample = 0; sample < 48; sample += 1) {
+          float sampleProgress = (float(sample) + 0.5) * stepSize;
+          float radius = radiusAt(radiusStart, sampleProgress);
+          travel += velocity * pow(1.0 / max(radius, 0.08), 1.25) * duration * stepSize;
+        }
+        return travel;
+      }
+
+      void main() {
+        float progress = fract(aOrbit.x + uTime / aOrbit.z);
+        float radius = radiusAt(aOrbit.y, progress);
+        float angle = aVisual.x - angularTravel(aOrbit.y, aOrbit.z, aOrbit.w, progress);
+        float cosine = cos(angle);
+        float sine = sin(angle);
+        float depth = 17.0 * pow(1.0 - min(radius, 1.0), 2.15);
+        vec2 projected = vec2(
+          107.4 + radius * (56.0 * cosine - 10.0 * sine),
+          50.0 + radius * (12.0 * cosine + 44.0 * sine) + depth
+        );
+        vec2 pixel = projected * uViewScale + uViewOffset;
+        vec2 clip = pixel / uResolution * 2.0 - 1.0;
+        gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
+        gl_PointSize = max(1.0, aVisual.y * 2.0 * uViewScale * uPixelRatio);
+
+        float fade = progress < 0.04
+          ? progress / 0.04
+          : progress > 0.9
+            ? (1.0 - progress) / 0.1
+            : 1.0;
+        vOpacity = aVisual.z * clamp(fade, 0.0, 1.0);
+        vPointSize = gl_PointSize;
+        vColor = aVisual.w < 0.5
+          ? vec3(0.957, 0.953, 0.953)
+          : aVisual.w < 1.5
+            ? vec3(0.804, 0.988, 0.337)
+            : vec3(0.427, 0.157, 0.961);
+      }
+    `;
+    const fragmentSource = `
+      precision mediump float;
+
+      varying vec3 vColor;
+      varying float vOpacity;
+      varying float vPointSize;
+
+      void main() {
+        float distanceFromCenter = length(gl_PointCoord * 2.0 - 1.0);
+        if (distanceFromCenter >= 1.0) discard;
+        float edge = min(1.0, 2.0 / max(vPointSize, 1.0));
+        float coverage = 1.0 - smoothstep(1.0 - edge, 1.0, distanceFromCenter);
+        float alpha = vOpacity * coverage;
+        gl_FragColor = vec4(vColor * alpha, alpha);
+      }
+    `;
+
+    const compileShader = (context, type, source) => {
+      const shader = context.createShader(type);
+      if (!shader) return null;
+      context.shaderSource(shader, source);
+      context.compileShader(shader);
+      if (context.getShaderParameter(shader, context.COMPILE_STATUS)) return shader;
+      context.deleteShader(shader);
+      return null;
+    };
+    const buildProgram = (context) => {
+      const vertexShader = compileShader(context, context.VERTEX_SHADER, vertexSource);
+      const fragmentShader = compileShader(context, context.FRAGMENT_SHADER, fragmentSource);
+      if (!vertexShader || !fragmentShader) {
+        if (vertexShader) context.deleteShader(vertexShader);
+        if (fragmentShader) context.deleteShader(fragmentShader);
+        return null;
+      }
+
+      const nextProgram = context.createProgram();
+      if (!nextProgram) return null;
+      context.attachShader(nextProgram, vertexShader);
+      context.attachShader(nextProgram, fragmentShader);
+      context.linkProgram(nextProgram);
+      context.deleteShader(vertexShader);
+      context.deleteShader(fragmentShader);
+      if (context.getProgramParameter(nextProgram, context.LINK_STATUS)) return nextProgram;
+      context.deleteProgram(nextProgram);
+      return null;
     };
 
-    syncMotion();
+    let gl = null;
+    let program = null;
+    let particleBuffer = null;
+    let locations = null;
+    let contextReady = false;
+    let contextFailed = false;
+    let contextLost = false;
+    let intersecting = !('IntersectionObserver' in window);
+    let pageVisible = !document.hidden;
+    let running = false;
+    let animationFrame = 0;
+    let elapsed = 0;
+    let lastFrame = 0;
+    let cssWidth = 1;
+    let cssHeight = 1;
+    let pixelRatio = 1;
+    let viewScale = 1;
+    let viewOffsetX = 0;
+    let viewOffsetY = 0;
+
+    const resize = () => {
+      const bounds = field.getBoundingClientRect();
+      if (bounds.width <= 0 || bounds.height <= 0) return false;
+
+      cssWidth = bounds.width;
+      cssHeight = bounds.height;
+      pixelRatio = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
+      const bufferWidth = Math.max(1, Math.round(cssWidth * pixelRatio));
+      const bufferHeight = Math.max(1, Math.round(cssHeight * pixelRatio));
+      if (canvas.width !== bufferWidth) canvas.width = bufferWidth;
+      if (canvas.height !== bufferHeight) canvas.height = bufferHeight;
+
+      viewScale = Math.max(cssWidth / VIEWBOX_WIDTH, cssHeight / VIEWBOX_HEIGHT);
+      viewOffsetX = (cssWidth - VIEWBOX_WIDTH * viewScale) / 2;
+      viewOffsetY = (cssHeight - VIEWBOX_HEIGHT * viewScale) / 2;
+      if (gl) gl.viewport(0, 0, bufferWidth, bufferHeight);
+      return true;
+    };
+
+    const draw = () => {
+      if (!contextReady || !gl || !program || !particleBuffer || !locations) return;
+      gl.uniform1f(locations.time, elapsed);
+      gl.uniform2f(locations.resolution, cssWidth, cssHeight);
+      gl.uniform1f(locations.viewScale, viewScale);
+      gl.uniform2f(locations.viewOffset, viewOffsetX, viewOffsetY);
+      gl.uniform1f(locations.pixelRatio, pixelRatio);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.POINTS, 0, parsedParticles.length / DATA_STRIDE);
+    };
+
+    const setupContext = () => {
+      if (contextReady) return true;
+      if (contextFailed || contextLost) return false;
+
+      const context = canvas.getContext('webgl', {
+        alpha: true,
+        antialias: false,
+        depth: false,
+        desynchronized: true,
+        failIfMajorPerformanceCaveat: true,
+        powerPreference: 'low-power',
+        premultipliedAlpha: true,
+        preserveDrawingBuffer: false,
+        stencil: false,
+      });
+      if (!context) {
+        contextFailed = true;
+        return false;
+      }
+
+      const nextProgram = buildProgram(context);
+      const nextBuffer = context.createBuffer();
+      if (!nextProgram || !nextBuffer) {
+        if (nextProgram) context.deleteProgram(nextProgram);
+        if (nextBuffer) context.deleteBuffer(nextBuffer);
+        contextFailed = true;
+        return false;
+      }
+
+      const orbit = context.getAttribLocation(nextProgram, 'aOrbit');
+      const visual = context.getAttribLocation(nextProgram, 'aVisual');
+      const time = context.getUniformLocation(nextProgram, 'uTime');
+      const resolution = context.getUniformLocation(nextProgram, 'uResolution');
+      const nextViewScale = context.getUniformLocation(nextProgram, 'uViewScale');
+      const viewOffset = context.getUniformLocation(nextProgram, 'uViewOffset');
+      const nextPixelRatio = context.getUniformLocation(nextProgram, 'uPixelRatio');
+      if (
+        orbit < 0 ||
+        visual < 0 ||
+        time === null ||
+        resolution === null ||
+        nextViewScale === null ||
+        viewOffset === null ||
+        nextPixelRatio === null
+      ) {
+        context.deleteProgram(nextProgram);
+        context.deleteBuffer(nextBuffer);
+        contextFailed = true;
+        return false;
+      }
+
+      context.bindBuffer(context.ARRAY_BUFFER, nextBuffer);
+      context.bufferData(
+        context.ARRAY_BUFFER,
+        new Float32Array(parsedParticles),
+        context.STATIC_DRAW
+      );
+      context.useProgram(nextProgram);
+      context.enableVertexAttribArray(orbit);
+      context.vertexAttribPointer(orbit, 4, context.FLOAT, false, DATA_STRIDE * 4, 0);
+      context.enableVertexAttribArray(visual);
+      context.vertexAttribPointer(visual, 4, context.FLOAT, false, DATA_STRIDE * 4, 4 * 4);
+      context.clearColor(0, 0, 0, 0);
+      context.disable(context.DEPTH_TEST);
+      context.enable(context.BLEND);
+      context.blendFunc(context.ONE, context.ONE_MINUS_SRC_ALPHA);
+
+      gl = context;
+      program = nextProgram;
+      particleBuffer = nextBuffer;
+      locations = {
+        orbit,
+        visual,
+        time,
+        resolution,
+        viewScale: nextViewScale,
+        viewOffset,
+        pixelRatio: nextPixelRatio,
+      };
+      contextReady = resize();
+      return contextReady;
+    };
+
+    const stop = () => {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      lastFrame = 0;
+    };
+    const tick = (now) => {
+      if (!running) return;
+      elapsed += Math.min(Math.max((now - lastFrame) / 1000, 0), 0.1);
+      lastFrame = now;
+      draw();
+      animationFrame = requestAnimationFrame(tick);
+    };
+    const start = () => {
+      if (running) return;
+      running = true;
+      lastFrame = performance.now();
+      animationFrame = requestAnimationFrame(tick);
+    };
+    const syncMotion = () => {
+      if (reducedMotion.matches) {
+        stop();
+        field.dataset.gravityMode = 'fallback';
+        return;
+      }
+      if (!setupContext()) {
+        stop();
+        field.dataset.gravityMode = 'fallback';
+        return;
+      }
+
+      draw();
+      field.dataset.gravityMode = 'gpu';
+      if (intersecting && pageVisible) start();
+      else stop();
+    };
+    const handleResize = () => {
+      if (!contextReady || !resize()) return;
+      draw();
+    };
+
+    canvas.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      contextLost = true;
+      contextReady = false;
+      stop();
+      field.dataset.gravityMode = 'fallback';
+    });
+    canvas.addEventListener('webglcontextrestored', () => {
+      contextLost = false;
+      contextFailed = false;
+      gl = null;
+      program = null;
+      particleBuffer = null;
+      locations = null;
+      syncMotion();
+    });
     reducedMotion.addEventListener('change', syncMotion);
+    document.addEventListener('visibilitychange', () => {
+      pageVisible = !document.hidden;
+      syncMotion();
+    });
+
+    if ('IntersectionObserver' in window) {
+      const intersectionObserver = new IntersectionObserver(([entry]) => {
+        intersecting = Boolean(entry?.isIntersecting);
+        syncMotion();
+      });
+      intersectionObserver.observe(field);
+    }
+    if ('ResizeObserver' in window) {
+      const resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(field);
+    } else {
+      window.addEventListener('resize', handleResize, { passive: true });
+    }
+
+    syncMotion();
   })();
 </script>

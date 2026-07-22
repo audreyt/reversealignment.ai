@@ -94,65 +94,185 @@ test.describe('home page', () => {
     await expect(page.locator('body')).toContainText(/找不到|404/);
   });
 
-  test('vector hero follows an accelerating orbital inspiral', async ({ page }) => {
+  test('GPU hero renders and suspends the animated orbital field', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
 
-    const trajectory = await page.locator('[data-hero-gravity]').evaluate((element) => {
-      if (!(element instanceof SVGSVGElement)) return null;
-      const particle = element.querySelector('.hero-particle');
-      const motion = particle?.querySelector('animateMotion');
-      const opacity = particle?.querySelector('animate[attributeName="opacity"]');
-      if (!(particle instanceof SVGCircleElement) || !motion || !opacity) return null;
+    const field = page.locator('[data-hero-gravity]');
+    const canvas = field.locator('[data-gravity-canvas]');
+    await expect(field).toHaveAttribute('data-gravity-mode', 'gpu');
 
-      const centerPoint = element.createSVGPoint();
-      centerPoint.x = 107.4;
-      centerPoint.y = 67;
-      const screenMatrix = element.getScreenCTM();
-      if (!screenMatrix) return null;
-      const center = centerPoint.matrixTransform(screenMatrix);
-      const duration = Number.parseFloat(motion.getAttribute('dur') ?? '');
-      const begin = Number.parseFloat(motion.getAttribute('begin') ?? '');
-      const phases = [0.02, 0.2, 0.4, 0.6, 0.8, 0.95, 0.99];
+    await field.evaluate((element) => {
+      const canvasElement = element.querySelector('[data-gravity-canvas]');
+      if (!(canvasElement instanceof HTMLCanvasElement)) {
+        throw new Error('Gravity canvas is unavailable');
+      }
+      const context = canvasElement.getContext('webgl');
+      if (!context) throw new Error('Gravity WebGL context is unavailable');
 
-      element.pauseAnimations();
-      const points = phases.map((phase) => {
-        element.setCurrentTime(Math.max(0, begin + phase * duration));
-        const rect = particle.getBoundingClientRect();
-        const x = rect.x + rect.width / 2;
-        const y = rect.y + rect.height / 2;
-        return {
-          x,
-          y,
-          distance: Math.hypot(x - center.x, y - center.y),
-        };
+      const drawArrays = context.drawArrays.bind(context);
+      let drawCount = 0;
+      Object.defineProperty(window, '__gravityDrawCount', {
+        configurable: true,
+        get: () => drawCount,
       });
-      element.unpauseAnimations();
-
-      return {
-        fieldPaths: element.querySelectorAll('.hero-field path').length,
-        keyPoints: (motion.getAttribute('keyPoints') ?? '').split(';').length,
-        keyTimes: (motion.getAttribute('keyTimes') ?? '').split(';').length,
-        opacityValues: opacity.getAttribute('values'),
-        pathSegments: (motion.getAttribute('path')?.match(/L/g) ?? []).length,
-        points,
+      context.drawArrays = (mode, first, count) => {
+        drawCount += 1;
+        drawArrays(mode, first, count);
       };
     });
 
+    const runtime = await field.evaluate((element) => {
+      const canvasElement = element.querySelector('[data-gravity-canvas]');
+      const fallback = element.querySelector('.hero-particles--fallback');
+      if (
+        !(element instanceof HTMLElement) ||
+        !(canvasElement instanceof HTMLCanvasElement) ||
+        !(fallback instanceof SVGGElement)
+      ) {
+        return null;
+      }
+
+      const bounds = canvasElement.getBoundingClientRect();
+      const context = canvasElement.getContext('webgl');
+      return {
+        bufferRatio: canvasElement.width / bounds.width,
+        canvasVisibility: getComputedStyle(canvasElement).visibility,
+        fallbackDisplay: getComputedStyle(fallback).display,
+        fallbackParticles: fallback.querySelectorAll('.hero-particle').length,
+        fieldPaths: element.querySelectorAll('.hero-field path').length,
+        smilAnimations: element.querySelectorAll('animate, animateMotion').length,
+        webgl: Boolean(context),
+      };
+    });
+
+    expect(runtime).not.toBeNull();
+    expect(runtime).toMatchObject({
+      canvasVisibility: 'visible',
+      fallbackDisplay: 'none',
+      fallbackParticles: 58,
+      fieldPaths: 41,
+      smilAnimations: 0,
+      webgl: true,
+    });
+    expect(runtime!.bufferRatio).toBeGreaterThanOrEqual(1);
+    expect(runtime!.bufferRatio).toBeLessThanOrEqual(1.5);
+
+    const initialFrame = await canvas.screenshot();
+    const initialDrawCount = await page.evaluate(
+      () => (window as typeof window & { __gravityDrawCount: number }).__gravityDrawCount
+    );
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => (window as typeof window & { __gravityDrawCount: number }).__gravityDrawCount
+        )
+      )
+      .toBeGreaterThan(initialDrawCount);
+    const laterFrame = await canvas.screenshot();
+    expect(laterFrame.equals(initialFrame)).toBe(false);
+
+    await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+    await expect
+      .poll(
+        async () => {
+          const before = await page.evaluate(
+            () => (window as typeof window & { __gravityDrawCount: number }).__gravityDrawCount
+          );
+          await page.waitForTimeout(250);
+          const after = await page.evaluate(
+            () => (window as typeof window & { __gravityDrawCount: number }).__gravityDrawCount
+          );
+          return after - before;
+        },
+        { timeout: 5_000 }
+      )
+      .toBe(0);
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await expect(field).toHaveAttribute('data-gravity-mode', 'fallback');
+    await expect(canvas).toHaveCSS('visibility', 'hidden');
+    await expect(field.locator('.hero-particles--fallback')).not.toHaveCSS('display', 'none');
+
+    const trajectory = await canvas.evaluate((canvasElement) => {
+      if (!(canvasElement instanceof HTMLCanvasElement)) return null;
+      const fieldElement = canvasElement.closest('[data-hero-gravity]');
+      const serializedParticles = fieldElement?.querySelector('[data-gravity-particles]');
+      const context = canvasElement.getContext('webgl');
+      const currentProgram = context?.getParameter(context.CURRENT_PROGRAM);
+      if (
+        !(serializedParticles instanceof HTMLScriptElement) ||
+        !context ||
+        !(currentProgram instanceof WebGLProgram)
+      ) {
+        return null;
+      }
+
+      const time = context.getUniformLocation(currentProgram, 'uTime');
+      if (!time) return null;
+      const particleData = JSON.parse(serializedParticles.textContent || '[]');
+      if (!Array.isArray(particleData)) return null;
+
+      const phase = Number(particleData[0]);
+      const duration = Number(particleData[2]);
+      const bounds = canvasElement.getBoundingClientRect();
+      const pixelRatio = canvasElement.width / bounds.width;
+      const viewScale = Math.max(bounds.width / 165.217, bounds.height / 100);
+      const viewOffsetX = (bounds.width - 165.217 * viewScale) / 2;
+      const viewOffsetY = (bounds.height - 100 * viewScale) / 2;
+      const center = {
+        x: 107.4 * viewScale + viewOffsetX,
+        y: 67 * viewScale + viewOffsetY,
+      };
+      const pixels = new Uint8Array(canvasElement.width * canvasElement.height * 4);
+      const progressSamples = [0.02, 0.2, 0.4, 0.6, 0.8, 0.95, 0.99];
+      const points = progressSamples.map((progress) => {
+        context.uniform1f(time, (progress - phase) * duration);
+        context.clear(context.COLOR_BUFFER_BIT);
+        context.drawArrays(context.POINTS, 0, 1);
+        context.finish();
+        context.readPixels(
+          0,
+          0,
+          canvasElement.width,
+          canvasElement.height,
+          context.RGBA,
+          context.UNSIGNED_BYTE,
+          pixels
+        );
+
+        let alphaTotal = 0;
+        let weightedX = 0;
+        let weightedY = 0;
+        for (let pixel = 0; pixel < pixels.length; pixel += 4) {
+          const alpha = pixels[pixel + 3];
+          if (!alpha) continue;
+          const index = pixel / 4;
+          alphaTotal += alpha;
+          weightedX += (index % canvasElement.width) * alpha;
+          weightedY += Math.floor(index / canvasElement.width) * alpha;
+        }
+        const x = weightedX / alphaTotal / pixelRatio;
+        const y = bounds.height - weightedY / alphaTotal / pixelRatio;
+        return {
+          alphaTotal,
+          distance: Math.hypot(x - center.x, y - center.y),
+          x,
+          y,
+        };
+      });
+
+      return points;
+    });
+
     expect(trajectory).not.toBeNull();
-    if (!trajectory) throw new Error('Orbital animation is unavailable');
-
-    expect(trajectory.fieldPaths).toBe(41);
-    expect(trajectory.keyPoints).toBe(181);
-    expect(trajectory.keyTimes).toBe(181);
-    expect(trajectory.pathSegments).toBe(180);
-    expect(trajectory.opacityValues).toMatch(/^0;.+;.+;0$/);
-
-    const xValues = trajectory.points.map(({ x }) => x);
-    const yValues = trajectory.points.map(({ y }) => y);
+    if (!trajectory) throw new Error('GPU orbital trajectory is unavailable');
+    expect(trajectory.every(({ alphaTotal }) => alphaTotal > 0)).toBe(true);
+    const xValues = trajectory.map(({ x }) => x);
+    const yValues = trajectory.map(({ y }) => y);
     expect(Math.max(...xValues) - Math.min(...xValues)).toBeGreaterThan(100);
     expect(Math.max(...yValues) - Math.min(...yValues)).toBeGreaterThan(100);
-    expect(trajectory.points.at(-1)!.distance).toBeLessThan(trajectory.points[0].distance * 0.15);
+    expect(trajectory.at(-1)!.distance).toBeLessThan(trajectory[0].distance * 0.15);
   });
 
   test('intro collage spans the paper pane as a background', async ({ page }) => {
