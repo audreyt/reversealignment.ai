@@ -4133,9 +4133,9 @@ html[lang='zh-TW'] {
   html[lang='zh-TW'] #grants.section--grants,
   html[lang='zh-TW'] #papers.section--papers {
     max-height: none;
-    /* Allow vertical growth for CJK; clip absolute section art so it cannot widen the document. */
-    overflow-x: clip;
-    overflow-y: visible;
+    /* Keep both axes clipped: CJK grows via --h-* only. Avoid axis-split that
+       can un-contain #join > .section__bg (left:-68px; width:1575px → right 1507). */
+    overflow: clip;
   }
 
   /* Panel is absolutely placed; keep form note readable without uppercase tracking */

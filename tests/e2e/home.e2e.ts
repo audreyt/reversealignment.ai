@@ -101,19 +101,14 @@ test.describe('home page', () => {
 
   test('local /en/ is not an English route on this deployment', async ({ page }) => {
     const response = await page.goto('/en/');
-    // Static host: missing /en/ should not serve English home.
-    // Depending on serve SPA fallback, may be 404 page or index rewrite — never English locale.
+    // Static host must not serve English home; missing /en/ is the zh-TW 404.
+    expect(response?.status()).toBe(404);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
     await expect(page.locator('html')).not.toHaveAttribute('lang', 'en');
     const h1 = page.getByRole('heading', { level: 1 });
+    await expect(h1).toContainText('找不到');
     await expect(h1).not.toContainText('We are building AI faster');
-    // Prefer 404 body when the server returns the site 404 document
-    const status = response?.status() ?? 0;
-    if (status === 404 || (await page.locator('text=找不到').count()) > 0) {
-      await expect(page.locator('body')).toContainText(/找不到|404/);
-    } else {
-      // serve may fall through; still must not be English catalog
-      await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
-    }
+    await expect(page.locator('body')).toContainText(/找不到|404/);
   });
 
   test('vector hero follows an accelerating orbital inspiral', async ({ page }) => {
@@ -343,9 +338,8 @@ test.describe('home page', () => {
       expect(geometry.peopleCount).toBe(24);
 
       // Paper texture spans the section band; no horizontal page scroll
-      // (allow 1px subpixel slack; mobile-chrome device scale can differ slightly).
       expect(geometry.paper.width).toBeGreaterThan(width * 0.7);
-      expect(geometry.documentWidth).toBeLessThanOrEqual(geometry.viewportWidth + 1);
+      expect(geometry.documentWidth).toBe(geometry.viewportWidth);
     }
   });
 
