@@ -1,5 +1,8 @@
 {
-  "viewports": ["1440x900", "390x844"],
+  "viewports": [
+    "1440x900",
+    "390x844"
+  ],
   "smoke": "dist/smoke/* (gitignored under dist/)",
   "verified": {
     "heroGravityAnimated": true,
@@ -28,7 +31,7 @@
     "Footer/nav muted text slightly lightened for WCAG AA contrast (source-faithful palette retained)."
   ],
   "assetMappingsStillExternal": {
-    "readymagFormBackend": "unresolved public API; mailto fallback",
+    "readymagFormBackend": "not used; signup CTA links upstream to www.reversealignment.ai",
     "originalArchive": "collector repair in progress; curated semantic assets used for delivery"
   }
 }

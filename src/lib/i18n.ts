@@ -126,17 +126,9 @@ export function catalogShapePaths(locale: Locale = DEFAULT_LOCALE): string[] {
   return collectShapePaths(getContent(locale)).sort();
 }
 
-/** Protocol + recipient only; query (subject/body) may be localized. */
-export function normalizeMailtoAction(action: unknown): unknown {
-  if (typeof action !== 'string') return action;
-  const match = /^mailto:([^?]+)(?:\?.*)?$/i.exec(action.trim());
-  if (!match) return action;
-  return `mailto:${match[1].toLowerCase()}`;
-}
-
 /**
  * Non-translatable structural values that must stay byte-identical across locales.
- * Covers hrefs, ids, form wiring, slide metadata, tones, and people
+ * Covers hrefs, ids, slide metadata, tones, and people
  * image keys / kinds — not display labels, option strings, or locale-specific asset paths (og images, etc.).
  */
 export function collectInvariantPaths(
@@ -177,17 +169,6 @@ export function collectInvariantPaths(
       out[path] = child;
       continue;
     }
-    // mailto: subjects are user-visible composer text and may localize;
-    // lock only protocol + recipient mailbox.
-    if (key === 'action') {
-      out[path] = normalizeMailtoAction(child);
-      continue;
-    }
-    // Form field `name` is the mailto body key — structural, not a label.
-    if (key === 'name' && (prefix.endsWith('.fields') || /\.fields\[\d+\]$/.test(prefix))) {
-      out[path] = child;
-      continue;
-    }
     // Person display names stay identical (proper nouns).
     if (key === 'name' && (prefix.endsWith('.people') || /\.people\[\d+\]$/.test(prefix))) {
       out[path] = child;
@@ -200,24 +181,4 @@ export function collectInvariantPaths(
 
 export function catalogInvariants(locale: Locale = DEFAULT_LOCALE): Record<string, unknown> {
   return collectInvariantPaths(getContent(locale));
-}
-
-/** Valid HTML id fragment from a form field name or explicit id. */
-export function formFieldDomId(formId: string, field: { name: string; id?: string }): string {
-  const raw = (field.id || field.name).trim();
-  const slug = raw
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    // Drop apostrophes so "I'd" → "id" rather than "i-d"
-    .replace(/['\u2019\u2018]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-    .replace(/-{2,}/g, '-');
-  if (!slug) {
-    throw new Error(`Form field in "${formId}" needs a name/id that slugifies to a non-empty id`);
-  }
-  // HTML ids must start with a letter
-  const safe = /^[a-z]/.test(slug) ? slug : `f-${slug}`;
-  return `${formId}-${safe}`;
 }

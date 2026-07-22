@@ -9,14 +9,12 @@ import {
   catalogShapePaths,
   collectInvariantPaths,
   collectShapePaths,
-  formFieldDomId,
   getContent,
   getDefaultLocale,
   getSite,
   hreflangAlternates,
   isLocale,
   listLocales,
-  normalizeMailtoAction,
   relativeRootPath,
   toBcp47,
   toOgLocale,
@@ -77,36 +75,18 @@ describe('content catalog', () => {
     expect(footerLabels.some((label) => label.includes('fast-rants'))).toBe(false);
   });
 
-  test('forms have honest mailto POST text/plain fallback', () => {
+  test('signup routes upstream: join CTA links to the coalition home, no local forms', () => {
     for (const locale of listLocales()) {
       const copy = getContent(locale);
-      for (const form of [copy.grants.notifyForm, copy.join.form]) {
-        expect(form.action.length).toBeGreaterThan(0);
-        expect(form.action).toMatch(/^mailto:/i);
-        expect(form.action).toContain('hello@reversealignment.ai');
-        expect(form.action).not.toBe('#');
-        expect(form.action).not.toBe('https://reversealignment.tw/');
-        expect(form.action).not.toBe('https://www.reversealignment.ai/');
-        expect(form.action).not.toBe('/');
-        expect((form.method || '').toLowerCase()).toBe('post');
-        expect((form.enctype || '').toLowerCase()).toBe('text/plain');
-        expect(form.mailClientNote?.length).toBeGreaterThan(0);
-        expect(form.mailClientNote).not.toMatch(/received|we.?ll be in touch|thanks for joining/i);
-        if (locale === 'en') {
-          expect(form.mailClientNote?.toLowerCase()).toMatch(/mail client|email client/);
-        } else {
-          expect(form.mailClientNote).toMatch(/電子郵|郵件/);
-        }
-        for (const field of form.fields) {
-          expect(field.name.length).toBeGreaterThan(0);
-          expect(field.name).toMatch(/[A-Za-z]/);
-          expect(field.name).not.toMatch(/^[a-z]+[A-Z]/);
-          const domId = formFieldDomId(form.id, field);
-          expect(domId).toMatch(new RegExp(`^${form.id}-[a-z][a-z0-9-]*$`));
-          expect(domId).not.toMatch(/\s/);
-        }
-      }
+      expect(copy.join.cta.href).toBe('https://www.reversealignment.ai/');
+      expect(copy.join.cta.external).toBe(true);
+      expect(copy.join.cta.label.length).toBeGreaterThan(0);
+      expect('form' in copy.join).toBe(false);
+      expect('notifyForm' in copy.grants).toBe(false);
+      const raw = JSON.stringify(copy);
+      expect(raw).not.toContain('mailto:hello@reversealignment.ai?');
     }
+    expect(getContent('zh-tw').join.cta.label).toContain('（英文）');
   });
 
   test('story has no unused guideBody field', () => {
@@ -245,8 +225,8 @@ describe('catalog parity', () => {
     for (const locale of listLocales()) {
       expect(catalogInvariants(locale), `invariants for ${locale}`).toEqual(baseline);
     }
-    expect(baseline['grants.notifyForm.action']).toBe('mailto:hello@reversealignment.ai');
-    expect(baseline['join.form.action']).toBe('mailto:hello@reversealignment.ai');
+    expect(baseline['join.cta.href']).toBe('https://www.reversealignment.ai/');
+    expect(baseline['join.cta.external']).toBe(true);
     expect(baseline['nav.join.href']).toBe('#join');
     expect(baseline['hero.primaryCta.href']).toBe('#join');
   });
@@ -289,24 +269,6 @@ describe('i18n helpers coverage', () => {
     );
   });
 
-  test('normalizeMailtoAction strips localized query subjects', () => {
-    expect(
-      normalizeMailtoAction(
-        'mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20%E9%80%9A%E7%9F%A5%E6%88%91'
-      )
-    ).toBe('mailto:hello@reversealignment.ai');
-    expect(
-      normalizeMailtoAction(
-        'mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20notify%20me'
-      )
-    ).toBe('mailto:hello@reversealignment.ai');
-    expect(normalizeMailtoAction('https://example.com/form')).toBe('https://example.com/form');
-    expect(normalizeMailtoAction('mailto:Hello@ReverseAlignment.AI')).toBe(
-      'mailto:hello@reversealignment.ai'
-    );
-    expect(normalizeMailtoAction(null)).toBeNull();
-    expect(normalizeMailtoAction(42)).toBe(42);
-  });
 
   test('collectInvariantPaths covers empty and array roots', () => {
     expect(collectInvariantPaths(null)).toEqual({});
@@ -322,20 +284,6 @@ describe('i18n helpers coverage', () => {
     expect(getDefaultLocale()).toBe('zh-tw');
   });
 
-  test('formFieldDomId slugifies human names and keeps explicit ids', () => {
-    expect(formFieldDomId('join-form', { name: 'Full Name' })).toBe('join-form-full-name');
-    expect(formFieldDomId('join-form', { name: "I'd also like to contribute by..." })).toBe(
-      'join-form-id-also-like-to-contribute-by'
-    );
-    expect(formFieldDomId('join-form', { name: 'I’d also like to contribute by...' })).toBe(
-      'join-form-id-also-like-to-contribute-by'
-    );
-    expect(formFieldDomId('notify', { name: 'First Name', id: 'first-name' })).toBe(
-      'notify-first-name'
-    );
-    expect(formFieldDomId('f', { name: '123 start' })).toBe('f-f-123-start');
-    expect(() => formFieldDomId('f', { name: '!!!' })).toThrow(/non-empty id/);
-  });
 });
 
 describe('asset mappings', () => {
