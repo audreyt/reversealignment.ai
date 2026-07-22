@@ -4028,6 +4028,40 @@ html[lang='zh-TW'] {
   }
 }
 
+/* Hero title carries manual \n breaks (content.json) */
+html[lang='zh-TW'] .hero__title {
+  white-space: pre-line;
+}
+
+/* 390px painted canvas: title box is 287.6px; fit the widest manual line */
+@media (max-width: 899px) {
+  html[lang='zh-TW'] .hero__title {
+    font-size: 31.5px;
+    line-height: 1.35;
+  }
+}
+
+/* Hero card is pinned in px for the 1440 canvas; between 900–1439 the paper
+   artwork scales with the stage (58%) while text stayed fixed and ran off the
+   sheet. Scale the type with the canvas (px ÷ 14.4 = vw; identical at 1440). */
+@media (min-width: 900px) and (max-width: 1439.98px) {
+  html[lang='zh-TW'] .hero__stage {
+    padding-left: 2.708333vw; /* 39px */
+  }
+  html[lang='zh-TW'] .hero__card {
+    width: 48.611111vw; /* 700px */
+  }
+  html[lang='zh-TW'] .hero__title {
+    width: 43.958333vw; /* 633px */
+    font-size: 4.6875vw; /* 67.5px */
+    min-height: 18.75vw; /* 270px */
+  }
+  html[lang='zh-TW'] .hero__body {
+    width: 39.375vw; /* 567px */
+    font-size: 1.367188vw; /* 19.6875px */
+  }
+}
+
 @media (max-width: 899px) {
   html[lang='zh-TW'] #join.section--join,
   html[lang='zh-TW'] #grants.section--grants,
