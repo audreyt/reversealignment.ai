@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "vp build",
+    "build:all": "bash scripts/build-all-locales.sh",
     "build:en": "SITE_LOCALE=en vp build",
     "build:ja": "SITE_LOCALE=ja vp build",
     "build:es": "SITE_LOCALE=es vp build",
@@ -15,7 +16,7 @@
     "test:unit": "vp test tests/unit",
     "test:e2e": "vp exec playwright test",
     "test:e2e:install": "vp exec playwright install --with-deps",
-    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\"",
+    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\" \"dist/es/index.html\" \"dist/es/404.html\" \"dist/pt-BR/index.html\" \"dist/pt-BR/404.html\"",
     "ci": "vp run clean && vp check && vp build && vp test && vp run lint:html"
   },
   "dependencies": {
