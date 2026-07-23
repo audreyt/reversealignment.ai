@@ -692,7 +692,7 @@
         },
         {
           "id": "grants",
-          "label": "快速補助",
+          "label": "迅速資助",
           "href": "#grants"
         },
         {
@@ -966,7 +966,7 @@
     },
     "grants": {
       "eyebrow": "認識這些挑戰",
-      "title": "給說故事者的快速補助",
+      "title": "給說故事者的迅速資助",
       "body": [
         "我們也和獨立創作者合作，用白話每次講清楚一項挑戰。每支短片聚焦一個問題——從如何在網路上證明自己是真人，到如何讓提供 AI 訓練資料的人獲得合理報酬——說明它為什麼重要，以及解方長什麼樣子。"
       ],
@@ -977,7 +977,7 @@
       ],
       "filmsNote": "首批影片即將上線。",
       "applyCta": {
-        "label": "申請補助",
+        "label": "申請資助",
         "href": "https://popshift.typeform.com/to/NvKBeode",
         "external": true
       }
@@ -1204,7 +1204,7 @@
             },
             {
               "id": "grants",
-              "label": "給說故事者的快速補助",
+              "label": "給說故事者的迅速資助",
               "href": "#grants"
             },
             {
