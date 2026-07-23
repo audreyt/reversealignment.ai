@@ -25,7 +25,7 @@ jobs:
           cache: true
           run-install: false
       - run: vp install --frozen-lockfile
-      - run: bun run build:all
+      - run: vp run build:all
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
