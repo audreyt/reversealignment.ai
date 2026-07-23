@@ -26,10 +26,12 @@ const PUBLIC = resolve(import.meta.dirname, '../../public');
 describe('content catalog', () => {
   test('default locale is Traditional Chinese; translated catalogs remain available', () => {
     expect(getDefaultLocale()).toBe('zh-tw');
-    expect(listLocales()).toEqual(expect.arrayContaining(['zh-tw', 'en', 'ja']));
+    expect(listLocales()).toEqual(expect.arrayContaining(['zh-tw', 'en', 'ja', 'es', 'pt-br']));
     expect(isLocale('zh-tw')).toBe(true);
     expect(isLocale('en')).toBe(true);
     expect(isLocale('ja')).toBe(true);
+    expect(isLocale('es')).toBe(true);
+    expect(isLocale('pt-br')).toBe(true);
     expect(isLocale('nope')).toBe(false);
   });
 
@@ -43,6 +45,8 @@ describe('content catalog', () => {
       en: 'https://www.reversealignment.ai',
       'zh-tw': 'https://reversealignment.tw',
       ja: 'https://reversealignment.jp',
+      es: 'https://audreyt.github.io/reversealignment.ai/',
+      'pt-br': 'https://audreyt.github.io/reversealignment.ai/',
     });
   });
 
@@ -254,16 +258,24 @@ describe('i18n helpers coverage', () => {
     expect(relativeRootPath('zh-tw')).toBe('./');
     expect(relativeRootPath('en')).toBe('./');
     expect(relativeRootPath('ja')).toBe('./');
+    expect(relativeRootPath('es')).toBe('./');
+    expect(relativeRootPath('pt-br')).toBe('./');
     expect(toBcp47('en')).toBe('en');
     expect(toBcp47('zh-tw')).toBe('zh-TW');
     expect(toBcp47('ja')).toBe('ja');
+    expect(toBcp47('es')).toBe('es');
+    expect(toBcp47('pt-br')).toBe('pt-BR');
     expect(toOgLocale('zh-tw')).toBe('zh_TW');
     expect(toOgLocale('en')).toBe('en');
     expect(toOgLocale('ja')).toBe('ja');
+    expect(toOgLocale('es')).toBe('es');
+    expect(toOgLocale('pt-br')).toBe('pt_BR');
     expect(hreflangAlternates()).toEqual([
       { hreflang: 'zh-TW', href: 'https://reversealignment.tw/' },
       { hreflang: 'en', href: 'https://www.reversealignment.ai/' },
       { hreflang: 'ja', href: 'https://reversealignment.jp/' },
+      { hreflang: 'es', href: 'https://audreyt.github.io/reversealignment.ai/' },
+      { hreflang: 'pt-BR', href: 'https://audreyt.github.io/reversealignment.ai/' },
       { hreflang: 'x-default', href: 'https://reversealignment.tw/' },
     ]);
   });
@@ -289,7 +301,7 @@ describe('i18n helpers coverage', () => {
   });
 
   test('catalog serves Japanese while only Traditional Chinese is default', () => {
-    expect(listLocales().sort()).toEqual(['en', 'ja', 'zh-tw'].sort());
+    expect(listLocales().sort()).toEqual(['en', 'es', 'ja', 'pt-br', 'zh-tw'].sort());
     expect(getDefaultLocale()).toBe('zh-tw');
   });
 });

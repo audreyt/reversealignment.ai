@@ -37,6 +37,16 @@ function localizedSiteUrl(locale: Locale): string {
   return site.localizedUrls[locale as keyof typeof site.localizedUrls];
 }
 
+/**
+ * Resolves a root-relative path against a locale's deployment root.
+ * Unlike `new URL('/…', base)`, this preserves GitHub Pages project paths.
+ */
+export function absoluteSiteUrl(path: string, locale: Locale = DEFAULT_LOCALE): string {
+  const root = new URL(`${localizedSiteUrl(locale).replace(/\/+$/, '')}/`);
+  const relativePath = path.replace(/^\/+/, '') || './';
+  return new URL(relativePath, root).toString();
+}
+
 export function getSite() {
   return {
     ...site,
@@ -69,6 +79,7 @@ export function assetPath(key: string, locale: Locale = DEFAULT_LOCALE): string 
 /** BCP 47 language tag for HTML lang, hreflang, and JSON-LD inLanguage. */
 export function toBcp47(locale: Locale): string {
   if (locale === 'zh-tw') return 'zh-TW';
+  if (locale === 'pt-br') return 'pt-BR';
   return String(locale);
 }
 
@@ -97,11 +108,11 @@ export function hreflangAlternates(): HreflangAlternate[] {
   return [
     ...orderedLocales.map((locale) => ({
       hreflang: toBcp47(locale),
-      href: new URL('/', localizedSiteUrl(locale)).toString(),
+      href: absoluteSiteUrl('/', locale),
     })),
     {
       hreflang: 'x-default',
-      href: new URL('/', localizedSiteUrl(site.defaultLocale as Locale)).toString(),
+      href: absoluteSiteUrl('/', site.defaultLocale as Locale),
     },
   ];
 }

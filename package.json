@@ -9,6 +9,8 @@
     "build": "vp build",
     "build:en": "SITE_LOCALE=en vp build",
     "build:ja": "SITE_LOCALE=ja vp build",
+    "build:es": "SITE_LOCALE=es vp build",
+    "build:pt-br": "SITE_LOCALE=pt-br vp build",
     "prepare": "vp config",
     "test:unit": "vp test tests/unit",
     "test:e2e": "vp exec playwright test",
