@@ -2,11 +2,13 @@ import content from '../data/content.json';
 import site from '../data/site.json';
 import type { Locale, SiteContent } from './types';
 
-const DEFAULT_LOCALE = 'zh-tw' as const satisfies Locale;
-
 const catalog = content as Record<Locale, SiteContent>;
-
 const localeList = Object.keys(catalog) as Locale[];
+const configuredLocale = process.env.SITE_LOCALE ?? site.defaultLocale;
+
+assertDefaultLocalePresent(localeList, configuredLocale);
+
+const DEFAULT_LOCALE = configuredLocale as Locale;
 
 /** Throws when the default locale is absent from the catalog keys. */
 export function assertDefaultLocalePresent(
@@ -18,13 +20,11 @@ export function assertDefaultLocalePresent(
   }
 }
 
-assertDefaultLocalePresent(localeList, DEFAULT_LOCALE);
-
 export function getDefaultLocale(): Locale {
   return DEFAULT_LOCALE;
 }
 
-/** Catalog locale keys (includes `en` for parity tests; only default is routed). */
+/** Catalog locale keys; each deployment serves one selected locale at `/`. */
 export function listLocales(): Locale[] {
   return [...localeList];
 }
@@ -33,8 +33,16 @@ export function isLocale(value: string): value is Locale {
   return Object.hasOwn(catalog, value);
 }
 
+function localizedSiteUrl(locale: Locale): string {
+  return site.localizedUrls[locale as keyof typeof site.localizedUrls];
+}
+
 export function getSite() {
-  return site;
+  return {
+    ...site,
+    url: localizedSiteUrl(DEFAULT_LOCALE),
+    lang: toBcp47(DEFAULT_LOCALE),
+  };
 }
 
 export function getContent(locale: Locale = DEFAULT_LOCALE): SiteContent {
@@ -78,20 +86,23 @@ export type HreflangAlternate = {
 };
 
 /**
- * Cross-domain language alternates for this zh-TW-only deployment.
- * English content is served on reversealignment.ai, not under a local `/en/` route.
+ * Cross-domain language alternates. Only catalog locales are advertised, so a
+ * reserved domain stays dark until its translated catalog is present.
  */
 export function hreflangAlternates(): HreflangAlternate[] {
-  const { url, englishSiteUrl } = getSite() as {
-    url: string;
-    englishSiteUrl: string;
-  };
-  const tw = new URL('/', url).toString();
-  const en = new URL('/', englishSiteUrl).toString();
+  const orderedLocales = [
+    DEFAULT_LOCALE,
+    ...localeList.filter((locale) => locale !== DEFAULT_LOCALE),
+  ];
   return [
-    { hreflang: 'zh-TW', href: tw },
-    { hreflang: 'en', href: en },
-    { hreflang: 'x-default', href: tw },
+    ...orderedLocales.map((locale) => ({
+      hreflang: toBcp47(locale),
+      href: new URL('/', localizedSiteUrl(locale)).toString(),
+    })),
+    {
+      hreflang: 'x-default',
+      href: new URL('/', localizedSiteUrl(site.defaultLocale as Locale)).toString(),
+    },
   ];
 }
 

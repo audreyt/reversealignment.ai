@@ -1,9 +1,10 @@
 ---
-import site from '../data/site.json';
 import {
   getContent,
   getDefaultLocale,
+  getSite,
   hreflangAlternates,
+  listLocales,
   relativeRootPath,
   toBcp47,
   toOgLocale,
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const locale = Astro.props.locale ?? getDefaultLocale();
+const site = getSite();
 const copy = getContent(locale);
 const title = Astro.props.title ?? copy.meta.title;
 const description = Astro.props.description ?? copy.meta.description;
@@ -26,6 +28,9 @@ const bcp47 = toBcp47(locale);
 const ogLocale = toOgLocale(locale);
 const rootPath = relativeRootPath(locale);
 const alternates = hreflangAlternates();
+const alternateOgLocales = listLocales()
+  .filter((candidate) => candidate !== locale)
+  .map(toOgLocale);
 ---
 
 <!doctype html>
@@ -50,7 +55,11 @@ const alternates = hreflangAlternates();
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:locale:alternate" content={toOgLocale('en')} />
+    {
+      alternateOgLocales.map((alternate) => (
+        <meta property="og:locale:alternate" content={alternate} />
+      ))
+    }
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

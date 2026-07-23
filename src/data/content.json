@@ -656,7 +656,7 @@
     "meta": {
       "title": "Reverse Alignment",
       "description": "我們打造 AI 的速度，遠遠快過社會接住它的速度。反向對齊（reverse alignment）指的是刻意重新設計制度、規範、技能與治理，讓社會能安全吸納 AI，並讓成果為眾人共享。",
-      "ogImage": "/assets/images/og-image-zh-tw.jpg"
+      "ogImage": "/assets/images/og-image-zh-tw.jpg?1784789400"
     },
     "brand": {
       "name": "Reverse Alignment",
@@ -1230,7 +1230,7 @@
     },
     "assets": {
       "favicon": "/favicon.png",
-      "og-image": "/assets/images/og-image-zh-tw.jpg",
+      "og-image": "/assets/images/og-image-zh-tw.jpg?1784789400",
       "hero-diagram": "/assets/images/hero-diagram.png",
       "intro-collage": "/assets/images/intro-collage.webp",
       "intro-texture": "/assets/images/intro-texture.png",
@@ -1303,6 +1303,659 @@
       "body": "這個網址不屬於本站。",
       "backLabel": "回到 Reverse Alignment",
       "code": "404"
+    }
+  },
+  "ja": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。Reverse Alignmentは、制度・規範・技能・ガバナンスを意図的に再設計し、社会がAIを安全に受け止め、その成果を広く分かち合えるようにする取り組みです。",
+      "ogImage": "/assets/images/og-image-ja.jpg"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "join": {
+        "label": "参加する",
+        "href": "#join"
+      },
+      "links": [
+        {
+          "id": "idea",
+          "label": "考え方",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "築くべきもの",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "主張",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "論考を読む",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "迅速助成",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "連合",
+          "href": "#coalition"
+        }
+      ]
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "私たちについて",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "連合",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "ミッション",
+          "links": [
+            {
+              "id": "idea",
+              "label": "アライメントのもう一つの側面",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "築くべきもの",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "道具のかたちをした制度",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "行動する",
+          "links": [
+            {
+              "id": "papers",
+              "label": "論考を読む",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "語り手のための迅速助成",
+              "href": "#grants"
+            },
+            {
+              "id": "join",
+              "label": "連合に参加する",
+              "href": "#join"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 Reverse Alignment"
+    },
+    "notFound": {
+      "title": "ページが見つかりません",
+      "heading": "ページが見つかりません",
+      "body": "指定のURLはこのサイトにはありません。",
+      "backLabel": "Reverse Alignmentへ戻る",
+      "code": "404"
+    },
+    "a11y": {
+      "skipToContent": "本文へスキップ",
+      "mainNav": "メインナビゲーション",
+      "openMenu": "メニューを開く",
+      "closeMenu": "メニューを閉じる",
+      "externalLink": "新しいタブで開きます",
+      "heroMotionLabel": "重力場のアニメーション",
+      "challengeGrid": "社会技術上の重大課題",
+      "coalitionGrid": "連合のメンバー",
+      "formErrors": "フォームの誤りを修正してください。"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image-ja.jpg",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png"
+    },
+    "hero": {
+      "headline": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。",
+      "body": "AIの能力向上に投じる資源に比べ、その恩恵を広く分かち合えるか、無駄に終わらせるかを左右する制度・技能・規範への投資はごくわずかです。この格差は、私たちの選択の結果です。私たちは、その格差を埋めるための連合です。",
+      "primaryCta": {
+        "label": "連合に参加する",
+        "href": "#join"
+      },
+      "secondaryCta": {
+        "label": "論考を読む",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "考え方 / はじめに",
+      "title": "アライメントのもう一つの側面",
+      "lead": "AIに向けられる労力と資本の多くは、二つの課題に注がれています。システムの能力を高めること、そして人間の価値観と整合させることです。",
+      "body": [
+        "どちらも重要です。しかし、人間の価値観と完全に整合したシステムでも、それを受け止める備えのない経済、政府、情報環境に導入されれば、期待された成果を出せず、実害さえ招きます。"
+      ],
+      "definitionLead": "私たちは、この見過ごされてきた課題を「",
+      "definitionTerm": "Reverse Alignment",
+      "definitionRest": "」と呼びます。社会がAIを安全に受け止め、その恩恵を広く分かち合えるよう、制度・規範・技能・ガバナンスを意図的に再設計する取り組みです。",
+      "historyTitle": "これは、新しい種類の問題ではありません。",
+      "historyBody": [
+        "工業化も、電化も、インターネットも、恩恵が届くまでに数十年にわたる制度の発明を必要としました。組立ラインの時代に生まれた企業は組立ラインに似ていました。インターネットを統治する制度はインターネットに似ていました。",
+        "歴史が教えるのは、こうした適応が技術変化に後から付け足す選択肢ではなく、成功の前提だということです。"
+      ],
+      "failuresIntro": [
+        "手を打たなければ、",
+        "この齟齬は三つの予測可能な失敗を生みます。"
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "繁栄なき生産性",
+          "body": "仕事は、人々が学び直したり別の仕事へ移ったりできる以上の速さで再編され、その恩恵は大多数に届きません。"
+        },
+        {
+          "number": "2",
+          "title": "検証なき実行",
+          "body": "テキスト、画像、コードを生み出すコストが急落すると、希少になるのは、成果物を検証し、出所を確かめ、責任を引き受ける人の力です。"
+        },
+        {
+          "number": "3",
+          "title": "制約なき能力",
+          "body": "制度の力を高める道具は同時に、権力を集中させかねません。上訴や異議申立ての権利も、ともに強化する必要があります。"
+        }
+      ],
+      "failuresClose": [
+        "いずれも必然ではありません。",
+        "いずれも見過ごしてきた結果であり、今からでも変えられます。"
+      ]
+    },
+    "closing": {
+      "lines": [
+        "アルゴリズムを築いてきたのと",
+        "同じ野心で、いまこそ",
+        "社会の仕組みを築くときです。"
+      ]
+    },
+    "building": {
+      "eyebrow": "提言の要約",
+      "title": "何を築くべきか",
+      "lead": "今後10年の人類の繁栄は、社会と技術にまたがる一連の重大課題にかかっています。",
+      "summary": "必要なのは、AIによる変革を支える人と制度への、大規模で足並みのそろった投資です。課題はアイデンティティ、プライバシー、市場、ガバナンス、労働、知識にまたがります。共通する設計思想と手法があります。どの課題も、一つの分野だけでは実現できません。",
+      "hoverHint": "*ホバーで詳細を表示",
+      "clickHint": "*クリックで詳細を表示",
+      "challengesIntro": "今後10年の人類の繁栄は、社会と技術にまたがる一連の重大課題にかかっています。",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "アイデンティティ",
+          "body": "偽造文書や偽の生体認証情報、人工的な人物像を、ほとんどコストなく作れる時代です。身元を明かさずに、参加者が実在する一人の人間だと証明できる仕組みが必要です。",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "プライバシー",
+          "body": "AIによって、誰もが私立探偵並みの調査力を手にします。必要なのは全面的な秘匿でも丸裸の公開でもなく、その場に必要な情報だけを過不足なく開示できる道具です。",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "コンテンツの出所・来歴",
+          "body": "もっともらしい偽物をほぼ無償で作れるなら、コンテンツの出所を確かめられることが、共通の現実を保つために欠かせません。",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "データ価値の還元",
+          "body": "モデルの学習に使われる人々の記録は、ほとんど対価を払わず集められてきました。生み出した人々が適正に取引できる市場と、継続的に対価を受け取れる仕組みが必要です。企業がすでに行っている価値測定を使えば実現できます。",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "AIエージェントとの協働",
+          "body": "AIエージェントは、それぞれの知識を持ち寄るとき最も力を発揮します。そのためには、閉じたサービスの内側ではなく、提供事業者の壁を越えて、人間同士と同じように信頼を築けなければなりません。",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "拡張熟議",
+          "body": "怒りをあおるほど得をし、誰と誰が合意しているかを見えにくくするメディアでも、意見の違いを公正に示しながら、共通点を浮かび上がらせるよう再設計できます。",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "デジタル民主主義",
+          "body": "活力あるコミュニティが生み出す正統性は、資源配分を実際に動かす力へ結びつく必要があります。そのために、参加と代表、そして地道な実装の仕組みを現代化します。",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "法・権利・自由",
+          "body": "AIは監視と執行のコストを下げ、行政府に力を偏らせます。均衡を取り戻すには、監督、異議申立て、上訴の側にも同等の力を築く必要があります。",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "職場・労働環境",
+          "body": "AIによる生産性向上を阻むのは、個人の作業速度ではありません。創造性と主体性の高まりを生かせるよう、組織そのものを再設計できるかどうかです。",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "研究開発",
+          "body": "AIモデルは、査読がさばける以上の速さで仮説や草稿を生み出しています。同じ道具を適切に使えば、真に独創的で分野の壁を越える研究を評価することもできます。",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "教育・学習",
+          "body": "AIは、教えること、学ぶこと、資格を認めることが一体だった従来の仕組みをほどきます。学校は、何を身につけるべきかを明確にし、一人ひとりが実際に何を理解しているかを証明しなければなりません。",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "労働市場の移行",
+          "body": "一社単位の大量解雇を前提につくられた雇用制度では、AIがもたらす継続的で細かな仕事の再編に対応できません。組織をまたいで使え、内容を検証できる資格証明と、必要なときにすぐ学び直せる仕組みが必要です。",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "独自の",
+        "主張"
+      ],
+      "title": "道具のかたちをした制度",
+      "lead": "社会が新しい汎用技術を取り込むとき、そこには一定のパターンがあります。うまくいく制度は、その時代を支配する思考様式の構造を映し出す傾向があります。",
+      "columns": [
+        "産業時代は、標準化された会計と組立ラインを軸に認知を組織し、それに見合う階層的・部門別の制度を生み出しました。株式会社、中央銀行、ブレトン・ウッズ体制のもとで設立された多国間機関です。インターネット時代は、層状のプロトコルと分散ルーティングを軸に認知を組織し、それに見合う層状で協調的な組織を生み出しました。標準化団体、通信協同組合、RFC（Request for Comments）という開かれた合意形成プロセスです。",
+        "ニューラルネットワークは、第三の文法を課します。事物を単一のラベルではなく、高次元空間における位置によって表します。異なる入力に、それぞれが他へどう影響するかに応じた重みをつけて組み合わせ、違いを平均で消さずに共通の構造を見つけます。各貢献が結果へ及ぼした影響をたどり、クレジットを配分します。",
+        "制度と技術が同じ文法を共有するとき、成果が現れます。共有しなければ、成果は停滞します。電化された工場は、蒸気動力工場の配置を保ったままでは、約20年にわたりほとんど成果をもたらしませんでした。電動機を分散配置する前提で工場を再設計して初めて、生産性が向上しました。",
+        "この連合が賭けているのは、AIを受け止められる制度とは、同じ原理を社会全体で実装した制度だということです。私たちの仕事は、それを意識的に築くことです。"
+      ],
+      "cta": {
+        "label": "論考全文を読む（近日公開）",
+        "href": "#papers",
+        "disabled": true,
+        "note": "近日公開"
+      }
+    },
+    "papers": {
+      "eyebrow": "論考",
+      "title": "論考を読む",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "Noema掲載",
+          "title": "What Humanity Needs to Flourish in the Next Decade",
+          "body": "この問題と提言を、より包括的に公に論じた論考です。三つの失敗パターン、大衆民主主義から台湾のデジタルガバナンスに至る歴史的先例、そして社会技術上の重要課題の全体像を扱います。まずはこちらから。",
+          "cta": {
+            "label": "Noemaで英文原文を読む",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "Science掲載",
+          "title": "In the Image of Their Tools",
+          "body": "この提言を支える明快な工学原則を示します。なぜ制度は、その時代の認知技術に似てくるのか。ニューラルネットワークのかたちで築くとは何を意味するのか。歴史的な記録と技術的な対応関係を備えた、独自の主張です。",
+          "cta": {
+            "label": "近日公開",
+            "href": "#",
+            "disabled": true,
+            "note": "近日公開"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "プレイブック",
+          "body": "What AI Can’t Buildは、これらの課題を脚本家やクリエイターのための物語の素材に変えるガイドです。各課題に、物語の核となる企画案と、ライターズルームですぐ使える問いを収録しています。",
+          "cta": {
+            "label": "プレイブックを開く（英語原文）",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "デッキ",
+          "body": "提言を支える要約プレゼンテーションです。",
+          "cta": {
+            "label": "スライドを表示（英語原文）",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "スライドビューア（英語原文）",
+        "closeLabel": "閉じる",
+        "previousLabel": "前のスライド",
+        "nextLabel": "次のスライド",
+        "downloadLabel": "英語PDFをダウンロード",
+        "openHint": "ページ内のスライドショーを開きます",
+        "statusTemplate": "スライド{current}/{total}",
+        "slideLabelTemplate": "{title}：スライド{current}/{total}",
+        "thumbnailRegionLabelTemplate": "{title}のスライド",
+        "thumbnailLabelTemplate": "スライド{number}へ"
+      }
+    },
+    "story": {
+      "title": "誰も語っていない、最大の物語",
+      "lead": "いま私たちが頼る制度も、かつては想像すらできないものでした。物語が人々の心を動かし、実現しようと立ち上がらせたからこそ生まれたのです。AIが人間社会に突きつける課題は、抽象的な政策論ではありません。これから10年で最も重要な物語の素材であり、その多くはまだ語られていません。",
+      "guideTitle": [
+        "その物語を語る人のために、",
+        "ガイドをつくりました。"
+      ],
+      "guideTerm": "What AI Can’t Build",
+      "guideRest": "は、それぞれの課題を、脚本家が使える物語の核とライターズルーム向けの問いに変えます。人生の場面ごとに違う自分でいる権利を求める女性。非の打ちどころのない作品に、同じく非の打ちどころのない反論を突きつけられるドキュメンタリー作家。豊かな価値を生む、不可欠でありながら完全に匿名のデータ提供者。",
+      "guideCta": {
+        "label": "プレイブックを開く（英語原文）",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "これらの着想を、テレビ脚本家100人が集う場へ持ち込んだ様子をご覧ください。",
+      "videoCta": {
+        "label": "動画を見る",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "課題を見る",
+      "title": "物語のつくり手のための迅速助成（ファストグラント）",
+      "body": [
+        "私たちは独立したクリエイターとも協力し、これらの課題を一つずつ、誰にでも伝わる物語に変えています。各ショートフィルムは、オンラインで人間だと証明する仕組みから、AIの学習データを提供した人に正当な対価を払う仕組みまで、一つの問題を取り上げ、なぜ重要なのか、解決した姿はどのようなものかを示します。"
+      ],
+      "fundingLine": "こうしたアイデアを作品に織り込む語り手へ、資金を提供します。",
+      "panelBody": [
+        "文章、映像、ゲームなど、人の目に触れる作品をつくる方が、ここにある課題を取り入れたり、新たに読み替えたりするなら、ぜひ支援したいと考えています。",
+        "政策を説明する必要はありません。何が問われているのかを、人々に感じてもらえれば十分です。"
+      ],
+      "filmsNote": "最初のフィルムは近日公開予定です。",
+      "applyCta": {
+        "label": "助成金に申し込む",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "連合",
+      "lead": "この取り組みは、普段は同じテーブルを囲まない人々によって形づくられました。",
+      "body": "AI研究者と社会科学者、テクノロジストと公務員、資金提供者と市民社会の担い手など、地域も政治的立場もさまざまです。その幅の広さは偶然ではありません。現実の違いを抑え込まず、そのなかに共通の基盤を見いだす。私たちが提唱するこの方法が、取り組みそのものを生み出しました。",
+      "sectors": [
+        "研究",
+        "テクノロジー",
+        "政府",
+        "フィランソロピー",
+        "市民社会",
+        "ビジネス",
+        "エンターテインメント",
+        "メディア"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "RadicalxChange Foundation、共同創業者",
+          "image": "person-glen-weyl"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "台湾元デジタル大臣",
+          "image": "person-audrey-tang"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "The Dais、パートナーシップ統括",
+          "image": "person-jake-hirsch-allen"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "Patrick J. McGovern Foundation、代表",
+          "image": "person-vilas-dhar"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "Stanford University、准教授",
+          "image": "person-melissa-valentine"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Googleフェロー／UC Berkeley名誉教授",
+          "image": "person-david-patterson"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "Harvard Business School、准教授",
+          "image": "person-tiona-zuzul"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "RadicalxChange Foundation、エグゼクティブディレクター",
+          "image": "person-jess-scully"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "OpenAI、戦略的未来担当責任者",
+          "image": "person-dean-ball"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "Pathos Labs、創業者兼エグゼクティブディレクター",
+          "image": "person-romain-vakilitabar"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "Office of Eric Schmidt、研究統括",
+          "image": "person-andrew-sorota"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "Foundation for American Innovation、フェロー",
+          "image": "person-samuel-roland"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "Microsoft Research、研究所長",
+          "image": "person-chris-white"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "Project Liberty、代表",
+          "image": "person-tomicah-tillemann"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "Minerva Fund、創業者兼代表",
+          "image": "person-galen-hines-pierce"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "元ホワイトハウスAI顧問",
+          "image": "person-ben-buchanan"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "University of Chicago、教授",
+          "image": "person-james-evans"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "Harvard College、学部長",
+          "image": "person-david-deming"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "Keio University、特任教授",
+          "image": "person-ken-suzuki"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "Google、VP兼フェロー",
+          "image": "person-blaise-aguera"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "Harvard University、教授",
+          "image": "person-danielle-allen"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "Collective Intelligence Project、共同創業者",
+          "image": "person-divya-siddarth"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "O’Reilly Media、創業者兼CEO",
+          "image": "person-tim-oreilly"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "Ex/Ante、創業者兼マネージングパートナー",
+          "image": "person-zoe-weinberg"
+        }
+      ]
+    },
+    "join": {
+      "eyebrow": "連合に参加する",
+      "title": "名前を連ねる",
+      "lead": "社会の仕組みにも、アルゴリズムと同じ野心を注いで築くべきだと考えるなら、賛同者として名を連ね、この取り組みをあなたの分野へ広げてください。",
+      "body": "Reverse Alignmentは、一つのプロジェクトではありません。あらゆる分野にまたがる未来への賭けを束ねたものです。これを支え続けられるのは、幅広い連合だけです。",
+      "cta": {
+        "label": "reversealignment.aiで参加する（英語）",
+        "href": "https://www.reversealignment.ai/",
+        "external": true
+      }
     }
   }
 }

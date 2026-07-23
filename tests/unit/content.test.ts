@@ -24,34 +24,34 @@ import type { Locale } from '../../src/lib/types';
 const PUBLIC = resolve(import.meta.dirname, '../../public');
 
 describe('content catalog', () => {
-  test('default locale is Traditional Chinese; en remains for parity only', () => {
+  test('default locale is Traditional Chinese; translated catalogs remain available', () => {
     expect(getDefaultLocale()).toBe('zh-tw');
-    expect(listLocales()).toEqual(expect.arrayContaining(['zh-tw', 'en']));
+    expect(listLocales()).toEqual(expect.arrayContaining(['zh-tw', 'en', 'ja']));
     expect(isLocale('zh-tw')).toBe(true);
     expect(isLocale('en')).toBe(true);
+    expect(isLocale('ja')).toBe(true);
     expect(isLocale('nope')).toBe(false);
   });
 
-  test('site metadata points at reversealignment.tw with English cross-domain URL', () => {
-    const site = getSite() as {
-      name: string;
-      url: string;
-      lang: string;
-      englishSiteUrl: string;
-    };
+  test('site metadata resolves domains independently from translated catalogs', () => {
+    const site = getSite();
     expect(site.name).toBe('Reverse Alignment');
+    expect(site.defaultLocale).toBe('zh-tw');
     expect(site.url).toBe('https://reversealignment.tw');
     expect(site.lang).toBe('zh-TW');
-    expect(site.englishSiteUrl).toBe('https://www.reversealignment.ai');
+    expect(site.localizedUrls).toEqual({
+      en: 'https://www.reversealignment.ai',
+      'zh-tw': 'https://reversealignment.tw',
+      ja: 'https://reversealignment.jp',
+    });
   });
 
   test('brand mark segments are explicit content fields', () => {
-    const copy = getContent('en');
-    expect(copy.brand.mark).toBe('Reverse');
-    expect(copy.brand.rest).toBe('Alignment');
-    const zh = getContent('zh-tw');
-    expect(zh.brand.mark).toBe('Reverse');
-    expect(zh.brand.rest).toBe('Alignment');
+    for (const locale of listLocales()) {
+      const copy = getContent(locale);
+      expect(copy.brand.mark).toBe('Reverse');
+      expect(copy.brand.rest).toBe('Alignment');
+    }
   });
 
   test('all visible hero CTAs live in content', () => {
@@ -148,15 +148,17 @@ describe('content catalog', () => {
       expect(challenge.image.length).toBeGreaterThan(0);
     }
 
-    const zh = getContent('zh-tw');
-    expect(zh.building.challenges).toHaveLength(12);
-    expect(zh.building.challenges.map((c) => c.number)).toEqual(
-      copy.building.challenges.map((c) => c.number)
-    );
-    expect(zh.coalition.people).toHaveLength(24);
-    expect(zh.coalition.people.map((p) => p.name)).toEqual(
-      copy.coalition.people.map((p) => p.name)
-    );
+    for (const locale of listLocales()) {
+      const localized = getContent(locale);
+      expect(localized.building.challenges).toHaveLength(12);
+      expect(localized.building.challenges.map((c) => c.number)).toEqual(
+        copy.building.challenges.map((c) => c.number)
+      );
+      expect(localized.coalition.people).toHaveLength(24);
+      expect(localized.coalition.people.map((p) => p.name)).toEqual(
+        copy.coalition.people.map((p) => p.name)
+      );
+    }
   });
 });
 
@@ -195,7 +197,7 @@ describe('catalog parity', () => {
       expect(assets, `asset key parity for ${locale}`).toEqual(baselineAssets);
 
       for (const [key, path] of Object.entries(getContent(locale).assets)) {
-        const rel = path.replace(/^\//, '');
+        const rel = path.replace(/[?#].*$/, '').replace(/^\//, '');
         expect(existsSync(resolve(PUBLIC, rel)), `${locale}:${key} -> ${path}`).toBe(true);
       }
     }
@@ -204,16 +206,20 @@ describe('catalog parity', () => {
   test('locale-specific og-image mapping stays on distinct existing files', () => {
     const en = getContent('en');
     const zh = getContent('zh-tw');
+    const ja = getContent('ja');
     expect(en.meta.ogImage).toBe('/assets/images/og-image.jpg');
     expect(en.assets['og-image']).toBe('/assets/images/og-image.jpg');
-    expect(zh.meta.ogImage).toBe('/assets/images/og-image-zh-tw.jpg');
-    expect(zh.assets['og-image']).toBe('/assets/images/og-image-zh-tw.jpg');
+    expect(zh.meta.ogImage).toBe('/assets/images/og-image-zh-tw.jpg?1784789400');
+    expect(zh.assets['og-image']).toBe('/assets/images/og-image-zh-tw.jpg?1784789400');
+    expect(ja.meta.ogImage).toBe('/assets/images/og-image-ja.jpg');
+    expect(ja.assets['og-image']).toBe('/assets/images/og-image-ja.jpg');
     expect(Object.keys(zh.assets).sort()).toEqual(Object.keys(en.assets).sort());
+    expect(Object.keys(ja.assets).sort()).toEqual(Object.keys(en.assets).sort());
     for (const locale of listLocales()) {
       const copy = getContent(locale);
-      const rel = copy.assets['og-image'].replace(/^\//, '');
+      const rel = copy.assets['og-image'].replace(/[?#].*$/, '').replace(/^\//, '');
       expect(existsSync(resolve(PUBLIC, rel)), `${locale} og-image file`).toBe(true);
-      const metaRel = copy.meta.ogImage.replace(/^\//, '');
+      const metaRel = copy.meta.ogImage.replace(/[?#].*$/, '').replace(/^\//, '');
       expect(existsSync(resolve(PUBLIC, metaRel)), `${locale} meta.ogImage file`).toBe(true);
       expect(copy.meta.ogImage).toBe(copy.assets['og-image']);
     }
@@ -244,16 +250,20 @@ describe('i18n helpers coverage', () => {
     expect(() => getContent('zz' as Locale)).toThrow(/Missing content for locale/);
   });
 
-  test('served site is root-only with cross-domain hreflang', () => {
+  test('served sites are root-only with cross-domain hreflang', () => {
     expect(relativeRootPath('zh-tw')).toBe('./');
     expect(relativeRootPath('en')).toBe('./');
+    expect(relativeRootPath('ja')).toBe('./');
     expect(toBcp47('en')).toBe('en');
     expect(toBcp47('zh-tw')).toBe('zh-TW');
+    expect(toBcp47('ja')).toBe('ja');
     expect(toOgLocale('zh-tw')).toBe('zh_TW');
     expect(toOgLocale('en')).toBe('en');
+    expect(toOgLocale('ja')).toBe('ja');
     expect(hreflangAlternates()).toEqual([
       { hreflang: 'zh-TW', href: 'https://reversealignment.tw/' },
       { hreflang: 'en', href: 'https://www.reversealignment.ai/' },
+      { hreflang: 'ja', href: 'https://reversealignment.jp/' },
       { hreflang: 'x-default', href: 'https://reversealignment.tw/' },
     ]);
   });
@@ -278,8 +288,8 @@ describe('i18n helpers coverage', () => {
     });
   });
 
-  test('catalog retains en for parity while only zh-tw is default', () => {
-    expect(listLocales().sort()).toEqual(['en', 'zh-tw'].sort());
+  test('catalog serves Japanese while only Traditional Chinese is default', () => {
+    expect(listLocales().sort()).toEqual(['en', 'ja', 'zh-tw'].sort());
     expect(getDefaultLocale()).toBe('zh-tw');
   });
 });
@@ -289,7 +299,7 @@ describe('asset mappings', () => {
     const copy = getContent(getDefaultLocale());
     const missing: string[] = [];
     for (const [key, path] of Object.entries(copy.assets)) {
-      const rel = path.replace(/^\//, '');
+      const rel = path.replace(/[?#].*$/, '').replace(/^\//, '');
       if (!existsSync(resolve(PUBLIC, rel))) missing.push(`${key} -> ${path}`);
     }
     expect(missing).toEqual([]);

@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
+    "build": "vp build",
+    "build:en": "SITE_LOCALE=en vp build",
+    "build:ja": "SITE_LOCALE=ja vp build",
     "prepare": "vp config",
     "test:unit": "vp test tests/unit",
     "test:e2e": "vp exec playwright test",

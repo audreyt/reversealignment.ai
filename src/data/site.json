@@ -1,8 +1,11 @@
 {
   "name": "Reverse Alignment",
-  "url": "https://reversealignment.tw",
-  "lang": "zh-TW",
-  "englishSiteUrl": "https://www.reversealignment.ai",
+  "defaultLocale": "zh-tw",
+  "localizedUrls": {
+    "en": "https://www.reversealignment.ai",
+    "zh-tw": "https://reversealignment.tw",
+    "ja": "https://reversealignment.jp"
+  },
   "accent": "#cdfc56",
   "violet": "#6d28f5",
   "github": ""
