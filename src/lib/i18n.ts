@@ -63,7 +63,7 @@ export function getContent(locale: Locale = DEFAULT_LOCALE): SiteContent {
   return entry;
 }
 
-/** Root-relative prefix to shared static files (this build serves only `/`). */
+/** Relative prefix to assets bundled with each locale deployment. */
 export function relativeRootPath(_locale: Locale = DEFAULT_LOCALE): './' {
   return './';
 }

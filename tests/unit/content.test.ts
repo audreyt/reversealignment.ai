@@ -45,8 +45,8 @@ describe('content catalog', () => {
       en: 'https://www.reversealignment.ai',
       'zh-tw': 'https://reversealignment.tw',
       ja: 'https://reversealignment.jp',
-      es: 'https://audreyt.github.io/reversealignment.ai/',
-      'pt-br': 'https://audreyt.github.io/reversealignment.ai/',
+      es: 'https://reversealignment.tw/es',
+      'pt-br': 'https://reversealignment.tw/pt-BR',
     });
   });
 
@@ -254,7 +254,7 @@ describe('i18n helpers coverage', () => {
     expect(() => getContent('zz' as Locale)).toThrow(/Missing content for locale/);
   });
 
-  test('served sites are root-only with cross-domain hreflang', () => {
+  test('locale deployments use bundled assets with cross-domain hreflang', () => {
     expect(relativeRootPath('zh-tw')).toBe('./');
     expect(relativeRootPath('en')).toBe('./');
     expect(relativeRootPath('ja')).toBe('./');
@@ -274,8 +274,8 @@ describe('i18n helpers coverage', () => {
       { hreflang: 'zh-TW', href: 'https://reversealignment.tw/' },
       { hreflang: 'en', href: 'https://www.reversealignment.ai/' },
       { hreflang: 'ja', href: 'https://reversealignment.jp/' },
-      { hreflang: 'es', href: 'https://audreyt.github.io/reversealignment.ai/' },
-      { hreflang: 'pt-BR', href: 'https://audreyt.github.io/reversealignment.ai/' },
+      { hreflang: 'es', href: 'https://reversealignment.tw/es/' },
+      { hreflang: 'pt-BR', href: 'https://reversealignment.tw/pt-BR/' },
       { hreflang: 'x-default', href: 'https://reversealignment.tw/' },
     ]);
   });

@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24.18.0'
+          cache: true
+          run-install: false
+      - run: vp install --frozen-lockfile
+
+      - name: Build Spanish locale into temporary directory
+        run: |
+          SITE_LOCALE=es vp build
+          mv dist dist_es
+
+      - name: Build Portuguese locale into temporary directory
+        run: |
+          SITE_LOCALE=pt-br vp build
+          mv dist dist_pt_br
+
+      - name: Build default locale (zh-tw) into dist root
+        run: vp build
+
+      - name: Merge subpath locale builds into main distribution
+        run: |
+          mv dist_es dist/es
+          mv dist_pt_br dist/pt-BR
+
+      - name: Verify multi-locale bundle structure
+        run: |
+          test -f dist/index.html
+          test -f dist/es/index.html
+          test -f dist/pt-BR/index.html
+          grep -q "desarrollando IA" dist/es/index.html
+          grep -q "desenvolvendo IA" dist/pt-BR/index.html
+
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+          include-hidden-files: true
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
