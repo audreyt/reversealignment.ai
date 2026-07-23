@@ -15,7 +15,7 @@ test.describe('home page', () => {
     await expect(page.locator('#join')).toBeVisible();
 
     const title = page.locator('#grants-title');
-    await expect(title).toContainText(/快速補助/);
+    await expect(title).toContainText(/迅速資助/);
     await expect(title).not.toContainText(/FAST-RANTS/i);
     await expect(title).not.toContainText(/Fast-grants/i);
 
@@ -57,15 +57,16 @@ test.describe('home page', () => {
     const remoteFonts = await page.locator('link[href*="fonts.googleapis.com"]').count();
     expect(remoteFonts).toBe(0);
 
-    // Cross-domain hreflang: zh-TW + x-default on .tw; en on reversealignment.ai
+    // Cross-domain hreflang: zh-TW + x-default on .tw; English and Japanese on their domains
     await expect(page.locator('link[rel="alternate"][hreflang="zh-TW"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="alternate"][hreflang="ja"]')).toHaveCount(1);
     await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveCount(1);
     await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'zh_TW');
-    await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveAttribute(
-      'content',
-      'en'
-    );
+    const ogAlternates = await page
+      .locator('meta[property="og:locale:alternate"]')
+      .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('content')));
+    expect(ogAlternates).toEqual(expect.arrayContaining(['en', 'ja']));
     const alts = await page.locator('link[rel="alternate"]').evaluateAll((nodes) =>
       nodes.map((n) => ({
         hreflang: (n as HTMLLinkElement).hreflang,
@@ -75,6 +76,7 @@ test.describe('home page', () => {
     expect(alts.find((a) => a.hreflang === 'zh-TW')?.href).toBe('https://reversealignment.tw/');
     expect(alts.find((a) => a.hreflang === 'x-default')?.href).toBe('https://reversealignment.tw/');
     expect(alts.find((a) => a.hreflang === 'en')?.href).toBe('https://www.reversealignment.ai/');
+    expect(alts.find((a) => a.hreflang === 'ja')?.href).toBe('https://reversealignment.jp/');
     // No on-site language toggle / switcher UI
     await expect(
       page.locator('[data-locale-switch], [data-lang-toggle], .lang-switch')
