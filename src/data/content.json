@@ -1309,7 +1309,7 @@
     "meta": {
       "title": "Reverse Alignment",
       "description": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。Reverse Alignmentは、制度・規範・技能・ガバナンスを意図的に再設計し、社会がAIを安全に受け止め、その成果を広く分かち合えるようにする取り組みです。",
-      "ogImage": "/assets/images/og-image-ja.jpg"
+      "ogImage": "/assets/images/og-image-ja.jpg?1784790955"
     },
     "brand": {
       "name": "Reverse Alignment",
@@ -1431,7 +1431,7 @@
     },
     "assets": {
       "favicon": "/favicon.png",
-      "og-image": "/assets/images/og-image-ja.jpg",
+      "og-image": "/assets/images/og-image-ja.jpg?1784790955",
       "hero-diagram": "/assets/images/hero-diagram.png",
       "intro-collage": "/assets/images/intro-collage.webp",
       "intro-texture": "/assets/images/intro-texture.png",

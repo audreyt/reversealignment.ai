@@ -211,8 +211,8 @@ describe('catalog parity', () => {
     expect(en.assets['og-image']).toBe('/assets/images/og-image.jpg');
     expect(zh.meta.ogImage).toBe('/assets/images/og-image-zh-tw.jpg?1784789400');
     expect(zh.assets['og-image']).toBe('/assets/images/og-image-zh-tw.jpg?1784789400');
-    expect(ja.meta.ogImage).toBe('/assets/images/og-image-ja.jpg');
-    expect(ja.assets['og-image']).toBe('/assets/images/og-image-ja.jpg');
+    expect(ja.meta.ogImage).toBe('/assets/images/og-image-ja.jpg?1784790955');
+    expect(ja.assets['og-image']).toBe('/assets/images/og-image-ja.jpg?1784790955');
     expect(Object.keys(zh.assets).sort()).toEqual(Object.keys(en.assets).sort());
     expect(Object.keys(ja.assets).sort()).toEqual(Object.keys(en.assets).sort());
     for (const locale of listLocales()) {
