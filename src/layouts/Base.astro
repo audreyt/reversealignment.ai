@@ -41,7 +41,8 @@ const alternates = hreflangAlternates();
         <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
       ))
     }
-    <link rel="icon" type="image/png" href={`${rootPath}favicon.png`} />
+    <link rel="icon" type="image/png" sizes="512x512" href={`${rootPath}favicon.png`} />
+    <link rel="icon" type="image/svg+xml" sizes="any" href={`${rootPath}favicon.svg`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />

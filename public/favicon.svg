@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Reverse Alignment</title>
+  <rect width="512" height="512" rx="112" fill="#030303"/>
+  <path d="M96 240c16-112 112-192 224-164 40 10 72 34 96 68" fill="none" stroke="#cdfc56" stroke-width="64" stroke-linecap="round"/>
+  <path d="m368 80 80 64-80 64z" fill="#cdfc56"/>
+  <path d="M416 272c-16 112-112 192-224 164-40-10-72-34-96-68" fill="none" stroke="#8a59ff" stroke-width="64" stroke-linecap="round"/>
+  <path d="m144 432-80-64 80-64z" fill="#8a59ff"/>
+</svg>
