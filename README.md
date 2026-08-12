@@ -247,21 +247,16 @@ Access has already verified the submitter, accepted bytes go straight to R2 unde
 
 The halves deploy separately and neither can stand in for the other:
 
-| Surface                                | Deployed by                | Serves                                            |
-| -------------------------------------- | -------------------------- | ------------------------------------------------- |
-| Cloudflare Pages `reversealignment-en` | its own build from `main`  | English apex (`SITE_LOCALE=en`, `vp build`)       |
-| Cloudflare Pages `reversealignment-jp` | its own build from `main`  | Japanese apex (`SITE_LOCALE=ja`, `vp build`)      |
-| Cloudflare Pages `reversealignment-ai` | its own build from `main`  | zh-TW multi-locale HTML (`vp run build:all`)      |
-| Worker `reversealignment-api`          | `wrangler deploy`, by hand | `/api/*` plus the Access join POST on `/join/api` |
+| Surface                                | Deployed by                | Serves                                                    |
+| -------------------------------------- | -------------------------- | --------------------------------------------------------- |
+| Cloudflare Pages `reversealignment-en` | its own build from `main`  | English apex (`SITE_LOCALE=en`, `vp build`)               |
+| Cloudflare Pages `reversealignment-jp` | its own build from `main`  | Japanese apex (`SITE_LOCALE=ja`, `vp build`)              |
+| Cloudflare Pages `reversealignment-tw` | its own build from `main`  | Taiwanese Mandarin multi-locale HTML (`vp run build:all`) |
+| Worker `reversealignment-api`          | `wrangler deploy`, by hand | `/api/*` plus the Access join POST on `/join/api`         |
 
-Despite its name, the `reversealignment-ai` Pages project serves **`reversealignment.tw`**,
-not the `.ai` apex. It is production for the zh-TW host. Do not delete it.
-
-> **Git integration needs re-linking.** The repository was deleted and re-created on
-> 2026-08-13 to purge respondent PII from its history, so every Pages project lost the
-> Git connection that pointed at the old repository ID. Until each project is re-linked in
-> the Cloudflare dashboard, pushes to `main` do not trigger a build; the live sites keep
-> serving their last successful deploy.
+Each Pages project reports its build as a GitHub check run on the commit, so
+`gh api repos/audreyt/reversealignment.ai/commits/<sha>/check-runs` tells you whether a
+push actually deployed.
 
 GitHub Pages is not involved: the repo ships no `CNAME`, and the workflow that used to
 publish there was deleted because `audreyt.github.io/reversealignment.ai/` 404s.
