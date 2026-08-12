@@ -849,7 +849,7 @@
         "rateLimited": "Too many attempts. Please wait a few minutes.",
         "duplicateEmail": "This email is already on the coalition list or awaiting review.",
         "moderationHold": "Thanks. A moderator will review before publishing.",
-        "privacyNote": "Cloudflare Access already verified your email. We keep it privately for coalition updates and moderation; the public directory never shows it, your contribution choices, or IP. A photo is optional: it is halftone-screened in your browser and only that screened image is uploaded — no third-party image calls, no original photo leaving your device.",
+        "privacyNote": "Cloudflare Access already verified your email. We keep it privately for coalition updates and moderation; the public directory never shows it, your contribution choices, or IP. A photo is optional: it is halftone-screened in your browser and only that screened image is uploaded — no third-party image calls, no original photo leaving your device. We keep it only while your entry is listed — write to hello@reversealignment.ai to correct or remove it, and the address goes with it.",
         "avatarNote": "Your public portrait starts as a deterministic monogram generated from your name in the browser. Add a photo and it is screened into the coalition halftone here on your device — the original file is never uploaded.",
         "avatarPreviewLabel": "Directory preview",
         "photo": {
@@ -1715,7 +1715,7 @@
         "rateLimited": "嘗試次數過多，請稍候再試。",
         "duplicateEmail": "此信箱已在聯盟名單或審核中。",
         "moderationHold": "謝謝。管理員審核後才會公開。",
-        "privacyNote": "Cloudflare Access 已驗證你的電子郵件。我們會私下保存完整信箱，用於聯盟更新與審核；公開名錄不會顯示信箱、貢獻選項或 IP。照片為選填：在你的瀏覽器完成網點處理，只有處理後的圖片會上傳——不呼叫第三方圖片服務，原始照片不會離開你的裝置。",
+        "privacyNote": "Cloudflare Access 已驗證你的電子郵件。我們會私下保存完整信箱，用於聯盟更新與審核；公開名錄不會顯示信箱、貢獻選項或 IP。照片為選填：在你的瀏覽器完成網點處理，只有處理後的圖片會上傳——不呼叫第三方圖片服務，原始照片不會離開你的裝置。只有在你的條目仍列於名錄時，我們才會保存；想更正或撤下，請寄信至 hello@reversealignment.ai，你的信箱也會一併刪除。",
         "avatarNote": "公開肖像先以姓名在瀏覽器產生固定的字首圖。加上照片後，會在你的裝置上轉為聯盟的網點肖像——原始檔案不會上傳。",
         "avatarPreviewLabel": "名錄預覽",
         "photo": {
@@ -2581,7 +2581,7 @@
         "rateLimited": "試行が多すぎます。しばらくしてから再試行してください。",
         "duplicateEmail": "このメールは既に登録済み、または審査中です。",
         "moderationHold": "モデレーターが公開前に確認します。",
-        "privacyNote": "Cloudflare Access がメールアドレスを確認済みです。連盟の最新情報と審査のため非公開で保存します。公開ディレクトリにメール・貢献内容・IP は出しません。写真は任意です。ブラウザ内でハーフトーン処理し、処理後の画像だけをアップロードします — 第三者の画像サービスは呼び出さず、元の写真は端末から出ません。",
+        "privacyNote": "Cloudflare Access がメールアドレスを確認済みです。連盟の最新情報と審査のため非公開で保存します。公開ディレクトリにメール・貢献内容・IP は出しません。写真は任意です。ブラウザ内でハーフトーン処理し、処理後の画像だけをアップロードします — 第三者の画像サービスは呼び出さず、元の写真は端末から出ません。保存するのは掲載されている間だけで、hello@reversealignment.ai にご連絡いただければ訂正・削除に対応し、メールアドレスも一緒に削除します。",
         "avatarNote": "公開ポートレートは、まず氏名からブラウザで生成するモノグラムです。写真を追加すると、端末上で連盟のハーフトーンポートレートに変換します — 元のファイルはアップロードしません。",
         "avatarPreviewLabel": "ディレクトリプレビュー",
         "photo": {
@@ -3447,7 +3447,7 @@
         "rateLimited": "Demasiados intentos. Espera unos minutos.",
         "duplicateEmail": "Este correo ya está en la lista o en revisión.",
         "moderationHold": "Un moderador revisará antes de publicar.",
-        "privacyNote": "Guardamos tu correo de forma privada para novedades de la coalición y moderación. El directorio público no muestra correo, contribuciones ni IP. Retratos locales cuando hay foto; si no, un monograma propio generado del nombre — sin terceros ni subidas.",
+        "privacyNote": "Guardamos tu correo de forma privada para novedades de la coalición y moderación. El directorio público no muestra correo, contribuciones ni IP. Retratos locales cuando hay foto; si no, un monograma propio generado del nombre — sin terceros ni subidas. Lo conservamos solo mientras tu ficha aparezca en el directorio; escribe a hello@reversealignment.ai para corregirla o retirarla, y el correo se elimina con ella.",
         "avatarNote": "Tu retrato público es un monograma determinista del nombre en el navegador. Sin subida, sin Gravatar, sin archivo de imagen.",
         "avatarPreviewLabel": "Vista previa del directorio"
       }
@@ -4303,7 +4303,7 @@
         "rateLimited": "Muitas tentativas. Aguarde alguns minutos.",
         "duplicateEmail": "Este e-mail já está na lista ou em revisão.",
         "moderationHold": "Um moderador revisará antes de publicar.",
-        "privacyNote": "Guardamos o e-mail de forma privada para novidades da coalizão e moderação. O diretório público não mostra e-mail, contribuições nem IP. Retratos locais quando há foto; senão, um monograma próprio gerado do nome — sem terceiros nem upload.",
+        "privacyNote": "Guardamos o e-mail de forma privada para novidades da coalizão e moderação. O diretório público não mostra e-mail, contribuições nem IP. Retratos locais quando há foto; senão, um monograma próprio gerado do nome — sem terceiros nem upload. Só mantemos enquanto sua ficha aparecer no diretório; escreva para hello@reversealignment.ai para corrigi-la ou removê-la, e o e-mail vai junto.",
         "avatarNote": "Seu retrato público é um monograma determinístico do nome no navegador. Sem upload, sem Gravatar, sem arquivo de imagem.",
         "avatarPreviewLabel": "Prévia do diretório"
       }
