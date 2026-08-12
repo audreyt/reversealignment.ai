@@ -12,7 +12,7 @@
 interface Env {
   /** HMAC pepper for email hashes, ≥16 chars: wrangler secret put AUTH_PEPPER */
   AUTH_PEPPER?: string;
-  /** Salt for offline spreadsheet-import email keys: wrangler secret put IMPORT_SALT */
+  /** Salt recognizing members imported before the join flow: wrangler secret put IMPORT_SALT */
   IMPORT_SALT?: string;
   /** Bearer token for the admin moderation API: wrangler secret put ADMIN_TOKEN */
   ADMIN_TOKEN?: string;

@@ -1,6 +1,6 @@
 # Local-only secrets for `wrangler dev` (copy to .dev.vars — never commit .dev.vars)
 AUTH_PEPPER=local-demo-pepper-not-for-production-32b
-# Offline spreadsheet-import email key salt (>=16 chars). Production: wrangler secret put IMPORT_SALT
+# Salt for pre-join-flow imported member keys (>=16 chars). Production: wrangler secret put IMPORT_SALT
 IMPORT_SALT=local-demo-import-salt-not-for-production
 # Live Access AUD(s) accepted by the join API (also set in wrangler.jsonc vars).
 ACCESS_AUD=afc8f82e18a684957c8ef8387fc0b7ed70856f1982d3a63750d397f40e76da04
