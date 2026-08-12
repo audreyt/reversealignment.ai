@@ -1,0 +1,456 @@
+---
+import Media from './Media.astro';
+import { catalogPeopleAsDirectory, getContent, getDefaultLocale } from '../lib/i18n';
+import { allDirectorySectorOptions } from '../lib/directory';
+import { PRODUCTION_MEMBERS_API_ORIGIN } from '../lib/api';
+import type { Locale } from '../lib/types';
+
+type Props = { locale?: Locale };
+
+const locale = Astro.props.locale ?? getDefaultLocale();
+const copy = getContent(locale);
+const directory = copy.coalition.directory;
+const people = catalogPeopleAsDirectory(locale);
+const populatedSectors = new Set(people.map((person) => person.sector));
+// Full taxonomy stays mounted so community hydration can reveal empty sectors.
+const sectorOptions = allDirectorySectorOptions(copy.coalition.sectors);
+const seedJson = JSON.stringify(people).replace(/</g, '\\u003c');
+---
+
+<div
+  class="directory"
+  data-directory
+  data-count-template={directory.countTemplate}
+  data-empty={directory.empty}
+  data-api-origin={PRODUCTION_MEMBERS_API_ORIGIN}
+>
+  <div class="sectors" data-dir-sectors role="group" aria-labelledby="directory-sector-legend">
+    <p class="sectors__legend" id="directory-sector-legend">{directory.sectorLabel}</p>
+    <div class="sectors__row" role="presentation">
+      <button type="button" class="sectors__btn" data-dir-sector data-sector="" aria-pressed="true">
+        <span class="sectors__text">{directory.sectorAll}</span>
+      </button>
+      {
+        sectorOptions.map((sector) => (
+          <button
+            type="button"
+            class="sectors__btn"
+            data-dir-sector
+            data-sector={sector.value}
+            aria-pressed="false"
+            {...(populatedSectors.has(sector.value) ? {} : { hidden: true })}
+          >
+            <span class="sectors__text">{sector.label}</span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="directory__controls" aria-label={copy.a11y.directoryControls}>
+    <div class="directory__field directory__field--search">
+      <label class="directory__label" for="directory-q">{directory.searchLabel}</label>
+      <input
+        class="directory__input"
+        id="directory-q"
+        name="q"
+        type="search"
+        placeholder={directory.searchPlaceholder}
+        data-dir-q
+        autocomplete="off"
+      />
+    </div>
+    <div class="directory__field">
+      <label class="directory__label" for="directory-sort">{directory.sortLabel}</label>
+      <select class="directory__input" id="directory-sort" name="sort" data-dir-sort>
+        {directory.sortOptions.map((option) => <option value={option.value}>{option.label}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <p class="directory__hint">{directory.keyboardHint}</p>
+  <p class="directory__count" data-dir-count aria-live="polite" aria-atomic="true"></p>
+  <p class="directory__banner" data-dir-banner hidden></p>
+
+  <div class="people-grid directory__grid" role="list" aria-label={copy.a11y.directoryResults} data-dir-grid>
+    {
+      people.map((person) => (
+        <article
+          class="person"
+          role="listitem"
+          data-person
+          data-id={person.id}
+          data-name={person.fullName}
+          data-role={person.role}
+          data-affiliation={person.affiliation}
+          data-sector={person.sector}
+          data-sort-index={person.sortIndex}
+          data-source="canonical"
+        >
+          <div class="person__photo">
+            <Media asset={person.imageKey} alt="" />
+          </div>
+          <div class="person__meta">
+            <h3 class="person__name">{person.fullName}</h3>
+            <p class="person__role">{person.role}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <script type="application/json" data-dir-seed set:html={seedJson} />
+</div>
+
+<script>
+  import {
+    directorySearchString,
+    filterSortPeople,
+    formatCountTemplate,
+    mergeDirectoryPeople,
+    parseDirectorySearch,
+    publicApiMemberAsDirectory,
+    type DirectoryFilters,
+    type DirectoryPerson,
+    type PublicApiMember,
+  } from '../lib/directory';
+  import { avatarDataUri } from '../lib/avatar';
+  import { fetchAllPublishedMembers } from '../lib/api';
+
+  type Root = HTMLElement;
+
+  function bindDirectory(root: Root) {
+    if (root.dataset.bound === '1') return;
+    root.dataset.bound = '1';
+
+    const seed = root.querySelector<HTMLScriptElement>('[data-dir-seed]')?.textContent;
+    let people: DirectoryPerson[] = [];
+    try {
+      people = seed ? (JSON.parse(seed) as DirectoryPerson[]) : [];
+    } catch {
+      people = [];
+    }
+
+    const qInput = root.querySelector<HTMLInputElement>('[data-dir-q]');
+    const sectorButtons = [...root.querySelectorAll<HTMLButtonElement>('[data-dir-sector]')];
+    const sortInput = root.querySelector<HTMLSelectElement>('[data-dir-sort]');
+    const countEl = root.querySelector<HTMLElement>('[data-dir-count]');
+    const bannerEl = root.querySelector<HTMLElement>('[data-dir-banner]');
+    const grid = root.querySelector<HTMLElement>('[data-dir-grid]');
+    const template = root.dataset.countTemplate || '{shown} / {total}';
+    const apiOrigin = (root.dataset.apiOrigin || 'https://join.reversealignment.tw').replace(/\/+$/, '');
+
+    const activeSector = (): string => {
+      const pressed = sectorButtons.find((button) => button.getAttribute('aria-pressed') === 'true');
+      return pressed?.dataset.sector ?? '';
+    };
+
+    const refreshSectorVisibility = () => {
+      const populated = new Set(people.map((person) => person.sector));
+      for (const button of sectorButtons) {
+        const sector = button.dataset.sector ?? '';
+        if (sector.length === 0) {
+          button.hidden = false;
+          continue;
+        }
+        button.hidden = !populated.has(sector);
+      }
+      // Clear a pressed sector that hydration removed or never populated.
+      const current = activeSector();
+      if (current && !populated.has(current)) {
+        for (const button of sectorButtons) {
+          button.setAttribute('aria-pressed', button.dataset.sector === '' ? 'true' : 'false');
+        }
+      }
+    };
+
+    const setSectorPressed = (sector: string) => {
+      const populated = new Set(
+        sectorButtons
+          .filter((button) => !button.hidden)
+          .map((button) => button.dataset.sector ?? '')
+          .filter((value) => value.length > 0)
+      );
+      const normalized = sector.length === 0 || !populated.has(sector) ? '' : sector;
+      for (const button of sectorButtons) {
+        button.setAttribute('aria-pressed', button.dataset.sector === normalized ? 'true' : 'false');
+      }
+    };
+
+    const readFilters = (): DirectoryFilters => ({
+      q: qInput?.value.trim() || '',
+      sector: activeSector(),
+      sort: sortInput?.value || 'default',
+    });
+
+    const writeUrl = (filters: DirectoryFilters) => {
+      const query = directorySearchString(filters);
+      const next = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+      window.history.replaceState({}, '', next);
+    };
+
+    const applyFromUrl = () => {
+      const filters = parseDirectorySearch(new URLSearchParams(window.location.search));
+      if (qInput) qInput.value = filters.q;
+      setSectorPressed(filters.sector);
+      if (sortInput) {
+        const allowed = new Set([...sortInput.options].map((option) => option.value));
+        sortInput.value = allowed.has(filters.sort) ? filters.sort : 'default';
+      }
+      return readFilters();
+    };
+
+    const reduceMotion = () =>
+      typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    const liveAnimations = new Map<HTMLElement, Animation[]>();
+    let didInitialRender = false;
+    let animationFrame = 0;
+    let pendingFilters: DirectoryFilters | null = null;
+
+    const clearMotionStyles = (element: HTMLElement) => {
+      element.style.transform = '';
+      element.style.opacity = '';
+      element.style.zIndex = '';
+      element.classList.remove('is-moving');
+    };
+
+    const finishAnimations = (element: HTMLElement) => {
+      const animations = liveAnimations.get(element);
+      if (!animations) {
+        clearMotionStyles(element);
+        return;
+      }
+      for (const animation of animations) animation.cancel();
+      liveAnimations.delete(element);
+      clearMotionStyles(element);
+    };
+
+    const cancelAnimations = () => {
+      for (const element of liveAnimations.keys()) finishAnimations(element);
+    };
+
+    const trackAnimation = (element: HTMLElement, animation: Animation | null | undefined) => {
+      if (!animation) return;
+      element.classList.add('is-moving');
+      const bucket = liveAnimations.get(element) ?? [];
+      bucket.push(animation);
+      liveAnimations.set(element, bucket);
+      animation.finished.then(
+        () => {
+          animation.cancel();
+          const current = liveAnimations.get(element);
+          if (!current) {
+            clearMotionStyles(element);
+            return;
+          }
+          const next = current.filter((candidate) => candidate !== animation);
+          if (next.length === 0) {
+            liveAnimations.delete(element);
+            clearMotionStyles(element);
+          } else {
+            liveAnimations.set(element, next);
+          }
+        },
+        () => undefined
+      );
+    };
+
+    const photoHtml = (person: DirectoryPerson): string => {
+      if (person.imageKey) {
+        // Catalog portraits are already in the static DOM; hydration never needs this branch
+        // for seed cards. Kept for completeness if a future API returns catalog keys.
+        return `<img src="/assets/images/${person.imageKey}.png" alt="" loading="lazy" decoding="async" />`;
+      }
+      const src = person.portraitUrl || person.avatarDataUri || avatarDataUri(person.fullName);
+      return `<img src="${src.replace(/"/g, '&quot;')}" alt="" loading="lazy" decoding="async" />`;
+    };
+
+    const ensureCard = (person: DirectoryPerson): HTMLElement | null => {
+      if (!grid) return null;
+      let card = grid.querySelector<HTMLElement>(`[data-person][data-id="${CSS.escape(person.id)}"]`);
+      if (card) return card;
+
+      card = document.createElement('article');
+      card.className = 'person';
+      card.setAttribute('role', 'listitem');
+      card.dataset.person = '';
+      card.dataset.id = person.id;
+      card.dataset.name = person.fullName;
+      card.dataset.role = person.role;
+      card.dataset.affiliation = person.affiliation;
+      card.dataset.sector = person.sector;
+      card.dataset.sortIndex = String(person.sortIndex);
+      card.dataset.source = person.source || 'community';
+      card.innerHTML = `<div class="person__photo">${photoHtml(person)}</div><div class="person__meta"><h3 class="person__name"></h3><p class="person__role"></p></div>`;
+      const nameEl = card.querySelector('.person__name');
+      const roleEl = card.querySelector('.person__role');
+      if (nameEl) nameEl.textContent = person.fullName;
+      if (roleEl) roleEl.textContent = person.role;
+      grid.appendChild(card);
+      return card;
+    };
+
+    const render = (filters: DirectoryFilters, animate: boolean) => {
+      if (!grid) return;
+      refreshSectorVisibility();
+      const filtered = filterSortPeople(people, filters);
+      if (countEl) countEl.textContent = formatCountTemplate(template, filtered.length, people.length);
+
+      for (const person of filtered) ensureCard(person);
+
+      const cards = [...grid.querySelectorAll<HTMLElement>('[data-person]')];
+      const cardById = new Map<string, HTMLElement>();
+      for (const card of cards) {
+        if (card.dataset.id) cardById.set(card.dataset.id, card);
+      }
+      const visibleIds = new Set(filtered.map((person) => person.id));
+      const motionOn = animate && !reduceMotion() && typeof cards[0]?.animate === 'function';
+      const first = new Map<string, DOMRect>();
+      if (motionOn) {
+        for (const card of cards) {
+          if (card.hidden || !card.dataset.id) continue;
+          first.set(card.dataset.id, card.getBoundingClientRect());
+        }
+      }
+      cancelAnimations();
+
+      for (const person of filtered) {
+        const card = cardById.get(person.id);
+        if (!card) continue;
+        card.hidden = false;
+        grid.appendChild(card);
+      }
+      for (const card of cards) {
+        if (!visibleIds.has(card.dataset.id || '')) card.hidden = true;
+      }
+
+      if (bannerEl) {
+        bannerEl.hidden = filtered.length > 0;
+        bannerEl.textContent = filtered.length === 0 ? root.dataset.empty || '' : '';
+      }
+      if (!motionOn) return;
+
+      // Read every final rect before writing any style. Interleaving a read
+      // with a write forces one layout per card, which crawls on a big roster.
+      const last = new Map<string, DOMRect>();
+      for (const card of cards) {
+        const id = card.dataset.id;
+        if (!id || card.hidden || !first.has(id)) continue;
+        last.set(id, card.getBoundingClientRect());
+      }
+
+      for (const card of cards) {
+        const id = card.dataset.id;
+        if (!id) continue;
+        const before = first.get(id);
+        const after = last.get(id);
+        if (before && after) {
+          const deltaX = before.left - after.left;
+          const deltaY = before.top - after.top;
+          if (deltaX === 0 && deltaY === 0) continue;
+          card.style.zIndex = '1';
+          trackAnimation(
+            card,
+            card.animate(
+              [
+                { transform: `translate(${deltaX}px, ${deltaY}px)` },
+                { transform: 'translate(0px, 0px)' },
+              ],
+              { duration: 320, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'both' }
+            )
+          );
+        } else if (!before && visibleIds.has(id)) {
+          trackAnimation(
+            card,
+            card.animate(
+              [
+                { opacity: 0, transform: 'scale(0.97)' },
+                { opacity: 1, transform: 'scale(1)' },
+              ],
+              { duration: 200, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)', fill: 'both' }
+            )
+          );
+        }
+      }
+    };
+
+    const sync = (animate: boolean) => {
+      const filters = readFilters();
+      writeUrl(filters);
+      if (countEl) {
+        const filtered = filterSortPeople(people, filters);
+        countEl.textContent = formatCountTemplate(template, filtered.length, people.length);
+      }
+      pendingFilters = filters;
+      if (animationFrame) return;
+      animationFrame = window.requestAnimationFrame(() => {
+        animationFrame = 0;
+        const next = pendingFilters;
+        pendingFilters = null;
+        if (!next) return;
+        render(next, animate && didInitialRender);
+        didInitialRender = true;
+      });
+    };
+
+    const pressFeedback = (element: HTMLElement | null) => {
+      if (!element || reduceMotion()) return;
+      element.animate(
+        [{ transform: 'scale(1)' }, { transform: 'scale(0.985)' }, { transform: 'scale(1)' }],
+        { duration: 140, easing: 'ease-out' }
+      );
+    };
+
+    for (const button of sectorButtons) {
+      button.addEventListener('pointerdown', () => pressFeedback(button));
+      button.addEventListener('click', () => {
+        const next = button.dataset.sector ?? '';
+        setSectorPressed(activeSector() === next && next !== '' ? '' : next);
+        sync(true);
+      });
+    }
+    sortInput?.addEventListener('pointerdown', () => pressFeedback(sortInput));
+    qInput?.addEventListener('input', () => sync(true));
+    sortInput?.addEventListener('change', () => sync(true));
+
+    refreshSectorVisibility();
+    render(applyFromUrl(), false);
+    didInitialRender = true;
+
+    const hydrateCommunity = async () => {
+      // The live API is the sole source for community members. The SSR founding
+      // roster remains the offline baseline when the API is unavailable.
+      const liveCommunity: DirectoryPerson[] = [];
+      const live = await fetchAllPublishedMembers(apiOrigin);
+      if (live) {
+        for (const row of live.members) {
+          const person = publicApiMemberAsDirectory(row as PublicApiMember, {
+            apiOrigin,
+            avatarDataUriForName: avatarDataUri,
+          });
+          if (person && person.source === 'community') liveCommunity.push(person);
+        }
+      }
+
+      if (liveCommunity.length === 0) return;
+
+      const before = people.length;
+      people = mergeDirectoryPeople(people, liveCommunity);
+      if (people.length === before) return;
+      sync(true);
+    };
+
+    void hydrateCommunity();
+  }
+
+  function boot() {
+    document.querySelectorAll<Root>('[data-directory]').forEach(bindDirectory);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
+</script>

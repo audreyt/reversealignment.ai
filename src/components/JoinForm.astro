@@ -1,0 +1,503 @@
+---
+import type { FormSpec } from '../lib/types';
+import { formFieldDomId } from '../lib/i18n';
+import { avatarDataUri } from '../lib/avatar';
+import { PORTRAIT_ACCEPT } from '../lib/portrait-client';
+
+type Props = {
+  form: FormSpec;
+};
+
+const { form } = Astro.props;
+if (form.mode !== 'live') {
+  throw new Error(`JoinForm requires form.mode=live (got ${form.mode})`);
+}
+const photo = form.photo;
+if (!photo) {
+  throw new Error(`JoinForm requires form.photo copy for the in-browser portrait step`);
+}
+const previewName = 'Your Name';
+const previewSrc = avatarDataUri(previewName);
+const photoId = `${form.id}-photo`;
+const photoHintId = `${photoId}-hint`;
+const photoStatusId = `${photoId}-status`;
+const photoErrorId = `${photoId}-error`;
+---
+
+<div
+  class="join-live"
+  data-join-form
+  data-join-action={form.action}
+  data-error-message={form.errorMessage}
+  data-network-error={form.networkError}
+  data-rate-limited={form.rateLimited}
+  data-success-title={form.successTitle}
+  data-success-message={form.successMessage}
+  data-updates-title={form.updatesTitle}
+  data-updates-message={form.updatesMessage}
+  data-pending-title={form.pendingTitle}
+  data-moderation-hold={form.moderationHold}
+  data-duplicate-email={form.duplicateEmail}
+  data-photo-processing={photo.processingLabel}
+  data-photo-ready={photo.readyLabel}
+  data-photo-error={photo.errorMessage}
+  data-photo-upload-failed={photo.uploadFailed}
+  data-photo-store-failed={photo.storeFailed}
+>
+  <div class="join-live__preview" data-avatar-preview data-directory-only hidden>
+    <img
+      class="join-live__avatar"
+      data-avatar-img
+      src={previewSrc}
+      width="72"
+      height="72"
+      alt=""
+    />
+    <div class="join-live__preview-meta">
+      <p class="join-live__preview-label">{form.avatarPreviewLabel}</p>
+      <p class="join-live__preview-name" data-avatar-name>{previewName}</p>
+      <p class="join-live__preview-note">{form.avatarNote}</p>
+    </div>
+  </div>
+
+  <div
+    class="form__status"
+    data-form-status
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+  <div
+    class="form__errors"
+    data-form-errors
+    role="alert"
+    aria-live="assertive"
+    hidden
+  ></div>
+
+  <form
+    class="form"
+    id={form.id}
+    method="post"
+    action={form.action}
+    enctype="multipart/form-data"
+    data-join-step="details"
+    novalidate
+  >
+    <input
+      class="form__hp"
+      type="text"
+      name={form.honeypotName}
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    />
+    {
+      form.fields.map((field) => {
+        const id = formFieldDomId(form.id, field);
+        const errorId = `${id}-error`;
+        return (
+          <div class="form__field" data-field={field.name}>
+            <label for={id}>{field.label}</label>
+            {field.type === 'select' ? (
+              <select
+                class="form__control"
+                id={id}
+                name={field.name}
+                required={field.required}
+                autocomplete={field.autocomplete}
+                data-join-input={field.name}
+                aria-describedby={errorId}
+              >
+                <option value="" disabled selected>
+                  {field.label}
+                </option>
+                {(field.options || []).map((option) => {
+                  const value = typeof option === 'string' ? option : option.value;
+                  const label = typeof option === 'string' ? option : option.label;
+                  return <option value={value}>{label}</option>;
+                })}
+              </select>
+            ) : field.type === 'textarea' ? (
+              <textarea
+                class="form__control"
+                id={id}
+                name={field.name}
+                required={field.required}
+                autocomplete={field.autocomplete}
+                placeholder={field.placeholder || field.label}
+                maxlength={field.maxLength}
+                rows={3}
+                data-join-input={field.name}
+                aria-describedby={errorId}
+              />
+            ) : (
+              <input
+                class="form__control"
+                id={id}
+                name={field.name}
+                type={field.type}
+                required={field.required}
+                autocomplete={field.autocomplete}
+                placeholder={field.placeholder || field.label}
+                maxlength={field.maxLength}
+                data-join-input={field.name}
+                aria-describedby={errorId}
+              />
+            )}
+            <p class="form__field-error" id={errorId} data-field-error={field.name} hidden></p>
+          </div>
+        );
+      })
+    }
+    <div class="form__field form__field--photo" data-photo-field data-directory-only hidden>
+      <label for={photoId}>{photo.label}</label>
+      <input
+        class="form__control form__file"
+        id={photoId}
+        type="file"
+        accept={PORTRAIT_ACCEPT}
+        data-join-photo
+        aria-describedby={`${photoHintId} ${photoStatusId} ${photoErrorId}`}
+      />
+      <p class="form__note" id={photoHintId} data-photo-fine-print>{photo.hint}</p>
+      <p
+        class="form__note form__note--status"
+        id={photoStatusId}
+        data-photo-status
+        role="status"
+        aria-live="polite"
+      ></p>
+      {/*
+        Screening fails asynchronously with no focus change to prompt a re-read,
+        so this alert region stays rendered and hides itself while empty (:empty
+        in main.css). Populating a display:none region announces nothing.
+      */}
+      <p class="form__field-error" id={photoErrorId} data-photo-message role="alert"></p>
+      <button class="btn btn--ghost btn--inline" type="button" data-photo-remove hidden>
+        {photo.removeLabel}
+      </button>
+    </div>
+    <p class="form__note" data-privacy-fine-print data-directory-only hidden>
+      {form.privacyNote}
+    </p>
+    <button class="btn btn--dark btn--block" type="submit" data-join-submit>
+      {form.submitLabel}
+    </button>
+  </form>
+</div>
+
+<script>
+  import { avatarDataUri } from '../lib/avatar';
+  import { isDirectoryContribution } from '../lib/join-intent';
+  import { isJoinApiResponse } from '../lib/api';
+  import type { PortraitRunner } from '../lib/portrait-client';
+
+  type JoinRoot = HTMLElement & { dataset: DOMStringMap };
+
+  function bindJoin(root: JoinRoot) {
+    if (root.dataset.bound === '1') return;
+    root.dataset.bound = '1';
+
+    // Page-relative on purpose: `/join/` + `api` → `/join/api`.
+    const action = (root.dataset.joinAction || 'api').trim() || 'api';
+    const page = root.closest<HTMLElement>('[data-join-page]');
+    const pageHeading = page?.querySelector<HTMLElement>('[data-join-page-heading]') ?? null;
+    const pageEyebrow = page?.querySelector<HTMLElement>('[data-join-page-eyebrow]') ?? null;
+    const details = root.querySelector<HTMLFormElement>('[data-join-step="details"]');
+    const statusEl = root.querySelector<HTMLElement>('[data-form-status]');
+    const errorsEl = root.querySelector<HTMLElement>('[data-form-errors]');
+    const avatarImg = root.querySelector<HTMLImageElement>('[data-avatar-img]');
+    const avatarName = root.querySelector<HTMLElement>('[data-avatar-name]');
+    const nameInput = root.querySelector<HTMLInputElement>('[data-join-input="fullName"]');
+    const contributionInput = root.querySelector<HTMLSelectElement>(
+      '[data-join-input="contribution"]'
+    );
+    const directoryOnly = root.querySelectorAll<HTMLElement>('[data-directory-only]');
+    const photoInput = root.querySelector<HTMLInputElement>('[data-join-photo]');
+    const photoStatus = root.querySelector<HTMLElement>('[data-photo-status]');
+    const photoMessage = root.querySelector<HTMLElement>('[data-photo-message]');
+    const photoRemoveBtn = root.querySelector<HTMLButtonElement>('[data-photo-remove]');
+
+    /** Screened portrait bytes, produced entirely in this browser. */
+    let portrait: { blob: Blob; mimeType: string } | null = null;
+    let portraitObjectUrl: string | null = null;
+    let portraitAbort: AbortController | null = null;
+    /**
+     * The halftone module and its Worker cost nothing until a visitor actually
+     * picks a photo, so both are loaded on first use rather than at page load.
+     */
+    let runner: PortraitRunner | null = null;
+
+    const setStatus = (title: string, body = '', kind: 'info' | 'error' | 'success' = 'info') => {
+      if (!statusEl) return;
+      statusEl.dataset.kind = kind;
+      statusEl.innerHTML = title
+        ? `<strong>${escapeHtml(title)}</strong>${body ? `<span>${escapeHtml(body)}</span>` : ''}`
+        : '';
+    };
+
+    const clearFieldErrors = () => {
+      root.querySelectorAll<HTMLElement>('[data-field-error]').forEach((el) => {
+        el.hidden = true;
+        el.textContent = '';
+      });
+      root.querySelectorAll('.form__control[aria-invalid="true"]').forEach((el) => {
+        el.removeAttribute('aria-invalid');
+      });
+      if (errorsEl) {
+        errorsEl.hidden = true;
+        errorsEl.textContent = '';
+      }
+    };
+
+    const showFields = (fields: Record<string, string>) => {
+      if (errorsEl) {
+        errorsEl.hidden = false;
+        errorsEl.textContent = root.dataset.errorMessage || '';
+      }
+      let first: HTMLElement | null = null;
+      for (const [name, message] of Object.entries(fields)) {
+        const err = root.querySelector<HTMLElement>(`[data-field-error="${CSS.escape(name)}"]`);
+        const input = root.querySelector<HTMLElement>(`[data-join-input="${CSS.escape(name)}"]`);
+        if (err) {
+          err.hidden = false;
+          err.textContent = message;
+        }
+        if (input) {
+          input.setAttribute('aria-invalid', 'true');
+          if (!first) first = input;
+        }
+      }
+      first?.focus();
+    };
+
+    const updateAvatar = () => {
+      const value = nameInput?.value?.trim() || 'Your Name';
+      if (avatarName) avatarName.textContent = value;
+      // A screened portrait outranks the monogram; typing must not erase it.
+      if (avatarImg && !portrait) avatarImg.src = avatarDataUri(value);
+    };
+
+    const setPhotoStatus = (text: string) => {
+      if (photoStatus) photoStatus.textContent = text;
+    };
+
+    /** The alert region stays in the layout and hides itself while empty. */
+    const setPhotoError = (text: string) => {
+      if (photoMessage) photoMessage.textContent = text;
+    };
+
+    const releasePortrait = () => {
+      if (portraitObjectUrl) {
+        URL.revokeObjectURL(portraitObjectUrl);
+        portraitObjectUrl = null;
+      }
+      portrait = null;
+      root.dataset.portraitReady = '0';
+      if (photoRemoveBtn) photoRemoveBtn.hidden = true;
+    };
+
+    const clearPhoto = () => {
+      portraitAbort?.abort();
+      portraitAbort = null;
+      releasePortrait();
+      if (photoInput) photoInput.value = '';
+      setPhotoStatus('');
+      setPhotoError('');
+      updateAvatar();
+    };
+
+    const syncDirectoryIntentUi = () => {
+      const directoryIntent = isDirectoryContribution(contributionInput?.value || '');
+      for (const element of directoryOnly) element.hidden = !directoryIntent;
+      if (pageHeading) {
+        const nextHeading = directoryIntent
+          ? pageHeading.dataset.directoryHeading
+          : pageHeading.dataset.defaultHeading;
+        if (nextHeading) pageHeading.textContent = nextHeading;
+      }
+      if (pageEyebrow) pageEyebrow.hidden = !directoryIntent;
+      if (!directoryIntent && (portrait || photoInput?.value)) clearPhoto();
+    };
+
+    /**
+     * Screen the chosen photo in this browser and preview the result. The
+     * original file is never uploaded — only the optional halftone blob is
+     * attached to the multipart join request.
+     */
+    const handlePhoto = async (file: File) => {
+      portraitAbort?.abort();
+      const ac = new AbortController();
+      portraitAbort = ac;
+      releasePortrait();
+      setPhotoError('');
+      setPhotoStatus(root.dataset.photoProcessing || 'Processing…');
+      const submitBtn = details?.querySelector<HTMLButtonElement>('[data-join-submit]') ?? null;
+      setBusy(submitBtn, true);
+      try {
+        const pipeline = await import('../lib/portrait-client');
+        const { MAX_PORTRAIT_BYTES } = await import('../lib/portrait-limits');
+        runner ??= pipeline.createPortraitRunner();
+        const result = await runner.run(file, pipeline.AVATAR_PORTRAIT_OPTIONS, ac.signal);
+        if (ac.signal.aborted) return;
+        // Refuse here rather than after submit, so the visitor learns while
+        // they can still pick a different photo.
+        if (result.bytes > MAX_PORTRAIT_BYTES) {
+          throw new Error(`Screened portrait is ${result.bytes} bytes`);
+        }
+        portrait = { blob: result.blob, mimeType: result.mimeType };
+        portraitObjectUrl = URL.createObjectURL(result.blob);
+        if (avatarImg) avatarImg.src = portraitObjectUrl;
+        if (photoRemoveBtn) photoRemoveBtn.hidden = false;
+        root.dataset.portraitReady = '1';
+        const kb = (result.bytes / 1024).toFixed(1);
+        setPhotoStatus(
+          `${root.dataset.photoReady || 'Ready'} · ${result.width}×${result.height} · ${kb} KB`
+        );
+      } catch (err) {
+        if (ac.signal.aborted) return;
+        releasePortrait();
+        updateAvatar();
+        setPhotoStatus('');
+        const code =
+          err instanceof Error && typeof (err as { code?: unknown }).code === 'string'
+            ? (err as { code: string }).code
+            : '';
+        setPhotoError(
+          code
+            ? `${root.dataset.photoError || 'Could not process that image.'} (${code})`
+            : root.dataset.photoError || 'Could not process that image.'
+        );
+      } finally {
+        if (portraitAbort === ac) portraitAbort = null;
+        setBusy(submitBtn, false);
+      }
+    };
+
+    photoInput?.addEventListener('change', () => {
+      const file = photoInput.files?.[0];
+      if (file) void handlePhoto(file);
+      else clearPhoto();
+    });
+    photoRemoveBtn?.addEventListener('click', clearPhoto);
+    contributionInput?.addEventListener('change', syncDirectoryIntentUi);
+    window.addEventListener('pagehide', () => {
+      portraitAbort?.abort();
+      releasePortrait();
+      runner?.dispose();
+    });
+
+    nameInput?.addEventListener('input', updateAvatar);
+    updateAvatar();
+    syncDirectoryIntentUi();
+
+    const setBusy = (btn: HTMLButtonElement | null, busy: boolean) => {
+      if (!btn) return;
+      btn.disabled = busy;
+      btn.setAttribute('aria-busy', busy ? 'true' : 'false');
+    };
+
+    const hideForm = () => {
+      if (details) details.hidden = true;
+    };
+
+    details?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearFieldErrors();
+      setStatus('', '');
+      if (!details.reportValidity()) {
+        const invalid = details.querySelector<HTMLElement>(':invalid');
+        invalid?.focus();
+        return;
+      }
+
+      const body = new FormData(details);
+      // Honeypot may arrive under a decoy name; keep whatever the form shipped.
+      if (portrait) {
+        const ext = portrait.mimeType === 'image/png' ? 'png' : 'webp';
+        body.set('portrait', portrait.blob, `portrait.${ext}`);
+      } else {
+        body.delete('portrait');
+      }
+
+      const submit = details.querySelector<HTMLButtonElement>('[data-join-submit]');
+      setBusy(submit, true);
+      try {
+        const res = await fetch(action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body,
+        });
+        if (!isJoinApiResponse(res)) {
+          setStatus(root.dataset.networkError || 'Network error', '', 'error');
+          return;
+        }
+        const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+
+        if (res.status === 400 && data.fields && typeof data.fields === 'object') {
+          showFields(data.fields as Record<string, string>);
+          setStatus(root.dataset.errorMessage || 'Error', '', 'error');
+          return;
+        }
+        if (res.status === 429) {
+          setStatus(root.dataset.rateLimited || 'Rate limited', '', 'error');
+          return;
+        }
+        if (res.status === 409) {
+          setStatus(
+            root.dataset.duplicateEmail || root.dataset.errorMessage || 'Already joined',
+            String(data.message || data.detail || ''),
+            'error'
+          );
+          return;
+        }
+        if (!res.ok) {
+          setStatus(
+            root.dataset.networkError || 'Network error',
+            String(data.message || data.detail || data.error || ''),
+            'error'
+          );
+          return;
+        }
+
+        hideForm();
+        const updatesOnly = data.status === 'updates_only';
+        const fallbackTitle = updatesOnly
+          ? root.dataset.updatesTitle || root.dataset.successTitle || root.dataset.pendingTitle || 'Thanks'
+          : root.dataset.successTitle || root.dataset.pendingTitle || 'Thanks';
+        const fallbackMessage = updatesOnly
+          ? root.dataset.updatesMessage || root.dataset.successMessage || root.dataset.moderationHold || ''
+          : root.dataset.successMessage || root.dataset.moderationHold || '';
+        const parts = [String(data.message || fallbackMessage)];
+        // Portrait is best-effort: a stored join must not look like a failure
+        // when R2 drops the image.
+        if (portrait && data.portraitStored === false) {
+          parts.push(root.dataset.photoStoreFailed || root.dataset.photoUploadFailed || '');
+        }
+        setStatus(fallbackTitle, parts.filter(Boolean).join(' '), 'success');
+      } catch {
+        setStatus(root.dataset.networkError || 'Network error', '', 'error');
+      } finally {
+        setBusy(submit, false);
+      }
+    });
+  }
+
+  function escapeHtml(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function boot() {
+    document.querySelectorAll<JoinRoot>('[data-join-form]').forEach(bindJoin);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
+</script>

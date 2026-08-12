@@ -1,8 +1,16 @@
 {
   "name": "Reverse Alignment",
-  "url": "https://www.reversealignment.ai",
-  "lang": "en",
-  "themeColor": "#030303",
+  "defaultLocale": "zh-tw",
+  "localizedUrls": {
+    "en": "https://reversealignment.ai",
+    "zh-tw": "https://reversealignment.tw",
+    "ja": "https://reversealignment.jp",
+    "es": "https://reversealignment.tw/es",
+    "pt-br": "https://reversealignment.tw/pt-BR"
+  },
+  "deployedUrls": {
+    "en": "https://reversealignment.tw/en"
+  },
   "accent": "#cdfc56",
   "violet": "#6d28f5",
   "github": ""

@@ -42,27 +42,53 @@ export type Paper = {
   tone: 'lime' | 'violet';
 };
 
+export type SlideSet = {
+  directory: string;
+  count: number;
+  document: string;
+};
+
 export type ResourceLink = {
   id: string;
   title: string;
   body: string;
   cta: Cta;
+  slides: SlideSet;
 };
 
-export type Person = {
+export type CoalitionPerson = {
+  kind: 'person';
   name: string;
   role: string;
   image: string;
+  /** Stable English sector key used by the fixed client-side directory. */
+  sector: string;
+};
+
+export type CoalitionEvent = {
+  id: string;
+  /** ISO 8601 instant. Machine-readable start, rendered as `<time datetime>`. */
+  startsAt: string;
+  /** ISO 8601 instant. The listing drops off the first build made after this passes. */
+  endsAt: string;
+  /** Localized date and time line, naming the zones this locale's readers live in. */
+  when: string;
+  title: string;
+  body: string;
+  cta: Cta;
 };
 
 export type FormField = {
-  /** Readable submitted name (mailto text/plain body key). */
+  /** Submitted field key (API body). */
   name: string;
   label: string;
-  type: 'text' | 'email' | 'textarea' | 'select';
+  type: 'text' | 'email' | 'textarea' | 'select' | 'url';
   required?: boolean;
-  options?: string[];
+  /** Select options: stable English `value` + localized `label`. */
+  options?: Array<string | { value: string; label: string }>;
   autocomplete?: string;
+  maxLength?: number;
+  placeholder?: string;
   /**
    * Optional stable DOM id fragment. When omitted, derived by slugifying `name`.
    * MUST be a valid HTML id token (no spaces); never use the human `name` raw.
@@ -70,31 +96,68 @@ export type FormField = {
   id?: string;
 };
 
-export type FormSpec = {
-  id: string;
-  action: string;
-  method?: 'get' | 'post';
-  enctype?: string;
-  submitLabel: string;
-  fields: FormField[];
-  errorMessage?: string;
-  successMessage?: string;
-  /** Honest static-mail copy: submit opens a mail client; not a server receipt. */
-  mailClientNote?: string;
+/**
+ * Copy for the optional in-browser portrait step. Required whenever a form is
+ * `live`; brochure locales have no form to render it in.
+ */
+export type FormPhotoCopy = {
+  label: string;
+  hint: string;
+  removeLabel: string;
+  processingLabel: string;
+  readyLabel: string;
+  /** Shown when the browser could not screen the chosen image at all. */
+  errorMessage: string;
+  /** Shown when the portrait could not be attached to a live submission. */
+  uploadFailed: string;
+  /** Shown when the verified submission was stored without the portrait. */
+  storeFailed: string;
 };
 
-export type CoalitionTile =
-  | {
-      kind: 'person';
-      name: string;
-      role: string;
-      image: string;
-    }
-  | {
-      kind: 'cta';
-      label: string;
-      href: string;
-    };
+export type FormSpec = {
+  id: string;
+  /** Submit path relative to the join page (`api` → `/join/api`). */
+  action: string;
+  method?: 'get' | 'post';
+  /** `live` only on the Access-protected English join page. */
+  mode: 'live' | 'cta-only';
+  submitLabel: string;
+  fields: FormField[];
+  honeypotName: string;
+  errorMessage: string;
+  networkError: string;
+  successTitle: string;
+  successMessage: string;
+  /** Non-directory intent confirmation (stay informed / expertise / etc.). */
+  updatesTitle: string;
+  updatesMessage: string;
+  pendingTitle: string;
+  rateLimited: string;
+  duplicateEmail: string;
+  moderationHold: string;
+  privacyNote: string;
+  avatarNote: string;
+  avatarPreviewLabel: string;
+  /** Required when `mode === 'live'` — the live form renders the photo step. */
+  photo?: FormPhotoCopy;
+};
+
+export type DirectorySortOption = {
+  value: string;
+  label: string;
+};
+
+export type DirectoryCopy = {
+  searchLabel: string;
+  searchPlaceholder: string;
+  sectorLabel: string;
+  sectorAll: string;
+  sortLabel: string;
+  sortOptions: DirectorySortOption[];
+  countTemplate: string;
+  empty: string;
+  keyboardHint: string;
+};
 
 export type FooterColumn = {
   title: string;
@@ -122,7 +185,7 @@ export type SiteContent = {
     rest: string;
   };
   nav: {
-    join: Cta;
+    coalition: Cta;
     links: NavLink[];
   };
   hero: {
@@ -151,6 +214,7 @@ export type SiteContent = {
     lead: string;
     summary: string;
     hoverHint: string;
+    clickHint: string;
     challengesIntro: string;
     challenges: Challenge[];
   };
@@ -166,6 +230,18 @@ export type SiteContent = {
     title: string;
     items: Paper[];
     resources: ResourceLink[];
+    viewer: {
+      dialogLabel: string;
+      closeLabel: string;
+      previousLabel: string;
+      nextLabel: string;
+      downloadLabel: string;
+      openHint: string;
+      statusTemplate: string;
+      slideLabelTemplate: string;
+      thumbnailRegionLabelTemplate: string;
+      thumbnailLabelTemplate: string;
+    };
   };
   story: {
     title: string;
@@ -173,6 +249,7 @@ export type SiteContent = {
     guideTitle: string[];
     guideTerm: string;
     guideRest: string;
+    guideCta: Cta;
     videoCaption: string;
     videoCta: Cta;
   };
@@ -183,22 +260,26 @@ export type SiteContent = {
     fundingLine: string;
     panelBody: string[];
     filmsNote: string;
-    notifyForm: FormSpec;
     applyCta: Cta;
   };
   coalition: {
     title: string;
     lead: string;
     body: string;
+    eventsTitle: string;
+    events: CoalitionEvent[];
     sectors: string[];
-    /** Grid tiles in live visual order, including in-band CTA cells. */
-    people: CoalitionTile[];
+    people: CoalitionPerson[];
+    directory: DirectoryCopy;
   };
   join: {
     eyebrow: string;
     title: string;
     lead: string;
     body: string;
+    /** Homepage always uses `cta`; the live form lives on `/join/`. */
+    mode: 'cta';
+    cta: Cta;
     form: FormSpec;
   };
   closing: {
@@ -219,7 +300,10 @@ export type SiteContent = {
     heroMotionLabel: string;
     challengeGrid: string;
     coalitionGrid: string;
+    directoryControls: string;
+    directoryResults: string;
     formErrors: string;
+    formStatus: string;
   };
   assets: Record<string, string>;
 };

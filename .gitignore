@@ -16,7 +16,27 @@ logs
 .vite-hooks/_/
 .astro/
 .reference/
+/artifacts/
 /public/assets/original/
 .tmp/
 .home/
 .npm-cache/
+
+# Coalition roster PII belongs in D1/R2, never in Git
+worker/seed/
+*.swp
+src/data/community-members.json
+public/assets/data/community-members.json
+
+# Local Playwright browser cache (install with PLAYWRIGHT_BROWSERS_PATH)
+.pw-browsers/
+.dev.vars*
+!.dev.vars.example
+.wrangler/
+
+.vite-plus/
+
+# Local Cloudflare account migration notes
+/checkpoint.md
+/report.md
+/todo.md

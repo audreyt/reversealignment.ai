@@ -1,21 +1,25 @@
 ---
+import CoalitionDirectory from './CoalitionDirectory.astro';
+import CoalitionEvents from './CoalitionEvents.astro';
 import CtaLink from './CtaLink.astro';
-import LocalForm from './LocalForm.astro';
 import HeroGravity from './HeroGravity.astro';
 import Media from './Media.astro';
 import SiteFooter from './SiteFooter.astro';
+import SlideshowViewer from './SlideshowViewer.astro';
 import SiteHeader from './SiteHeader.astro';
 import type { Locale } from '../lib/types';
-import { assetPath, getContent } from '../lib/i18n';
+import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../lib/i18n';
 
 type Props = { locale?: Locale };
-const locale = Astro.props.locale ?? 'en';
+const locale = Astro.props.locale ?? getDefaultLocale();
 const copy = getContent(locale);
+const rootPath = relativeRootPath(Astro.url.pathname);
 const primaryCta = copy.hero.primaryCta;
 const secondaryCta = copy.hero.secondaryCta;
 if (!primaryCta?.label || !secondaryCta?.label) {
   throw new Error('hero.primaryCta and hero.secondaryCta are required in content');
 }
+const joinCta = copy.join.cta;
 ---
 
 <div id="top" class="page">
@@ -44,6 +48,13 @@ if (!primaryCta?.label || !secondaryCta?.label) {
         </div>
       </div>
     </section>
+
+    <!-- UPCOMING EVENTS — full-bleed announcement band -->
+    <CoalitionEvents
+      eventsTitle={copy.coalition.eventsTitle}
+      events={copy.coalition.events}
+      a11y={copy.a11y}
+    />
 
     <!-- IDEA / INTRODUCTION on paper sheet with binder edge + collage media -->
     <section id="idea" class="section section--sheet" aria-labelledby="idea-title">
@@ -124,7 +135,10 @@ if (!primaryCta?.label || !secondaryCta?.label) {
           <div class="stack-sm">
             <p class="eyebrow eyebrow--muted">{copy.building.eyebrow}</p>
             <p class="body--mono">{copy.building.summary}</p>
-            <p class="body--mono">{copy.building.hoverHint}</p>
+            <p class="body--mono">
+              <span class="building-hint building-hint--hover">{copy.building.hoverHint}</span>
+              <span class="building-hint building-hint--click">{copy.building.clickHint}</span>
+            </p>
           </div>
         </header>
 
@@ -215,18 +229,17 @@ if (!primaryCta?.label || !secondaryCta?.label) {
                   <h3>{resource.title}</h3>
                   <p class="body">{resource.body}</p>
                 </div>
-                {
-                  resource.id === 'playbook' ? (
-                    <div class="resource__art" aria-hidden="true">
-                      <Media asset="playbook-art" alt="" />
-                    </div>
-                  ) : null
-                }
-                <CtaLink
-                  cta={resource.cta}
+                <button
                   class="btn btn--dark"
-                  externalLabel={copy.a11y.externalLink}
-                />
+                  type="button"
+                  data-slideshow-open={resource.id}
+                  aria-haspopup="dialog"
+                  aria-controls={`slideshow-${resource.id}`}
+                >
+                  <span>{resource.cta.label}</span>
+                  <span class="btn__arrow" aria-hidden="true">→</span>
+                  <span class="sr-only">({copy.papers.viewer.openHint})</span>
+                </button>
               </article>
             ))
           }
@@ -253,11 +266,17 @@ if (!primaryCta?.label || !secondaryCta?.label) {
               <p class="body body--sm">
                 <span class="term">{copy.story.guideTerm}</span>{copy.story.guideRest}
               </p>
-              <CtaLink
-                cta={copy.story.guideCta}
+              <button
                 class="btn btn--light story__guide-cta"
-                externalLabel={copy.a11y.externalLink}
-              />
+                type="button"
+                data-slideshow-open="playbook"
+                aria-haspopup="dialog"
+                aria-controls="slideshow-playbook"
+              >
+                <span>{copy.story.guideCta.label}</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+                <span class="sr-only">({copy.papers.viewer.openHint})</span>
+              </button>
             </div>
             <div class="story__video-row">
               <a
@@ -301,7 +320,6 @@ if (!primaryCta?.label || !secondaryCta?.label) {
             <p class="body--mono grants-copy__body">{paragraph}</p>
           ))}
           <p class="body--mono grants-copy__note">{copy.grants.filmsNote}</p>
-          <LocalForm form={copy.grants.notifyForm} variant="on-dark" />
         </div>
         <div class="grants-panel">
           <h2 id="grants-title" class="display display--md">{copy.grants.title}</h2>
@@ -321,7 +339,8 @@ if (!primaryCta?.label || !secondaryCta?.label) {
     <!-- COALITION -->
     <section id="coalition" class="section section--sheet section--coalition" aria-labelledby="coalition-title">
       <div class="section__bg section__bg--coalition" aria-hidden="true">
-        <Media asset="coalition-texture" alt="" />
+        <Media asset="coalition-texture" alt="" class="coalition-paper" />
+        <Media asset="failures-texture" alt="" class="coalition-edge" />
       </div>
       <div class="sheet sheet--over">
         <div class="sheet__binder" aria-hidden="true"></div>
@@ -333,43 +352,19 @@ if (!primaryCta?.label || !secondaryCta?.label) {
             </div>
             <p class="body--mono">{copy.coalition.body}</p>
           </div>
-
-          <p class="sectors">
-            {copy.coalition.sectors.map((sector) => <span>{sector}</span>)}
-          </p>
-
-          <div class="people-grid" role="list" aria-label={copy.a11y.coalitionGrid}>
-            {
-              copy.coalition.people
-                .filter((tile) => tile.kind !== 'cta')
-                .map((tile) => (
-                  <article class="person" role="listitem">
-                    <div class="person__photo">
-                      <Media asset={tile.image} alt="" />
-                    </div>
-                    <div class="person__meta">
-                      <h3 class="person__name">{tile.name}</h3>
-                      <p class="person__role">{tile.role}</p>
-                    </div>
-                  </article>
-                ))
-            }
-            {
-              copy.coalition.people
-                .filter((tile) => tile.kind === 'cta')
-                .map((tile) => (
-                  <div class="person person--cta" role="listitem">
-                    <a class="person__cta" href={tile.href}>{tile.label}</a>
-                  </div>
-                ))
-            }
-          </div>
+          <CoalitionDirectory locale={locale} />
         </div>
       </div>
     </section>
 
+
+
     <!-- JOIN -->
-    <section id="join" class="section section--photo section--join" aria-labelledby="join-title">
+    <section
+      id="join"
+      class="section section--photo section--join"
+      aria-labelledby="join-title"
+    >
       <div class="section__bg" aria-hidden="true">
         <Media asset="join-bg" alt="" />
       </div>
@@ -381,7 +376,11 @@ if (!primaryCta?.label || !secondaryCta?.label) {
         </div>
         <div class="join-panel stack-md">
           <p class="body--mono">{copy.join.lead}</p>
-          <LocalForm form={copy.join.form} />
+          <CtaLink
+            cta={joinCta}
+            class="btn btn--dark btn--block"
+            externalLabel={copy.a11y.externalLink}
+          />
         </div>
       </div>
     </section>
@@ -407,4 +406,9 @@ if (!primaryCta?.label || !secondaryCta?.label) {
   </main>
 
   <SiteFooter copy={copy} />
+  {
+    copy.papers.resources.map((resource) => (
+      <SlideshowViewer resource={resource} copy={copy.papers.viewer} rootPath={rootPath} />
+    ))
+  }
 </div>

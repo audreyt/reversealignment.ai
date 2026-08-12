@@ -1,0 +1,64 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "reversealignment-api",
+  "main": "worker/src/index.ts",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Never expose an ungated workers.dev hostname for join mutations.
+  "workers_dev": false,
+  // Public API on the join custom domain; the join POST is served only on the
+  // /join/api path of each whole-domain locale deployment.
+  //
+  // www is not an entry point of its own: the Worker takes every www path and
+  // 308s it to the apex, so the three apex hosts are the only join destinations
+  // Cloudflare Access has to cover.
+  "routes": [
+    { "pattern": "join.reversealignment.tw", "custom_domain": true },
+    { "pattern": "reversealignment.ai/join/api*", "zone_name": "reversealignment.ai" },
+    { "pattern": "reversealignment.tw/join/api*", "zone_name": "reversealignment.tw" },
+    { "pattern": "reversealignment.jp/join/api*", "zone_name": "reversealignment.jp" },
+    { "pattern": "www.reversealignment.ai/*", "zone_name": "reversealignment.ai" },
+    { "pattern": "www.reversealignment.tw/*", "zone_name": "reversealignment.tw" },
+    { "pattern": "www.reversealignment.jp/*", "zone_name": "reversealignment.jp" },
+  ],
+  "preview_urls": false,
+  // Without this, `wrangler dev` adopts the custom domain above and serves the
+  // Worker as https://join.reversealignment.tw/… even locally.
+  "dev": { "host": "127.0.0.1" },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+  // Provisioned 2026-07-25 in APAC via: wrangler d1 create reversealignment-coalition
+  // The binding name is load-bearing: worker/src/* reads env.DB.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "reversealignment-coalition",
+      "database_id": "c12ebb2a-9073-4afa-bfcf-f30d25b48752",
+      "migrations_dir": "worker/migrations",
+    },
+  ],
+  // Provisioned 2026-07-25 via: wrangler r2 bucket create reversealignment-portraits
+  // Binding name is load-bearing (worker/src/index.ts reads env.PORTRAITS).
+  // Absent binding degrades to monogram-only (join still succeeds; portraitStored=false).
+  "r2_buckets": [
+    {
+      "binding": "PORTRAITS",
+      "bucket_name": "reversealignment-portraits",
+    },
+  ],
+  // Optional remote AI — enable in production; omit local binding to keep demos free.
+  // "ai": { "binding": "AI", "remote": true },
+  "vars": {
+    // Access app AUD(s) accepted by the join API, comma-separated.
+    // Empty would fail closed.
+    "ACCESS_AUD": "afc8f82e18a684957c8ef8387fc0b7ed70856f1982d3a63750d397f40e76da04",
+    "ACCESS_ISSUER": "https://erc.cloudflareaccess.com",
+    "ACCESS_JWKS_URL": "https://erc.cloudflareaccess.com/cdn-cgi/access/certs",
+    // Hostnames that may accept POST /join/api (comma-list). Others 404.
+    // www is absent by design: it 308s to the apex before this gate runs.
+    "JOIN_API_HOSTS": "reversealignment.ai,reversealignment.tw,reversealignment.jp",
+    "ALLOWED_ORIGINS": "https://join.reversealignment.tw,https://reversealignment.ai,https://www.reversealignment.ai,https://reversealignment.tw,https://www.reversealignment.tw,https://reversealignment.jp,https://www.reversealignment.jp,https://reversealignment-ai.pages.dev,https://reversealignment-en.pages.dev,https://reversealignment-jp.pages.dev",
+  },
+}

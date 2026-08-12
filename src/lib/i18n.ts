@@ -1,14 +1,16 @@
 import content from '../data/content.json';
 import site from '../data/site.json';
+import type { DirectoryPerson } from './directory';
 import type { Locale, SiteContent } from './types';
 
-const DEFAULT_LOCALE = 'en' as const satisfies Locale;
-
 const catalog = content as Record<Locale, SiteContent>;
-
 const localeList = Object.keys(catalog) as Locale[];
+const configuredLocale = process.env.SITE_LOCALE ?? site.defaultLocale;
 
-/** Throws when the default locale is absent from the catalog keys. */
+assertDefaultLocalePresent(localeList, configuredLocale);
+
+const DEFAULT_LOCALE = configuredLocale as Locale;
+
 export function assertDefaultLocalePresent(
   locales: readonly string[],
   defaultLocale: string = DEFAULT_LOCALE
@@ -18,91 +20,152 @@ export function assertDefaultLocalePresent(
   }
 }
 
-assertDefaultLocalePresent(localeList, DEFAULT_LOCALE);
-
 export function getDefaultLocale(): Locale {
   return DEFAULT_LOCALE;
 }
 
+/** Catalog locale keys. Each build renders one selected locale at its root. */
 export function listLocales(): Locale[] {
   return [...localeList];
-}
-
-/** Locales other than the default (served under `/{locale}/`). */
-export function listAlternateLocales(): Locale[] {
-  return localeList.filter((locale) => locale !== DEFAULT_LOCALE);
 }
 
 export function isLocale(value: string): value is Locale {
   return Object.hasOwn(catalog, value);
 }
 
+function localizedSiteUrl(locale: Locale): string {
+  const url = site.localizedUrls[locale as keyof typeof site.localizedUrls];
+  if (!url) throw new Error(`No site URL configured for locale "${locale}"`);
+  return url;
+}
+
+/** Origin actually serving a locale's files, when its canonical home lives elsewhere. */
+function deployedSiteUrl(locale: Locale): string {
+  // Official single-locale Pages deploys (en/ja) set SITE_DEPLOYED_URL to the
+  // apex origin so isolation builds are indexable and self-hosted. Multi-locale
+  // English still defaults to the /en preview path in site.deployedUrls.
+  if (process.env.SITE_DEPLOYED_URL && locale === (process.env.SITE_LOCALE ?? site.defaultLocale)) {
+    return process.env.SITE_DEPLOYED_URL;
+  }
+  return site.deployedUrls[locale as keyof typeof site.deployedUrls] ?? localizedSiteUrl(locale);
+}
+
+function resolveAgainst(root: string, path: string): string {
+  return new URL(path.replace(/^\/+/, '') || './', `${root.replace(/\/+$/, '')}/`).toString();
+}
+
+/** Canonical URL a locale claims for itself, which search engines are pointed at. */
+export function absoluteSiteUrl(path: string, locale: Locale = DEFAULT_LOCALE): string {
+  return resolveAgainst(localizedSiteUrl(locale), path);
+}
+
+/** Absolute URL for a file this build ships, which must resolve on the serving origin. */
+export function deployedAssetUrl(path: string, locale: Locale = DEFAULT_LOCALE): string {
+  return resolveAgainst(deployedSiteUrl(locale), path);
+}
+
+/**
+ * A locale is offered to search engines only where it owns a whole domain.
+ * Anything served from a subpath is a preview of a site that lives elsewhere,
+ * so it must not compete with the original.
+ */
+export function isIndexableLocale(locale: Locale = DEFAULT_LOCALE): boolean {
+  return new URL(resolveAgainst(deployedSiteUrl(locale), '/')).pathname === '/';
+}
+
 export function getSite() {
-  return site;
+  return {
+    ...site,
+    url: localizedSiteUrl(DEFAULT_LOCALE),
+    lang: toBcp47(DEFAULT_LOCALE),
+  };
 }
 
 export function getContent(locale: Locale = DEFAULT_LOCALE): SiteContent {
   const entry = catalog[locale];
-  if (!entry) {
-    throw new Error(`Missing content for locale: ${String(locale)}`);
-  }
+  if (!entry) throw new Error(`Missing content for locale: ${String(locale)}`);
   return entry;
 }
 
-export function assetPath(key: string, locale: Locale = DEFAULT_LOCALE): string {
-  const path = getContent(locale).assets[key];
-  if (!path) {
-    throw new Error(`Missing asset mapping for key: ${key}`);
-  }
-  return path;
-}
-
-/** Path prefix for a locale: '' for default, '/zh' etc. for alternates. */
-export function localePathPrefix(locale: Locale): string {
-  if (locale === DEFAULT_LOCALE) return '';
-  return `/${String(locale)}`;
-}
-
-/** Absolute site path for a locale home (always trailing slash). */
-export function localeHomePath(locale: Locale): string {
-  if (locale === DEFAULT_LOCALE) return '/';
-  return `/${String(locale)}/`;
-}
-
-export function toBcp47(locale: Locale): string {
-  // Extend when adding locales (e.g. zh-TW).
-  return String(locale);
+/**
+ * Prefix that walks back to the build-tree root from `pathname`.
+ *
+ * Every isolation build owns its own asset tree, so a root page gets `./`.
+ * Nested pages (`/join/`, `/halftone-lab/`) must climb, or their stylesheet and
+ * favicon resolve one directory too deep once the locale merge relocates them.
+ */
+export function relativeRootPath(pathname = '/'): string {
+  const segments = pathname.split('/').filter(Boolean);
+  const depth = segments.length - (pathname.endsWith('/') ? 0 : 1);
+  return depth <= 0 ? './' : '../'.repeat(depth);
 }
 
 /**
- * Structural path keys used for catalog parity across locales.
- * Arrays encode length as `path[N]` and recurse into every element so a
- * translation cannot silently drop list items (challenges, people, nav,
- * form options, …) while still allowing translated string values to differ.
+ * Root-relative asset URL. Every asset-bearing component renders on a tree-root
+ * page, so the prefix is `./`; pass `rootPath` from {@link relativeRootPath}
+ * when rendering one on a nested page.
  */
-export function collectShapePaths(value: unknown, prefix = ''): string[] {
-  if (value === null || typeof value !== 'object') {
-    return prefix ? [prefix] : [];
-  }
-  if (Array.isArray(value)) {
-    const lenKey = prefix ? `${prefix}[${value.length}]` : `[${value.length}]`;
-    const paths: string[] = [lenKey];
-    value.forEach((item, index) => {
-      const itemPrefix = prefix ? `${prefix}[${index}]` : `[${index}]`;
-      paths.push(...collectShapePaths(item, itemPrefix));
-    });
-    return paths;
-  }
-  const paths: string[] = [];
-  for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
-    const next = prefix ? `${prefix}.${key}` : key;
-    paths.push(...collectShapePaths(child, next));
-  }
-  return paths;
+export function assetPath(key: string, locale: Locale = DEFAULT_LOCALE, rootPath = './'): string {
+  const path = getContent(locale).assets[key];
+  if (!path) throw new Error(`Missing asset mapping for key: ${key}`);
+  return `${rootPath}${path.replace(/^\/+/, '')}`;
 }
 
-export function catalogShapePaths(locale: Locale = DEFAULT_LOCALE): string[] {
-  return collectShapePaths(getContent(locale)).sort();
+export function toBcp47(locale: Locale): string {
+  if (locale === 'zh-tw') return 'zh-TW';
+  if (locale === 'pt-br') return 'pt-BR';
+  return locale;
+}
+
+export function toOgLocale(locale: Locale): string {
+  return toBcp47(locale).replace(/-/g, '_');
+}
+
+export type HreflangAlternate = {
+  hreflang: string;
+  href: string;
+};
+
+/** Cross-domain alternates for every locally catalogued locale. */
+export function hreflangAlternates(): HreflangAlternate[] {
+  const orderedLocales = [
+    DEFAULT_LOCALE,
+    ...localeList.filter((locale) => locale !== DEFAULT_LOCALE),
+  ];
+  return [
+    ...orderedLocales.map((locale) => ({
+      hreflang: toBcp47(locale),
+      href: absoluteSiteUrl('/', locale),
+    })),
+    {
+      hreflang: 'x-default',
+      href: absoluteSiteUrl('/', site.defaultLocale as Locale),
+    },
+  ];
+}
+
+/** Map one fixed catalog person into the browser directory contract. */
+export function catalogPersonAsDirectory(
+  person: { name: string; role: string; image: string; sector: string },
+  index: number
+): DirectoryPerson {
+  const imageKey = person.image.trim();
+  if (!imageKey) throw new Error(`Static directory person "${person.name}" needs an image key`);
+  const separator = person.role.search(/[,，、]/);
+  return {
+    id: `canonical:${imageKey}`,
+    fullName: person.name,
+    role: person.role,
+    affiliation: separator >= 0 ? person.role.slice(separator + 1).trim() : person.role,
+    sector: person.sector,
+    imageKey,
+    sortIndex: index,
+  };
+}
+
+/** Fixed localized directory data, embedded in each static build. */
+export function catalogPeopleAsDirectory(locale: Locale = DEFAULT_LOCALE): DirectoryPerson[] {
+  return getContent(locale).coalition.people.map(catalogPersonAsDirectory);
 }
 
 /** Valid HTML id fragment from a form field name or explicit id. */

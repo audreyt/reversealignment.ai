@@ -1,23 +1,37 @@
 {
-  "name": "reversealignment.ai",
+  "name": "reversealignment.tw",
   "version": "1.0.0",
   "private": true,
   "license": "CC0-1.0",
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
+    "build": "vp build",
+    "build:all": "bash scripts/build-all-locales.sh",
+    "build:en": "SITE_LOCALE=en SITE_DEPLOYED_URL=https://reversealignment.ai vp build",
+    "build:ja": "SITE_LOCALE=ja SITE_DEPLOYED_URL=https://reversealignment.jp vp build",
+    "build:es": "SITE_LOCALE=es vp build",
+    "build:pt-br": "SITE_LOCALE=pt-br vp build",
     "prepare": "vp config",
     "test:unit": "vp test tests/unit",
     "test:e2e": "vp exec playwright test",
+    "test:e2e:live": "bash scripts/join-live-e2e.sh",
     "test:e2e:install": "vp exec playwright install --with-deps",
-    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\"",
-    "ci": "vp run clean && vp check && vp build && vp test && vp run lint:html"
+    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\" \"dist/en/index.html\" \"dist/en/404.html\" \"dist/join/index.html\" \"dist/en/join/index.html\" \"dist/es/index.html\" \"dist/es/404.html\" \"dist/pt-BR/index.html\" \"dist/pt-BR/404.html\" \"dist/halftone-lab/index.html\" \"dist/en/halftone-lab/index.html\" \"dist/es/halftone-lab/index.html\" \"dist/pt-BR/halftone-lab/index.html\"",
+    "ci": "vp run clean && vp check && vp run build:all && vp test && vp run lint:html",
+    "dev:api": "wrangler dev",
+    "db:migrate:local": "wrangler d1 migrations apply reversealignment-coalition --local",
+    "test:worker": "vp test --coverage.enabled=false tests/unit/admin-auth.test.ts tests/unit/worker-crypto.test.ts tests/unit/worker-validate.test.ts tests/unit/worker-access.test.ts tests/unit/names.test.ts tests/unit/http-origin.test.ts",
+    "test:worker:smoke": "bash scripts/worker-lifecycle-smoke.sh",
+    "types:worker": "wrangler types --env-interface Env --strict-vars=false worker-configuration.d.ts"
   },
   "dependencies": {
-    "astro": "^7.0.6"
+    "astro": "^7.0.6",
+    "jose": "^6.2.4"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.2",
+    "@cloudflare/workers-types": "^5.20260723.1",
     "@playwright/test": "^1.59.1",
     "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "4.1.10",
@@ -25,7 +39,8 @@
     "serve": "^14.2.6",
     "typescript": "^7.0.2",
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.4",
-    "vite-plus": "0.2.4"
+    "vite-plus": "0.2.4",
+    "wrangler": "^4.113.0"
   },
   "overrides": {
     "vite": "npm:@voidzero-dev/vite-plus-core@0.2.4"

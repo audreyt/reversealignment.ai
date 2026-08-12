@@ -2,6 +2,12 @@ import { defineConfig, devices } from '@playwright/test';
 
 const PORT = Number(process.env.E2E_PORT || 4321);
 const BASE_URL = process.env.E2E_BASE_URL || `http://127.0.0.1:${PORT}`;
+const HEADLESS_WEBGL_ARGS = [
+  '--use-gl=angle',
+  '--use-angle=swiftshader',
+  '--enable-unsafe-swiftshader',
+  '--ignore-gpu-blocklist',
+];
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -19,8 +25,14 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], launchOptions: { args: HEADLESS_WEBGL_ARGS } },
+    },
+    {
+      name: 'mobile-chrome',
+      use: { ...devices['Pixel 5'], launchOptions: { args: HEADLESS_WEBGL_ARGS } },
+    },
   ],
   webServer: process.env.E2E_BASE_URL
     ? undefined

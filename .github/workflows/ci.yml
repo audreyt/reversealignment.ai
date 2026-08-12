@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -29,12 +29,15 @@ jobs:
       - run: vp install --frozen-lockfile
       - run: vp check
       - run: vp run test:unit
-      - uses: actions/upload-artifact@v5
+      # Diagnostic only; coverage thresholds are enforced by the test run
+      # itself. Never let an upload outage fail the gate.
+      - uses: actions/upload-artifact@v7
         if: always()
+        continue-on-error: true
         with:
           name: coverage
           path: coverage
-          retention-days: 14
+          retention-days: 7
           if-no-files-found: ignore
 
   build:
@@ -50,13 +53,7 @@ jobs:
           cache: true
           run-install: false
       - run: vp install --frozen-lockfile
-      - run: vp build
-      - uses: actions/upload-artifact@v5
-        with:
-          name: dist
-          path: dist
-          retention-days: 7
-          if-no-files-found: error
+      - run: vp run build:all
 
   html-validate:
     name: HTML validate
@@ -71,10 +68,7 @@ jobs:
           cache: true
           run-install: false
       - run: vp install --frozen-lockfile
-      - uses: actions/download-artifact@v5
-        with:
-          name: dist
-          path: dist
+      - run: vp run build:all
       - run: vp run lint:html
 
   e2e:
@@ -90,17 +84,48 @@ jobs:
           cache: true
           run-install: false
       - run: vp install --frozen-lockfile
-      - uses: actions/download-artifact@v5
-        with:
-          name: dist
-          path: dist
+      - run: vp run build:all
       - run: vp exec playwright install --with-deps chromium
       - run: vp exec playwright test --project=chromium --project=mobile-chrome
+
+  worker-smoke:
+    name: Worker lifecycle smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24.18.0'
+          cache: true
+          run-install: false
+      - run: vp install --frozen-lockfile
+      - run: vp run test:worker:smoke
+
+  join-live:
+    name: Live join e2e (browser + Worker + D1 + R2)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: build
+    steps:
+      - uses: actions/checkout@v7
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: '24.18.0'
+          cache: true
+          run-install: false
+      - run: vp install --frozen-lockfile
+      # Live join runs against the English deployment shape: /join/ at the root,
+      # same-origin with /join/api. The multi-locale dist has it under /en/.
+      - run: vp run build:en
+      - run: vp exec playwright install --with-deps chromium
+      - run: vp run test:e2e:live -- --project=chromium --project=mobile-chrome
 
   ci:
     name: CI summary
     runs-on: ubuntu-latest
-    needs: [unit, build, html-validate, e2e]
+    needs: [unit, build, html-validate, e2e, worker-smoke, join-live]
     if: always()
     steps:
       - name: Verify required jobs
@@ -108,7 +133,7 @@ jobs:
           NEEDS_JSON: ${{ toJSON(needs) }}
         run: |
           fail=0
-          for job in unit build html-validate e2e; do
+          for job in unit build html-validate e2e worker-smoke join-live; do
             result=$(echo "$NEEDS_JSON" | jq -r ".\"$job\".result")
             echo "$job -> $result"
             if [ "$result" != "success" ]; then fail=1; fi

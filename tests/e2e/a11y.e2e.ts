@@ -1,36 +1,47 @@
-import { test, expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-async function assertNoSeriousA11y(page: Page, label: string) {
-  await page.goto('/');
-  await page.waitForLoadState('domcontentloaded');
+async function assertNoSeriousA11y(page: Page, label: string): Promise<void> {
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
   const serious = results.violations.filter(
-    (v) => v.impact === 'serious' || v.impact === 'critical'
+    (violation) => violation.impact === 'serious' || violation.impact === 'critical'
   );
-  if (serious.length) {
-    console.log(
-      `a11y violations (${label}):\n`,
-      serious.map((v) => ({
-        id: v.id,
-        impact: v.impact,
-        nodes: v.nodes.length,
-        help: v.help,
-        targets: v.nodes.slice(0, 8).map((n) => n.target),
-      }))
-    );
-  }
   expect(serious, `${label} serious/critical a11y`).toEqual([]);
 }
 
-test.describe('accessibility (axe-core)', () => {
-  test('desktop home has no serious or critical a11y violations', async ({ page }) => {
+test.describe('multilingual static accessibility', () => {
+  test('zh-TW root has no serious or critical violations', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
-    await assertNoSeriousA11y(page, 'desktop');
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
+    await expect(page.locator('[data-directory]')).toBeVisible();
+    await expect(page.locator('form')).toHaveCount(0);
+    await assertNoSeriousA11y(page, 'zh-TW desktop');
   });
 
-  test('mobile home has no serious or critical a11y violations', async ({ page }) => {
+  test('English mobile route has no serious or critical violations', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await assertNoSeriousA11y(page, 'mobile');
+    await page.goto('/en/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('[data-directory]')).toBeVisible();
+    await assertNoSeriousA11y(page, 'en mobile');
+  });
+
+  test('English join page has no serious or critical violations', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto('/en/join/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('[data-join-form]')).toBeVisible();
+    await expect(page.locator('[data-join-input="email"]')).toHaveCount(0);
+    await assertNoSeriousA11y(page, 'en join');
+  });
+
+  test('zh-TW join page has no serious or critical violations', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto('/join/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
+    await expect(page.locator('[data-join-form]')).toBeVisible();
+    await expect(page.locator('[data-join-input="email"]')).toHaveCount(0);
+    await assertNoSeriousA11y(page, 'zh-TW join');
   });
 });

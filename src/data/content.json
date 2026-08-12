@@ -12,10 +12,6 @@
       "rest": "Alignment"
     },
     "nav": {
-      "join": {
-        "label": "JOIN",
-        "href": "#join"
-      },
       "links": [
         {
           "id": "idea",
@@ -39,7 +35,7 @@
         },
         {
           "id": "grants",
-          "label": "Fast-grants",
+          "label": "For storytellers",
           "href": "#grants"
         },
         {
@@ -47,14 +43,18 @@
           "label": "The coalition",
           "href": "#coalition"
         }
-      ]
+      ],
+      "coalition": {
+        "label": "COALITION",
+        "href": "#coalition"
+      }
     },
     "hero": {
       "headline": "We are building AI faster than we are building the society to receive it.",
       "body": "For every dollar spent making AI more capable, a fraction goes toward the institutions, skills, and norms that decide whether its benefits are shared or squandered. That gap is a choice. We are a coalition working to close it.",
       "primaryCta": {
-        "label": "Join the coalition",
-        "href": "#join"
+        "label": "Explore the coalition",
+        "href": "#coalition"
       },
       "secondaryCta": {
         "label": "Read the argument",
@@ -108,6 +108,7 @@
       "lead": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "summary": "Large, coordinated investments in the human and institutional side of the AI transformation. They span identity, privacy, markets, governance, work, and knowledge. They share an architecture, and they share a method. No single sector can deliver any one of them alone.",
       "hoverHint": "*Hover to read more",
+      "clickHint": "*Click to read more",
       "challengesIntro": "Human flourishing over the next decade depends on a set of sociotechnical grand challenges.",
       "challenges": [
         {
@@ -254,8 +255,12 @@
           "body": "What AI Can’t Build, a storyteller’s guide that turns these challenges into dramatic material for writers and creators, with a high-concept pitch and a writers’-room prompt for each one.",
           "cta": {
             "label": "Open the playbook",
-            "href": "https://drive.google.com/file/d/1LgmjdETzKms2cunZ66B7g1IC10odbYJq/view?usp=sharing",
-            "external": true
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
           }
         },
         {
@@ -264,11 +269,27 @@
           "body": "The summary presentation behind the recommendations.",
           "cta": {
             "label": "View the deck",
-            "href": "https://www.dropbox.com/scl/fi/a6dbu8ii3p1dhi705ug28/GrandChallengesegw.pptx?rlkey=98gtxcvzskxmaj4p60td2ymfi&dl=0",
-            "external": true
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
           }
         }
-      ]
+      ],
+      "viewer": {
+        "dialogLabel": "Presentation viewer",
+        "closeLabel": "Close",
+        "previousLabel": "Previous slide",
+        "nextLabel": "Next slide",
+        "downloadLabel": "Download PDF",
+        "openHint": "opens an on-page slideshow",
+        "statusTemplate": "Slide {current} of {total}",
+        "slideLabelTemplate": "{title}, slide {current} of {total}",
+        "thumbnailRegionLabelTemplate": "{title} slides",
+        "thumbnailLabelTemplate": "Go to slide {number}"
+      }
     },
     "story": {
       "title": "The Biggest Story Nobody’s Telling",
@@ -281,8 +302,7 @@
       "guideRest": " takes each challenge and hands writers a high-concept pitch and a set of prompts to drop into the writers’ room: the woman fighting for the right to be different people in different parts of her life, the documentary maker whose airtight film meets an equally airtight rebuttal, the data contributor who is rich, essential, and completely anonymous.",
       "guideCta": {
         "label": "Open the playbook",
-        "href": "https://drive.google.com/file/d/1LgmjdETzKms2cunZ66B7g1IC10odbYJq/view?usp=sharing",
-        "external": true
+        "href": "#slideshow-playbook"
       },
       "videoCaption": "See how we brought these ideas into a room with 100 TV writers.",
       "videoCta": {
@@ -303,39 +323,6 @@
         "You don’t have to explain the policy. You just have to make people feel what’s at stake."
       ],
       "filmsNote": "First films arriving soon.",
-      "notifyForm": {
-        "id": "notify",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20notify%20me",
-        "method": "post",
-        "submitLabel": "Sign up to be notified",
-        "fields": [
-          {
-            "name": "First Name",
-            "label": "First Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "given-name"
-          },
-          {
-            "name": "Last Name",
-            "label": "Last Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "family-name"
-          },
-          {
-            "name": "Email",
-            "label": "Email",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          }
-        ],
-        "errorMessage": "Please correct the errors in this form.",
-        "successMessage": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt.",
-        "enctype": "text/plain",
-        "mailClientNote": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt."
-      },
       "applyCta": {
         "label": "Apply for a grant",
         "href": "https://popshift.typeform.com/to/NvKBeode",
@@ -346,6 +333,22 @@
       "title": "The Coalition",
       "lead": "This work was shaped by people who rarely sit at the same table.",
       "body": "AI researchers and social scientists, technologists and public servants, funders and civic builders, drawn from across regions and political perspectives. That range is not incidental. The method we advocate, finding common ground across real differences without suppressing them, is the method that produced the work itself.",
+      "eventsTitle": "Upcoming",
+      "events": [
+        {
+          "id": "rxc-salon-2026-08",
+          "startsAt": "2026-08-24T20:00:00.000Z",
+          "endsAt": "2026-08-24T21:00:00.000Z",
+          "when": "24 August 2026 · 1pm Pacific · 4pm Eastern · 5pm Buenos Aires · 10pm CEST · 6am Sydney (next day) · one hour, online",
+          "title": "A Salon on Reverse Alignment",
+          "body": "RadicalxChange hosts Glen Weyl, James Evans, Melissa Valentine, and Jess Scully for a short presentation, open questions, and small-group discussion on reverse alignment. Co-authors are invited to lead breakouts.",
+          "cta": {
+            "label": "Register on Luma",
+            "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        }
+      ],
       "sectors": [
         "Research",
         "Technology",
@@ -361,220 +364,205 @@
           "kind": "person",
           "name": "Eric Glen Weyl",
           "role": "Co-founder, RadicalxChange Foundation",
-          "image": "person-glen-weyl"
+          "image": "person-glen-weyl",
+          "sector": "Civil Society"
         },
         {
           "kind": "person",
           "name": "Audrey Tang",
           "role": "Former Digital Minister, Taiwan",
-          "image": "person-audrey-tang"
+          "image": "person-audrey-tang",
+          "sector": "Government"
         },
         {
           "kind": "person",
           "name": "Jake Hirsch-Allen",
           "role": "Head of Partnerships, The Dais",
-          "image": "person-jake-hirsch-allen"
+          "image": "person-jake-hirsch-allen",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Vilas Dhar",
           "role": "President, Patrick J. McGovern Foundation",
-          "image": "person-vilas-dhar"
+          "image": "person-vilas-dhar",
+          "sector": "Philanthropy"
         },
         {
           "kind": "person",
           "name": "Melissa Valentine",
           "role": "Associate Professor, Stanford University",
-          "image": "person-melissa-valentine"
+          "image": "person-melissa-valentine",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "David Patterson",
           "role": "Google Fellow; UC Berkeley Professor Emeritus",
-          "image": "person-david-patterson"
+          "image": "person-david-patterson",
+          "sector": "Technology"
         },
         {
           "kind": "person",
           "name": "Tiona Zuzul",
           "role": "Associate Professor, Harvard Business School",
-          "image": "person-tiona-zuzul"
+          "image": "person-tiona-zuzul",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Jess Scully",
           "role": "Executive Director, RadicalxChange Foundation",
-          "image": "person-jess-scully"
+          "image": "person-jess-scully",
+          "sector": "Civil Society"
         },
         {
           "kind": "person",
           "name": "Dean Woodley Ball",
           "role": "Head of Strategic Futures, OpenAI",
-          "image": "person-dean-ball"
+          "image": "person-dean-ball",
+          "sector": "Technology"
         },
         {
           "kind": "person",
           "name": "Romain Vakilitabar",
           "role": "Founder & Executive Director, Pathos Labs",
-          "image": "person-romain-vakilitabar"
+          "image": "person-romain-vakilitabar",
+          "sector": "Media"
         },
         {
           "kind": "person",
           "name": "Andrew Sorota",
           "role": "Head of Research, Office of Eric Schmidt",
-          "image": "person-andrew-sorota"
+          "image": "person-andrew-sorota",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Samuel Roland",
           "role": "Fellow, Foundation for American Innovation",
-          "image": "person-samuel-roland"
-        },
-        {
-          "kind": "cta",
-          "label": "join the coalition",
-          "href": "#join"
+          "image": "person-samuel-roland",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Chris White",
           "role": "Lab Director, Microsoft Research",
-          "image": "person-chris-white"
+          "image": "person-chris-white",
+          "sector": "Technology"
         },
         {
           "kind": "person",
           "name": "Dr. Tomicah Tillemann",
           "role": "President, Project Liberty",
-          "image": "person-tomicah-tillemann"
+          "image": "person-tomicah-tillemann",
+          "sector": "Civil Society"
         },
         {
           "kind": "person",
           "name": "Galen Hines-Pierce",
           "role": "Founder & Principal, Minerva Fund",
-          "image": "person-galen-hines-pierce"
+          "image": "person-galen-hines-pierce",
+          "sector": "Philanthropy"
         },
         {
           "kind": "person",
           "name": "Ben Buchanan",
           "role": "Former White House AI Advisor",
-          "image": "person-ben-buchanan"
+          "image": "person-ben-buchanan",
+          "sector": "Government"
         },
         {
           "kind": "person",
           "name": "James Evans",
           "role": "Professor, University of Chicago",
-          "image": "person-james-evans"
+          "image": "person-james-evans",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "David Deming",
           "role": "Dean, Harvard College",
-          "image": "person-david-deming"
+          "image": "person-david-deming",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Dr. Ken Suzuki",
           "role": "Project Professor, Keio University",
-          "image": "person-ken-suzuki"
+          "image": "person-ken-suzuki",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Blaise Agüera y Arcas",
           "role": "VP & Fellow, Google",
-          "image": "person-blaise-aguera"
+          "image": "person-blaise-aguera",
+          "sector": "Technology"
         },
         {
           "kind": "person",
           "name": "Danielle Allen",
           "role": "Professor, Harvard University",
-          "image": "person-danielle-allen"
+          "image": "person-danielle-allen",
+          "sector": "Research"
         },
         {
           "kind": "person",
           "name": "Divya Siddarth",
           "role": "Co-founder, Collective Intelligence Project",
-          "image": "person-divya-siddarth"
+          "image": "person-divya-siddarth",
+          "sector": "Civil Society"
         },
         {
           "kind": "person",
           "name": "Tim O’Reilly",
           "role": "Founder & CEO, O’Reilly Media",
-          "image": "person-tim-oreilly"
+          "image": "person-tim-oreilly",
+          "sector": "Media"
         },
         {
           "kind": "person",
           "name": "Zoe Weinberg",
           "role": "Founder & Managing Partner, Ex/Ante",
-          "image": "person-zoe-weinberg"
+          "image": "person-zoe-weinberg",
+          "sector": "Business"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Researcher, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
-      ]
-    },
-    "join": {
-      "eyebrow": "Join the coalition",
-      "title": "Add Your Name",
-      "lead": "If you believe we should build for our social systems as ambitiously as we build for our algorithms, lend your name and help carry the work into your own field.",
-      "body": "Reverse alignment is not one project. It is a portfolio of bets, in every sector, that only a broad coalition can sustain.",
-      "form": {
-        "id": "join-form",
-        "action": "mailto:hello@reversealignment.ai?subject=Reverse%20Alignment%20%E2%80%94%20join%20the%20coalition",
-        "method": "post",
-        "submitLabel": "Join",
-        "fields": [
+      ],
+      "directory": {
+        "searchLabel": "Search the coalition",
+        "searchPlaceholder": "Search by name, role, or affiliation",
+        "sectorLabel": "Sector",
+        "sectorAll": "All sectors",
+        "sortLabel": "Sort",
+        "sortOptions": [
           {
-            "name": "Full Name",
-            "label": "Full Name",
-            "type": "text",
-            "required": true,
-            "autocomplete": "name"
+            "value": "default",
+            "label": "Default order"
           },
           {
-            "name": "Affiliation",
-            "label": "Affiliation",
-            "type": "text",
-            "required": false,
-            "autocomplete": "organization"
+            "value": "name",
+            "label": "Name A–Z"
           },
           {
-            "name": "Sector",
-            "label": "Sector",
-            "type": "select",
-            "required": true,
-            "options": [
-              "Research",
-              "Technology",
-              "Government",
-              "Philanthropy",
-              "Civil Society",
-              "Business",
-              "Entertainment",
-              "Media"
-            ]
+            "value": "name-desc",
+            "label": "Name Z–A"
           },
           {
-            "name": "Email",
-            "label": "Email",
-            "type": "email",
-            "required": true,
-            "autocomplete": "email"
-          },
-          {
-            "name": "I’d also like to contribute by...",
-            "label": "I’d also like to contribute by...",
-            "type": "select",
-            "required": false,
-            "options": [
-              "Lend your name to the statement",
-              "Bring a challenge into your own organization or sector",
-              "Contribute expertise, writing, or research",
-              "Help fund the work",
-              "Stay informed as the coalition grows",
-              "All of the above"
-            ]
+            "value": "sector",
+            "label": "Sector"
           }
         ],
-        "errorMessage": "Please correct the errors in this form.",
-        "successMessage": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt.",
-        "enctype": "text/plain",
-        "mailClientNote": "Submitting opens your email client with these details. Nothing is sent until you send the message from your mail app — this site does not confirm receipt."
+        "countTemplate": "Showing {shown} of {total}",
+        "empty": "No people match these filters.",
+        "keyboardHint": "Use filters to narrow; results update as you type."
       }
     },
     "closing": {
@@ -629,11 +617,6 @@
               "id": "grants",
               "label": "Fast-grants for storytellers",
               "href": "#grants"
-            },
-            {
-              "id": "join",
-              "label": "Join the coalition",
-              "href": "#join"
             }
           ]
         }
@@ -649,7 +632,10 @@
       "heroMotionLabel": "Animated gravity field",
       "challengeGrid": "Sociotechnical grand challenges",
       "coalitionGrid": "Coalition members",
-      "formErrors": "Please correct the errors in this form."
+      "directoryControls": "Directory filters and sorting",
+      "directoryResults": "Filtered coalition members",
+      "formErrors": "Please correct the errors in this form.",
+      "formStatus": "Form status"
     },
     "assets": {
       "favicon": "/favicon.png",
@@ -676,9 +662,6 @@
       "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
       "story-video-thumb": "/assets/images/story-video-thumb.webp",
       "coalition-texture": "/assets/images/coalition-texture.webp",
-      "join-bg": "/assets/images/join-bg.webp",
-      "join-sheet": "/assets/images/join-sheet.png",
-      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
       "closing-bg": "/assets/images/closing-bg.webp",
       "challenge-identity": "/assets/images/challenge-identity.webp",
       "challenge-privacy": "/assets/images/challenge-privacy.webp",
@@ -716,9 +699,13 @@
       "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
-      "icon-dot-3": "/assets/images/icon-dot-3.png"
+      "icon-dot-3": "/assets/images/icon-dot-3.png",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png"
     },
     "notFound": {
       "title": "Not found",
@@ -726,6 +713,3600 @@
       "body": "That URL is not part of this site.",
       "backLabel": "Back to Reverse Alignment",
       "code": "404"
+    },
+    "join": {
+      "eyebrow": "Join the coalition",
+      "title": "Add Your Name",
+      "lead": "If you believe we should build for our social systems as ambitiously as we build for our algorithms, lend your name and help carry the work into your own field.",
+      "body": "Reverse alignment is not one project. It is a portfolio of bets, in every sector, that only a broad coalition can sustain.",
+      "cta": {
+        "label": "Join the coalition",
+        "href": "https://reversealignment.ai/join/",
+        "external": true
+      },
+      "mode": "cta",
+      "form": {
+        "id": "join-form",
+        "action": "api",
+        "method": "post",
+        "mode": "live",
+        "submitLabel": "Send",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Full name",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name",
+            "maxLength": 120
+          },
+          {
+            "name": "affiliation",
+            "label": "Affiliation",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization",
+            "maxLength": 160
+          },
+          {
+            "name": "sector",
+            "label": "Sector",
+            "type": "select",
+            "required": true,
+            "options": [
+              {
+                "value": "Research",
+                "label": "Research"
+              },
+              {
+                "value": "Technology",
+                "label": "Technology"
+              },
+              {
+                "value": "Government",
+                "label": "Government"
+              },
+              {
+                "value": "Philanthropy",
+                "label": "Philanthropy"
+              },
+              {
+                "value": "Civil Society",
+                "label": "Civil Society"
+              },
+              {
+                "value": "Business",
+                "label": "Business"
+              },
+              {
+                "value": "Entertainment",
+                "label": "Entertainment"
+              },
+              {
+                "value": "Media",
+                "label": "Media"
+              }
+            ]
+          },
+          {
+            "name": "contribution",
+            "label": "I’d also like to contribute by…",
+            "type": "select",
+            "required": false,
+            "options": [
+              {
+                "value": "Lend your name to the statement",
+                "label": "Lend your name to the statement"
+              },
+              {
+                "value": "Bring a challenge into your own organization or sector",
+                "label": "Bring a challenge into your own organization or sector"
+              },
+              {
+                "value": "Contribute expertise, writing, or research",
+                "label": "Contribute expertise, writing, or research"
+              },
+              {
+                "value": "Help fund the work",
+                "label": "Help fund the work"
+              },
+              {
+                "value": "Stay informed as the coalition grows",
+                "label": "Stay informed as the coalition grows"
+              },
+              {
+                "value": "All of the above",
+                "label": "All of the above"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "label": "Public link (optional)",
+            "type": "url",
+            "required": false,
+            "autocomplete": "url",
+            "maxLength": 300,
+            "placeholder": "https://"
+          },
+          {
+            "name": "statement",
+            "label": "Short note (optional)",
+            "type": "textarea",
+            "required": false,
+            "maxLength": 500,
+            "placeholder": "One or two sentences on why you’re joining."
+          }
+        ],
+        "honeypotName": "company_website",
+        "errorMessage": "Please correct the highlighted fields.",
+        "networkError": "We couldn’t reach the server. Check your connection and try again.",
+        "successTitle": "You’re in the review queue",
+        "successMessage": "Your profile will appear in the directory after moderation — never automatically.",
+        "updatesTitle": "You’re on the updates list",
+        "updatesMessage": "Thanks — you are on the updates list. This does not place a profile in the public directory.",
+        "pendingTitle": "Thanks — under review",
+        "rateLimited": "Too many attempts. Please wait a few minutes.",
+        "duplicateEmail": "This email is already on the coalition list or awaiting review.",
+        "moderationHold": "Thanks. A moderator will review before publishing.",
+        "privacyNote": "Cloudflare Access already verified your email. We keep it privately for coalition updates and moderation; the public directory never shows it, your contribution choices, or IP. A photo is optional: it is halftone-screened in your browser and only that screened image is uploaded — no third-party image calls, no original photo leaving your device.",
+        "avatarNote": "Your public portrait starts as a deterministic monogram generated from your name in the browser. Add a photo and it is screened into the coalition halftone here on your device — the original file is never uploaded.",
+        "avatarPreviewLabel": "Directory preview",
+        "photo": {
+          "label": "Portrait photo (optional)",
+          "hint": "Your photo is screened into the coalition's halftone portrait inside your browser. Only the screened image is uploaded — the original never leaves your device.",
+          "removeLabel": "Remove photo",
+          "processingLabel": "Screening your portrait…",
+          "readyLabel": "Halftone portrait ready",
+          "errorMessage": "We could not screen that image. Try a JPEG, PNG, WebP or AVIF photo.",
+          "uploadFailed": "We could not attach your portrait. Your submission still went through — a moderator can add one later.",
+          "storeFailed": "Your portrait could not be stored, so the directory will use your monogram."
+        }
+      }
+    }
+  },
+  "zh-tw": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "我們打造 AI 的速度，遠遠快過社會接住它的速度。反向對齊（reverse alignment）指的是刻意重新設計制度、規範、技能與治理，讓社會能安全吸納 AI，並讓成果為眾人共享。",
+      "ogImage": "/assets/images/og-image-zh-tw.jpg?1784789400"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "links": [
+        {
+          "id": "idea",
+          "label": "理念",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "該建造什麼",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "主張",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "閱讀論證",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "迅速資助",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "聯盟",
+          "href": "#coalition"
+        }
+      ],
+      "coalition": {
+        "label": "聯盟",
+        "href": "#coalition"
+      }
+    },
+    "hero": {
+      "headline": "我們造 AI 的速度，\n遠遠快過社會\n接住它的速度。",
+      "body": "每投入一塊錢讓 AI 更強大，流向制度、技能與規範的往往只有零頭——而正是這些，決定了 AI 的好處會被共享，還是白白浪費。這道落差是一種選擇。我們是致力於弭平它的聯盟。",
+      "primaryCta": {
+        "label": "探索聯盟",
+        "href": "#coalition"
+      },
+      "secondaryCta": {
+        "label": "閱讀論證",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "理念／導論",
+      "title": "對齊的另一面",
+      "lead": "AI 領域的心力與資金，多半都投向兩件事：讓系統更強大，以及讓它們對齊人類價值。",
+      "body": [
+        "兩者都重要。但即使系統對齊得再完美，一旦進入還沒準備好承接它的經濟、政府與資訊體系，成效仍會大打折扣，甚至造成實質損害。"
+      ],
+      "definitionLead": "我們稱這件被忽略的工作為",
+      "definitionTerm": "反向對齊",
+      "definitionRest": "（reverse alignment）：著意重新設計制度、規範、技能與治理，讓社會能安全吸納 AI，並讓眾人共享成果。",
+      "historyTitle": "這些問題已有先例。",
+      "historyBody": [
+        "工業化、電氣化與網際網路，都是先花了數十年發明配套的制度，好處才真正落地。裝配線時代的公司，長得就像裝配線；治理網際網路的機構，長得也像網際網路。",
+        "歷史告訴我們：這些調適不是技術變革的選配，而是它成功的前提。"
+      ],
+      "failuresIntro": [
+        "若置之不理，",
+        "這道落差會帶來三種可預見的失敗。"
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "有產能，卻無繁榮",
+          "body": "工作重組的速度，快過人們重新學習、轉換跑道的速度，成果因此到不了多數人手上。"
+        },
+        {
+          "number": "2",
+          "title": "有執行，卻無驗證",
+          "body": "當生成文字、影像與程式碼的成本一路崩跌，真正稀缺的，反而是人類查核、標明出處、為產出背書的能力。"
+        },
+        {
+          "number": "3",
+          "title": "有能力，卻無約束",
+          "body": "能讓制度如虎添翼的工具，也能讓權力更加集中——除非上訴與異議的權利同步跟上。"
+        }
+      ],
+      "failuresClose": [
+        "這些都不是注定的結局。",
+        "每一項都是忽視的後果——而忽視，是可以扭轉的。"
+      ]
+    },
+    "building": {
+      "eyebrow": "建議摘要",
+      "title": "該建造什麼",
+      "lead": "未來十年的人類繁榮，繫於一系列社會技術重大挑戰。",
+      "summary": "AI 轉型的人與制度面，需要大規模且協調一致的投資，範圍橫跨身分、隱私、市場、治理、工作與知識。這些挑戰共用同一套架構、同一套方法，而且沒有任何單一領域能獨力完成其中任何一項。",
+      "hoverHint": "*游標移上即可閱讀更多",
+      "clickHint": "*點選即可閱讀更多",
+      "challengesIntro": "未來十年的人類繁榮，繫於一系列社會技術重大挑戰。",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "身分",
+          "body": "當偽造證件、生物特徵與合成人格的成本趨近於零，我們需要某種方法：既能證明此刻真的有獨一無二的真人在場，又不必透露他是誰。",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "隱私",
+          "body": "AI 等於讓每個人都有了一位私家偵探；解方不是一味遮掩，也不是全盤攤開，而是一套讓人視情境揭露資訊的工具——該給多少就給多少，一分也不多。",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "內容溯源",
+          "body": "當以假亂真的偽造幾乎不費成本，知道內容從何而來，就成了維繫共同現實的關鍵。",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "資料價值",
+          "body": "訓練這些模型的人類紀錄，往往被無償取用；創造這些紀錄的人，理應獲得真正的市場與長久的報酬——而模型公司自家的衡量技術，早已證明這辦得到。",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "智慧體協作",
+          "body": "AI 代理要發揮最大用處，就得匯集彼此所知；這需要像人與人之間那樣建立信任——跨越不同供應商，而不是各自關在圍牆花園裡。",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "集體意義建構",
+          "body": "獎勵激憤、又讓人看不清誰和誰立場相近的媒體，其實可以重新設計：讓共同基礎浮現，同時公允呈現真實的分歧。",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "民主",
+          "body": "蓬勃社群凝聚出的權威，必須轉化為調度資源的實權；這意味著參與和代表機制都得跟上時代，也少不了那些不起眼卻不可或缺的落實工夫。",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "法律與自由",
+          "body": "AI 壓低了監控與執法的成本，天平因此倒向行政權；要恢復平衡，就得為監督、異議與上訴打造對等的能力。",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "職場",
+          "body": "AI 生產力紅利的瓶頸，不在個人的速度，而在組織能否重新設計，接得住湧現的創造力與能動性。",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "研究",
+          "body": "模型產出假說與草稿的速度，已經超過同儕審查消化的速度；但同樣的工具只要用對地方，也能讓真正原創、打破藩籬的研究獲得應有的回報。",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "教育",
+          "body": "教學、學習與認證原本綁成一包，AI 把它拆開了——學校必須講清楚哪些能力真正重要，也得證明人們究竟學會了什麼。",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "勞動轉型",
+          "body": "現行的勞動體系，是為單一雇主的大規模裁員而設計的，應付不了 AI 帶來的那種持續、細緻的工作重塑；它需要帶得走、看得懂的職能憑證，以及即時的再訓練。",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "獨到的",
+        "主張"
+      ],
+      "title": "依其工具之形而立的制度",
+      "lead": "社會如何吸納新的通用型技術，其實有跡可循：勝出的制度，往往長得就像那個時代主流的思考架構。",
+      "columns": [
+        "工業時代以標準化會計與裝配線來組織認知，於是長出相互對應的層級式、分部式制度：公司、中央銀行，以及布雷頓森林體系下特許的多邊組織。網際網路時代改以分層協定與分散式路由來組織認知，於是長出分層、協作式的機構：標準制定組織、通訊合作社，以及 RFC 的開放流程。",
+        "神經網路帶來了第三套語法。它們表示事物時，靠的不是單一標籤，而是它在豐富空間中的位置。它們綜合分歧的輸入時，衡量的是每個輸入如何牽動其他輸入——找出共同結構，卻不把差異平均掉。它們歸屬功勞的方式，是追溯每一份貢獻對結果的實際影響。",
+        "當制度與技術說著同一套語法，紅利就會到來；語法不合，紅利就會卡住。工廠電氣化後將近二十年幾乎不見成效，因為廠房仍沿用蒸汽時代的佈局；直到整座工廠圍繞分散各處的電動馬達重新設計，生產力才真正兌現。",
+        "這個聯盟押的注是：真正能吸納 AI 的制度，會是把這幾套手法放大到整個社會來實現的制度。而我們的工作，就是刻意把它們建造出來。"
+      ],
+      "cta": {
+        "label": "閱讀完整論證——即將推出",
+        "href": "#papers",
+        "disabled": true,
+        "note": "即將推出"
+      }
+    },
+    "papers": {
+      "eyebrow": "論文",
+      "title": "閱讀論證",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "刊於 Noema —",
+          "title": "〈未來十年，人類繁榮需要什麼〉",
+          "body": "對這個問題與整套議程最完整的公開陳述：三種失敗模式、從大眾民主到臺灣數位治理的歷史先例，以及完整的社會技術重大挑戰清單。建議從這裡讀起。",
+          "cta": {
+            "label": "在 Noema 閱讀英文原文",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "刊於 Science —",
+          "title": "〈依其工具之形〉",
+          "body": "議程背後那條清晰的工程原則：制度為何會長得像當代的認知技術，以及照神經網路的樣子來建造，究竟是什麼意思。這是我們最獨到的論點，佐以歷史紀錄與技術對應。",
+          "cta": {
+            "label": "即將推出",
+            "href": "#",
+            "disabled": true,
+            "note": "即將推出"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "創作手冊",
+          "body": "《AI 造不出的事物》是一份寫給說故事者的指南，把這些挑戰化為創作者能直接上手的戲劇素材，每一項都附上高概念提案與編劇室提示。",
+          "cta": {
+            "label": "開啟創作手冊（英文原文）",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "簡報",
+          "body": "建議背後的摘要簡報。",
+          "cta": {
+            "label": "檢視簡報（英文原文）",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "簡報檢視器（英文原文）",
+        "closeLabel": "關閉",
+        "previousLabel": "上一張投影片",
+        "nextLabel": "下一張投影片",
+        "downloadLabel": "下載英文版 PDF",
+        "openHint": "開啟頁內投影片（英文原文）",
+        "statusTemplate": "第 {current} 張，共 {total} 張",
+        "slideLabelTemplate": "{title}，第 {current} 張，共 {total} 張",
+        "thumbnailRegionLabelTemplate": "{title} 投影片",
+        "thumbnailLabelTemplate": "前往第 {number} 張"
+      }
+    },
+    "story": {
+      "title": "最大的故事\n還沒人說",
+      "lead": "我們仰賴的每個制度，都曾經難以想像。直到故事讓夠多人在乎，人們才動手將它建成。AI 帶來的人類挑戰，並非抽象的政策議題，它們是未來十年最重要故事的原料，而且多半還沒被說出來。",
+      "guideTitle": [
+        "我們為能說出這些故事的人，",
+        "做了一份指南。"
+      ],
+      "guideTerm": "《AI 造不出的事物》",
+      "guideRest": "把每項挑戰逐一化為題材，交到寫作者手上：一個高概念提案，加上一組能直接丟進編劇室的提示——那位爭取在人生不同場域做不同自己的女人；那位紀錄片導演，拍出滴水不漏的作品，卻碰上同樣滴水不漏的反駁；還有那位富有、不可或缺、卻徹底匿名的資料貢獻者。",
+      "guideCta": {
+        "label": "開啟創作手冊（英文原文）",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "看看我們如何把這些想法，帶進一百位電視編劇齊聚的現場。",
+      "videoCta": {
+        "label": "觀看影片",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "認識這些挑戰",
+      "title": "給說故事者的迅速資助",
+      "body": [
+        "我們也和獨立創作者合作，用白話每次講清楚一項挑戰。每支短片聚焦一個問題——從如何在網路上證明自己是真人，到如何讓提供 AI 訓練資料的人獲得合理報酬——說明它為什麼重要，以及解方長什麼樣子。"
+      ],
+      "fundingLine": "我們資助把這些想法織進作品裡的說故事者。",
+      "panelBody": [
+        "如果你寫作、拍片、做遊戲，或者做的內容有人看，而你想把這裡的任何一項挑戰納入作品或重新詮釋，我們都想支持你。",
+        "你不必解釋政策。你只要讓人感受到，賭上的是什麼。"
+      ],
+      "filmsNote": "首批影片即將上線。",
+      "applyCta": {
+        "label": "申請資助",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "聯盟",
+      "lead": "形塑這份工作的，是一群平常很少同桌的人。",
+      "body": "AI 研究者與社會科學家、技術專家與公務員、資助者與公民社會的實踐者，來自不同地區，也抱持不同的政治立場。這樣的廣度並非巧合：我們倡議的方法——在真實差異中找出共同基礎，而不抹平差異——正是孕育這份工作的方法。",
+      "eventsTitle": "近期活動",
+      "events": [
+        {
+          "id": "rxc-salon-2026-08",
+          "startsAt": "2026-08-24T20:00:00.000Z",
+          "endsAt": "2026-08-24T21:00:00.000Z",
+          "when": "2026 年 8 月 24 日 · 太平洋時間下午 1 點 · 台北時間 8 月 25 日凌晨 4 點 · 線上、一小時",
+          "title": "反向對齊 Salon",
+          "body": "RadicalxChange 邀請 Glen Weyl、James Evans、Melissa Valentine 與 Jess Scully，以簡短報告、開放提問與小組討論，一起談反向對齊。共同作者可主持分組討論。",
+          "cta": {
+            "label": "前往 Luma 報名",
+            "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        }
+      ],
+      "sectors": [
+        "研究",
+        "科技",
+        "政府",
+        "慈善",
+        "公民社會",
+        "企業",
+        "娛樂",
+        "媒體"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "共同創辦人，RadicalxChange Foundation",
+          "image": "person-glen-weyl",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "數位治理大使，🇹🇼Taiwan",
+          "image": "person-audrey-tang",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "夥伴關係負責人，The Dais",
+          "image": "person-jake-hirsch-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "總裁，Patrick J. McGovern Foundation",
+          "image": "person-vilas-dhar",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "副教授，史丹佛大學",
+          "image": "person-melissa-valentine",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Google Fellow；加州大學柏克萊分校榮譽教授",
+          "image": "person-david-patterson",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "副教授，哈佛商學院",
+          "image": "person-tiona-zuzul",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "執行長，RadicalxChange Foundation",
+          "image": "person-jess-scully",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "策略未來負責人，OpenAI",
+          "image": "person-dean-ball",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "創辦人暨執行長，Pathos Labs",
+          "image": "person-romain-vakilitabar",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "研究負責人，Office of Eric Schmidt",
+          "image": "person-andrew-sorota",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "研究員，Foundation for American Innovation",
+          "image": "person-samuel-roland",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "實驗室主任，Microsoft Research",
+          "image": "person-chris-white",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "總裁，Project Liberty",
+          "image": "person-tomicah-tillemann",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "創辦人暨負責人，Minerva Fund",
+          "image": "person-galen-hines-pierce",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "前白宮 AI 顧問",
+          "image": "person-ben-buchanan",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "教授，芝加哥大學",
+          "image": "person-james-evans",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "院長，哈佛學院",
+          "image": "person-david-deming",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "特任教授，慶應義塾大學",
+          "image": "person-ken-suzuki",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "副總裁暨 Fellow，Google",
+          "image": "person-blaise-aguera",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "教授，哈佛大學",
+          "image": "person-danielle-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "共同創辦人，Collective Intelligence Project",
+          "image": "person-divya-siddarth",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "創辦人暨執行長，O’Reilly Media",
+          "image": "person-tim-oreilly",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "創辦人暨管理合夥人，Ex/Ante",
+          "image": "person-zoe-weinberg",
+          "sector": "Business"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "研究員，Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
+        }
+      ],
+      "directory": {
+        "searchLabel": "搜尋聯盟成員",
+        "searchPlaceholder": "依姓名、職稱或單位搜尋",
+        "sectorLabel": "領域",
+        "sectorAll": "全部領域",
+        "sortLabel": "排序",
+        "sortOptions": [
+          {
+            "value": "default",
+            "label": "預設排序"
+          },
+          {
+            "value": "name",
+            "label": "姓名 A–Z"
+          },
+          {
+            "value": "name-desc",
+            "label": "姓名 Z–A"
+          },
+          {
+            "value": "sector",
+            "label": "領域"
+          }
+        ],
+        "countTemplate": "顯示 {shown} / {total}",
+        "empty": "沒有符合條件的成員。",
+        "keyboardHint": "使用篩選縮小範圍；輸入時結果即時更新。"
+      }
+    },
+    "closing": {
+      "lines": [
+        "是時候了——",
+        "用打造演算法的抱負，",
+        "來打造我們的社會系統。"
+      ]
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "我們是誰",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "聯盟",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "使命",
+          "links": [
+            {
+              "id": "idea",
+              "label": "對齊的另一面",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "該建造什麼",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "依其工具之形而立的制度",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "採取行動",
+          "links": [
+            {
+              "id": "papers",
+              "label": "閱讀論證",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "給說故事者的迅速資助",
+              "href": "#grants"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 版權所有。"
+    },
+    "a11y": {
+      "skipToContent": "跳至主要內容",
+      "mainNav": "主要導覽",
+      "openMenu": "開啟選單",
+      "closeMenu": "關閉選單",
+      "externalLink": "在新分頁開啟",
+      "heroMotionLabel": "動態重力場",
+      "challengeGrid": "社會技術重大挑戰",
+      "coalitionGrid": "聯盟成員",
+      "directoryControls": "名錄篩選與排序",
+      "directoryResults": "篩選後的聯盟成員",
+      "formErrors": "請修正表單中的錯誤。",
+      "formStatus": "表單狀態"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image-zh-tw.jpg?1784789400",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png"
+    },
+    "notFound": {
+      "title": "找不到頁面",
+      "heading": "找不到頁面",
+      "body": "這個網址不屬於本站。",
+      "backLabel": "回到 Reverse Alignment",
+      "code": "404"
+    },
+    "join": {
+      "eyebrow": "加入聯盟",
+      "title": "留下你的名字",
+      "lead": "如果你相信，打造社會系統的抱負，不該輸給打造演算法的抱負，請留下你的名字，把這份工作帶進你自己的領域。",
+      "body": "反向對齊不是單一計畫，而是遍布各領域的一整組賭注——唯有夠廣的聯盟，才撐得起來。",
+      "cta": {
+        "label": "加入聯盟",
+        "href": "https://reversealignment.tw/join/",
+        "external": true
+      },
+      "mode": "cta",
+      "form": {
+        "id": "join-form",
+        "action": "api",
+        "method": "post",
+        "mode": "live",
+        "submitLabel": "送出",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "全名",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name",
+            "maxLength": 120
+          },
+          {
+            "name": "affiliation",
+            "label": "所屬單位",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization",
+            "maxLength": 160
+          },
+          {
+            "name": "sector",
+            "label": "領域",
+            "type": "select",
+            "required": true,
+            "options": [
+              {
+                "value": "Research",
+                "label": "研究"
+              },
+              {
+                "value": "Technology",
+                "label": "科技"
+              },
+              {
+                "value": "Government",
+                "label": "政府"
+              },
+              {
+                "value": "Philanthropy",
+                "label": "慈善"
+              },
+              {
+                "value": "Civil Society",
+                "label": "公民社會"
+              },
+              {
+                "value": "Business",
+                "label": "企業"
+              },
+              {
+                "value": "Entertainment",
+                "label": "娛樂"
+              },
+              {
+                "value": "Media",
+                "label": "媒體"
+              }
+            ]
+          },
+          {
+            "name": "contribution",
+            "label": "我也想透過以下方式貢獻……",
+            "type": "select",
+            "required": false,
+            "options": [
+              {
+                "value": "Lend your name to the statement",
+                "label": "連署這份聲明"
+              },
+              {
+                "value": "Bring a challenge into your own organization or sector",
+                "label": "把挑戰帶進自己的組織或領域"
+              },
+              {
+                "value": "Contribute expertise, writing, or research",
+                "label": "貢獻專業、寫作或研究"
+              },
+              {
+                "value": "Help fund the work",
+                "label": "出資支持這項工作"
+              },
+              {
+                "value": "Stay informed as the coalition grows",
+                "label": "隨時掌握聯盟動態"
+              },
+              {
+                "value": "All of the above",
+                "label": "以上皆是"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "label": "公開連結（選填）",
+            "type": "url",
+            "required": false,
+            "autocomplete": "url",
+            "maxLength": 300,
+            "placeholder": "https://"
+          },
+          {
+            "name": "statement",
+            "label": "簡短說明（選填）",
+            "type": "textarea",
+            "required": false,
+            "maxLength": 500,
+            "placeholder": "一兩句話說明你為何加入。"
+          }
+        ],
+        "honeypotName": "company_website",
+        "errorMessage": "請修正標示的欄位。",
+        "networkError": "無法連線伺服器，請檢查網路後再試。",
+        "successTitle": "已進入審核佇列",
+        "successMessage": "電子郵件已驗證。個人資料經審核後才會出現在名錄——絕不會自動公開。",
+        "updatesTitle": "已加入更新名單",
+        "updatesMessage": "謝謝——你已在更新名單中。這不會把個人資料放進公開名錄。",
+        "pendingTitle": "謝謝——審核中",
+        "rateLimited": "嘗試次數過多，請稍候再試。",
+        "duplicateEmail": "此信箱已在聯盟名單或審核中。",
+        "moderationHold": "謝謝。管理員審核後才會公開。",
+        "privacyNote": "Cloudflare Access 已驗證你的電子郵件。我們會私下保存完整信箱，用於聯盟更新與審核；公開名錄不會顯示信箱、貢獻選項或 IP。照片為選填：在你的瀏覽器完成網點處理，只有處理後的圖片會上傳——不呼叫第三方圖片服務，原始照片不會離開你的裝置。",
+        "avatarNote": "公開肖像先以姓名在瀏覽器產生固定的字首圖。加上照片後，會在你的裝置上轉為聯盟的網點肖像——原始檔案不會上傳。",
+        "avatarPreviewLabel": "名錄預覽",
+        "photo": {
+          "label": "肖像照片（選填）",
+          "hint": "你的照片會在瀏覽器內轉為聯盟的網點肖像。只有處理後的圖片會上傳，原始檔案不會離開你的裝置。",
+          "removeLabel": "移除照片",
+          "processingLabel": "正在處理你的肖像……",
+          "readyLabel": "網點肖像已完成",
+          "errorMessage": "無法處理這張圖片，請改用 JPEG、PNG、WebP 或 AVIF 照片。",
+          "uploadFailed": "無法附上你的肖像。你的資料已送出——管理員可稍後補上。",
+          "storeFailed": "你的肖像未能儲存，名錄將使用字首圖。"
+        }
+      }
+    }
+  },
+  "ja": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。Reverse Alignmentは、制度・規範・技能・ガバナンスを意図的に再設計し、社会がAIを安全に受け止め、その成果を広く分かち合えるようにする取り組みです。",
+      "ogImage": "/assets/images/og-image-ja.jpg?1784790955"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "links": [
+        {
+          "id": "idea",
+          "label": "考え方",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "築くべきもの",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "主張",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "論考を読む",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "迅速助成",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "連合",
+          "href": "#coalition"
+        }
+      ],
+      "coalition": {
+        "label": "連合",
+        "href": "#coalition"
+      }
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "私たちについて",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "連合",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "ミッション",
+          "links": [
+            {
+              "id": "idea",
+              "label": "アライメントのもう一つの側面",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "築くべきもの",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "道具のかたちをした制度",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "行動する",
+          "links": [
+            {
+              "id": "papers",
+              "label": "論考を読む",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "語り手のための迅速助成",
+              "href": "#grants"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 Reverse Alignment"
+    },
+    "notFound": {
+      "title": "ページが見つかりません",
+      "heading": "ページが見つかりません",
+      "body": "指定のURLはこのサイトにはありません。",
+      "backLabel": "Reverse Alignmentへ戻る",
+      "code": "404"
+    },
+    "a11y": {
+      "skipToContent": "本文へスキップ",
+      "mainNav": "メインナビゲーション",
+      "openMenu": "メニューを開く",
+      "closeMenu": "メニューを閉じる",
+      "externalLink": "新しいタブで開きます",
+      "heroMotionLabel": "重力場のアニメーション",
+      "challengeGrid": "社会技術上の重大課題",
+      "coalitionGrid": "連合のメンバー",
+      "directoryControls": "ディレクトリの絞り込みと並べ替え",
+      "directoryResults": "絞り込まれた連盟メンバー",
+      "formErrors": "フォームの誤りを修正してください。",
+      "formStatus": "フォームの状態"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image-ja.jpg?1784790955",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png"
+    },
+    "hero": {
+      "headline": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。",
+      "body": "AIの能力向上に投じる資源に比べ、その恩恵を広く分かち合えるか、無駄に終わらせるかを左右する制度・技能・規範への投資はごくわずかです。この格差は、私たちの選択の結果です。私たちは、その格差を埋めるための連合です。",
+      "primaryCta": {
+        "label": "連合を見る",
+        "href": "#coalition"
+      },
+      "secondaryCta": {
+        "label": "論考を読む",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "考え方 / はじめに",
+      "title": "アライメントのもう一つの側面",
+      "lead": "AIに向けられる労力と資本の多くは、二つの課題に注がれています。システムの能力を高めること、そして人間の価値観と整合させることです。",
+      "body": [
+        "どちらも重要です。しかし、人間の価値観と完全に整合したシステムでも、それを受け止める備えのない経済、政府、情報環境に導入されれば、期待された成果を出せず、実害さえ招きます。"
+      ],
+      "definitionLead": "私たちは、この見過ごされてきた課題を「",
+      "definitionTerm": "Reverse Alignment",
+      "definitionRest": "」と呼びます。社会がAIを安全に受け止め、その恩恵を広く分かち合えるよう、制度・規範・技能・ガバナンスを意図的に再設計する取り組みです。",
+      "historyTitle": "これは、新しい種類の問題ではありません。",
+      "historyBody": [
+        "工業化も、電化も、インターネットも、恩恵が届くまでに数十年にわたる制度の発明を必要としました。組立ラインの時代に生まれた企業は組立ラインに似ていました。インターネットを統治する制度はインターネットに似ていました。",
+        "歴史が教えるのは、こうした適応が技術変化に後から付け足す選択肢ではなく、成功の前提だということです。"
+      ],
+      "failuresIntro": [
+        "手を打たなければ、",
+        "この齟齬は三つの予測可能な失敗を生みます。"
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "繁栄なき生産性",
+          "body": "仕事は、人々が学び直したり別の仕事へ移ったりできる以上の速さで再編され、その恩恵は大多数に届きません。"
+        },
+        {
+          "number": "2",
+          "title": "検証なき実行",
+          "body": "テキスト、画像、コードを生み出すコストが急落すると、希少になるのは、成果物を検証し、出所を確かめ、責任を引き受ける人の力です。"
+        },
+        {
+          "number": "3",
+          "title": "制約なき能力",
+          "body": "制度の力を高める道具は同時に、権力を集中させかねません。上訴や異議申立ての権利も、ともに強化する必要があります。"
+        }
+      ],
+      "failuresClose": [
+        "いずれも必然ではありません。",
+        "いずれも見過ごしてきた結果であり、今からでも変えられます。"
+      ]
+    },
+    "closing": {
+      "lines": [
+        "アルゴリズムを築いてきたのと",
+        "同じ野心で、いまこそ",
+        "社会の仕組みを築くときです。"
+      ]
+    },
+    "building": {
+      "eyebrow": "提言の要約",
+      "title": "何を築くべきか",
+      "lead": "今後10年の人類の繁栄は、社会と技術にまたがる一連の重大課題にかかっています。",
+      "summary": "必要なのは、AIによる変革を支える人と制度への、大規模で足並みのそろった投資です。課題はアイデンティティ、プライバシー、市場、ガバナンス、労働、知識にまたがります。共通する設計思想と手法があります。どの課題も、一つの分野だけでは実現できません。",
+      "hoverHint": "*ホバーで詳細を表示",
+      "clickHint": "*クリックで詳細を表示",
+      "challengesIntro": "今後10年の人類の繁栄は、社会と技術にまたがる一連の重大課題にかかっています。",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "アイデンティティ",
+          "body": "偽造文書や偽の生体認証情報、人工的な人物像を、ほとんどコストなく作れる時代です。身元を明かさずに、参加者が実在する一人の人間だと証明できる仕組みが必要です。",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "プライバシー",
+          "body": "AIによって、誰もが私立探偵並みの調査力を手にします。必要なのは全面的な秘匿でも丸裸の公開でもなく、その場に必要な情報だけを過不足なく開示できる道具です。",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "コンテンツの出所・来歴",
+          "body": "もっともらしい偽物をほぼ無償で作れるなら、コンテンツの出所を確かめられることが、共通の現実を保つために欠かせません。",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "データ価値の還元",
+          "body": "モデルの学習に使われる人々の記録は、ほとんど対価を払わず集められてきました。生み出した人々が適正に取引できる市場と、継続的に対価を受け取れる仕組みが必要です。企業がすでに行っている価値測定を使えば実現できます。",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "AIエージェントとの協働",
+          "body": "AIエージェントは、それぞれの知識を持ち寄るとき最も力を発揮します。そのためには、閉じたサービスの内側ではなく、提供事業者の壁を越えて、人間同士と同じように信頼を築けなければなりません。",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "共通点の可視化",
+          "body": "怒りをあおるほど得をし、誰と誰が合意しているかを見えにくくするメディアでも、意見の違いを公正に示しながら、共通点を浮かび上がらせるよう再設計できます。",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "デジタル民主主義",
+          "body": "活力あるコミュニティが生み出す正統性は、資源配分を実際に動かす力へ結びつく必要があります。そのために、参加と代表、そして地道な実装の仕組みを現代化します。",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "法・権利・自由",
+          "body": "AIは監視と執行のコストを下げ、行政府に力を偏らせます。均衡を取り戻すには、監督、異議申立て、上訴の側にも同等の力を築く必要があります。",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "職場・労働環境",
+          "body": "AIによる生産性向上を阻むのは、個人の作業速度ではありません。創造性と主体性の高まりを生かせるよう、組織そのものを再設計できるかどうかです。",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "研究開発",
+          "body": "AIモデルは、査読がさばける以上の速さで仮説や草稿を生み出しています。同じ道具を適切に使えば、真に独創的で分野の壁を越える研究を評価することもできます。",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "教育・学習",
+          "body": "AIは、教えること、学ぶこと、資格を認めることが一体だった従来の仕組みをほどきます。学校は、何を身につけるべきかを明確にし、一人ひとりが実際に何を理解しているかを証明しなければなりません。",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "労働市場の移行",
+          "body": "一社単位の大量解雇を前提につくられた雇用制度では、AIがもたらす継続的で細かな仕事の再編に対応できません。組織をまたいで使え、内容を検証できる資格証明と、必要なときにすぐ学び直せる仕組みが必要です。",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "独自の",
+        "主張"
+      ],
+      "title": "道具のかたちをした制度",
+      "lead": "社会が新しい汎用技術を取り込むとき、そこには一定のパターンがあります。うまくいく制度は、その時代を支配する思考様式の構造を映し出す傾向があります。",
+      "columns": [
+        "産業時代は、標準化された会計と組立ラインを軸に認知を組織し、それに見合う階層的・部門別の制度を生み出しました。株式会社、中央銀行、ブレトン・ウッズ体制のもとで設立された多国間機関です。インターネット時代は、層状のプロトコルと分散ルーティングを軸に認知を組織し、それに見合う層状で協調的な組織を生み出しました。標準化団体、通信協同組合、RFC（Request for Comments）という開かれた合意形成プロセスです。",
+        "ニューラルネットワークは、第三の文法を課します。事物を単一のラベルではなく、高次元空間における位置によって表します。異なる入力に、それぞれが他へどう影響するかに応じた重みをつけて組み合わせ、違いを平均で消さずに共通の構造を見つけます。各貢献が結果へ及ぼした影響をたどり、クレジットを配分します。",
+        "制度と技術が同じ文法を共有するとき、成果が現れます。共有しなければ、成果は停滞します。電化された工場は、蒸気動力工場の配置を保ったままでは、約20年にわたりほとんど成果をもたらしませんでした。電動機を分散配置する前提で工場を再設計して初めて、生産性が向上しました。",
+        "この連合が賭けているのは、AIを受け止められる制度とは、同じ原理を社会全体で実装した制度だということです。私たちの仕事は、それを意識的に築くことです。"
+      ],
+      "cta": {
+        "label": "論考全文を読む（近日公開）",
+        "href": "#papers",
+        "disabled": true,
+        "note": "近日公開"
+      }
+    },
+    "papers": {
+      "eyebrow": "論考",
+      "title": "論考を読む",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "Noema掲載",
+          "title": "What Humanity Needs to Flourish in the Next Decade",
+          "body": "この問題と提言を、より包括的に公に論じた論考です。三つの失敗パターン、大衆民主主義から台湾のデジタルガバナンスに至る歴史的先例、そして社会技術上の重要課題の全体像を扱います。まずはこちらから。",
+          "cta": {
+            "label": "Noemaで英文原文を読む",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "Science掲載",
+          "title": "In the Image of Their Tools",
+          "body": "この提言を支える明快な工学原則を示します。なぜ制度は、その時代の認知技術に似てくるのか。ニューラルネットワークのかたちで築くとは何を意味するのか。歴史的な記録と技術的な対応関係を備えた、独自の主張です。",
+          "cta": {
+            "label": "近日公開",
+            "href": "#",
+            "disabled": true,
+            "note": "近日公開"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "プレイブック",
+          "body": "What AI Can’t Buildは、これらの課題を脚本家やクリエイターのための物語の素材に変えるガイドです。各課題に、物語の核となる企画案と、ライターズルームですぐ使える問いを収録しています。",
+          "cta": {
+            "label": "プレイブックを開く（英語原文）",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "デッキ",
+          "body": "提言を支える要約プレゼンテーションです。",
+          "cta": {
+            "label": "スライドを表示（英語原文）",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "スライドビューア（英語原文）",
+        "closeLabel": "閉じる",
+        "previousLabel": "前のスライド",
+        "nextLabel": "次のスライド",
+        "downloadLabel": "英語PDFをダウンロード",
+        "openHint": "ページ内のスライドショーを開きます",
+        "statusTemplate": "スライド{current}/{total}",
+        "slideLabelTemplate": "{title}：スライド{current}/{total}",
+        "thumbnailRegionLabelTemplate": "{title}のスライド",
+        "thumbnailLabelTemplate": "スライド{number}へ"
+      }
+    },
+    "story": {
+      "title": "誰も語っていない、最大の物語",
+      "lead": "いま私たちが頼る制度も、かつては想像すらできないものでした。物語が人々の心を動かし、実現しようと立ち上がらせたからこそ生まれたのです。AIが人間社会に突きつける課題は、抽象的な政策論ではありません。これから10年で最も重要な物語の素材であり、その多くはまだ語られていません。",
+      "guideTitle": [
+        "その物語を語る人のために、",
+        "ガイドをつくりました。"
+      ],
+      "guideTerm": "What AI Can’t Build",
+      "guideRest": "は、それぞれの課題を、脚本家が使える物語の核とライターズルーム向けの問いに変えます。人生の場面ごとに違う自分でいる権利を求める女性。非の打ちどころのない作品に、同じく非の打ちどころのない反論を突きつけられるドキュメンタリー作家。豊かな価値を生む、不可欠でありながら完全に匿名のデータ提供者。",
+      "guideCta": {
+        "label": "プレイブックを開く（英語原文）",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "これらの着想を、テレビ脚本家100人が集う場へ持ち込んだ様子をご覧ください。",
+      "videoCta": {
+        "label": "動画を見る",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "課題を見る",
+      "title": "物語のつくり手のための迅速助成",
+      "body": [
+        "私たちは独立したクリエイターとも協力し、これらの課題を一つずつ、誰にでも伝わる物語に変えています。各ショートフィルムは、オンラインで人間だと証明する仕組みから、AIの学習データを提供した人に正当な対価を払う仕組みまで、一つの問題を取り上げ、なぜ重要なのか、解決した姿はどのようなものかを示します。"
+      ],
+      "fundingLine": "こうしたアイデアを作品に織り込む語り手へ、資金を提供します。",
+      "panelBody": [
+        "文章、映像、ゲームなど、人の目に触れる作品をつくる方が、ここにある課題を取り入れたり、新たに読み替えたりするなら、ぜひ支援したいと考えています。",
+        "政策を説明する必要はありません。何が問われているのかを、人々に感じてもらえれば十分です。"
+      ],
+      "filmsNote": "最初のフィルムは近日公開予定です。",
+      "applyCta": {
+        "label": "助成金に申し込む",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "連合",
+      "lead": "この取り組みは、普段は同じテーブルを囲まない人々によって形づくられました。",
+      "body": "AI研究者と社会科学者、テクノロジストと公務員、資金提供者と市民社会の担い手など、地域も政治的立場もさまざまです。その幅の広さは偶然ではありません。現実の違いを抑え込まず、そのなかに共通の基盤を見いだす。私たちが提唱するこの方法が、取り組みそのものを生み出しました。",
+      "eventsTitle": "今後のイベント",
+      "events": [
+        {
+          "id": "rxc-salon-2026-08",
+          "startsAt": "2026-08-24T20:00:00.000Z",
+          "endsAt": "2026-08-24T21:00:00.000Z",
+          "when": "2026年8月24日 · 太平洋時間午後1時 · 日本時間8月25日午前5時 · オンライン・1時間",
+          "title": "リバース・アラインメント・サロン",
+          "body": "RadicalxChangeが、Glen Weyl、James Evans、Melissa Valentine、Jess Scullyとともに、短い発表・質疑・小グループ討論でリバース・アラインメントを開きます。共著者はブレイクアウトの進行にもご参加ください。",
+          "cta": {
+            "label": "Lumaで申し込む",
+            "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        }
+      ],
+      "sectors": [
+        "研究",
+        "テクノロジー",
+        "政府",
+        "フィランソロピー",
+        "市民社会",
+        "ビジネス",
+        "エンターテインメント",
+        "メディア"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "RadicalxChange Foundation、共同創業者",
+          "image": "person-glen-weyl",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "台湾元デジタル大臣",
+          "image": "person-audrey-tang",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "The Dais、パートナーシップ統括",
+          "image": "person-jake-hirsch-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "Patrick J. McGovern Foundation、代表",
+          "image": "person-vilas-dhar",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "Stanford University、准教授",
+          "image": "person-melissa-valentine",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Googleフェロー／UC Berkeley名誉教授",
+          "image": "person-david-patterson",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "Harvard Business School、准教授",
+          "image": "person-tiona-zuzul",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "RadicalxChange Foundation、エグゼクティブディレクター",
+          "image": "person-jess-scully",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "OpenAI、戦略的未来担当責任者",
+          "image": "person-dean-ball",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "Pathos Labs、創業者兼エグゼクティブディレクター",
+          "image": "person-romain-vakilitabar",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "Office of Eric Schmidt、研究統括",
+          "image": "person-andrew-sorota",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "Foundation for American Innovation、フェロー",
+          "image": "person-samuel-roland",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "Microsoft Research、研究所長",
+          "image": "person-chris-white",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "Project Liberty、代表",
+          "image": "person-tomicah-tillemann",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "Minerva Fund、創業者兼代表",
+          "image": "person-galen-hines-pierce",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "元ホワイトハウスAI顧問",
+          "image": "person-ben-buchanan",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "University of Chicago、教授",
+          "image": "person-james-evans",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "Harvard College、学部長",
+          "image": "person-david-deming",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "Keio University、特任教授",
+          "image": "person-ken-suzuki",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "Google、VP兼フェロー",
+          "image": "person-blaise-aguera",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "Harvard University、教授",
+          "image": "person-danielle-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "Collective Intelligence Project、共同創業者",
+          "image": "person-divya-siddarth",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "O’Reilly Media、創業者兼CEO",
+          "image": "person-tim-oreilly",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "Ex/Ante、創業者兼マネージングパートナー",
+          "image": "person-zoe-weinberg",
+          "sector": "Business"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Civic.AI、研究員",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
+        }
+      ],
+      "directory": {
+        "searchLabel": "連盟を検索",
+        "searchPlaceholder": "名前・役割・所属で検索",
+        "sectorLabel": "分野",
+        "sectorAll": "すべての分野",
+        "sortLabel": "並び替え",
+        "sortOptions": [
+          {
+            "value": "default",
+            "label": "デフォルト順"
+          },
+          {
+            "value": "name",
+            "label": "名前 A–Z"
+          },
+          {
+            "value": "name-desc",
+            "label": "名前 Z–A"
+          },
+          {
+            "value": "sector",
+            "label": "分野"
+          }
+        ],
+        "countTemplate": "{shown} / {total} 件",
+        "empty": "条件に一致する人がいません。",
+        "keyboardHint": "フィルタで絞り込み。入力と同時に結果が更新されます。"
+      }
+    },
+    "join": {
+      "eyebrow": "連合に参加する",
+      "title": "名前を連ねる",
+      "lead": "社会の仕組みにも、アルゴリズムと同じ野心を注いで築くべきだと考えるなら、賛同者として名を連ね、この取り組みをあなたの分野へ広げてください。",
+      "body": "Reverse Alignmentは、一つのプロジェクトではありません。あらゆる分野にまたがる未来への賭けを束ねたものです。これを支え続けられるのは、幅広い連合だけです。",
+      "cta": {
+        "label": "連盟に参加する",
+        "href": "https://reversealignment.jp/join/",
+        "external": true
+      },
+      "mode": "cta",
+      "form": {
+        "id": "join-form",
+        "action": "api",
+        "method": "post",
+        "mode": "live",
+        "submitLabel": "送信",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "氏名",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name",
+            "maxLength": 120
+          },
+          {
+            "name": "affiliation",
+            "label": "所属",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization",
+            "maxLength": 160
+          },
+          {
+            "name": "sector",
+            "label": "分野",
+            "type": "select",
+            "required": true,
+            "options": [
+              {
+                "value": "Research",
+                "label": "研究"
+              },
+              {
+                "value": "Technology",
+                "label": "テクノロジー"
+              },
+              {
+                "value": "Government",
+                "label": "行政"
+              },
+              {
+                "value": "Philanthropy",
+                "label": "フィランソロピー"
+              },
+              {
+                "value": "Civil Society",
+                "label": "市民社会"
+              },
+              {
+                "value": "Business",
+                "label": "ビジネス"
+              },
+              {
+                "value": "Entertainment",
+                "label": "エンターテインメント"
+              },
+              {
+                "value": "Media",
+                "label": "メディア"
+              }
+            ]
+          },
+          {
+            "name": "contribution",
+            "label": "次の形でも貢献したい…",
+            "type": "select",
+            "required": false,
+            "options": [
+              {
+                "value": "Lend your name to the statement",
+                "label": "声明に名前を連ねる"
+              },
+              {
+                "value": "Bring a challenge into your own organization or sector",
+                "label": "自分の組織や分野に課題を持ち込む"
+              },
+              {
+                "value": "Contribute expertise, writing, or research",
+                "label": "専門知・執筆・研究で貢献する"
+              },
+              {
+                "value": "Help fund the work",
+                "label": "資金面で支援する"
+              },
+              {
+                "value": "Stay informed as the coalition grows",
+                "label": "最新情報を受け取る"
+              },
+              {
+                "value": "All of the above",
+                "label": "すべて"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "label": "公開リンク（任意）",
+            "type": "url",
+            "required": false,
+            "autocomplete": "url",
+            "maxLength": 300,
+            "placeholder": "https://"
+          },
+          {
+            "name": "statement",
+            "label": "短いメモ（任意）",
+            "type": "textarea",
+            "required": false,
+            "maxLength": 500,
+            "placeholder": "参加の理由を一两行で。"
+          }
+        ],
+        "honeypotName": "company_website",
+        "errorMessage": "ハイライトされた項目を修正してください。",
+        "networkError": "サーバーに接続できません。接続を確認して再試行してください。",
+        "successTitle": "審査キューに入りました",
+        "successMessage": "メールを確認しました。プロフィールは審査後に公開されます。自動公開はしません。",
+        "updatesTitle": "最新情報リストに登録しました",
+        "updatesMessage": "ありがとうございます — 最新情報リストに入りました。公開ディレクトリには掲載されません。",
+        "pendingTitle": "ありがとうございます — 審査中",
+        "rateLimited": "試行が多すぎます。しばらくしてから再試行してください。",
+        "duplicateEmail": "このメールは既に登録済み、または審査中です。",
+        "moderationHold": "モデレーターが公開前に確認します。",
+        "privacyNote": "Cloudflare Access がメールアドレスを確認済みです。連盟の最新情報と審査のため非公開で保存します。公開ディレクトリにメール・貢献内容・IP は出しません。写真は任意です。ブラウザ内でハーフトーン処理し、処理後の画像だけをアップロードします — 第三者の画像サービスは呼び出さず、元の写真は端末から出ません。",
+        "avatarNote": "公開ポートレートは、まず氏名からブラウザで生成するモノグラムです。写真を追加すると、端末上で連盟のハーフトーンポートレートに変換します — 元のファイルはアップロードしません。",
+        "avatarPreviewLabel": "ディレクトリプレビュー",
+        "photo": {
+          "label": "ポートレート写真（任意）",
+          "hint": "写真はブラウザ内で連盟のハーフトーンポートレートに変換されます。アップロードされるのは処理後の画像だけで、元のファイルは端末から出ません。",
+          "removeLabel": "写真を削除",
+          "processingLabel": "ポートレートを処理中…",
+          "readyLabel": "ハーフトーンポートレートの準備ができました",
+          "errorMessage": "この画像は処理できませんでした。JPEG・PNG・WebP・AVIF の写真をお試しください。",
+          "uploadFailed": "ポートレートを添付できませんでした。送信は完了しています — モデレーターが後で追加できます。",
+          "storeFailed": "ポートレートを保存できなかったため、ディレクトリではモノグラムを使用します。"
+        }
+      }
+    }
+  },
+  "es": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "Estamos desarrollando IA más rápido de lo que estamos construyendo la sociedad para recibirla. La alineación inversa es el rediseño deliberado de instituciones, normas, competencias y gobernanza para que las sociedades puedan integrar la IA de forma segura y repartir ampliamente sus beneficios.",
+      "ogImage": "/assets/images/og-image.jpg"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "links": [
+        {
+          "id": "idea",
+          "label": "La idea",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "Lo que hay que construir",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "La tesis",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "Lee el argumento",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "Ayudas rápidas",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "La coalición",
+          "href": "#coalition"
+        }
+      ],
+      "coalition": {
+        "label": "COALICIÓN",
+        "href": "#coalition"
+      }
+    },
+    "hero": {
+      "headline": "Estamos desarrollando IA más rápido de lo que estamos construyendo la sociedad para recibirla.",
+      "body": "Por cada dólar destinado a hacer la IA más capaz, solo una fracción se invierte en las instituciones, las competencias y las normas que determinan si sus beneficios se comparten o se dilapidan. Esa brecha es una decisión. Somos una coalición trabajando para cerrarla.",
+      "primaryCta": {
+        "label": "Explora la coalición",
+        "href": "#coalition"
+      },
+      "secondaryCta": {
+        "label": "Lee el argumento",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "La idea / Introducción",
+      "title": "La otra cara de la alineación",
+      "lead": "La mayor parte del esfuerzo y el capital en IA se destinan a dos tareas: hacer los sistemas más capaces y alinearlos con los valores humanos.",
+      "body": [
+        "Ambas son fundamentales. Sin embargo, incluso un sistema perfectamente alineado resultará insuficiente o causará daños reales si se despliega en economías, gobiernos y sistemas de información que no estén preparados para integrarlo."
+      ],
+      "definitionLead": "A ese trabajo descuidado lo llamamos ",
+      "definitionTerm": "alineación inversa",
+      "definitionRest": ": el rediseño deliberado de instituciones, normas, competencias y gobernanza para que las sociedades puedan integrar la IA de forma segura y repartir ampliamente sus beneficios.",
+      "historyTitle": "Este no es un tipo nuevo de problema.",
+      "historyBody": [
+        "La industrialización, la electrificación e internet exigieron décadas de invención institucional antes de que sus beneficios llegaran. Las empresas de la línea de montaje se parecían a líneas de montaje. Las instituciones que gobernaron internet se parecían a internet.",
+        "La historia sugiere que estas adaptaciones no son complementos opcionales del cambio tecnológico. Son las condiciones de su éxito."
+      ],
+      "failuresIntro": [
+        "Si no se abordan,",
+        "el desajuste produce tres fallos predecibles."
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "Productividad sin prosperidad",
+          "body": "El trabajo se reorganiza más rápido de lo que la gente puede recapacitarse o desplazarse, y las ganancias nunca llegan a la mayoría."
+        },
+        {
+          "number": "2",
+          "title": "Ejecución sin verificación",
+          "body": "A medida que el coste de generar texto, imágenes y código se desploma, el recurso escaso se vuelve la capacidad humana de verificar, atribuir y respaldar lo que se produce."
+        },
+        {
+          "number": "3",
+          "title": "Capacidad sin contrapeso",
+          "body": "Las mismas herramientas que hacen más capaces a las instituciones pueden concentrar poder, a menos que los derechos de apelación y contestación avancen al mismo ritmo."
+        }
+      ],
+      "failuresClose": [
+        "Ninguno de estos fallos es inevitable.",
+        "Cada uno es consecuencia del abandono, y el abandono puede revertirse."
+      ]
+    },
+    "building": {
+      "eyebrow": "Resumen de recomendaciones",
+      "title": "Lo que hay que construir",
+      "lead": "El florecimiento humano en la próxima década depende de un conjunto de grandes retos sociotécnicos.",
+      "summary": "Inversiones grandes y coordinadas en la dimensión humana e institucional de la transformación de la IA. Abarcan identidad, privacidad, mercados, gobernanza, trabajo y conocimiento. Comparten una arquitectura y un método; ningún sector puede resolverlos por sí solo.",
+      "hoverHint": "*Pasa el cursor para leer más",
+      "clickHint": "*Haz clic para leer más",
+      "challengesIntro": "El florecimiento humano en la próxima década depende de un conjunto de grandes retos sociotécnicos.",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "Identidad",
+          "body": "Cuando los documentos falsos, las biometrías y las personas sintéticas se aproximan al coste cero, necesitamos formas de demostrar que hay una persona humana, real y única presente, sin revelar quién es.",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "Privacidad",
+          "body": "La IA le da a todo el mundo un detective personal; la respuesta no es el secreto absoluto ni la exposición total, sino herramientas que permitan revelar exactamente lo que cada situación exige y nada más.",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "Procedencia",
+          "body": "Cuando un falsificación convincente no cuesta nada producir, saber de dónde proviene el contenido se vuelve esencial para una realidad compartida.",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "Valor de los datos",
+          "body": "El registro humano que entrena estos modelos se obtuvo casi sin coste; las personas que lo crearon merecen un mercado real y una compensación duradera, algo que las propias mediciones de las empresas ya hacen posible.",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "Colaboración agéntica",
+          "body": "Los agentes de IA son más útiles cuando ponen en común lo que cada uno sabe, y eso exige confianza construida como la construyen las personas: entre proveedores, no dentro de jardines amurallados.",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "Construcción colectiva de sentido",
+          "body": "Los medios que premian la indignación y ocultan quién está de acuerdo con quién pueden rediseñarse para visibilizar el terreno común sin dejar de representar lealmente el desacuerdo real.",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "Democracia",
+          "body": "La autoridad que generan las comunidades prósperas tiene que traducirse en poder real sobre los recursos, lo que significa modernizar la participación, la representación y el trabajo poco glamoroso de la implementación.",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "Ley y libertades",
+          "body": "La IA reduce el coste de la vigilancia y la aplicación de la ley de formas que favorecen al poder ejecutivo; restaurar el equilibrio significa construir una capacidad equivalente de supervisión, contestación y recurso.",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "Lugar de trabajo",
+          "body": "El cuello de botella para las ganancias de productividad de la IA no es la velocidad individual, sino si las organizaciones pueden rediseñarse para absorber un torrente de creatividad y agencia.",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "Investigación",
+          "body": "Los modelos ya generan hipótesis y borradores más rápido de lo que la revisión por pares puede clasificarlos, y las mismas herramientas, bien orientadas, pueden recompensar el trabajo genuinamente original que rompe silos.",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "Educación",
+          "body": "La IA deshace el viejo paquete de enseñanza, aprendizaje y acreditación, obligando a las escuelas a nombrar las competencias que importan y certificar lo que la gente sabe de verdad.",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "Transición laboral",
+          "body": "Un sistema laboral pensado para despidos masivos en un solo empleador no puede gestionar la reconfiguración continua y fina del trabajo que produce la IA; necesita credenciales portables e interpretables y recapacitación en tiempo real.",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "La tesis",
+        "distintiva"
+      ],
+      "title": "Instituciones a imagen de sus herramientas",
+      "lead": "Hay un patrón en la forma en que las sociedades absorben una nueva tecnología de uso general. La institución que triunfa tiende a reflejar la arquitectura de la forma de pensar dominante de su época.",
+      "columns": [
+        "La era industrial organizó la cognición en torno a la contabilidad estandarizada y la cadena de montaje, dando lugar a instituciones jerárquicas y divisionales: la corporación, el banco central y los organismos multilaterales de Bretton Woods. La era de internet organizó la cognición en torno a protocolos por capas y enrutamiento distribuido, generando organismos cooperativos y estructurados: las organizaciones de estándares, las cooperativas de mensajería y el proceso abierto de los Request for Comments.",
+        "Las redes neuronales imponen una tercera gramática. Representan la información mediante su posición en un espacio latente rico, en lugar de mediante una etiqueta única. Combinan entradas diversas ponderando la incidencia de cada una sobre las demás, hallando una estructura común sin anular las diferencias. Atribuyen el mérito rastreando cada contribución hasta su efecto final.",
+        "Cuando la institución y la tecnología comparten una gramática, las ganancias llegan. Cuando no, se estancan. Las fábricas electrificadas apenas rindieron durante casi dos décadas mientras conservaron la disposición de la planta de vapor; la productividad llegó solo cuando se rediseñaron en torno al motor eléctrico distribuido.",
+        "La apuesta de esta coalición es que las instituciones capaces de absorber la IA serán las que instancien estos mismos movimientos a escala de la sociedad. La tarea es construirlas deliberadamente."
+      ],
+      "cta": {
+        "label": "Lee el argumento completo — próximamente",
+        "href": "#papers",
+        "disabled": true,
+        "note": "Próximamente"
+      }
+    },
+    "papers": {
+      "eyebrow": "Los artículos",
+      "title": "Lee el argumento",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "En Noema —",
+          "title": "«Lo que la humanidad necesita para florecer en la próxima década»",
+          "body": "La declaración pública y más extensa del problema y la agenda: los tres modos de fallo, los precedentes históricos desde la democracia de masas hasta la gobernanza digital de Taiwán, y el conjunto completo de grandes retos sociotécnicos. El punto de partida.",
+          "cta": {
+            "label": "Leer el original en inglés en Noema",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "En Science —",
+          "title": "«A imagen de sus herramientas»",
+          "body": "El principio de ingeniería nítido detrás de la agenda: por qué las instituciones llegan a parecerse a la tecnología cognitiva de su época y qué significa construir con la forma de una red neuronal. La tesis distintiva, con el registro histórico y el mapeo técnico.",
+          "cta": {
+            "label": "Próximamente",
+            "href": "#",
+            "disabled": true,
+            "note": "Próximamente"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "El manual",
+          "body": "What AI Can't Build, una guía para narradores que convierte estos retos en material dramático para guionistas y creadores, con un pitch de alto concepto y un prompt de sala de guionistas para cada uno.",
+          "cta": {
+            "label": "Abrir el manual (en inglés)",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "La presentación",
+          "body": "La presentación resumida detrás de las recomendaciones.",
+          "cta": {
+            "label": "Ver la presentación (en inglés)",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "Visor de presentaciones",
+        "closeLabel": "Cerrar",
+        "previousLabel": "Diapositiva anterior",
+        "nextLabel": "Diapositiva siguiente",
+        "downloadLabel": "Descargar el PDF en inglés",
+        "openHint": "abre una presentación en la página",
+        "statusTemplate": "Diapositiva {current} de {total}",
+        "slideLabelTemplate": "{title}, diapositiva {current} de {total}",
+        "thumbnailRegionLabelTemplate": "Diapositivas de {title}",
+        "thumbnailLabelTemplate": "Ir a la diapositiva {number}"
+      }
+    },
+    "story": {
+      "title": "La historia más grande que nadie está contando",
+      "lead": "Cada institución en la que confiamos fue alguna vez inimaginable, hasta que las historias hicieron que suficiente gente se preocupara para construirla. Los retos humanos de la IA no son abstracciones de política. Son la materia prima de las historias más importantes de la próxima década, y la mayoría aún no se han contado.",
+      "guideTitle": [
+        "Hicimos una guía para",
+        "las personas que pueden contarlas."
+      ],
+      "guideTerm": "What AI Can’t Build",
+      "guideRest": " toma cada reto y entrega a los guionistas un pitch de alto concepto y un conjunto de prompts para llevar a la sala de guionistas: la mujer que lucha por el derecho a ser personas distintas en distintas partes de su vida, el documentalista cuya película irrefutable se encuentra con una refutación igualmente irrefutable, el contribuidor de datos que es rico, esencial y completamente anónimo.",
+      "guideCta": {
+        "label": "Abrir el manual (en inglés)",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "Mira cómo llevamos estas ideas a una sala con 100 guionistas de televisión.",
+      "videoCta": {
+        "label": "Ver el vídeo",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "Mira los retos",
+      "title": "Ayudas rápidas para narradores",
+      "body": [
+        "También trabajamos con creadores independientes para dar vida a estos retos, uno a uno, en lenguaje llano. Cada cortometraje toma un solo problema, desde demostrar que eres humano en línea hasta pagar justamente a las personas por los datos que entrenan la IA, y muestra por qué importa y cómo sería una solución."
+      ],
+      "fundingLine": "Financiamos a narradores que tejen estas ideas en su trabajo.",
+      "panelBody": [
+        "Si escribes, ruedas, desarrollas juegos o creas cosas que la gente ve, y quieres incorporar o reinterpretar cualquiera de estos retos, queremos apoyarte.",
+        "No tienes que explicar la política. Solo tienes que hacer que la gente sienta lo que está en juego."
+      ],
+      "filmsNote": "Primeros cortometrajes próximamente.",
+      "applyCta": {
+        "label": "Solicita una ayuda",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "La coalición",
+      "lead": "Este trabajo lo moldearon personas que rara vez se sientan en la misma mesa.",
+      "body": "Investigadores de IA y científicos sociales, tecnólogos y servidores públicos, financiadores y constructores cívicos, de distintas regiones y perspectivas políticas. Esa amplitud no es incidental. El método que defendemos —encontrar puntos de encuentro entre diferencias reales sin anularlas— es precisamente el método que ha dado lugar a este trabajo.",
+      "eventsTitle": "Próximos eventos",
+      "events": [
+        {
+          "id": "rxc-salon-2026-08",
+          "startsAt": "2026-08-24T20:00:00.000Z",
+          "endsAt": "2026-08-24T21:00:00.000Z",
+          "when": "24 de agosto de 2026 · 1 p. m. del Pacífico · 4 p. m. del Este · 5 p. m. Buenos Aires · 10 p. m. CEST · 6 a. m. Sídney (día siguiente) · una hora, en línea",
+          "title": "Un salón sobre Reverse Alignment",
+          "body": "RadicalxChange reúne a Glen Weyl, James Evans, Melissa Valentine y Jess Scully para una breve presentación, preguntas abiertas y discusiones en grupos pequeños sobre reverse alignment. Se invita a las coautoras y coautores a facilitar las mesas de trabajo.",
+          "cta": {
+            "label": "Regístrate en Luma",
+            "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        }
+      ],
+      "sectors": [
+        "Investigación",
+        "Tecnología",
+        "Gobierno",
+        "Filantropía",
+        "Sociedad civil",
+        "Empresa",
+        "Entretenimiento",
+        "Medios"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "Cofundador, RadicalxChange Foundation",
+          "image": "person-glen-weyl",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "Exministra digital, Taiwán",
+          "image": "person-audrey-tang",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "Director de Alianzas, The Dais",
+          "image": "person-jake-hirsch-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "Presidente, Patrick J. McGovern Foundation",
+          "image": "person-vilas-dhar",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "Profesora asociada, Universidad Stanford",
+          "image": "person-melissa-valentine",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Google Fellow; profesor emérito, UC Berkeley",
+          "image": "person-david-patterson",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "Profesora asociada, Harvard Business School",
+          "image": "person-tiona-zuzul",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "Directora ejecutiva, RadicalxChange Foundation",
+          "image": "person-jess-scully",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "Director de Futuros Estratégicos, OpenAI",
+          "image": "person-dean-ball",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "Fundador y director ejecutivo, Pathos Labs",
+          "image": "person-romain-vakilitabar",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "Director de Investigación, Office of Eric Schmidt",
+          "image": "person-andrew-sorota",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "Becario, Foundation for American Innovation",
+          "image": "person-samuel-roland",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "Director de laboratorio, Microsoft Research",
+          "image": "person-chris-white",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "Presidente, Project Liberty",
+          "image": "person-tomicah-tillemann",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "Fundador y director, Minerva Fund",
+          "image": "person-galen-hines-pierce",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "Exasesor de IA de la Casa Blanca",
+          "image": "person-ben-buchanan",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "Profesor, Universidad de Chicago",
+          "image": "person-james-evans",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "Decano, Harvard College",
+          "image": "person-david-deming",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "Profesor de proyecto, Universidad Keio",
+          "image": "person-ken-suzuki",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "VP y Fellow, Google",
+          "image": "person-blaise-aguera",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "Profesora, Universidad de Harvard",
+          "image": "person-danielle-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "Cofundadora, Collective Intelligence Project",
+          "image": "person-divya-siddarth",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "Fundador y CEO, O'Reilly Media",
+          "image": "person-tim-oreilly",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "Fundadora y socia directora, Ex/Ante",
+          "image": "person-zoe-weinberg",
+          "sector": "Business"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Investigador, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
+        }
+      ],
+      "directory": {
+        "searchLabel": "Buscar en la coalición",
+        "searchPlaceholder": "Buscar por nombre, rol o afiliación",
+        "sectorLabel": "Sector",
+        "sectorAll": "Todos los sectores",
+        "sortLabel": "Ordenar",
+        "sortOptions": [
+          {
+            "value": "default",
+            "label": "Orden predeterminado"
+          },
+          {
+            "value": "name",
+            "label": "Nombre A–Z"
+          },
+          {
+            "value": "name-desc",
+            "label": "Nombre Z–A"
+          },
+          {
+            "value": "sector",
+            "label": "Sector"
+          }
+        ],
+        "countTemplate": "Mostrando {shown} de {total}",
+        "empty": "Nadie coincide con estos filtros.",
+        "keyboardHint": "Usa los filtros; los resultados se actualizan al escribir."
+      }
+    },
+    "closing": {
+      "lines": [
+        "Es hora de construir con la misma ambición",
+        "para nuestros sistemas sociales",
+        "que para nuestros algoritmos."
+      ]
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "Quiénes somos",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "La coalición",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "La misión",
+          "links": [
+            {
+              "id": "idea",
+              "label": "La otra cara de la alineación",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "Lo que hay que construir",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "Instituciones a imagen de sus herramientas",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "Actúa",
+          "links": [
+            {
+              "id": "papers",
+              "label": "Lee el argumento",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "Ayudas rápidas para narradores",
+              "href": "#grants"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 Todos los derechos reservados."
+    },
+    "a11y": {
+      "skipToContent": "Saltar al contenido",
+      "mainNav": "Navegación principal",
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "externalLink": "se abre en una pestaña nueva",
+      "heroMotionLabel": "Campo gravitatorio animado",
+      "challengeGrid": "Grandes retos sociotécnicos",
+      "coalitionGrid": "Miembros de la coalición",
+      "directoryControls": "Filtros y orden del directorio",
+      "directoryResults": "Miembros filtrados de la coalición",
+      "formErrors": "Corrige los errores en este formulario.",
+      "formStatus": "Estado del formulario"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image.jpg",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png"
+    },
+    "notFound": {
+      "title": "No encontrado",
+      "heading": "Página no encontrada",
+      "body": "Esa URL no forma parte de este sitio.",
+      "backLabel": "Volver a Reverse Alignment",
+      "code": "404"
+    },
+    "join": {
+      "eyebrow": "Únete a la coalición",
+      "title": "Añade tu nombre",
+      "lead": "Si crees que debemos construir para nuestros sistemas sociales con la misma ambición con que construimos para nuestros algoritmos, aporta tu nombre y ayuda a llevar este trabajo a tu propio campo.",
+      "body": "La alineación inversa no es un solo proyecto. Es una cartera de apuestas, en cada sector, que solo una coalición amplia puede sostener.",
+      "cta": {
+        "label": "Unirse en inglés",
+        "href": "https://reversealignment.ai/join/",
+        "external": true
+      },
+      "mode": "cta",
+      "form": {
+        "id": "join-form",
+        "action": "api",
+        "method": "post",
+        "mode": "cta-only",
+        "submitLabel": "Enviar",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Nombre completo",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name",
+            "maxLength": 120
+          },
+          {
+            "name": "affiliation",
+            "label": "Afiliación",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization",
+            "maxLength": 160
+          },
+          {
+            "name": "sector",
+            "label": "Sector",
+            "type": "select",
+            "required": true,
+            "options": [
+              {
+                "value": "Research",
+                "label": "Investigación"
+              },
+              {
+                "value": "Technology",
+                "label": "Tecnología"
+              },
+              {
+                "value": "Government",
+                "label": "Gobierno"
+              },
+              {
+                "value": "Philanthropy",
+                "label": "Filantropía"
+              },
+              {
+                "value": "Civil Society",
+                "label": "Sociedad civil"
+              },
+              {
+                "value": "Business",
+                "label": "Empresa"
+              },
+              {
+                "value": "Entertainment",
+                "label": "Entretenimiento"
+              },
+              {
+                "value": "Media",
+                "label": "Medios"
+              }
+            ]
+          },
+          {
+            "name": "contribution",
+            "label": "También me gustaría contribuir…",
+            "type": "select",
+            "required": false,
+            "options": [
+              {
+                "value": "Lend your name to the statement",
+                "label": "Prestar mi nombre a la declaración"
+              },
+              {
+                "value": "Bring a challenge into your own organization or sector",
+                "label": "Llevar un reto a mi organización o sector"
+              },
+              {
+                "value": "Contribute expertise, writing, or research",
+                "label": "Aportar experiencia, escritura o investigación"
+              },
+              {
+                "value": "Help fund the work",
+                "label": "Ayudar a financiar el trabajo"
+              },
+              {
+                "value": "Stay informed as the coalition grows",
+                "label": "Mantener me informado"
+              },
+              {
+                "value": "All of the above",
+                "label": "Todo lo anterior"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "label": "Enlace público (opcional)",
+            "type": "url",
+            "required": false,
+            "autocomplete": "url",
+            "maxLength": 300,
+            "placeholder": "https://"
+          },
+          {
+            "name": "statement",
+            "label": "Nota breve (opcional)",
+            "type": "textarea",
+            "required": false,
+            "maxLength": 500,
+            "placeholder": "Una o dos frases sobre por qué te unes."
+          }
+        ],
+        "honeypotName": "company_website",
+        "errorMessage": "Corrige los campos marcados.",
+        "networkError": "No pudimos contactar al servidor. Inténtalo de nuevo.",
+        "successTitle": "Estás en la cola de revisión",
+        "successMessage": "Correo verificado. Tu perfil aparecerá tras moderación — nunca de forma automática.",
+        "updatesTitle": "Estás en la lista de novedades",
+        "updatesMessage": "Gracias — estás en la lista de novedades. Esto no pone un perfil en el directorio público.",
+        "pendingTitle": "Gracias — en revisión",
+        "rateLimited": "Demasiados intentos. Espera unos minutos.",
+        "duplicateEmail": "Este correo ya está en la lista o en revisión.",
+        "moderationHold": "Un moderador revisará antes de publicar.",
+        "privacyNote": "Guardamos tu correo de forma privada para novedades de la coalición y moderación. El directorio público no muestra correo, contribuciones ni IP. Retratos locales cuando hay foto; si no, un monograma propio generado del nombre — sin terceros ni subidas.",
+        "avatarNote": "Tu retrato público es un monograma determinista del nombre en el navegador. Sin subida, sin Gravatar, sin archivo de imagen.",
+        "avatarPreviewLabel": "Vista previa del directorio"
+      }
+    }
+  },
+  "pt-br": {
+    "meta": {
+      "title": "Reverse Alignment",
+      "description": "Estamos desenvolvendo IA mais rápido do que preparamos a sociedade para recebê-la. Alinhamento reverso é a reformulação intencional de instituições, normas, competências e governança para que as sociedades possam absorver a IA com segurança e compartilhar amplamente seus ganhos.",
+      "ogImage": "/assets/images/og-image.jpg"
+    },
+    "brand": {
+      "name": "Reverse Alignment",
+      "shortName": "Reverse Alignment",
+      "mark": "Reverse",
+      "rest": "Alignment"
+    },
+    "nav": {
+      "links": [
+        {
+          "id": "idea",
+          "label": "A ideia",
+          "href": "#idea"
+        },
+        {
+          "id": "building",
+          "label": "O que precisa ser construído",
+          "href": "#building"
+        },
+        {
+          "id": "claim",
+          "label": "A tese",
+          "href": "#claim"
+        },
+        {
+          "id": "papers",
+          "label": "Leia o argumento",
+          "href": "#papers"
+        },
+        {
+          "id": "grants",
+          "label": "Fast-grants",
+          "href": "#grants"
+        },
+        {
+          "id": "coalition",
+          "label": "A coalizão",
+          "href": "#coalition"
+        }
+      ],
+      "coalition": {
+        "label": "COALIZÃO",
+        "href": "#coalition"
+      }
+    },
+    "hero": {
+      "headline": "Estamos desenvolvendo IA mais rápido do que preparamos a sociedade para recebê-la.",
+      "body": "Para cada dólar investido em tornar a IA mais capaz, apenas uma fração é destinada às instituições, competências e normas que determinam se seus benefícios serão compartilhados ou desperdiçados. Essa lacuna é uma escolha. Somos uma coalizão que trabalha para fechá-la.",
+      "primaryCta": {
+        "label": "Conheça a coalizão",
+        "href": "#coalition"
+      },
+      "secondaryCta": {
+        "label": "Leia o argumento",
+        "href": "#papers"
+      }
+    },
+    "idea": {
+      "eyebrow": "A ideia / Introdução",
+      "title": "O outro lado do alinhamento",
+      "lead": "A maior parte dos esforços e do capital em IA se concentra em duas tarefas: tornar os sistemas mais capazes e alinhá-los aos valores humanos.",
+      "body": [
+        "Ambas são importantes. Mas mesmo um sistema perfeitamente alinhado ficará aquém do esperado — ou causará danos reais — se for inserido em economias, governos e sistemas de informação despreparados para recebê-lo."
+      ],
+      "definitionLead": "Chamamos esse trabalho negligenciado de ",
+      "definitionTerm": "alinhamento reverso",
+      "definitionRest": ": a reformulação intencional de instituições, normas, competências e governança para que as sociedades possam absorver a IA com segurança e compartilhar amplamente seus ganhos.",
+      "historyTitle": "Esse tipo de problema não é novo.",
+      "historyBody": [
+        "A industrialização, a eletrificação e a internet exigiram, cada uma, décadas de inovação institucional antes que seus benefícios se concretizassem. As empresas da era da linha de montagem se pareciam com linhas de montagem. As instituições que governavam a internet se pareciam com a internet.",
+        "A história indica que essas adaptações não são complementos opcionais da mudança tecnológica. Elas são as condições para seu sucesso."
+      ],
+      "failuresIntro": [
+        "Se não for enfrentado,",
+        "esse descompasso produz três falhas previsíveis."
+      ],
+      "failures": [
+        {
+          "number": "1",
+          "title": "Produtividade sem prosperidade",
+          "body": "O trabalho é reorganizado mais rápido do que as pessoas conseguem se requalificar ou se deslocar, e os ganhos nunca chegam à maioria delas."
+        },
+        {
+          "number": "2",
+          "title": "Execução sem verificação",
+          "body": "À medida que o custo de gerar textos, imagens e código despenca, o recurso escasso passa a ser a capacidade humana de verificar, atribuir autoria e se responsabilizar pelo que é produzido."
+        },
+        {
+          "number": "3",
+          "title": "Capacidade sem freio",
+          "body": "As mesmas ferramentas que tornam as instituições mais capazes podem concentrar poder, a menos que os direitos de recurso e contestação avancem junto com elas."
+        }
+      ],
+      "failuresClose": [
+        "Nada disso é inevitável.",
+        "Cada uma dessas falhas é consequência da negligência — e a negligência pode ser revertida."
+      ]
+    },
+    "building": {
+      "eyebrow": "Resumo das recomendações",
+      "title": "O que precisa ser construído",
+      "lead": "O florescimento humano na próxima década depende de um conjunto de grandes desafios sociotécnicos.",
+      "summary": "Investimentos amplos e coordenados nas dimensões humana e institucional da transformação pela IA. Eles abrangem identidade, privacidade, mercados, governança, trabalho e conhecimento. Compartilham uma arquitetura e um método. Nenhum setor, sozinho, consegue realizar qualquer um deles.",
+      "hoverHint": "*Passe o cursor para saber mais",
+      "clickHint": "*Clique para saber mais",
+      "challengesIntro": "O florescimento humano na próxima década depende de um conjunto de grandes desafios sociotécnicos.",
+      "challenges": [
+        {
+          "id": "identity",
+          "number": "001",
+          "title": "Identidade",
+          "body": "À medida que documentos falsos, dados biométricos e personas sintéticas se aproximam do custo zero, precisamos de formas de comprovar a presença de um ser humano real e único sem revelar quem ele é.",
+          "image": "challenge-identity"
+        },
+        {
+          "id": "privacy",
+          "number": "002",
+          "title": "Privacidade",
+          "body": "A IA dá a todos um detetive pessoal; a resposta não é o sigilo absoluto nem a exposição total, mas ferramentas que permitam revelar exatamente o que cada situação exige — e nada além disso.",
+          "image": "challenge-privacy"
+        },
+        {
+          "id": "provenance",
+          "number": "003",
+          "title": "Procedência",
+          "body": "Quando produzir uma falsificação convincente não custa nada, saber de onde veio o conteúdo torna-se essencial para uma realidade compartilhada.",
+          "image": "challenge-provenance"
+        },
+        {
+          "id": "data-value",
+          "number": "004",
+          "title": "Valor dos dados",
+          "body": "O registro da experiência humana que treina esses modelos foi obtido a um custo quase nulo; as pessoas que o criaram merecem um mercado de verdade e uma remuneração duradoura, algo que as próprias métricas das empresas já tornam possível.",
+          "image": "challenge-data-value"
+        },
+        {
+          "id": "agentic-collaboration",
+          "number": "005",
+          "title": "Colaboração entre agentes",
+          "body": "Agentes de IA são mais úteis quando reúnem o que cada um sabe, e isso exige confiança construída como os humanos a constroem: entre diferentes provedores, e não dentro de ecossistemas fechados.",
+          "image": "challenge-agentic"
+        },
+        {
+          "id": "communal-sensemaking",
+          "number": "006",
+          "title": "Construção coletiva de sentido",
+          "body": "Mídias que premiam a indignação e dificultam saber quem concorda com quem podem ser redesenhadas para evidenciar pontos em comum e, ao mesmo tempo, representar com justiça as divergências reais.",
+          "image": "challenge-sensemaking"
+        },
+        {
+          "id": "democracy",
+          "number": "007",
+          "title": "Democracia",
+          "body": "A autoridade gerada por comunidades prósperas precisa se converter em poder real sobre recursos, o que exige modernizar a participação, a representação e o trabalho pouco glamouroso da implementação.",
+          "image": "challenge-democracy"
+        },
+        {
+          "id": "law-and-liberties",
+          "number": "008",
+          "title": "Direito e liberdades",
+          "body": "A IA reduz o custo da vigilância e da fiscalização de maneiras que favorecem o Poder Executivo; restaurar o equilíbrio exige criar capacidade equivalente de supervisão, contestação e recurso.",
+          "image": "challenge-law"
+        },
+        {
+          "id": "workplace",
+          "number": "009",
+          "title": "Ambiente de trabalho",
+          "body": "O obstáculo aos ganhos de produtividade da IA não é a velocidade individual, mas a capacidade de redesenhar as organizações para absorver uma onda de criatividade e autonomia.",
+          "image": "challenge-workplace"
+        },
+        {
+          "id": "research",
+          "number": "010",
+          "title": "Pesquisa",
+          "body": "Os modelos agora geram hipóteses e rascunhos mais rápido do que a revisão por pares consegue avaliá-los; essas mesmas ferramentas, bem direcionadas, podem recompensar trabalhos realmente originais que rompam barreiras entre áreas.",
+          "image": "challenge-research"
+        },
+        {
+          "id": "education",
+          "number": "011",
+          "title": "Educação",
+          "body": "A IA desfaz o antigo pacto que reunia ensino, aprendizagem e certificação, obrigando as escolas a definir quais capacidades importam e a certificar o que as pessoas realmente sabem.",
+          "image": "challenge-education"
+        },
+        {
+          "id": "labor-transition",
+          "number": "012",
+          "title": "Transição do trabalho",
+          "body": "Um sistema de força de trabalho criado para demissões em massa em um único empregador não consegue lidar com a reformulação contínua e granular do trabalho produzida pela IA; ele precisa de credenciais portáteis e interpretáveis e de requalificação em tempo real.",
+          "image": "challenge-labor"
+        }
+      ]
+    },
+    "claim": {
+      "eyebrow": [
+        "A tese",
+        "distintiva"
+      ],
+      "title": "Instituições à imagem de suas ferramentas",
+      "lead": "Há um padrão na forma como as sociedades assimilam uma nova tecnologia de uso geral. A instituição que prospera tende a refletir a arquitetura do modo de pensar dominante de sua época.",
+      "columns": [
+        "A era industrial organizou a cognição em torno da contabilidade padronizada e da linha de montagem, produzindo instituições hierárquicas e divisionais correspondentes: a corporação, o banco central, as organizações multilaterais constituídas em Bretton Woods. A era da internet organizou a cognição em torno de protocolos em camadas e do roteamento distribuído, produzindo estruturas cooperativas em camadas correspondentes: as organizações de padronização, as cooperativas de mensagens e o processo aberto de Request for Comments.",
+        "As redes neurais impõem uma terceira gramática. Elas representam as coisas por sua posição em um espaço rico, e não por um único rótulo. Combinam diferentes entradas ponderando como cada uma se relaciona com as demais, encontrando uma estrutura comum sem apagar as diferenças ao reduzi-las a uma média. Atribuem crédito rastreando o efeito de cada contribuição.",
+        "Quando a instituição e a tecnologia compartilham uma gramática, os ganhos aparecem. Quando não compartilham, os ganhos estagnam. Fábricas eletrificadas produziram poucos benefícios por quase duas décadas enquanto mantiveram o leiaute das fábricas movidas a vapor; a produtividade só veio quando elas foram redesenhadas em torno do motor elétrico distribuído.",
+        "A aposta desta coalizão é que as instituições capazes de assimilar a IA serão aquelas que incorporarem esses mesmos movimentos na escala da sociedade. O trabalho é construí-las de forma intencional."
+      ],
+      "cta": {
+        "label": "Leia o argumento completo — em breve",
+        "href": "#papers",
+        "disabled": true,
+        "note": "Em breve"
+      }
+    },
+    "papers": {
+      "eyebrow": "Os artigos",
+      "title": "Leia o argumento",
+      "items": [
+        {
+          "id": "noema",
+          "venue": "Na Noema —",
+          "title": "“O que a humanidade precisa para prosperar na próxima década”",
+          "body": "A exposição pública mais completa do problema e da agenda: os três modos de falha, os precedentes históricos — da democracia de massa à governança digital de Taiwan — e o conjunto completo de grandes desafios sociotécnicos. O ponto de partida.",
+          "cta": {
+            "label": "Leia na Noema",
+            "href": "https://www.noemamag.com/what-humanity-needs-to-flourish-in-the-next-decade/",
+            "external": true
+          },
+          "image": "noema-cover",
+          "tone": "lime"
+        },
+        {
+          "id": "science",
+          "venue": "Na Science —",
+          "title": "“À imagem de suas ferramentas”",
+          "body": "O princípio de engenharia nítido por trás da agenda: por que as instituições passam a se assemelhar à tecnologia cognitiva de sua época e o que significa construir segundo a arquitetura de uma rede neural. A tese distintiva, com o registro histórico e o mapeamento técnico.",
+          "cta": {
+            "label": "Em breve",
+            "href": "#",
+            "disabled": true,
+            "note": "Em breve"
+          },
+          "tone": "violet"
+        }
+      ],
+      "resources": [
+        {
+          "id": "playbook",
+          "title": "O guia prático",
+          "body": "O que a IA não consegue construir, um guia para narradores que transforma esses desafios em material dramático para roteiristas e criadores, com uma proposta de alto conceito e uma provocação para a sala de roteiristas para cada um deles.",
+          "cta": {
+            "label": "Abra o guia prático",
+            "href": "#slideshow-playbook"
+          },
+          "slides": {
+            "directory": "playbook",
+            "count": 20,
+            "document": "storyteller-playbook.pdf"
+          }
+        },
+        {
+          "id": "deck",
+          "title": "A apresentação",
+          "body": "A apresentação-resumo que fundamenta as recomendações.",
+          "cta": {
+            "label": "Veja a apresentação",
+            "href": "#slideshow-deck"
+          },
+          "slides": {
+            "directory": "deck",
+            "count": 12,
+            "document": "grand-challenges-deck.pdf"
+          }
+        }
+      ],
+      "viewer": {
+        "dialogLabel": "Visualizador da apresentação",
+        "closeLabel": "Fechar",
+        "previousLabel": "Slide anterior",
+        "nextLabel": "Próximo slide",
+        "downloadLabel": "Baixar PDF",
+        "openHint": "abre uma apresentação de slides na própria página",
+        "statusTemplate": "Slide {current} de {total}",
+        "slideLabelTemplate": "{title}, slide {current} de {total}",
+        "thumbnailRegionLabelTemplate": "Slides de {title}",
+        "thumbnailLabelTemplate": "Ir para o slide {number}"
+      }
+    },
+    "story": {
+      "title": "A maior história que ninguém está contando",
+      "lead": "Toda instituição da qual dependemos já foi inimaginável, até que histórias fizeram pessoas suficientes se importar a ponto de construí-la. Os desafios humanos da IA não são abstrações de política pública. São a matéria-prima das histórias mais importantes da próxima década — e a maioria delas ainda nem foi contada.",
+      "guideTitle": [
+        "Criamos um guia para",
+        "quem pode contar essas histórias."
+      ],
+      "guideTerm": "O que a IA não consegue construir",
+      "guideRest": " aborda cada desafio e entrega aos roteiristas uma proposta de alto conceito e um conjunto de provocações para levar à sala de roteiristas: a mulher que luta pelo direito de ser pessoas diferentes em diferentes áreas da vida; o documentarista cujo filme irrefutável encontra uma refutação igualmente irrefutável; a pessoa que fornece dados — rica, essencial e totalmente anônima.",
+      "guideCta": {
+        "label": "Abra o guia prático",
+        "href": "#slideshow-playbook"
+      },
+      "videoCaption": "Veja como levamos essas ideias a uma sala com 100 roteiristas de TV.",
+      "videoCta": {
+        "label": "Assista ao vídeo",
+        "href": "https://www.youtube.com/watch?v=2KyMLl4NqT0&t=5s",
+        "external": true
+      }
+    },
+    "grants": {
+      "eyebrow": "Conheça os desafios",
+      "title": "Financiamento ágil para narradores",
+      "body": [
+        "Também estamos trabalhando com criadores independentes para dar vida a esses desafios, um de cada vez, em linguagem simples. Cada curta aborda um único problema — de provar que você é humano na internet a remunerar de forma justa as pessoas pelos dados que treinam a IA — e mostra por que ele importa e como seria uma solução."
+      ],
+      "fundingLine": "Estamos financiando narradores que entrelaçam essas ideias em suas histórias.",
+      "panelBody": [
+        "Se você escreve, filma, cria jogos ou produz conteúdo audiovisual e quer incorporar ou reinterpretar qualquer um dos desafios apresentados aqui, queremos apoiar seu trabalho.",
+        "Você não precisa explicar a política pública. Só precisa fazer as pessoas sentirem o que está em jogo."
+      ],
+      "filmsNote": "Primeiros filmes em breve.",
+      "applyCta": {
+        "label": "Candidate-se a um financiamento",
+        "href": "https://popshift.typeform.com/to/NvKBeode",
+        "external": true
+      }
+    },
+    "coalition": {
+      "title": "A Coalizão",
+      "lead": "Este trabalho foi moldado por pessoas que raramente se sentam à mesma mesa.",
+      "body": "Pesquisadores de IA e cientistas sociais, tecnólogos e servidores públicos, financiadores e construtores cívicos, de diferentes regiões e perspectivas políticas. Essa diversidade não é incidental. O método que defendemos — encontrar pontos em comum em meio a diferenças reais, sem suprimi-las — é o mesmo método que produziu este trabalho.",
+      "eventsTitle": "Próximos eventos",
+      "events": [
+        {
+          "id": "rxc-salon-2026-08",
+          "startsAt": "2026-08-24T20:00:00.000Z",
+          "endsAt": "2026-08-24T21:00:00.000Z",
+          "when": "24 de agosto de 2026 · 13h do Pacífico · 16h do Leste · 17h Buenos Aires · 22h CEST · 6h de Sydney (dia seguinte) · uma hora, online",
+          "title": "Um salão sobre Reverse Alignment",
+          "body": "A RadicalxChange reúne Glen Weyl, James Evans, Melissa Valentine e Jess Scully para uma breve apresentação, perguntas abertas e discussões em pequenos grupos sobre reverse alignment. Coautores são convidados a facilitar as mesas.",
+          "cta": {
+            "label": "Inscreva-se no Luma",
+            "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        }
+      ],
+      "sectors": [
+        "Pesquisa",
+        "Tecnologia",
+        "Governo",
+        "Filantropia",
+        "Sociedade Civil",
+        "Negócios",
+        "Entretenimento",
+        "Mídia"
+      ],
+      "people": [
+        {
+          "kind": "person",
+          "name": "Eric Glen Weyl",
+          "role": "Cofundador, RadicalxChange Foundation",
+          "image": "person-glen-weyl",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Audrey Tang",
+          "role": "Ex-ministra Digital, Taiwan",
+          "image": "person-audrey-tang",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "Jake Hirsch-Allen",
+          "role": "Diretor de Parcerias, The Dais",
+          "image": "person-jake-hirsch-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vilas Dhar",
+          "role": "Presidente, Patrick J. McGovern Foundation",
+          "image": "person-vilas-dhar",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Melissa Valentine",
+          "role": "Professor Associado, Stanford University",
+          "image": "person-melissa-valentine",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Patterson",
+          "role": "Fellow do Google; Professor Emérito da UC Berkeley",
+          "image": "person-david-patterson",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tiona Zuzul",
+          "role": "Professor Associado, Harvard Business School",
+          "image": "person-tiona-zuzul",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Jess Scully",
+          "role": "Diretor Executivo, RadicalxChange Foundation",
+          "image": "person-jess-scully",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Dean Woodley Ball",
+          "role": "Diretor de Futuros Estratégicos, OpenAI",
+          "image": "person-dean-ball",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Romain Vakilitabar",
+          "role": "Fundador e Diretor Executivo, Pathos Labs",
+          "image": "person-romain-vakilitabar",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Andrew Sorota",
+          "role": "Diretor de Pesquisa, Office of Eric Schmidt",
+          "image": "person-andrew-sorota",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Samuel Roland",
+          "role": "Fellow, Foundation for American Innovation",
+          "image": "person-samuel-roland",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Chris White",
+          "role": "Diretor de Laboratório, Microsoft Research",
+          "image": "person-chris-white",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Tomicah Tillemann",
+          "role": "Presidente, Project Liberty",
+          "image": "person-tomicah-tillemann",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Galen Hines-Pierce",
+          "role": "Fundador e Sócio-Diretor, Minerva Fund",
+          "image": "person-galen-hines-pierce",
+          "sector": "Philanthropy"
+        },
+        {
+          "kind": "person",
+          "name": "Ben Buchanan",
+          "role": "Ex-assessor de IA da Casa Branca",
+          "image": "person-ben-buchanan",
+          "sector": "Government"
+        },
+        {
+          "kind": "person",
+          "name": "James Evans",
+          "role": "Professor, University of Chicago",
+          "image": "person-james-evans",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "David Deming",
+          "role": "Reitor, Harvard College",
+          "image": "person-david-deming",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Dr. Ken Suzuki",
+          "role": "Professor de Projetos, Keio University",
+          "image": "person-ken-suzuki",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Blaise Agüera y Arcas",
+          "role": "Vice-Presidente e Fellow, Google",
+          "image": "person-blaise-aguera",
+          "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Danielle Allen",
+          "role": "Professor, Harvard University",
+          "image": "person-danielle-allen",
+          "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Divya Siddarth",
+          "role": "Cofundador, Collective Intelligence Project",
+          "image": "person-divya-siddarth",
+          "sector": "Civil Society"
+        },
+        {
+          "kind": "person",
+          "name": "Tim O’Reilly",
+          "role": "Fundador e CEO, O'Reilly Media",
+          "image": "person-tim-oreilly",
+          "sector": "Media"
+        },
+        {
+          "kind": "person",
+          "name": "Zoe Weinberg",
+          "role": "Fundador e Sócio-Diretor, Ex/Ante",
+          "image": "person-zoe-weinberg",
+          "sector": "Business"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Pesquisador, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
+        }
+      ],
+      "directory": {
+        "searchLabel": "Buscar a coalizão",
+        "searchPlaceholder": "Buscar por nome, função ou afiliação",
+        "sectorLabel": "Setor",
+        "sectorAll": "Todos os setores",
+        "sortLabel": "Ordenar",
+        "sortOptions": [
+          {
+            "value": "default",
+            "label": "Ordem padrão"
+          },
+          {
+            "value": "name",
+            "label": "Nome A–Z"
+          },
+          {
+            "value": "name-desc",
+            "label": "Nome Z–A"
+          },
+          {
+            "value": "sector",
+            "label": "Setor"
+          }
+        ],
+        "countTemplate": "Mostrando {shown} de {total}",
+        "empty": "Ninguém corresponde a estes filtros.",
+        "keyboardHint": "Use os filtros; os resultados atualizam enquanto você digita."
+      }
+    },
+    "closing": {
+      "lines": [
+        "É hora de construir com tanta ambição",
+        "para nossos sistemas sociais quanto",
+        "para nossos algoritmos."
+      ]
+    },
+    "footer": {
+      "brand": "Reverse Alignment",
+      "columns": [
+        {
+          "title": "Quem somos",
+          "links": [
+            {
+              "id": "coalition",
+              "label": "A coalizão",
+              "href": "#coalition"
+            }
+          ]
+        },
+        {
+          "title": "A missão",
+          "links": [
+            {
+              "id": "idea",
+              "label": "O outro lado do alinhamento",
+              "href": "#idea"
+            },
+            {
+              "id": "building",
+              "label": "O que precisa ser construído",
+              "href": "#building"
+            },
+            {
+              "id": "claim",
+              "label": "Instituições à imagem de suas ferramentas",
+              "href": "#claim"
+            }
+          ]
+        },
+        {
+          "title": "Entre em ação",
+          "links": [
+            {
+              "id": "papers",
+              "label": "Leia o argumento",
+              "href": "#papers"
+            },
+            {
+              "id": "grants",
+              "label": "Bolsas rápidas para narradores",
+              "href": "#grants"
+            }
+          ]
+        }
+      ],
+      "copyright": "© 2026 Todos os direitos reservados."
+    },
+    "a11y": {
+      "skipToContent": "Pular para o conteúdo",
+      "mainNav": "Navegação principal",
+      "openMenu": "Abrir menu",
+      "closeMenu": "Fechar menu",
+      "externalLink": "abre em uma nova aba",
+      "heroMotionLabel": "Campo gravitacional animado",
+      "challengeGrid": "Grandes desafios sociotécnicos",
+      "coalitionGrid": "Integrantes da coalizão",
+      "directoryControls": "Filtros e ordenação do diretório",
+      "directoryResults": "Membros filtrados da coalizão",
+      "formErrors": "Corrija os erros neste formulário.",
+      "formStatus": "Status do formulário"
+    },
+    "assets": {
+      "favicon": "/favicon.png",
+      "og-image": "/assets/images/og-image.jpg",
+      "hero-diagram": "/assets/images/hero-diagram.png",
+      "intro-collage": "/assets/images/intro-collage.webp",
+      "intro-texture": "/assets/images/intro-texture.png",
+      "history-strip": "/assets/images/history-strip.png",
+      "failures-panel": "/assets/images/failures-panel.png",
+      "failures-texture": "/assets/images/failures-texture.png",
+      "building-bg": "/assets/images/building-bg.webp",
+      "claim-bg": "/assets/images/claim-bg.webp",
+      "claim-texture": "/assets/images/claim-texture.png",
+      "papers-bg": "/assets/images/papers-bg.webp",
+      "noema-cover": "/assets/images/noema-cover.png",
+      "playbook-art": "/assets/images/playbook-art.webp",
+      "story-portrait-1": "/assets/images/story-portrait-1.webp",
+      "story-portrait-2": "/assets/images/story-portrait-2.webp",
+      "story-portrait-3": "/assets/images/story-portrait-3.webp",
+      "story-filmstrip-1": "/assets/images/story-filmstrip-1.webp",
+      "story-filmstrip-2": "/assets/images/story-filmstrip-2.webp",
+      "story-filmstrip-3": "/assets/images/story-filmstrip-3.webp",
+      "story-filmstrip-4": "/assets/images/story-filmstrip-4.jpg",
+      "story-filmstrip-5": "/assets/images/story-filmstrip-5.jpg",
+      "story-video-thumb": "/assets/images/story-video-thumb.webp",
+      "coalition-texture": "/assets/images/coalition-texture.webp",
+      "closing-bg": "/assets/images/closing-bg.webp",
+      "challenge-identity": "/assets/images/challenge-identity.webp",
+      "challenge-privacy": "/assets/images/challenge-privacy.webp",
+      "challenge-provenance": "/assets/images/challenge-provenance.webp",
+      "challenge-data-value": "/assets/images/challenge-data-value.webp",
+      "challenge-agentic": "/assets/images/challenge-agentic.webp",
+      "challenge-sensemaking": "/assets/images/challenge-sensemaking.webp",
+      "challenge-democracy": "/assets/images/challenge-democracy.webp",
+      "challenge-law": "/assets/images/challenge-law.webp",
+      "challenge-workplace": "/assets/images/challenge-workplace.webp",
+      "challenge-research": "/assets/images/challenge-research.webp",
+      "challenge-education": "/assets/images/challenge-education.webp",
+      "challenge-labor": "/assets/images/challenge-labor.webp",
+      "person-glen-weyl": "/assets/images/person-glen-weyl.png",
+      "person-audrey-tang": "/assets/images/person-audrey-tang.png",
+      "person-jake-hirsch-allen": "/assets/images/person-jake-hirsch-allen.png",
+      "person-vilas-dhar": "/assets/images/person-vilas-dhar.png",
+      "person-melissa-valentine": "/assets/images/person-melissa-valentine.png",
+      "person-david-patterson": "/assets/images/person-david-patterson.png",
+      "person-tiona-zuzul": "/assets/images/person-tiona-zuzul.png",
+      "person-jess-scully": "/assets/images/person-jess-scully.png",
+      "person-dean-ball": "/assets/images/person-dean-ball.png",
+      "person-romain-vakilitabar": "/assets/images/person-romain-vakilitabar.png",
+      "person-andrew-sorota": "/assets/images/person-andrew-sorota.png",
+      "person-samuel-roland": "/assets/images/person-samuel-roland.png",
+      "person-chris-white": "/assets/images/person-chris-white.png",
+      "person-tomicah-tillemann": "/assets/images/person-tomicah-tillemann.png",
+      "person-galen-hines-pierce": "/assets/images/person-galen-hines-pierce.png",
+      "person-ben-buchanan": "/assets/images/person-ben-buchanan.png",
+      "person-james-evans": "/assets/images/person-james-evans.png",
+      "person-david-deming": "/assets/images/person-david-deming.png",
+      "person-ken-suzuki": "/assets/images/person-ken-suzuki.png",
+      "person-blaise-aguera": "/assets/images/person-blaise-aguera.png",
+      "person-danielle-allen": "/assets/images/person-danielle-allen.png",
+      "person-divya-siddarth": "/assets/images/person-divya-siddarth.png",
+      "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
+      "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
+      "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "icon-dot-1": "/assets/images/icon-dot-1.png",
+      "icon-dot-2": "/assets/images/icon-dot-2.png",
+      "icon-dot-3": "/assets/images/icon-dot-3.png",
+      "join-bg": "/assets/images/join-bg.webp",
+      "join-sheet": "/assets/images/join-sheet.png",
+      "join-sheet-overlay": "/assets/images/join-sheet-overlay.png"
+    },
+    "notFound": {
+      "title": "Não encontrado",
+      "heading": "Página não encontrada",
+      "body": "Essa URL não faz parte deste site.",
+      "backLabel": "Voltar para Reverse Alignment",
+      "code": "404"
+    },
+    "join": {
+      "eyebrow": "Junte-se à coalizão",
+      "title": "Adicione seu nome",
+      "lead": "Se você acredita que devemos construir nossos sistemas sociais com a mesma ambição com que construímos nossos algoritmos, adicione seu nome e ajude a levar este trabalho à sua própria área.",
+      "body": "O alinhamento reverso não é um projeto. É um portfólio de apostas, em todos os setores, que somente uma ampla coalizão pode sustentar.",
+      "cta": {
+        "label": "Entrar em inglês",
+        "href": "https://reversealignment.ai/join/",
+        "external": true
+      },
+      "mode": "cta",
+      "form": {
+        "id": "join-form",
+        "action": "api",
+        "method": "post",
+        "mode": "cta-only",
+        "submitLabel": "Enviar",
+        "fields": [
+          {
+            "name": "fullName",
+            "label": "Nome completo",
+            "type": "text",
+            "required": true,
+            "autocomplete": "name",
+            "maxLength": 120
+          },
+          {
+            "name": "affiliation",
+            "label": "Afiliação",
+            "type": "text",
+            "required": false,
+            "autocomplete": "organization",
+            "maxLength": 160
+          },
+          {
+            "name": "sector",
+            "label": "Setor",
+            "type": "select",
+            "required": true,
+            "options": [
+              {
+                "value": "Research",
+                "label": "Pesquisa"
+              },
+              {
+                "value": "Technology",
+                "label": "Tecnologia"
+              },
+              {
+                "value": "Government",
+                "label": "Governo"
+              },
+              {
+                "value": "Philanthropy",
+                "label": "Filantropia"
+              },
+              {
+                "value": "Civil Society",
+                "label": "Sociedade civil"
+              },
+              {
+                "value": "Business",
+                "label": "Negócios"
+              },
+              {
+                "value": "Entertainment",
+                "label": "Entretenimento"
+              },
+              {
+                "value": "Media",
+                "label": "Mídia"
+              }
+            ]
+          },
+          {
+            "name": "contribution",
+            "label": "Também gostaria de contribuir…",
+            "type": "select",
+            "required": false,
+            "options": [
+              {
+                "value": "Lend your name to the statement",
+                "label": "Emprestar meu nome à declaração"
+              },
+              {
+                "value": "Bring a challenge into your own organization or sector",
+                "label": "Levar um desafio à minha organização ou setor"
+              },
+              {
+                "value": "Contribute expertise, writing, or research",
+                "label": "Contribuir com expertise, escrita ou pesquisa"
+              },
+              {
+                "value": "Help fund the work",
+                "label": "Ajudar a financiar o trabalho"
+              },
+              {
+                "value": "Stay informed as the coalition grows",
+                "label": "Receber novidades"
+              },
+              {
+                "value": "All of the above",
+                "label": "Tudo acima"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "label": "Link público (opcional)",
+            "type": "url",
+            "required": false,
+            "autocomplete": "url",
+            "maxLength": 300,
+            "placeholder": "https://"
+          },
+          {
+            "name": "statement",
+            "label": "Nota curta (opcional)",
+            "type": "textarea",
+            "required": false,
+            "maxLength": 500,
+            "placeholder": "Uma ou duas frases sobre por que você entra."
+          }
+        ],
+        "honeypotName": "company_website",
+        "errorMessage": "Corrija os campos destacados.",
+        "networkError": "Não foi possível contactar o servidor. Tente de novo.",
+        "successTitle": "Você entrou na fila de revisão",
+        "successMessage": "E-mail verificado. Seu perfil aparece após moderação — nunca automaticamente.",
+        "updatesTitle": "Você entrou na lista de novidades",
+        "updatesMessage": "Obrigado — você está na lista de novidades. Isso não coloca um perfil no diretório público.",
+        "pendingTitle": "Obrigado — em revisão",
+        "rateLimited": "Muitas tentativas. Aguarde alguns minutos.",
+        "duplicateEmail": "Este e-mail já está na lista ou em revisão.",
+        "moderationHold": "Um moderador revisará antes de publicar.",
+        "privacyNote": "Guardamos o e-mail de forma privada para novidades da coalizão e moderação. O diretório público não mostra e-mail, contribuições nem IP. Retratos locais quando há foto; senão, um monograma próprio gerado do nome — sem terceiros nem upload.",
+        "avatarNote": "Seu retrato público é um monograma determinístico do nome no navegador. Sem upload, sem Gravatar, sem arquivo de imagem.",
+        "avatarPreviewLabel": "Prévia do diretório"
+      }
     }
   }
 }

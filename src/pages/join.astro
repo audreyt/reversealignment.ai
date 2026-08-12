@@ -1,0 +1,106 @@
+---
+/**
+ * /join/ — Access-gated join form, one per whole-domain deployment.
+ *
+ * Built for every SITE_LOCALE. The live locales (en → reversealignment.ai,
+ * zh-tw → reversealignment.tw, ja → reversealignment.jp) each serve this page
+ * at `/join/`, where Cloudflare Access gates `/join/*`. Brochure-only locales
+ * link out to a live locale instead. The zh-TW multi-locale build also emits
+ * the English copy at `/en/join/`; that copy — like pages.dev and any other
+ * host — bounces to its own canonical join URL, so a visitor can only ever
+ * submit from the deployment that owns the form. localhost stays put for dev
+ * and e2e.
+ */
+import JoinForm from '../components/JoinForm.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Base from '../layouts/Base.astro';
+import { JOIN_PATH } from '../lib/api';
+import { absoluteSiteUrl, getContent, getDefaultLocale } from '../lib/i18n';
+
+const locale = getDefaultLocale();
+const catalog = getContent(locale);
+const copy = {
+  ...catalog,
+  nav: {
+    ...catalog.nav,
+    // Standalone page has no #coalition section — send visitors home.
+    coalition: {
+      ...catalog.nav.coalition,
+      href: locale === 'en' ? '../#coalition' : '/en/#coalition',
+    },
+  },
+};
+const form = copy.join.form;
+const joinTitle = `${copy.join.title} — ${copy.brand.name}`;
+// A live locale owns its own join URL; a brochure locale points at one that does.
+const canonicalJoinUrl =
+  form.mode === 'live' ? absoluteSiteUrl(JOIN_PATH, locale) : copy.join.cta.href;
+const canonicalJoinHost = new URL(canonicalJoinUrl).hostname;
+---
+
+<Base
+  locale={locale}
+  title={joinTitle}
+  description={copy.join.body}
+  robots="noindex, nofollow"
+>
+  <div id="top" class="page page--join">
+    <SiteHeader copy={copy} showNavigation={false} />
+    <main id="main">
+      <section
+        class="section section--join-page"
+        aria-labelledby="join-page-title"
+        data-join-page
+      >
+        <div class="section__inner join-page">
+          <div class="stack-md join-page__intro">
+            <p class="eyebrow" data-join-page-eyebrow hidden>{copy.join.eyebrow}</p>
+            <h1
+              id="join-page-title"
+              class="display display--lg"
+              data-join-page-heading
+              data-default-heading={copy.join.eyebrow}
+              data-directory-heading={copy.join.title}
+            >
+              {copy.join.eyebrow}
+            </h1>
+            <p class="body">{copy.join.body}</p>
+            <p class="body--mono">{copy.join.lead}</p>
+          </div>
+          {
+            form.mode === 'live' ? (
+              <div class="join-page__panel">
+                <JoinForm form={form} />
+              </div>
+            ) : (
+              <p class="body">
+                Join is available at{' '}
+                <a href={canonicalJoinUrl}>{canonicalJoinUrl}</a>.
+              </p>
+            )
+          }
+        </div>
+      </section>
+    </main>
+    <SiteFooter copy={copy} />
+  </div>
+</Base>
+
+<script is:inline define:vars={{ canonicalJoinUrl, canonicalJoinHost }}>
+  (function () {
+    var host = (location.hostname || '').toLowerCase();
+    var local =
+      host === 'localhost' ||
+      host.endsWith('.localhost') ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host === '::1' ||
+      host === '[::1]';
+    // Access gates /join/* on the deployment that owns this form (apex and www).
+    var onJoinHost = host === canonicalJoinHost || host === 'www.' + canonicalJoinHost;
+    if (!local && !onJoinHost) {
+      location.replace(canonicalJoinUrl);
+    }
+  })();
+</script>

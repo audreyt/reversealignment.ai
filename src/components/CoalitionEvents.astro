@@ -1,0 +1,89 @@
+---
+import CtaLink from './CtaLink.astro';
+import { upcomingEvents } from '../lib/events';
+import type { CoalitionEvent, SiteContent } from '../lib/types';
+
+type Props = {
+  eventsTitle: string;
+  events: readonly CoalitionEvent[];
+  a11y: SiteContent['a11y'];
+  /** Optional build-time clock; production leaves this unset. */
+  now?: Date;
+};
+
+const { eventsTitle, events, a11y, now } = Astro.props;
+const open = upcomingEvents(events, now ?? new Date());
+
+/** Ticker text is built from copy that already exists, so no new locale strings. */
+const railFor = (event: CoalitionEvent) => `${eventsTitle} · ${event.title} · ${event.when}`;
+---
+
+{
+  open.map((event) => (
+    <section
+      class="events-band"
+      aria-labelledby={`events-band-title-${event.id}`}
+      data-event-id={event.id}
+      data-ends-at={event.endsAt}
+    >
+      <div class="events-band__rail" aria-hidden="true">
+        <div class="events-band__ticker">
+          {Array.from({ length: 6 }, (_, index) => (
+            <span class="events-band__ticker-item" data-index={index}>
+              {railFor(event)}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div class="events-band__inner">
+        <p class="events-band__kicker">
+          <span class="events-band__pulse" aria-hidden="true" />
+          {eventsTitle}
+        </p>
+
+        <h2 id={`events-band-title-${event.id}`} class="events-band__title">
+          {event.title}
+        </h2>
+
+        <div class="events-band__meta">
+          <p class="events-band__when">
+            <time datetime={event.startsAt}>{event.when}</time>
+          </p>
+
+          <p class="events-band__body">{event.body}</p>
+
+          <CtaLink
+            cta={event.cta}
+            class="btn events-band__cta"
+            externalLabel={a11y.externalLink}
+          />
+        </div>
+      </div>
+
+      <div class="events-band__rail events-band__rail--flip" aria-hidden="true">
+        <div class="events-band__ticker">
+          {Array.from({ length: 6 }, (_, index) => (
+            <span class="events-band__ticker-item" data-index={index}>
+              {railFor(event)}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))
+}
+
+<script>
+  import { isEventExpired } from '../lib/events';
+
+  // Static HTML outlives the build that made it. Re-check in the browser so a
+  // finished event stops being advertised even before the next deploy.
+  for (const band of Array.from(
+    document.querySelectorAll<HTMLElement>('.events-band[data-ends-at]')
+  )) {
+    if (isEventExpired(band.dataset.endsAt ?? '')) {
+      band.remove();
+    }
+  }
+</script>

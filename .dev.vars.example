@@ -1,0 +1,16 @@
+# Local-only secrets for `wrangler dev` (copy to .dev.vars — never commit .dev.vars)
+AUTH_PEPPER=local-demo-pepper-not-for-production-32b
+# Offline spreadsheet-import email key salt (>=16 chars). Production: wrangler secret put IMPORT_SALT
+IMPORT_SALT=local-demo-import-salt-not-for-production
+# Live Access AUD(s) accepted by the join API (also set in wrangler.jsonc vars).
+ACCESS_AUD=afc8f82e18a684957c8ef8387fc0b7ed70856f1982d3a63750d397f40e76da04
+ACCESS_ISSUER=https://erc.cloudflareaccess.com
+ACCESS_JWKS_URL=https://erc.cloudflareaccess.com/cdn-cgi/access/certs
+# Hosts allowed for POST /join/api. Include 127.0.0.1 for local wrangler dev.
+JOIN_API_HOSTS=reversealignment.ai,reversealignment.tw,reversealignment.jp,127.0.0.1,localhost
+ALLOWED_ORIGINS=http://127.0.0.1:8787,http://127.0.0.1:4321,http://127.0.0.1:4173,https://reversealignment.ai,https://reversealignment.tw,https://reversealignment.jp,https://join.reversealignment.tw
+# ADMIN_TOKEN=
+#
+# Portrait storage needs the R2 bucket in wrangler.jsonc:
+#   wrangler r2 bucket create reversealignment-portraits
+# Without that binding the join still works and members keep their monogram.

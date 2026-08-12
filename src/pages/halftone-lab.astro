@@ -1,0 +1,836 @@
+---
+/**
+ * /halftone-lab/ — Portrait Lab (unlinked, noindex)
+ *
+ * A local browser tool to preview and download the coalition halftone treatment.
+ * All processing happens in the browser; nothing is uploaded.
+ *
+ * Not linked from the public site. Do not add to JoinForm until portrait upload
+ * storage (R2 + Worker route) exists.
+ */
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Portrait Lab — local halftone preview</title>
+    <style>
+      /* Design tokens matching the coalition site */
+      :root {
+        --bg: #030303;
+        --paper: #f4f3f3;
+        --lime: #cdfc56;
+        --violet: #6d28f5;
+        --line: rgba(244, 243, 243, 0.18);
+        --font-display: 'plfh', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        --radius: 6px;
+        --gap: 1.5rem;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--paper);
+        font-family: var(--font-display);
+        min-height: 100dvh;
+        padding: 2rem 1rem 4rem;
+      }
+
+      .skip-link {
+        position: absolute;
+        top: -999px;
+        left: 0;
+        background: var(--lime);
+        color: #000;
+        padding: 0.5rem 1rem;
+        z-index: 1000;
+        font-weight: 600;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      .lab-header {
+        max-width: 780px;
+        margin: 0 auto 2.5rem;
+      }
+
+      .lab-title {
+        font-size: clamp(1.5rem, 4vw, 2.25rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
+      }
+
+      .lab-title span {
+        color: var(--lime);
+      }
+
+      .privacy-notice {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        background: rgba(205, 252, 86, 0.08);
+        border: 1px solid rgba(205, 252, 86, 0.25);
+        border-radius: var(--radius);
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        font-family: var(--font-mono);
+        color: var(--lime);
+        margin-top: 1rem;
+      }
+
+      .privacy-notice svg {
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .lab-layout {
+        max-width: 780px;
+        margin: 0 auto;
+        display: grid;
+        gap: var(--gap);
+      }
+
+      /* Drop zone */
+      .drop-zone {
+        border: 2px dashed var(--line);
+        border-radius: var(--radius);
+        padding: 2.5rem 1rem;
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
+        position: relative;
+        outline: none;
+      }
+      .drop-zone:hover,
+      .drop-zone:focus-visible {
+        border-color: var(--lime);
+        background: rgba(205, 252, 86, 0.04);
+      }
+      .drop-zone.is-drag-over {
+        border-color: var(--lime);
+        background: rgba(205, 252, 86, 0.08);
+      }
+      .drop-zone input[type='file'] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+      }
+      .drop-zone-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        pointer-events: none;
+      }
+      .drop-zone-label {
+        font-size: 1rem;
+        color: var(--paper);
+        pointer-events: none;
+      }
+      .drop-zone-sub {
+        font-size: 0.78rem;
+        font-family: var(--font-mono);
+        color: rgba(244, 243, 243, 0.5);
+        margin-top: 0.3rem;
+        pointer-events: none;
+      }
+
+      /* Controls panel */
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .control-group label {
+        font-size: 0.72rem;
+        font-family: var(--font-mono);
+        color: rgba(244, 243, 243, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .control-group input[type='range'] {
+        width: 100%;
+        accent-color: var(--lime);
+        cursor: pointer;
+      }
+
+      .control-value {
+        font-size: 0.78rem;
+        font-family: var(--font-mono);
+        color: var(--paper);
+      }
+
+      .control-group input[type='checkbox'] {
+        accent-color: var(--lime);
+        width: 1rem;
+        height: 1rem;
+        cursor: pointer;
+      }
+
+      .checkbox-row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.15rem;
+      }
+
+      /* Preview */
+      .preview-wrap {
+        display: none;
+        gap: var(--gap);
+        align-items: flex-start;
+      }
+      .preview-wrap.is-visible {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      @media (max-width: 520px) {
+        .preview-wrap.is-visible {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .preview-pane {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .preview-label {
+        font-size: 0.72rem;
+        font-family: var(--font-mono);
+        color: rgba(244, 243, 243, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .preview-pane img,
+      .preview-pane canvas {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        background: #000;
+      }
+
+      /* Status bar */
+      .status-bar {
+        min-height: 1.6rem;
+        font-size: 0.8rem;
+        font-family: var(--font-mono);
+        color: rgba(244, 243, 243, 0.6);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .status-bar.is-error {
+        color: #ff6b6b;
+      }
+
+      .status-bar.is-processing {
+        color: var(--lime);
+      }
+
+      .spinner {
+        width: 0.9rem;
+        height: 0.9rem;
+        border: 2px solid rgba(205, 252, 86, 0.3);
+        border-top-color: var(--lime);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        flex-shrink: 0;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .spinner {
+          animation: none;
+          border-top-color: rgba(205, 252, 86, 0.7);
+        }
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Actions */
+      .actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.55rem 1.2rem;
+        border-radius: 999px;
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: opacity 0.15s, background 0.15s;
+        text-decoration: none;
+      }
+      .btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+      .btn:focus-visible {
+        outline: 2px solid var(--lime);
+        outline-offset: 3px;
+      }
+      .btn--primary {
+        background: var(--lime);
+        color: #000;
+      }
+      .btn--secondary {
+        background: transparent;
+        border-color: var(--line);
+        color: var(--paper);
+      }
+      .btn--secondary:hover:not(:disabled) {
+        border-color: var(--lime);
+      }
+
+      /* Meta line */
+      .result-meta {
+        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        color: rgba(244, 243, 243, 0.45);
+        display: none;
+      }
+      .result-meta.is-visible {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#lab-main">Skip to lab</a>
+
+    <header class="lab-header">
+      <h1 class="lab-title">
+        Portrait <span>Lab</span>
+      </h1>
+      <p style="color: rgba(244,243,243,0.6); font-size:0.9rem; line-height:1.5; margin-top:0.5rem;">
+        Preview the coalition halftone treatment on any portrait. Adjust crop focus, zoom,
+        pitch, and tone. Download the result as a WebP (or PNG fallback).
+      </p>
+      <div class="privacy-notice" role="note" aria-label="Privacy notice">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+          focusable="false">
+          <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"></circle>
+          <path
+            d="M8 7v4M8 5v.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"></path>
+        </svg>
+        Photo bytes never leave this device — processing is entirely local. Nothing is uploaded.
+      </div>
+    </header>
+
+    <main id="lab-main" class="lab-layout">
+      <!-- Drop zone -->
+      <section aria-labelledby="upload-heading">
+        <h2 id="upload-heading" class="preview-label" style="margin-bottom:0.6rem;">
+          Source image
+        </h2>
+        <div
+          class="drop-zone"
+          id="drop-zone"
+          role="button"
+          tabindex="0"
+          aria-label="Choose or drop an image file"
+          aria-describedby="drop-sub">
+          <div class="drop-zone-icon" aria-hidden="true">⬆</div>
+          <div class="drop-zone-label">Choose or drop a portrait</div>
+          <div class="drop-zone-sub" id="drop-sub">JPEG · PNG · WebP · AVIF · GIF · BMP</div>
+          <input
+            type="file"
+            id="file-input"
+            accept="image/jpeg,image/png,image/webp,image/avif,image/gif,image/bmp"
+            aria-label="Choose image file"
+          />
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section aria-labelledby="controls-heading">
+        <h2 id="controls-heading" class="preview-label" style="margin-bottom:0.75rem;">
+          Options
+        </h2>
+        <div class="controls">
+          <div class="control-group">
+            <label for="ctrl-focusx">Focus X</label>
+            <input
+              type="range"
+              id="ctrl-focusx"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              aria-valuetext="0.50"
+            />
+            <span class="control-value" id="val-focusx" aria-live="polite">0.50</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-focusy">Focus Y</label>
+            <input
+              type="range"
+              id="ctrl-focusy"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              aria-valuetext="0.50"
+            />
+            <span class="control-value" id="val-focusy" aria-live="polite">0.50</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-zoom">Zoom</label>
+            <input
+              type="range"
+              id="ctrl-zoom"
+              min="1"
+              max="4"
+              step="0.05"
+              value="1"
+              aria-valuetext="1.00×"
+            />
+            <span class="control-value" id="val-zoom" aria-live="polite">1.00×</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-pitch">Pitch (px)</label>
+            <input
+              type="range"
+              id="ctrl-pitch"
+              min="2"
+              max="10"
+              step="0.1"
+              value="4.4"
+              aria-valuetext="4.4 px"
+            />
+            <span class="control-value" id="val-pitch" aria-live="polite">4.4 px</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-angle">Angle (°)</label>
+            <input
+              type="range"
+              id="ctrl-angle"
+              min="0"
+              max="90"
+              step="1"
+              value="45"
+              aria-valuetext="45°"
+            />
+            <span class="control-value" id="val-angle" aria-live="polite">45°</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-contrast">Contrast</label>
+            <input
+              type="range"
+              id="ctrl-contrast"
+              min="0.5"
+              max="2.5"
+              step="0.05"
+              value="1"
+              aria-valuetext="1.00"
+            />
+            <span class="control-value" id="val-contrast" aria-live="polite">1.00</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-brightness">Brightness</label>
+            <input
+              type="range"
+              id="ctrl-brightness"
+              min="-50"
+              max="50"
+              step="1"
+              value="0"
+              aria-valuetext="0"
+            />
+            <span class="control-value" id="val-brightness" aria-live="polite">0</span>
+          </div>
+          <div class="control-group">
+            <label for="ctrl-gamma">Gamma</label>
+            <input
+              type="range"
+              id="ctrl-gamma"
+              min="0.3"
+              max="3"
+              step="0.05"
+              value="1"
+              aria-valuetext="1.00"
+            />
+            <span class="control-value" id="val-gamma" aria-live="polite">1.00</span>
+          </div>
+          <div class="control-group">
+            <div class="checkbox-row">
+              <input type="checkbox" id="ctrl-autocontrast" checked />
+              <label for="ctrl-autocontrast">Auto-contrast</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Status -->
+      <div class="status-bar" id="status-bar" role="status" aria-live="polite" aria-atomic="true">
+        Load an image to begin.
+      </div>
+
+      <!-- Preview panes -->
+      <section
+        class="preview-wrap"
+        id="preview-wrap"
+        aria-labelledby="preview-heading"
+        aria-live="polite">
+        <h2 id="preview-heading" class="sr-only">Preview</h2>
+        <div class="preview-pane">
+          <div class="preview-label" aria-hidden="true">Before</div>
+          <!-- eslint-disable-next-line astro/no-unused-css-selector -->
+          <img id="preview-before" src="" alt="Source portrait" />
+        </div>
+        <div class="preview-pane">
+          <div class="preview-label" aria-hidden="true">After (halftone)</div>
+          <img id="preview-after" src="" alt="Halftone result" />
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn btn--primary" id="btn-reprocess" disabled>
+          ↺ Reprocess
+        </button>
+        <a class="btn btn--secondary" id="btn-download" aria-disabled="true" tabindex="-1">
+          ↓ Download
+        </a>
+        <p class="result-meta" id="result-meta"></p>
+      </div>
+    </main>
+
+    <script>
+      /**
+       * Portrait Lab — client controller.
+       *
+       * Execution strategy:
+       *   1. Try OffscreenCanvas + module Worker (halftone.worker.ts, bundled by Vite).
+       *   2. On transport/load/message failures only, fall back to main-thread processPortrait.
+       *      Domain PortraitProcessError codes from the worker (INVALID_*, TOO_LARGE, etc.)
+       *      are surfaced to the user — they are not retried on the main thread.
+       *
+       * AbortSignal is NOT structured-cloneable across the worker boundary.
+       * Cancellation is handled by calling worker.terminate(); the main-thread
+       * fallback uses a normal AbortController + signal.
+       *
+       * Integration hooks:
+       *   - window.labResult — current HalftoneResult
+       *   - window.addEventListener('portrait-ready', (e) => e.detail) — same result
+       *   - window.__halftoneLab.usedWorker — last render path (test/observability)
+       */
+
+      import {
+        processPortrait,
+        PortraitProcessError,
+        resolveWorkDimensions,
+        validateHalftoneOptions,
+      } from '../lib/halftone';
+      import {
+        createPortraitRunner,
+        type PortraitRunOptions,
+      } from '../lib/portrait-client';
+
+      // ── Worker setup ──────────────────────────────────────────────────────────
+      // Worker-then-main-thread policy lives in portrait-client.ts so the lab and
+      // the join form cannot drift apart.
+      const runner = createPortraitRunner();
+
+      const labApi: Record<string, unknown> = {
+        processPortrait,
+        PortraitProcessError,
+        resolveWorkDimensions,
+        validateHalftoneOptions,
+        get usedWorker() {
+          return runner.usedWorker;
+        },
+        get workerAvailable() {
+          return runner.workerAvailable;
+        },
+      };
+      (window as unknown as Record<string, unknown>).__halftoneLab = labApi;
+
+      /**
+       * Same worker-then-fallback policy the lab UI uses, exposed for tests.
+       * Domain PortraitProcessError codes are never retried on the main thread.
+       */
+      labApi.processLikeLab = async (
+        file: File,
+        options: PortraitRunOptions = {}
+      ): Promise<{ result?: unknown; usedWorker: boolean; errorCode?: string }> => {
+        const ac = new AbortController();
+        try {
+          const result = await runner.run(file, options, ac.signal);
+          return { result, usedWorker: runner.usedWorker };
+        } catch (err) {
+          if (err instanceof PortraitProcessError) {
+            return { usedWorker: runner.usedWorker, errorCode: err.code };
+          }
+          throw err;
+        }
+      };
+
+      // ── DOM refs ─────────────────────────────────────────────────────────────
+      const dropZone = document.getElementById('drop-zone')!;
+      const fileInput = document.getElementById('file-input') as HTMLInputElement;
+      const statusBar = document.getElementById('status-bar')!;
+      const previewWrap = document.getElementById('preview-wrap')!;
+      const previewBefore = document.getElementById('preview-before') as HTMLImageElement;
+      const previewAfter = document.getElementById('preview-after') as HTMLImageElement;
+      const btnReprocess = document.getElementById('btn-reprocess') as HTMLButtonElement;
+      const btnDownload = document.getElementById('btn-download') as HTMLAnchorElement;
+      const resultMeta = document.getElementById('result-meta')!;
+
+      const sliders = {
+        focusX: {
+          el: document.getElementById('ctrl-focusx') as HTMLInputElement,
+          valEl: document.getElementById('val-focusx')!,
+        },
+        focusY: {
+          el: document.getElementById('ctrl-focusy') as HTMLInputElement,
+          valEl: document.getElementById('val-focusy')!,
+        },
+        zoom: {
+          el: document.getElementById('ctrl-zoom') as HTMLInputElement,
+          valEl: document.getElementById('val-zoom')!,
+        },
+        pitch: {
+          el: document.getElementById('ctrl-pitch') as HTMLInputElement,
+          valEl: document.getElementById('val-pitch')!,
+        },
+        angle: {
+          el: document.getElementById('ctrl-angle') as HTMLInputElement,
+          valEl: document.getElementById('val-angle')!,
+        },
+        contrast: {
+          el: document.getElementById('ctrl-contrast') as HTMLInputElement,
+          valEl: document.getElementById('val-contrast')!,
+        },
+        brightness: {
+          el: document.getElementById('ctrl-brightness') as HTMLInputElement,
+          valEl: document.getElementById('val-brightness')!,
+        },
+        gamma: {
+          el: document.getElementById('ctrl-gamma') as HTMLInputElement,
+          valEl: document.getElementById('val-gamma')!,
+        },
+      };
+      const autocontrastCheck = document.getElementById('ctrl-autocontrast') as HTMLInputElement;
+
+      // ── State ─────────────────────────────────────────────────────────────────
+      let currentFile: File | null = null;
+      let currentAbort: AbortController | null = null;
+      let downloadUrl: string | null = null;
+      let sourceObjectUrl: string | null = null;
+
+      (window as unknown as Record<string, unknown>).labResult = null;
+
+      // ── Teardown ──────────────────────────────────────────────────────────────
+      function teardownLab(): void {
+        if (currentAbort) {
+          currentAbort.abort();
+          currentAbort = null;
+        }
+        runner.dispose();
+        if (downloadUrl) {
+          URL.revokeObjectURL(downloadUrl);
+          downloadUrl = null;
+        }
+        if (sourceObjectUrl) {
+          URL.revokeObjectURL(sourceObjectUrl);
+          sourceObjectUrl = null;
+        }
+        const after = previewAfter.src;
+        if (after && after.startsWith('blob:')) URL.revokeObjectURL(after);
+      }
+      window.addEventListener('pagehide', teardownLab);
+
+      // ── Slider display ────────────────────────────────────────────────────────
+      function fmtSlider(key: string, val: number): string {
+        if (key === 'zoom') return `${val.toFixed(2)}×`;
+        if (key === 'pitch') return `${val.toFixed(1)} px`;
+        if (key === 'angle') return `${val}°`;
+        if (key === 'contrast' || key === 'gamma') return val.toFixed(2);
+        return val.toFixed(2);
+      }
+
+      for (const [key, { el, valEl }] of Object.entries(sliders)) {
+        el.addEventListener('input', () => {
+          valEl.textContent = fmtSlider(key, parseFloat(el.value));
+          el.setAttribute('aria-valuetext', valEl.textContent);
+          scheduleReprocess();
+        });
+      }
+      autocontrastCheck.addEventListener('change', scheduleReprocess);
+
+      // ── Drop zone ─────────────────────────────────────────────────────────────
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('is-drag-over');
+      });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('is-drag-over'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('is-drag-over');
+        const file = e.dataTransfer?.files[0];
+        if (file) handleFile(file);
+      });
+      dropZone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files?.[0];
+        if (file) handleFile(file);
+      });
+
+      // ── File handling ─────────────────────────────────────────────────────────
+      function handleFile(file: File): void {
+        currentFile = file;
+        if (sourceObjectUrl) URL.revokeObjectURL(sourceObjectUrl);
+        sourceObjectUrl = URL.createObjectURL(file);
+        previewBefore.src = sourceObjectUrl;
+        previewBefore.alt = `Source: ${file.name}`;
+        previewWrap.classList.add('is-visible');
+        btnReprocess.disabled = false;
+        scheduleReprocess();
+      }
+
+      // ── Debounced reprocess ───────────────────────────────────────────────────
+      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+      function scheduleReprocess(): void {
+        if (!currentFile) return;
+        if (debounceTimer !== null) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          void runProcess();
+        }, 180);
+      }
+
+      async function runProcess(): Promise<void> {
+        if (!currentFile) return;
+
+        if (currentAbort) currentAbort.abort();
+        currentAbort = new AbortController();
+        const { signal } = currentAbort;
+
+        statusBar.textContent = '';
+        const spinner = document.createElement('div');
+        spinner.className = 'spinner';
+        spinner.setAttribute('aria-hidden', 'true');
+        statusBar.appendChild(spinner);
+        statusBar.appendChild(document.createTextNode(' Processing…'));
+        statusBar.className = 'status-bar is-processing';
+
+        btnDownload.setAttribute('aria-disabled', 'true');
+        btnDownload.tabIndex = -1;
+        resultMeta.classList.remove('is-visible');
+
+        const opts = {
+          focusX: parseFloat(sliders.focusX.el.value),
+          focusY: parseFloat(sliders.focusY.el.value),
+          zoom: parseFloat(sliders.zoom.el.value),
+          pitch: parseFloat(sliders.pitch.el.value),
+          angleDeg: parseFloat(sliders.angle.el.value),
+          contrast: parseFloat(sliders.contrast.el.value),
+          brightness: parseFloat(sliders.brightness.el.value),
+          gamma: parseFloat(sliders.gamma.el.value),
+          autocontrast: autocontrastCheck.checked,
+        };
+
+        try {
+          const result = await runner.run(currentFile, opts, signal);
+          if (signal.aborted) return;
+
+          (window as unknown as Record<string, unknown>).labResult = result;
+          window.dispatchEvent(
+            new CustomEvent('portrait-ready', { detail: result })
+          );
+
+          const prev = previewAfter.src;
+          if (prev && prev.startsWith('blob:')) URL.revokeObjectURL(prev);
+          if (downloadUrl) URL.revokeObjectURL(downloadUrl);
+          downloadUrl = URL.createObjectURL(result.blob);
+          previewAfter.src = downloadUrl;
+          previewAfter.alt = `Halftone result: ${result.filename}`;
+
+          btnDownload.href = downloadUrl;
+          btnDownload.download = result.filename;
+          btnDownload.removeAttribute('aria-disabled');
+          btnDownload.tabIndex = 0;
+
+          const kb = (result.bytes / 1024).toFixed(1);
+          const ms = result.durationMs.toFixed(0);
+          resultMeta.textContent = `${result.width}×${result.height} · ${result.mimeType} · ${kb} KB · ${ms} ms`;
+          resultMeta.classList.add('is-visible');
+
+          statusBar.textContent = '✓ Done';
+          statusBar.className = 'status-bar';
+        } catch (err) {
+          if (signal.aborted) return;
+          const msg =
+            err instanceof PortraitProcessError
+              ? `${err.code}: ${err.message}`
+              : err instanceof Error
+                ? err.message
+                : String(err);
+          statusBar.textContent = `✗ ${msg}`;
+          statusBar.className = 'status-bar is-error';
+        }
+      }
+
+      btnReprocess.addEventListener('click', () => {
+        if (currentFile) void runProcess();
+      });
+
+      btnDownload.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && !btnDownload.hasAttribute('aria-disabled')) {
+          e.preventDefault();
+          btnDownload.click();
+        }
+      });
+    </script>
+  </body>
+</html>
