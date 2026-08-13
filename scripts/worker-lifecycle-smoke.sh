@@ -575,6 +575,129 @@ done
 expect_status 'rate probe 9' 429 "$RL_STATUS" "$SMOKE_DIR/rl.json"
 python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert d.get("error")=="rate_limited" and d.get("retryAfter"), d' "$SMOKE_DIR/rl.json"
 
+echo "== self-service /join/api/me (real D1 + R2) =="
+ME_EMAIL="me-probe-${STAMP}@example.com"
+ME_JWT="$(node "$ROOT/scripts/access-jwt-fixture.mjs" sign \
+  --aud "$ACCESS_AUD" --issuer "$ACCESS_ISSUER" --email "$ME_EMAIL" \
+  --key-file "$ACCESS_DIR/private.jwk")"
+ME_CREATE=$(curl -sf -X POST "$BASE/join/api" -H "CF-Connecting-IP: $(syn_ip)" \
+  -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE" \
+  -F 'fullName=Me Probe' \
+  -F 'affiliation=Ephemeral QA Fixture' \
+  -F 'sector=Research' \
+  -F 'contribution=Stay informed as the coalition grows' \
+  -F "portrait=@${PORTRAIT_FIXTURE};type=image/webp")
+ME_ID=$(python3 -c 'import json,sys; print(json.loads(sys.argv[1])["memberId"])' "$ME_CREATE")
+test -n "$ME_ID"
+ME_KEY=$("${WRANGLER[@]}" d1 execute reversealignment-coalition --local --persist-to "$PERSIST" --json \
+  --command "SELECT image_key FROM members WHERE id='${ME_ID}'" | python3 -c '
+import sys, json
+rows = json.load(sys.stdin)
+flat = []
+if isinstance(rows, list):
+  for block in rows:
+    flat.extend(block.get("results") or [])
+elif isinstance(rows, dict):
+  flat.extend(rows.get("results") or [])
+print((flat[0] if flat else {}).get("image_key") or "")
+')
+test -n "$ME_KEY"
+
+# Unauthenticated read never reaches a row.
+ME_ANON=$(curl -s -o "$SMOKE_DIR/me-anon.json" -w '%{http_code}' "$BASE/join/api/me")
+test "$ME_ANON" = "401"
+
+ME_GET=$(curl -sf "$BASE/join/api/me" -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE")
+python3 - "$ME_ID" "$ME_EMAIL" <<PY
+import json, sys
+d = json.loads('''$ME_GET''')
+m = d["member"]
+assert d.get("ok") is True, d
+assert m["id"] == sys.argv[1], m
+assert m["fullName"] == "Me Probe", m
+# The caller is the data subject, so their own stored address is returned here.
+assert m["email"] == sys.argv[2], m
+assert m["status"] == "updates_only", m
+assert m["portraitUrl"], m
+print("me get ok", m["id"])
+PY
+
+# A body naming another row must not redirect the write: edit lands on the caller
+# and the canonical seed row is untouched.
+ME_PATCH=$(curl -sf -X PATCH "$BASE/join/api/me" \
+  -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE" \
+  -H 'Content-Type: application/json' \
+  --data '{"id":"canonical:person-audrey-tang","email":"someone-else@example.com","fullName":"Me Probe Renamed","affiliation":"Edited Affiliation","sector":"Technology","contribution":"Lend your name to the statement","status":"published"}')
+python3 - "$ME_ID" <<PY
+import json, sys
+m = json.loads('''$ME_PATCH''')["member"]
+assert m["id"] == sys.argv[1], m
+assert m["fullName"] == "Me Probe Renamed", m
+assert m["sector"] == "Technology", m
+# role is derived from affiliation, never accepted from the client
+assert m["role"] == "Edited Affiliation", m
+# contribution and status are not self-editable
+assert m["contribution"] == "Stay informed as the coalition grows", m
+assert m["status"] == "updates_only", m
+print("me patch ok")
+PY
+CANON=$("${WRANGLER[@]}" d1 execute reversealignment-coalition --local --persist-to "$PERSIST" --json \
+  --command "SELECT full_name FROM members WHERE id='canonical:person-audrey-tang'" | python3 -c '
+import sys, json
+rows = json.load(sys.stdin)
+flat = []
+if isinstance(rows, list):
+  for block in rows:
+    flat.extend(block.get("results") or [])
+elif isinstance(rows, dict):
+  flat.extend(rows.get("results") or [])
+print((flat[0] if flat else {}).get("full_name") or "")
+')
+test "$CANON" = "Audrey Tang"
+
+# Renaming onto a published name_key is refused.
+ME_CLASH=$(curl -s -o "$SMOKE_DIR/me-clash.json" -w '%{http_code}' -X PATCH "$BASE/join/api/me" \
+  -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE" \
+  -H 'Content-Type: application/json' \
+  --data '{"fullName":"Audrey Tang","affiliation":"Taiwan","sector":"Government"}')
+expect_status 'me rename collision' 409 "$ME_CLASH" "$SMOKE_DIR/me-clash.json"
+python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert d.get("error")=="name_collision", d' "$SMOKE_DIR/me-clash.json"
+
+# This probe uploaded the same fixture bytes as Lifecycle Probe, and portrait keys
+# are content-addressed, so both rows share ONE R2 object. Deleting the row must
+# therefore leave the object alone — otherwise self-deletion would blank a
+# stranger's portrait. The unshared true-delete path is covered by
+# tests/unit/worker-me.test.ts.
+curl -sf -o /dev/null "$BASE/api/portrait/${ME_KEY#portraits/}"
+ME_DEL=$(curl -sf -X DELETE "$BASE/join/api/me" \
+  -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE")
+python3 - <<PY
+import json
+d = json.loads('''$ME_DEL''')
+assert d == {"ok": True, "deleted": True, "portraitDeleted": False}, d
+print("me delete ok (shared portrait object preserved)")
+PY
+ME_LEFT=$("${WRANGLER[@]}" d1 execute reversealignment-coalition --local --persist-to "$PERSIST" --json \
+  --command "SELECT COUNT(*) AS n FROM members WHERE id='${ME_ID}'" | python3 -c '
+import sys, json
+rows = json.load(sys.stdin)
+flat = []
+if isinstance(rows, list):
+  for block in rows:
+    flat.extend(block.get("results") or [])
+elif isinstance(rows, dict):
+  flat.extend(rows.get("results") or [])
+print((flat[0] if flat else {}).get("n"))
+')
+test "$ME_LEFT" = "0"
+# The sharing member still resolves their portrait.
+ME_SHARED=$(curl -s -o /dev/null -w '%{http_code}' "$BASE/api/portrait/${ME_KEY#portraits/}")
+test "$ME_SHARED" = "200"
+ME_AFTER=$(curl -s -o "$SMOKE_DIR/me-after.json" -w '%{http_code}' "$BASE/join/api/me" \
+  -H "Cf-Access-Jwt-Assertion: ${ME_JWT}" -H "Origin: $BASE")
+expect_status 'me get after delete' 404 "$ME_AFTER" "$SMOKE_DIR/me-after.json"
+echo "me lifecycle ok (row gone, shared portrait object intact)"
+
 echo "== no join_challenges table =="
 "${WRANGLER[@]}" d1 execute reversealignment-coalition --local --persist-to "$PERSIST" --json \
   --command "SELECT name FROM sqlite_master WHERE type='table' AND name='join_challenges'" \

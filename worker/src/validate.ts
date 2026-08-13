@@ -161,6 +161,42 @@ export function parseJoinBody(
   };
 }
 
+/**
+ * Fields a member may change about their own entry through `/join/api/me`.
+ *
+ * `contribution` is deliberately absent. It drives `classifyJoinIntent`, which
+ * decides whether a row is queued for the public directory or kept as
+ * updates-only, so accepting an edit would let a member promote themselves out
+ * of `updates_only` and into review without a human ever seeing it. `role` is
+ * absent because it is derived from affiliation, and `email` because Access owns
+ * it. Same limits and character rules as `parseJoinBody`.
+ */
+export type ProfileEdit = {
+  fullName: string;
+  affiliation: string;
+  sector: Sector;
+};
+
+export function parseProfileEdit(
+  input: unknown
+): { ok: true; data: ProfileEdit } | { ok: false; errors: FieldErrors } {
+  const body = (input && typeof input === 'object' ? input : {}) as Record<string, unknown>;
+  const errors: FieldErrors = {};
+
+  const fullName = clip(body.fullName, 120);
+  const affiliation = clip(body.affiliation, 160);
+  const sectorRaw = clip(body.sector, 40);
+
+  if (fullName.length < 2) errors.fullName = 'Enter your full name.';
+  if (!(SECTORS as readonly string[]).includes(sectorRaw)) errors.sector = 'Choose a sector.';
+  if (hasControlChars(fullName)) errors.fullName = 'Invalid characters.';
+  if (hasControlChars(affiliation)) errors.affiliation = 'Invalid characters.';
+
+  if (Object.keys(errors).length > 0) return { ok: false, errors };
+
+  return { ok: true, data: { fullName, affiliation, sector: sectorRaw as Sector } };
+}
+
 export function isSector(value: string): value is Sector {
   return (SECTORS as readonly string[]).includes(value);
 }

@@ -11,6 +11,9 @@
 /** Canonical path for the Access join app (trailing slash required). */
 export const JOIN_PATH = '/join/';
 
+/** Canonical path for the Access-gated entry manager (trailing slash required). */
+export const MANAGE_PATH = '/join/manage/';
+
 /**
  * Submit path, relative to the join page itself.
  *
@@ -20,6 +23,16 @@ export const JOIN_PATH = '/join/';
  * every live deployment and to `/en/join/api` in that preview tree.
  */
 export const JOIN_API_RELATIVE_PATH = 'api';
+
+/**
+ * Self-service API path, relative to the entry manager page itself.
+ *
+ * From `/join/manage/`, this resolves to `/join/api/me` on whichever host
+ * served the page. `scripts/relativize-dist-assets.ts` rewrites root-absolute
+ * runtime URLs, so an absolute path would break the zh-TW host's `/en/`
+ * preview copy.
+ */
+export const MANAGE_API_RELATIVE_PATH = '../api/me';
 
 /** Absolute Worker route the relative path resolves to on a live deployment. */
 export const JOIN_API_PATH = `${JOIN_PATH}${JOIN_API_RELATIVE_PATH}`;

@@ -35,6 +35,8 @@ test -f dist/es/index.html
 test -f dist/pt-BR/index.html
 test -f dist/join/index.html
 test -f dist/en/join/index.html
+test -f dist/join/manage/index.html
+test -f dist/en/join/manage/index.html
 test ! -e dist/es/join
 test ! -e dist/pt-BR/join
 test ! -e dist/en/en

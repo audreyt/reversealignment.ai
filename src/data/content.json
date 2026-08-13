@@ -849,7 +849,7 @@
         "rateLimited": "Too many attempts. Please wait a few minutes.",
         "duplicateEmail": "This email is already on the coalition list or awaiting review.",
         "moderationHold": "Thanks. A moderator will review before publishing.",
-        "privacyNote": "Cloudflare Access already verified your email. We keep it privately for coalition updates and moderation; the public directory never shows it, your contribution choices, or IP. A photo is optional: it is halftone-screened in your browser and only that screened image is uploaded — no third-party image calls, no original photo leaving your device. We keep it only while your entry is listed — write to hello@reversealignment.ai to correct or remove it, and the address goes with it.",
+        "privacyNote": "Cloudflare Access already verified your email. We keep it privately for coalition updates and moderation; the public directory never shows it, your contribution choices, or IP. A photo is optional: it is halftone-screened in your browser and only that screened image is uploaded — no third-party image calls, no original photo leaving your device. We keep it only while your entry is listed — write to hello@reversealignment.ai to correct or remove it, and the address goes with it. You can also review, correct, or delete your entry yourself at /join/manage/.",
         "avatarNote": "Your public portrait starts as a deterministic monogram generated from your name in the browser. Add a photo and it is screened into the coalition halftone here on your device — the original file is never uploaded.",
         "avatarPreviewLabel": "Directory preview",
         "photo": {
@@ -862,6 +862,37 @@
           "uploadFailed": "We could not attach your portrait. Your submission still went through — a moderator can add one later.",
           "storeFailed": "Your portrait could not be stored, so the directory will use your monogram."
         }
+      },
+      "manage": {
+        "eyebrow": "Self-service directory management",
+        "title": "Manage your coalition entry",
+        "lead": "Review, update, or remove your profile and stored portrait. Changes take effect immediately.",
+        "fullNameLabel": "Full name",
+        "affiliationLabel": "Affiliation or Organization",
+        "sectorLabel": "Sector",
+        "statusLabel": "Current status",
+        "statusLabels": {
+          "pending_review": "Pending review",
+          "published": "Published in directory",
+          "rejected": "Not published",
+          "suspended": "Suspended",
+          "updates_only": "Subscribed to updates"
+        },
+        "portraitLabel": "Portrait photo",
+        "portraitRemoveLabel": "Remove portrait photo",
+        "saveLabel": "Save changes",
+        "savedMessage": "Your directory entry has been updated.",
+        "deleteTitle": "Remove entry",
+        "deleteWarning": "Deleting your entry immediately removes your profile from the directory and hard deletes your stored portrait and private address.",
+        "deleteConfirmLabel": "I understand this removes my entry and address permanently.",
+        "deleteLabel": "Delete my entry",
+        "deletedMessage": "Your entry and stored address have been permanently removed.",
+        "notFoundMessage": "No coalition entry was found for your authenticated email address.",
+        "reauthMessage": "Your authentication session has expired. Please sign in again through Cloudflare Access.",
+        "errorMessage": "Could not update your entry. Please check your information and try again.",
+        "networkError": "A network error occurred. Please check your connection and try again.",
+        "rateLimited": "Too many updates or deletion attempts. Please wait a few minutes before trying again.",
+        "nameCollision": "Another published entry already uses this full name. Please provide a unique name."
       }
     }
   },
@@ -1715,7 +1746,7 @@
         "rateLimited": "嘗試次數過多，請稍候再試。",
         "duplicateEmail": "此信箱已在聯盟名單或審核中。",
         "moderationHold": "謝謝。管理員審核後才會公開。",
-        "privacyNote": "Cloudflare Access 已驗證你的電子郵件。我們會私下保存完整信箱，用於聯盟更新與審核；公開名錄不會顯示信箱、貢獻選項或 IP。照片為選填：在你的瀏覽器完成網點處理，只有處理後的圖片會上傳——不呼叫第三方圖片服務，原始照片不會離開你的裝置。只有在你的條目仍列於名錄時，我們才會保存；想更正或撤下，請寄信至 hello@reversealignment.ai，你的信箱也會一併刪除。",
+        "privacyNote": "Cloudflare Access 已驗證你的電子郵件。我們會私下保存完整信箱，用於聯盟更新與審核；公開名錄不會顯示信箱、貢獻選項或 IP。照片為選填：在你的瀏覽器完成網點處理，只有處理後的圖片會上傳——不呼叫第三方圖片服務，原始照片不會離開你的裝置。只有在你的條目仍列於名錄時，我們才會保存；想更正或撤下，請寄信至 hello@reversealignment.ai，你的信箱也會一併刪除。你也可以在 /join/manage/ 自行檢視、更正或刪除你的條目。",
         "avatarNote": "公開肖像先以姓名在瀏覽器產生固定的字首圖。加上照片後，會在你的裝置上轉為聯盟的網點肖像——原始檔案不會上傳。",
         "avatarPreviewLabel": "名錄預覽",
         "photo": {
@@ -1728,6 +1759,37 @@
           "uploadFailed": "無法附上你的肖像。你的資料已送出——管理員可稍後補上。",
           "storeFailed": "你的肖像未能儲存，名錄將使用字首圖。"
         }
+      },
+      "manage": {
+        "eyebrow": "自主管理名錄條目",
+        "title": "管理你的聯盟條目",
+        "lead": "檢視、更新或撤下你的個人資料與肖像照片。更新會立即生效。",
+        "fullNameLabel": "全名",
+        "affiliationLabel": "所屬機構或單位",
+        "sectorLabel": "領域",
+        "statusLabel": "目前狀態",
+        "statusLabels": {
+          "pending_review": "等待審核中",
+          "published": "已公開於名錄",
+          "rejected": "未公開",
+          "suspended": "已暫停顯示",
+          "updates_only": "訂閱最新消息"
+        },
+        "portraitLabel": "肖像照片",
+        "portraitRemoveLabel": "移除肖像照片",
+        "saveLabel": "儲存變更",
+        "savedMessage": "你的名錄條目已更新成功。",
+        "deleteTitle": "撤下條目",
+        "deleteWarning": "撤下條目會立即將你的資料從名錄移除，並永久刪除你保存的肖像與私人信箱。",
+        "deleteConfirmLabel": "我了解這會永久刪除我的條目與信箱。",
+        "deleteLabel": "確定撤下條目",
+        "deletedMessage": "你的條目與保存信箱已永久刪除。",
+        "notFoundMessage": "未找到與你驗證信箱相符的聯盟條目。",
+        "reauthMessage": "你的驗證階段已過期，請重新透過 Cloudflare Access 登入。",
+        "errorMessage": "無法更新你的條目，請檢查填寫內容後再試一次。",
+        "networkError": "連線發生錯誤，請檢查網路連線後再試一次。",
+        "rateLimited": "嘗試更新或刪除次數過多，請稍候幾分鐘再試。",
+        "nameCollision": "名錄中已有同名公開條目，請使用可區分的名稱。"
       }
     }
   },
@@ -2581,7 +2643,7 @@
         "rateLimited": "試行が多すぎます。しばらくしてから再試行してください。",
         "duplicateEmail": "このメールは既に登録済み、または審査中です。",
         "moderationHold": "モデレーターが公開前に確認します。",
-        "privacyNote": "Cloudflare Access がメールアドレスを確認済みです。連盟の最新情報と審査のため非公開で保存します。公開ディレクトリにメール・貢献内容・IP は出しません。写真は任意です。ブラウザ内でハーフトーン処理し、処理後の画像だけをアップロードします — 第三者の画像サービスは呼び出さず、元の写真は端末から出ません。保存するのは掲載されている間だけで、hello@reversealignment.ai にご連絡いただければ訂正・削除に対応し、メールアドレスも一緒に削除します。",
+        "privacyNote": "Cloudflare Access がメールアドレスを確認済みです。連盟の最新情報と審査のため非公開で保存します。公開ディレクトリにメール・貢献内容・IP は出しません。写真は任意です。ブラウザ内でハーフトーン処理し、処理後の画像だけをアップロードします — 第三者の画像サービスは呼び出さず、元の写真は端末から出ません。保存するのは掲載されている間だけで、hello@reversealignment.ai にご連絡いただければ訂正・削除に対応し、メールアドレスも一緒に削除します。/join/manage/ にてご自身でエントリーの確認・修正・削除を行うこともできます。",
         "avatarNote": "公開ポートレートは、まず氏名からブラウザで生成するモノグラムです。写真を追加すると、端末上で連盟のハーフトーンポートレートに変換します — 元のファイルはアップロードしません。",
         "avatarPreviewLabel": "ディレクトリプレビュー",
         "photo": {
@@ -2594,6 +2656,37 @@
           "uploadFailed": "ポートレートを添付できませんでした。送信は完了しています — モデレーターが後で追加できます。",
           "storeFailed": "ポートレートを保存できなかったため、ディレクトリではモノグラムを使用します。"
         }
+      },
+      "manage": {
+        "eyebrow": "セルフサービスエントリー管理",
+        "title": "登録エントリーの管理",
+        "lead": "ご自身のプロフィールやポートレート写真の確認・更新・削除が行えます。変更は即座に反映されます。",
+        "fullNameLabel": "氏名",
+        "affiliationLabel": "所属・組織",
+        "sectorLabel": "分野",
+        "statusLabel": "現在のステータス",
+        "statusLabels": {
+          "pending_review": "審査待ち",
+          "published": "ディレクトリ公開中",
+          "rejected": "非公開",
+          "suspended": "停止中",
+          "updates_only": "最新情報のみ配信"
+        },
+        "portraitLabel": "ポートレート写真",
+        "portraitRemoveLabel": "写真を削除",
+        "saveLabel": "変更を保存",
+        "savedMessage": "登録内容を更新しました。",
+        "deleteTitle": "エントリーの削除",
+        "deleteWarning": "エントリーを削除すると、ディレクトリから即座に削除され、保存されている写真やメールアドレスも完全に消去されます。",
+        "deleteConfirmLabel": "エントリーとアドレスが永久に削除されることを理解しました。",
+        "deleteLabel": "エントリーを削除する",
+        "deletedMessage": "登録内容およびメールアドレスの削除が完了しました。",
+        "notFoundMessage": "認証されたメールアドレスに一致する登録エントリーが見つかりませんでした。",
+        "reauthMessage": "認証セッションの期限が切れました。Cloudflare Access から再度ログインしてください。",
+        "errorMessage": "エントリーを更新できませんでした。入力内容を確認のうえ、再試行してください。",
+        "networkError": "ネットワークエラーが発生しました。接続を確認のうえ、再試行してください。",
+        "rateLimited": "更新または削除の試行回数が上限を超えました。しばらく時間をおいてから再試行してください。",
+        "nameCollision": "同名の公開エントリーが既に存在します。識別可能な氏名を入力してください。"
       }
     }
   },
@@ -3447,9 +3540,40 @@
         "rateLimited": "Demasiados intentos. Espera unos minutos.",
         "duplicateEmail": "Este correo ya está en la lista o en revisión.",
         "moderationHold": "Un moderador revisará antes de publicar.",
-        "privacyNote": "Guardamos tu correo de forma privada para novedades de la coalición y moderación. El directorio público no muestra correo, contribuciones ni IP. Retratos locales cuando hay foto; si no, un monograma propio generado del nombre — sin terceros ni subidas. Lo conservamos solo mientras tu ficha aparezca en el directorio; escribe a hello@reversealignment.ai para corregirla o retirarla, y el correo se elimina con ella.",
+        "privacyNote": "Guardamos tu correo de forma privada para novedades de la coalición y moderación. El directorio público no muestra correo, contribuciones ni IP. Retratos locales cuando hay foto; si no, un monograma propio generado del nombre — sin terceros ni subidas. Lo conservamos solo mientras tu ficha aparezca en el directorio; escribe a hello@reversealignment.ai para corregirla o retirarla, y el correo se elimina con ella. También puedes revisar, corregir o eliminar tu ficha por tu cuenta en /join/manage/.",
         "avatarNote": "Tu retrato público es un monograma determinista del nombre en el navegador. Sin subida, sin Gravatar, sin archivo de imagen.",
         "avatarPreviewLabel": "Vista previa del directorio"
+      },
+      "manage": {
+        "eyebrow": "Gestión autoservicio del directorio",
+        "title": "Gestiona tu ficha de la coalición",
+        "lead": "Revisa, actualiza o elimina tu perfil y tu retrato guardado. Los cambios se aplican de inmediato.",
+        "fullNameLabel": "Nombre completo",
+        "affiliationLabel": "Afiliación u organización",
+        "sectorLabel": "Sector",
+        "statusLabel": "Estado actual",
+        "statusLabels": {
+          "pending_review": "Pendiente de revisión",
+          "published": "Publicado en el directorio",
+          "rejected": "No publicado",
+          "suspended": "Suspendido",
+          "updates_only": "Suscrito a novedades"
+        },
+        "portraitLabel": "Foto de retrato",
+        "portraitRemoveLabel": "Eliminar foto de retrato",
+        "saveLabel": "Guardar cambios",
+        "savedMessage": "Tu ficha del directorio se ha actualizado correctamente.",
+        "deleteTitle": "Eliminar ficha",
+        "deleteWarning": "Eliminar tu ficha retira de inmediato tu perfil del directorio y elimina de forma permanente tu retrato y correo privado.",
+        "deleteConfirmLabel": "Entiendo que esto elimina mi ficha y mi correo de forma permanente.",
+        "deleteLabel": "Eliminar mi ficha",
+        "deletedMessage": "Tu ficha y tu correo guardado se han eliminado de forma permanente.",
+        "notFoundMessage": "No se encontró ninguna ficha de la coalición vinculada a tu correo autenticado.",
+        "reauthMessage": "Tu sesión de autenticación ha expirado. Por favor, vuelve a iniciar sesión mediante Cloudflare Access.",
+        "errorMessage": "No se pudo actualizar tu ficha. Revisa los datos e inténtalo de nuevo.",
+        "networkError": "Ocurrió un error de red. Comprueba tu conexión e inténtalo de nuevo.",
+        "rateLimited": "Demasiados intentos de actualización o eliminación. Espera unos minutos antes de volver a intentarlo.",
+        "nameCollision": "Ya existe una ficha publicada con este mismo nombre completo. Por favor, proporciona un nombre único."
       }
     }
   },
@@ -4303,9 +4427,40 @@
         "rateLimited": "Muitas tentativas. Aguarde alguns minutos.",
         "duplicateEmail": "Este e-mail já está na lista ou em revisão.",
         "moderationHold": "Um moderador revisará antes de publicar.",
-        "privacyNote": "Guardamos o e-mail de forma privada para novidades da coalizão e moderação. O diretório público não mostra e-mail, contribuições nem IP. Retratos locais quando há foto; senão, um monograma próprio gerado do nome — sem terceiros nem upload. Só mantemos enquanto sua ficha aparecer no diretório; escreva para hello@reversealignment.ai para corrigi-la ou removê-la, e o e-mail vai junto.",
+        "privacyNote": "Guardamos o e-mail de forma privada para novidades da coalizão e moderação. O diretório público não mostra e-mail, contribuições nem IP. Retratos locais quando há foto; senão, um monograma próprio gerado do nome — sem terceiros nem upload. Só mantemos enquanto sua ficha aparecer no diretório; escreva para hello@reversealignment.ai para corrigi-la ou removê-la, e o e-mail vai junto. Você também pode revisar, corrigir ou excluir sua ficha por conta própria em /join/manage/.",
         "avatarNote": "Seu retrato público é um monograma determinístico do nome no navegador. Sem upload, sem Gravatar, sem arquivo de imagem.",
         "avatarPreviewLabel": "Prévia do diretório"
+      },
+      "manage": {
+        "eyebrow": "Gerenciamento autoatendimento do diretório",
+        "title": "Gerenciar sua ficha na coalizão",
+        "lead": "Revise, atualize ou remova seu perfil e seu retrato salvo. As alterações entram em vigor imediatamente.",
+        "fullNameLabel": "Nome completo",
+        "affiliationLabel": "Afiliação ou organização",
+        "sectorLabel": "Setor",
+        "statusLabel": "Status atual",
+        "statusLabels": {
+          "pending_review": "Pendente de revisão",
+          "published": "Publicado no diretório",
+          "rejected": "Não publicado",
+          "suspended": "Suspenso",
+          "updates_only": "Inscrito para novidades"
+        },
+        "portraitLabel": "Foto de retrato",
+        "portraitRemoveLabel": "Remover foto de retrato",
+        "saveLabel": "Salvar alterações",
+        "savedMessage": "Sua ficha no diretório foi atualizada com sucesso.",
+        "deleteTitle": "Remover ficha",
+        "deleteWarning": "Excluir sua ficha remove imediatamente seu perfil do diretório e apaga permanentemente seu retrato e e-mail privado.",
+        "deleteConfirmLabel": "Compreendo que isso remove minha ficha e meu e-mail permanentemente.",
+        "deleteLabel": "Excluir minha ficha",
+        "deletedMessage": "Sua ficha e seu e-mail salvo foram removidos permanentemente.",
+        "notFoundMessage": "Nenhuma ficha na coalizão foi encontrada para o seu e-mail autenticado.",
+        "reauthMessage": "Sua sessão de autenticação expirou. Por favor, faça login novamente pelo Cloudflare Access.",
+        "errorMessage": "Não foi possível atualizar sua ficha. Verifique suas informações e tente novamente.",
+        "networkError": "Ocorreu um erro de rede. Verifique sua conexão e tente novamente.",
+        "rateLimited": "Muitas tentativas de atualização ou exclusão. Aguarde alguns minutos antes de tentar novamente.",
+        "nameCollision": "Já existe uma ficha publicada com este mesmo nome completo. Por favor, informe um nome único."
       }
     }
   }

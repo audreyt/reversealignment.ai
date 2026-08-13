@@ -142,6 +142,44 @@ export type FormSpec = {
   photo?: FormPhotoCopy;
 };
 
+/**
+ * Copy for the Access-gated self-service entry management page (/join/manage/).
+ */
+export type ManageCopy = {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  fullNameLabel: string;
+  affiliationLabel: string;
+  sectorLabel: string;
+  statusLabel: string;
+  /** Localized labels for internal member statuses (`pending_review`, `published`, `rejected`, `suspended`, `updates_only`). */
+  statusLabels: Record<
+    'pending_review' | 'published' | 'rejected' | 'suspended' | 'updates_only',
+    string
+  >;
+  portraitLabel: string;
+  portraitRemoveLabel: string;
+  saveLabel: string;
+  savedMessage: string;
+  deleteTitle: string;
+  /** Explains that deletion hard-deletes the row, private address, and R2 portrait. */
+  deleteWarning: string;
+  deleteConfirmLabel: string;
+  deleteLabel: string;
+  deletedMessage: string;
+  /** Shown when no member row is associated with the authenticated Access email. */
+  notFoundMessage: string;
+  /** Shown when an Access session expires or returns non-JSON HTML. */
+  reauthMessage: string;
+  errorMessage: string;
+  networkError: string;
+  /** Shown when self-service updates or deletes hit rate limiters. */
+  rateLimited: string;
+  /** Shown when a renamed full name collides with another published member's normalized name key. */
+  nameCollision: string;
+};
+
 export type DirectorySortOption = {
   value: string;
   label: string;
@@ -281,6 +319,7 @@ export type SiteContent = {
     mode: 'cta';
     cta: Cta;
     form: FormSpec;
+    manage: ManageCopy;
   };
   closing: {
     lines: string[];

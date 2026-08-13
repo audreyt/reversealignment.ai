@@ -1,0 +1,617 @@
+---
+/**
+ * /join/manage/ — Access-gated self-service directory entry manager.
+ *
+ * Cloudflare Access matches `/join/` as a prefix, so this nested page inherits
+ * the existing OTP gate without another Access application or dashboard change.
+ * Each live whole-domain locale serves its own localized manager; brochure-only
+ * locale builds point visitors at the live deployment and are removed from the
+ * assembled multi-locale artifact with the rest of their join tree.
+ */
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { JOIN_PATH, MANAGE_PATH } from '../../lib/api';
+import { avatarDataUri } from '../../lib/avatar';
+import { absoluteSiteUrl, getContent, getDefaultLocale } from '../../lib/i18n';
+import { PORTRAIT_ACCEPT } from '../../lib/portrait-client';
+
+const locale = getDefaultLocale();
+const catalog = getContent(locale);
+const copy = {
+  ...catalog,
+  nav: {
+    ...catalog.nav,
+    // Standalone page has no #coalition section — send visitors home.
+    coalition: {
+      ...catalog.nav.coalition,
+      href: locale === 'en' ? '../../#coalition' : '/en/#coalition',
+    },
+  },
+};
+const form = copy.join.form;
+const manage = copy.join.manage;
+const manageTitle = `${manage.title} — ${copy.brand.name}`;
+// Seeded so the markup ships a valid <img src>; the client swaps in the stored
+// portrait, or the member's own monogram when nothing is stored.
+const previewSrc = avatarDataUri('');
+const canonicalManageUrl =
+  form.mode === 'live'
+    ? absoluteSiteUrl(MANAGE_PATH, locale)
+    : new URL(MANAGE_PATH, copy.join.cta.href).toString();
+const canonicalManageHost = new URL(canonicalManageUrl).hostname;
+const sectorField = form.fields.find((field) => field.name === 'sector');
+const sectorOptions = (sectorField?.options ?? copy.coalition.sectors).map((option) => ({
+  value: typeof option === 'string' ? option : option.value,
+  label: typeof option === 'string' ? option : option.label,
+}));
+---
+
+<Base
+  locale={locale}
+  title={manageTitle}
+  description={manage.lead}
+  robots="noindex, nofollow"
+>
+  <div id="top" class="page page--join">
+    <SiteHeader copy={copy} showNavigation={false} />
+    <main id="main">
+      <section
+        class="section section--join-page"
+        aria-labelledby="manage-page-title"
+        data-manage-page
+      >
+        <div class="section__inner join-page">
+          <div class="stack-md join-page__intro">
+            <p class="eyebrow">{manage.eyebrow}</p>
+            <h1 id="manage-page-title" class="display display--lg">{manage.title}</h1>
+            <p class="body--mono">{manage.lead}</p>
+          </div>
+          {
+            form.mode === 'live' ? (
+              <div class="join-page__panel">
+                <div
+                  class="join-live"
+                  data-manage-root
+                  data-status-labels={JSON.stringify(manage.statusLabels)}
+                  data-saved-message={manage.savedMessage}
+                  data-deleted-message={manage.deletedMessage}
+                  data-reauth-message={manage.reauthMessage}
+                  data-error-message={manage.errorMessage}
+                  data-network-error={manage.networkError}
+                  data-rate-limited={manage.rateLimited}
+                  data-name-collision={manage.nameCollision}
+                >
+                  <div
+                    class="form__status"
+                    data-manage-message
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                    hidden
+                  />
+
+                  <div class="stack-md" data-manage-not-found role="status" hidden>
+                    <p class="body">{manage.notFoundMessage}</p>
+                    <a class="btn btn--ghost btn--inline" href={JOIN_PATH}>{copy.join.cta.label}</a>
+                  </div>
+
+                  <div class="stack-md" data-manage-editor hidden>
+                    <p class="body--mono">
+                      {manage.statusLabel}: <strong data-manage-status />
+                    </p>
+
+                    <form class="form" data-manage-form enctype="multipart/form-data" novalidate>
+                      <div class="form__field" data-field="fullName">
+                        <label for="manage-full-name">{manage.fullNameLabel}</label>
+                        <input
+                          class="form__control"
+                          id="manage-full-name"
+                          name="fullName"
+                          type="text"
+                          autocomplete="name"
+                          minlength="2"
+                          maxlength="120"
+                          required
+                          aria-describedby="manage-full-name-error"
+                          data-manage-input="fullName"
+                        />
+                        <p
+                          class="form__field-error"
+                          id="manage-full-name-error"
+                          data-field-error="fullName"
+                          hidden
+                        />
+                      </div>
+
+                      <div class="form__field" data-field="affiliation">
+                        <label for="manage-affiliation">{manage.affiliationLabel}</label>
+                        <input
+                          class="form__control"
+                          id="manage-affiliation"
+                          name="affiliation"
+                          type="text"
+                          autocomplete="organization"
+                          maxlength="160"
+                          aria-describedby="manage-affiliation-error"
+                          data-manage-input="affiliation"
+                        />
+                        <p
+                          class="form__field-error"
+                          id="manage-affiliation-error"
+                          data-field-error="affiliation"
+                          hidden
+                        />
+                      </div>
+
+                      <div class="form__field" data-field="sector">
+                        <label for="manage-sector">{manage.sectorLabel}</label>
+                        <select
+                          class="form__control"
+                          id="manage-sector"
+                          name="sector"
+                          required
+                          aria-describedby="manage-sector-error"
+                          data-manage-input="sector"
+                        >
+                          <option value="" disabled>{manage.sectorLabel}</option>
+                          {sectorOptions.map((option) => (
+                            <option value={option.value}>{option.label}</option>
+                          ))}
+                        </select>
+                        <p
+                          class="form__field-error"
+                          id="manage-sector-error"
+                          data-field-error="sector"
+                          hidden
+                        />
+                      </div>
+
+                      <div class="form__field form__field--photo">
+                        <label for="manage-portrait">{manage.portraitLabel}</label>
+                        <div class="join-live__preview" data-manage-portrait-preview hidden>
+                          <img
+                            class="join-live__avatar"
+                            data-manage-portrait-image
+                            src={previewSrc}
+                            width="72"
+                            height="72"
+                            alt=""
+                          />
+                        </div>
+                        <input
+                          class="form__control form__file"
+                          id="manage-portrait"
+                          type="file"
+                          accept={PORTRAIT_ACCEPT}
+                          data-manage-portrait
+                        />
+                        <button
+                          class="btn btn--ghost btn--inline"
+                          type="button"
+                          data-manage-portrait-remove
+                          hidden
+                        >
+                          {manage.portraitRemoveLabel}
+                        </button>
+                      </div>
+
+                      <button class="btn btn--dark btn--block" type="submit" data-manage-save>
+                        {manage.saveLabel}
+                      </button>
+                    </form>
+
+                    <section class="stack-md" aria-labelledby="manage-delete-title">
+                      <h2 id="manage-delete-title" class="display display--sm">
+                        {manage.deleteTitle}
+                      </h2>
+                      <p class="body">{manage.deleteWarning}</p>
+                      <label class="body--mono">
+                        <input id="manage-delete-confirm" type="checkbox" data-manage-delete-confirm />{' '}
+                        {manage.deleteConfirmLabel}
+                      </label>
+                      <button
+                        class="btn btn--ghost btn--block"
+                        type="button"
+                        data-manage-delete
+                        disabled
+                      >
+                        {manage.deleteLabel}
+                      </button>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p class="body">
+                {manage.lead}{' '}
+                <a href={canonicalManageUrl}>{canonicalManageUrl}</a>.
+              </p>
+            )
+          }
+        </div>
+      </section>
+    </main>
+    <SiteFooter copy={copy} />
+  </div>
+</Base>
+
+<script>
+  import { avatarDataUri } from '../../lib/avatar';
+  import { isJoinApiResponse, MANAGE_API_RELATIVE_PATH } from '../../lib/api';
+  import type { PortraitRunner } from '../../lib/portrait-client';
+
+  type ManageRoot = HTMLElement & { dataset: DOMStringMap };
+  type ApiMember = {
+    fullName: string;
+    affiliation: string;
+    sector: string;
+    status: string;
+    portraitUrl: string | null;
+  };
+  type ApiData = {
+    member?: ApiMember;
+    fields?: Record<string, string>;
+    error?: unknown;
+  };
+
+  function bindManager(root: ManageRoot) {
+    if (root.dataset.bound === '1') return;
+    root.dataset.bound = '1';
+
+    const editor = root.querySelector<HTMLElement>('[data-manage-editor]');
+    const notFound = root.querySelector<HTMLElement>('[data-manage-not-found]');
+    const form = root.querySelector<HTMLFormElement>('[data-manage-form]');
+    const message = root.querySelector<HTMLElement>('[data-manage-message]');
+    const status = root.querySelector<HTMLElement>('[data-manage-status]');
+    const portraitPreview = root.querySelector<HTMLElement>('[data-manage-portrait-preview]');
+    const portraitImage = root.querySelector<HTMLImageElement>('[data-manage-portrait-image]');
+    const portraitInput = root.querySelector<HTMLInputElement>('[data-manage-portrait]');
+    const portraitRemove = root.querySelector<HTMLButtonElement>('[data-manage-portrait-remove]');
+    const saveButton = root.querySelector<HTMLButtonElement>('[data-manage-save]');
+    const deleteConfirm = root.querySelector<HTMLInputElement>('[data-manage-delete-confirm]');
+    const deleteButton = root.querySelector<HTMLButtonElement>('[data-manage-delete]');
+    const statusLabels = JSON.parse(root.dataset.statusLabels || '{}') as Record<string, string>;
+
+    let busy = false;
+    let currentPortraitUrl: string | null = null;
+    let portraitMode: 'keep' | 'remove' | 'replace' = 'keep';
+    let portrait: { blob: Blob; mimeType: string } | null = null;
+    let portraitObjectUrl: string | null = null;
+    let portraitAbort: AbortController | null = null;
+    let runner: PortraitRunner | null = null;
+
+    const syncButtons = () => {
+      if (saveButton) saveButton.disabled = busy;
+      if (portraitInput) portraitInput.disabled = busy;
+      if (portraitRemove) portraitRemove.disabled = busy;
+      if (deleteConfirm) deleteConfirm.disabled = busy;
+      if (deleteButton) deleteButton.disabled = busy || !deleteConfirm?.checked;
+      root.setAttribute('aria-busy', busy ? 'true' : 'false');
+    };
+
+    const setBusy = (next: boolean) => {
+      busy = next;
+      syncButtons();
+    };
+
+    const setMessage = (text: string, kind: 'error' | 'success' | 'info' = 'info') => {
+      if (!message) return;
+      message.textContent = text;
+      message.dataset.kind = kind;
+      message.hidden = !text;
+    };
+
+    const clearFieldErrors = () => {
+      root.querySelectorAll<HTMLElement>('[data-field-error]').forEach((error) => {
+        error.hidden = true;
+        error.textContent = '';
+      });
+      root.querySelectorAll<HTMLElement>('[data-manage-input][aria-invalid="true"]').forEach((input) => {
+        input.removeAttribute('aria-invalid');
+      });
+    };
+
+    const showFieldErrors = (fields: Record<string, string>) => {
+      let first: HTMLElement | null = null;
+      for (const [name, text] of Object.entries(fields)) {
+        const error = root.querySelector<HTMLElement>(
+          `[data-field-error="${CSS.escape(name)}"]`
+        );
+        const input = root.querySelector<HTMLElement>(
+          `[data-manage-input="${CSS.escape(name)}"]`
+        );
+        if (error) {
+          error.textContent = text;
+          error.hidden = false;
+        }
+        if (input) {
+          input.setAttribute('aria-invalid', 'true');
+          first ??= input;
+        }
+      }
+      setMessage(root.dataset.errorMessage || '', 'error');
+      first?.focus();
+    };
+
+    const releaseSelectedPortrait = () => {
+      if (portraitObjectUrl) URL.revokeObjectURL(portraitObjectUrl);
+      portraitObjectUrl = null;
+      portrait = null;
+    };
+
+    const renderPortrait = (url: string | null) => {
+      if (!portraitPreview || !portraitImage || !portraitRemove) return;
+      const nameInput = root.querySelector<HTMLInputElement>('[data-manage-input="fullName"]');
+      portraitPreview.hidden = false;
+      if (url) {
+        portraitImage.src = url;
+        portraitRemove.hidden = false;
+        return;
+      }
+      // No stored portrait: show the same monogram the public directory renders,
+      // so the member sees their actual card rather than an empty slot.
+      portraitImage.src = avatarDataUri(nameInput?.value?.trim() || '');
+      portraitRemove.hidden = true;
+    };
+
+    const populateMember = (member: ApiMember) => {
+      const fullName = root.querySelector<HTMLInputElement>('[data-manage-input="fullName"]');
+      const affiliation = root.querySelector<HTMLInputElement>(
+        '[data-manage-input="affiliation"]'
+      );
+      const sector = root.querySelector<HTMLSelectElement>('[data-manage-input="sector"]');
+      if (fullName) fullName.value = member.fullName || '';
+      if (affiliation) affiliation.value = member.affiliation || '';
+      if (sector) sector.value = member.sector || '';
+      if (status) status.textContent = statusLabels[member.status] || member.status;
+      currentPortraitUrl = typeof member.portraitUrl === 'string' ? member.portraitUrl : null;
+      portraitMode = 'keep';
+      releaseSelectedPortrait();
+      if (portraitInput) portraitInput.value = '';
+      renderPortrait(currentPortraitUrl);
+      if (deleteConfirm) deleteConfirm.checked = false;
+      editor?.removeAttribute('hidden');
+      if (notFound) notFound.hidden = true;
+      syncButtons();
+    };
+
+    const showReauthenticate = () => {
+      if (editor) editor.hidden = true;
+      if (notFound) notFound.hidden = true;
+      setMessage(root.dataset.reauthMessage || '', 'error');
+    };
+
+    const showNotFound = () => {
+      if (editor) editor.hidden = true;
+      if (notFound) notFound.hidden = false;
+      setMessage('');
+    };
+
+    const readData = async (response: Response): Promise<ApiData> =>
+      (await response.json().catch(() => ({}))) as ApiData;
+
+    const loadMember = async () => {
+      setBusy(true);
+      setMessage('');
+      try {
+        const res = await fetch(MANAGE_API_RELATIVE_PATH, {
+          method: 'GET',
+          headers: { Accept: 'application/json' },
+        });
+        if (!isJoinApiResponse(res)) {
+          showReauthenticate();
+          return;
+        }
+        const data = await readData(res);
+        if (res.status === 404) {
+          showNotFound();
+          return;
+        }
+        if (!res.ok || !data.member) {
+          setMessage(root.dataset.errorMessage || '', 'error');
+          return;
+        }
+        populateMember(data.member);
+      } catch {
+        setMessage(root.dataset.networkError || '', 'error');
+      } finally {
+        setBusy(false);
+      }
+    };
+
+    portraitInput?.addEventListener('change', async () => {
+      const file = portraitInput.files?.[0];
+      if (!file) return;
+      portraitAbort?.abort();
+      const abort = new AbortController();
+      portraitAbort = abort;
+      releaseSelectedPortrait();
+      setMessage('');
+      setBusy(true);
+      try {
+        const pipeline = await import('../../lib/portrait-client');
+        const { MAX_PORTRAIT_BYTES } = await import('../../lib/portrait-limits');
+        runner ??= pipeline.createPortraitRunner();
+        const result = await runner.run(file, pipeline.AVATAR_PORTRAIT_OPTIONS, abort.signal);
+        if (abort.signal.aborted) return;
+        if (result.bytes > MAX_PORTRAIT_BYTES) throw new Error('portrait_too_large');
+        portrait = { blob: result.blob, mimeType: result.mimeType };
+        portraitObjectUrl = URL.createObjectURL(result.blob);
+        portraitMode = 'replace';
+        renderPortrait(portraitObjectUrl);
+      } catch {
+        if (abort.signal.aborted) return;
+        portraitMode = 'keep';
+        releaseSelectedPortrait();
+        portraitInput.value = '';
+        renderPortrait(currentPortraitUrl);
+        setMessage(root.dataset.errorMessage || '', 'error');
+      } finally {
+        if (portraitAbort === abort) portraitAbort = null;
+        setBusy(false);
+      }
+    });
+
+    portraitRemove?.addEventListener('click', () => {
+      portraitAbort?.abort();
+      portraitAbort = null;
+      releaseSelectedPortrait();
+      portraitMode = 'remove';
+      if (portraitInput) portraitInput.value = '';
+      renderPortrait(null);
+      setMessage('');
+    });
+
+    deleteConfirm?.addEventListener('change', syncButtons);
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearFieldErrors();
+      setMessage('');
+      if (!form.reportValidity()) {
+        form.querySelector<HTMLElement>(':invalid')?.focus();
+        return;
+      }
+
+      const values = new FormData(form);
+      let request: RequestInit;
+      if (portraitMode === 'keep') {
+        request = {
+          method: 'PATCH',
+          headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fullName: String(values.get('fullName') || ''),
+            affiliation: String(values.get('affiliation') || ''),
+            sector: String(values.get('sector') || ''),
+          }),
+        };
+      } else {
+        const body = new FormData();
+        body.set('fullName', String(values.get('fullName') || ''));
+        body.set('affiliation', String(values.get('affiliation') || ''));
+        body.set('sector', String(values.get('sector') || ''));
+        if (portraitMode === 'remove') {
+          body.set('portrait', 'remove');
+        } else if (portrait) {
+          const extension = portrait.mimeType === 'image/png' ? 'png' : 'webp';
+          body.set('portrait', portrait.blob, `portrait.${extension}`);
+        }
+        request = {
+          method: 'PATCH',
+          headers: { Accept: 'application/json' },
+          body,
+        };
+      }
+
+      setBusy(true);
+      try {
+        const res = await fetch(MANAGE_API_RELATIVE_PATH, request);
+        if (!isJoinApiResponse(res)) {
+          showReauthenticate();
+          return;
+        }
+        const data = await readData(res);
+        if (res.status === 400 && data.fields && typeof data.fields === 'object') {
+          showFieldErrors(data.fields);
+          return;
+        }
+        if (res.status === 404) {
+          showNotFound();
+          return;
+        }
+        if (res.status === 409) {
+          setMessage(root.dataset.nameCollision || '', 'error');
+          return;
+        }
+        if (res.status === 429) {
+          setMessage(root.dataset.rateLimited || '', 'error');
+          return;
+        }
+        if (!res.ok || !data.member) {
+          setMessage(root.dataset.errorMessage || '', 'error');
+          return;
+        }
+        populateMember(data.member);
+        setMessage(root.dataset.savedMessage || '', 'success');
+      } catch {
+        setMessage(root.dataset.networkError || '', 'error');
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    deleteButton?.addEventListener('click', async () => {
+      if (!deleteConfirm?.checked) return;
+      setBusy(true);
+      setMessage('');
+      try {
+        const res = await fetch(MANAGE_API_RELATIVE_PATH, {
+          method: 'DELETE',
+          headers: { Accept: 'application/json' },
+        });
+        if (!isJoinApiResponse(res)) {
+          showReauthenticate();
+          return;
+        }
+        const data = await readData(res);
+        if (res.status === 404) {
+          showNotFound();
+          return;
+        }
+        if (res.status === 429) {
+          setMessage(root.dataset.rateLimited || '', 'error');
+          return;
+        }
+        if (!res.ok) {
+          setMessage(root.dataset.errorMessage || '', 'error');
+          return;
+        }
+        portraitAbort?.abort();
+        releaseSelectedPortrait();
+        if (editor) editor.hidden = true;
+        setMessage(root.dataset.deletedMessage || '', 'success');
+      } catch {
+        setMessage(root.dataset.networkError || '', 'error');
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    window.addEventListener('pagehide', () => {
+      portraitAbort?.abort();
+      releaseSelectedPortrait();
+      runner?.dispose();
+    });
+
+    void loadMember();
+  }
+
+  function boot() {
+    document.querySelectorAll<ManageRoot>('[data-manage-root]').forEach(bindManager);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
+</script>
+
+<script is:inline define:vars={{ canonicalManageUrl, canonicalManageHost }}>
+  (function () {
+    var host = (location.hostname || '').toLowerCase();
+    var local =
+      host === 'localhost' ||
+      host.endsWith('.localhost') ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host === '::1' ||
+      host === '[::1]';
+    // Access gates /join/* on the deployment that owns this form (apex and www).
+    var onJoinHost = host === canonicalManageHost || host === 'www.' + canonicalManageHost;
+    if (!local && !onJoinHost) {
+      location.replace(canonicalManageUrl);
+    }
+  })();
+</script>

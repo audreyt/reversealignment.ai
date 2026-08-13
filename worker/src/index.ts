@@ -21,13 +21,20 @@ import { moderateSubmission, recordModeration } from './moderation';
 import { normalizeNameKey } from './names';
 import {
   inspectPortrait,
+  isPortraitKey,
   MAX_PORTRAIT_BYTES,
   portraitKey,
   portraitKeyFromPathSegment,
   type PortraitKind,
 } from './portrait';
 import { takeToken } from './rate-limit';
-import { classifyJoinIntent, parseJoinBody, type JoinIntent, type JoinPayload } from './validate';
+import {
+  classifyJoinIntent,
+  parseJoinBody,
+  parseProfileEdit,
+  type JoinIntent,
+  type JoinPayload,
+} from './validate';
 
 const JOIN_PENDING_MESSAGE =
   'Thanks — your profile will appear in the directory after moderation, never automatically.';
@@ -36,6 +43,7 @@ const JOIN_UPDATES_MESSAGE =
 const JOIN_ALREADY_MESSAGE = 'Thanks — your submission is already recorded.';
 
 const JOIN_API_PATH = '/join/api';
+const ME_API_PATH = `${JOIN_API_PATH}/me`;
 
 /** R2 binding may be absent in deploys that have not provisioned portraits. */
 function portraitStore(env: Env): R2Bucket | undefined {
@@ -85,6 +93,15 @@ function isJoinApiPath(pathname: string): boolean {
   return pathname === JOIN_API_PATH || pathname === `${JOIN_API_PATH}/`;
 }
 
+/**
+ * Self-service entry manager. Shares the `/join/api` prefix so the existing
+ * `reversealignment.{ai,tw,jp}/join/api*` routes and the Access `/join/` prefix
+ * gate both cover it with no config change.
+ */
+function isMeApiPath(pathname: string): boolean {
+  return pathname === ME_API_PATH || pathname === `${ME_API_PATH}/`;
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     try {
@@ -113,9 +130,27 @@ async function handle(request: Request, env: Env, ctx: ExecutionContext): Promis
 
   if (
     request.method === 'OPTIONS' &&
-    (url.pathname.startsWith('/api/') || isJoinApiPath(url.pathname))
+    (url.pathname.startsWith('/api/') || isJoinApiPath(url.pathname) || isMeApiPath(url.pathname))
   ) {
     return noContent(request, env);
+  }
+
+  // Self-service read/edit/delete of the caller's own row. MUST precede the
+  // `/join/` catch-all 404 below, which would otherwise swallow this path.
+  if (isMeApiPath(url.pathname)) {
+    if (!joinApiHosts(env).includes(host)) {
+      return json(request, env, { error: 'not_found' }, { status: 404 });
+    }
+    const method = request.method;
+    if (method !== 'GET' && method !== 'PATCH' && method !== 'DELETE') {
+      return json(request, env, { error: 'method_not_allowed' }, { status: 405 });
+    }
+    if (method !== 'GET' && !isOriginAllowed(request, env)) {
+      return json(request, env, { error: 'origin_not_allowed' }, { status: 403 });
+    }
+    const identity = await requireAccessIdentity(request, env);
+    if (identity instanceof Response) return identity;
+    return handleMe(request, env, identity);
   }
 
   // Access-gated direct join — only on reversealignment.ai (not join host / workers.dev).
@@ -477,6 +512,265 @@ async function handleGetPortrait(request: Request, env: Env, segment: string): P
   headers.set('Referrer-Policy', 'no-referrer');
 
   return new Response(obj.body, { status: 200, headers });
+}
+
+type MeRow = {
+  id: string;
+  full_name: string;
+  affiliation: string;
+  role: string;
+  sector: string;
+  contribution: string;
+  links: string;
+  statement: string;
+  status: string;
+  source: string;
+  email: string;
+  image_key: string | null;
+  created_at: string;
+  updated_at: string;
+  published_at: string | null;
+};
+
+const ME_COLUMNS = `id, full_name, affiliation, role, sector, contribution, links, statement,
+          status, source, email, image_key, created_at, updated_at, published_at`;
+
+function meBody(row: MeRow): Record<string, unknown> {
+  const imageKey = row.image_key || null;
+  return {
+    id: row.id,
+    fullName: row.full_name,
+    affiliation: row.affiliation,
+    role: row.role,
+    sector: row.sector,
+    contribution: row.contribution,
+    links: row.links,
+    statement: row.statement,
+    status: row.status,
+    source: row.source,
+    // The caller is the data subject, so this is the one response that may carry
+    // the private verified address: showing what is held is the point.
+    email: row.email,
+    imageKey,
+    portraitUrl:
+      imageKey && isPortraitKey(imageKey)
+        ? `/api/portrait/${imageKey.slice('portraits/'.length)}`
+        : null,
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+    publishedAt: row.published_at,
+  };
+}
+
+/**
+ * Self-service entry manager for the authenticated caller.
+ *
+ * The row is resolved ONLY from the Access-verified identity, by recomputing the
+ * same hashes the join flow stores. No id, email or selector is ever read from
+ * the request, so a caller cannot address another member's row by guessing one.
+ */
+async function handleMe(request: Request, env: Env, identity: AccessIdentity): Promise<Response> {
+  const pepper = requirePepper(env);
+  const emailHash = await hashEmail(identity.email, pepper);
+  const importedEmailHash = await hashImportedEmail(identity.email, requireImportSalt(env));
+
+  if (request.method !== 'GET') {
+    const limit = await takeToken(env, 'me_write', emailHash, 10, 60 * 60);
+    if (!limit.ok) {
+      return json(
+        request,
+        env,
+        { error: 'rate_limited', retryAfter: limit.retryAfter },
+        { status: 429, headers: { 'Retry-After': String(limit.retryAfter) } }
+      );
+    }
+  }
+
+  const found = await findMemberByEmailHashes(env, emailHash, importedEmailHash);
+  if (!found) {
+    return json(request, env, { error: 'not_found' }, { status: 404 });
+  }
+
+  const row = await env.DB.prepare(`SELECT ${ME_COLUMNS} FROM members WHERE id = ?`)
+    .bind(found.id)
+    .first<MeRow>();
+  if (!row) {
+    return json(request, env, { error: 'not_found' }, { status: 404 });
+  }
+
+  if (request.method === 'GET') {
+    return json(request, env, { ok: true, member: meBody(row) });
+  }
+  if (request.method === 'DELETE') {
+    return handleMeDelete(request, env, row);
+  }
+  return handleMePatch(request, env, row);
+}
+
+async function handleMePatch(request: Request, env: Env, row: MeRow): Promise<Response> {
+  const contentType = request.headers.get('Content-Type') || '';
+  let fields: Record<string, unknown> = {};
+  let portraitBytes: Uint8Array | null = null;
+  let portraitMime: PortraitKind | null = null;
+  let removePortrait = false;
+
+  if (contentType.includes('multipart/form-data')) {
+    let form: FormData;
+    try {
+      form = await readMultipartFormData(request);
+    } catch (err) {
+      if (err instanceof PayloadTooLargeError) {
+        return json(request, env, { error: 'payload_too_large' }, { status: 413 });
+      }
+      return json(request, env, { error: 'invalid_multipart' }, { status: 400 });
+    }
+    for (const key of ['fullName', 'affiliation', 'sector']) {
+      const value = form.get(key);
+      if (typeof value === 'string') fields[key] = value;
+    }
+    const portraitPart = form.get('portrait');
+    if (typeof portraitPart === 'string') {
+      removePortrait = portraitPart === 'remove';
+    } else if (portraitPart instanceof File && portraitPart.size > 0) {
+      if (portraitPart.size > MAX_PORTRAIT_BYTES) {
+        return json(request, env, { error: 'payload_too_large' }, { status: 413 });
+      }
+      const buf = new Uint8Array(await portraitPart.arrayBuffer());
+      if (buf.byteLength > MAX_PORTRAIT_BYTES) {
+        return json(request, env, { error: 'payload_too_large' }, { status: 413 });
+      }
+      const check = inspectPortrait(buf);
+      if (!check.ok) {
+        const status = check.error === 'portrait_unsupported_type' ? 415 : 400;
+        return json(request, env, { error: check.error }, { status });
+      }
+      portraitBytes = buf;
+      portraitMime = check.mimeType;
+    }
+  } else {
+    let body: unknown;
+    try {
+      body = await readJson(request);
+    } catch (err) {
+      if (err instanceof PayloadTooLargeError) {
+        return json(request, env, { error: 'payload_too_large' }, { status: 413 });
+      }
+      return json(request, env, { error: 'invalid_json' }, { status: 400 });
+    }
+    const rec = (body && typeof body === 'object' ? body : {}) as Record<string, unknown>;
+    fields = rec;
+    removePortrait = asString(rec.portrait, 10) === 'remove';
+  }
+
+  const parsed = parseProfileEdit(fields);
+  if (!parsed.ok) {
+    return json(
+      request,
+      env,
+      { error: 'validation_failed', fields: parsed.errors },
+      { status: 400 }
+    );
+  }
+
+  // Derived exactly as createPendingMember derives it, so the invariant holds.
+  const role = parsed.data.affiliation || parsed.data.sector;
+  const nameKey = normalizeNameKey(parsed.data.fullName);
+  const now = new Date().toISOString();
+
+  const clash = await env.DB.prepare(
+    `SELECT id FROM members WHERE status = 'published' AND name_key = ? AND id != ? LIMIT 1`
+  )
+    .bind(nameKey, row.id)
+    .first();
+  if (clash) {
+    return json(request, env, { error: 'name_collision' }, { status: 409 });
+  }
+
+  let imageKey = row.image_key;
+  if (portraitBytes && portraitMime) {
+    const store = portraitStore(env);
+    if (!store) {
+      return json(request, env, { error: 'portrait_storage_unavailable' }, { status: 503 });
+    }
+    const key = await portraitKey(portraitBytes, portraitMime);
+    await store.put(key, portraitBytes, {
+      httpMetadata: {
+        contentType: portraitMime,
+        cacheControl: 'public, max-age=31536000, immutable',
+      },
+    });
+    imageKey = key;
+  } else if (removePortrait) {
+    imageKey = null;
+  }
+
+  try {
+    await env.DB.prepare(
+      `UPDATE members
+       SET full_name = ?, name_key = ?, affiliation = ?, role = ?, sector = ?, image_key = ?,
+           updated_at = ?
+       WHERE id = ?`
+    )
+      .bind(
+        parsed.data.fullName,
+        nameKey,
+        parsed.data.affiliation,
+        role,
+        parsed.data.sector,
+        imageKey,
+        now,
+        row.id
+      )
+      .run();
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    if (/unique|constraint/i.test(msg)) {
+      return json(request, env, { error: 'name_collision' }, { status: 409 });
+    }
+    throw err;
+  }
+
+  // Status is never changed by a self-edit — an edit must not silently unpublish
+  // anyone, nor promote them — but it is recorded so the change is auditable.
+  await recordModeration(env, {
+    memberId: row.id,
+    result: {
+      recommendation: 'allow',
+      decision: 'queued_review',
+      score: 0,
+      reasons: ['self_edit'],
+      model: 'self_service',
+    },
+  });
+
+  const updated = await env.DB.prepare(`SELECT ${ME_COLUMNS} FROM members WHERE id = ?`)
+    .bind(row.id)
+    .first<MeRow>();
+  return json(request, env, { ok: true, member: meBody(updated || row) });
+}
+
+async function handleMeDelete(request: Request, env: Env, row: MeRow): Promise<Response> {
+  await env.DB.prepare(`DELETE FROM members WHERE id = ?`).bind(row.id).run();
+
+  // Portrait keys are content-addressed, so two members who uploaded identical
+  // bytes share one object. Only drop it when nothing else points at it, and
+  // never touch a canonical asset key like `person-audrey-tang`.
+  let portraitDeleted = false;
+  const imageKey = row.image_key;
+  if (imageKey && isPortraitKey(imageKey)) {
+    const shared = await env.DB.prepare(`SELECT id FROM members WHERE image_key = ? LIMIT 1`)
+      .bind(imageKey)
+      .first();
+    if (!shared) {
+      const store = portraitStore(env);
+      if (store) {
+        await store.delete(imageKey);
+        portraitDeleted = true;
+      }
+    }
+  }
+
+  return json(request, env, { ok: true, deleted: true, portraitDeleted });
 }
 
 async function requireAdmin(request: Request, env: Env): Promise<Response | null> {
