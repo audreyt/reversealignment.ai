@@ -92,6 +92,9 @@ describe('multilingual static catalog', () => {
         people.filter((person) => person.fullName === 'Tenzin Yangtso'),
         locale
       ).toHaveLength(1);
+      expect(people.find((person) => person.fullName === 'Audrey Tang')?.role, locale).toContain(
+        '🇹🇼'
+      );
       expect(copy.assets['person-tenzin-yangtso'], locale).toBe(
         '/assets/images/person-tenzin-yangtso.png'
       );
