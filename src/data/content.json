@@ -347,6 +347,19 @@
             "href": "https://luma.com/8fap6goj",
             "external": true
           }
+        },
+        {
+          "id": "platform-originals-2026-08",
+          "startsAt": "2026-08-29T06:00:00.000Z",
+          "endsAt": "2026-08-29T08:30:00.000Z",
+          "when": "29 August 2026 · 2pm Taipei · 11pm Pacific (28 Aug) · 2am Eastern · 3am Buenos Aires · 8am CEST · 4pm Sydney · two and a half hours, in person, Taipei",
+          "title": "Platform Originals: Audrey Tang on Reverse Alignment",
+          "body": "Platform 月台 hosts Audrey Tang and Tenzin Yangtso for a two-hour conversation on reverse alignment — how institutions, norms, skills, and governance can absorb AI safely and share its gains widely — with time for audience questions, in person in Taipei.",
+          "cta": {
+            "label": "Register on Luma",
+            "href": "https://luma.com/pzkyaeuz",
+            "external": true
+          }
         }
       ],
       "sectors": [
@@ -1242,6 +1255,19 @@
           "cta": {
             "label": "前往 Luma 報名",
             "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        },
+        {
+          "id": "platform-originals-2026-08",
+          "startsAt": "2026-08-29T06:00:00.000Z",
+          "endsAt": "2026-08-29T08:30:00.000Z",
+          "when": "2026 年 8 月 29 日 · 台北時間下午 2 點 · 台北實體、兩個半小時",
+          "title": "月台專列：唐鳳談反向對齊",
+          "body": "Platform 月台邀請唐鳳與丹增央措，以兩小時深度對談探討反向對齊——制度、規範、技能與治理如何安全接住 AI 並廣為共享其成果，並保留時間與現場觀眾交流。台北實體活動，免費，需經審核報名。",
+          "cta": {
+            "label": "前往 Luma 報名",
+            "href": "https://luma.com/pzkyaeuz",
             "external": true
           }
         }
@@ -2290,6 +2316,19 @@
             "href": "https://luma.com/8fap6goj",
             "external": true
           }
+        },
+        {
+          "id": "platform-originals-2026-08",
+          "startsAt": "2026-08-29T06:00:00.000Z",
+          "endsAt": "2026-08-29T08:30:00.000Z",
+          "when": "2026年8月29日 · 台北時間午後2時 · 日本時間午後3時 · 台北・対面・2時間半",
+          "title": "Platform Originals：唐鳳が語るリバース・アラインメント",
+          "body": "Platform 月台が唐鳳とテンジン・ヤンツォを迎え、リバース・アラインメント——制度・規範・スキル・ガバナンスがAIを安全に受け止め、その成果を広く分かち合うには——をめぐる2時間の対談を開催。観客との質疑の時間も設けます。台北・対面、無料、主催者承認制。",
+          "cta": {
+            "label": "Lumaで申し込む",
+            "href": "https://luma.com/pzkyaeuz",
+            "external": true
+          }
         }
       ],
       "sectors": [
@@ -3036,6 +3075,19 @@
           "cta": {
             "label": "Regístrate en Luma",
             "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        },
+        {
+          "id": "platform-originals-2026-08",
+          "startsAt": "2026-08-29T06:00:00.000Z",
+          "endsAt": "2026-08-29T08:30:00.000Z",
+          "when": "29 de agosto de 2026 · 2 p. m. de Taipéi · 3 a. m. de Buenos Aires · 8 a. m. CEST · dos horas y media, presencial en Taipéi",
+          "title": "Platform Originals: Audrey Tang sobre Reverse Alignment",
+          "body": "Platform 月台 reúne a Audrey Tang y Tenzin Yangtso para una conversación de dos horas sobre reverse alignment —cómo las instituciones, normas, habilidades y gobernanza pueden absorber la IA con seguridad y compartir ampliamente sus beneficios—, con tiempo para preguntas del público, en persona en Taipéi.",
+          "cta": {
+            "label": "Regístrate en Luma",
+            "href": "https://luma.com/pzkyaeuz",
             "external": true
           }
         }
@@ -3923,6 +3975,19 @@
           "cta": {
             "label": "Inscreva-se no Luma",
             "href": "https://luma.com/8fap6goj",
+            "external": true
+          }
+        },
+        {
+          "id": "platform-originals-2026-08",
+          "startsAt": "2026-08-29T06:00:00.000Z",
+          "endsAt": "2026-08-29T08:30:00.000Z",
+          "when": "29 de agosto de 2026 · 14h de Taipéi · 3h de Brasília · 8h CEST · duas horas e meia, presencial em Taipéi",
+          "title": "Platform Originals: Audrey Tang sobre Reverse Alignment",
+          "body": "A Platform 月台 reúne Audrey Tang e Tenzin Yangtso para uma conversa de duas horas sobre reverse alignment — como instituições, normas, habilidades e governança podem absorver a IA com segurança e compartilhar amplamente seus ganhos —, com tempo para perguntas do público, presencial em Taipéi.",
+          "cta": {
+            "label": "Inscreva-se no Luma",
+            "href": "https://luma.com/pzkyaeuz",
             "external": true
           }
         }

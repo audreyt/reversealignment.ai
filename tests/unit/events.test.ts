@@ -8,6 +8,11 @@ const SALON_URL = 'https://luma.com/8fap6goj';
 const SALON_START = '2026-08-24T20:00:00.000Z';
 const SALON_END = '2026-08-24T21:00:00.000Z';
 
+const PLATFORM_ID = 'platform-originals-2026-08';
+const PLATFORM_URL = 'https://luma.com/pzkyaeuz';
+const PLATFORM_START = '2026-08-29T06:00:00.000Z';
+const PLATFORM_END = '2026-08-29T08:30:00.000Z';
+
 function event(overrides: Partial<CoalitionEvent> = {}): CoalitionEvent {
   return {
     id: 'fixture',
@@ -75,48 +80,86 @@ describe('upcomingEvents', () => {
   });
 });
 
-describe('coalition salon catalog', () => {
-  test('ships one RxC salon with identical url and start across every locale', () => {
+describe('coalition event catalog', () => {
+  test('ships the salon and the Platform Originals talk with identical url and start across every locale', () => {
     const locales = listLocales();
     expect(locales.length).toBeGreaterThanOrEqual(5);
 
     for (const locale of locales) {
       const { events, eventsTitle } = getContent(locale).coalition;
       expect(eventsTitle.length, locale).toBeGreaterThan(0);
-      expect(events, locale).toHaveLength(1);
+      expect(events, locale).toHaveLength(2);
 
-      const salon = events[0];
-      expect(salon.id, locale).toBe(SALON_ID);
-      expect(salon.startsAt, locale).toBe(SALON_START);
-      expect(salon.endsAt, locale).toBe(SALON_END);
-      expect(salon.cta.href, locale).toBe(SALON_URL);
-      expect(salon.cta.external, locale).toBe(true);
-      expect(salon.cta.label.length, locale).toBeGreaterThan(0);
-      expect(salon.title.length, locale).toBeGreaterThan(0);
-      expect(salon.body.length, locale).toBeGreaterThan(0);
-      expect(salon.when.length, locale).toBeGreaterThan(0);
-      expect(Number.isNaN(Date.parse(salon.startsAt)), locale).toBe(false);
-      expect(Number.isNaN(Date.parse(salon.endsAt)), locale).toBe(false);
-      expect(Date.parse(salon.endsAt), locale).toBeGreaterThan(Date.parse(salon.startsAt));
+      const byId = Object.fromEntries(events.map((item) => [item.id, item])) as Record<
+        string,
+        CoalitionEvent
+      >;
+      const salon = byId[SALON_ID];
+      const platform = byId[PLATFORM_ID];
+      expect(salon, locale).toBeDefined();
+      expect(platform, locale).toBeDefined();
+
+      for (const item of [salon, platform]) {
+        expect(item!.cta.external, locale).toBe(true);
+        expect(item!.cta.label.length, locale).toBeGreaterThan(0);
+        expect(item!.title.length, locale).toBeGreaterThan(0);
+        expect(item!.body.length, locale).toBeGreaterThan(0);
+        expect(item!.when.length, locale).toBeGreaterThan(0);
+        expect(Number.isNaN(Date.parse(item!.startsAt)), locale).toBe(false);
+        expect(Number.isNaN(Date.parse(item!.endsAt)), locale).toBe(false);
+        expect(Date.parse(item!.endsAt), locale).toBeGreaterThan(Date.parse(item!.startsAt));
+      }
+
+      expect(salon!.startsAt, locale).toBe(SALON_START);
+      expect(salon!.endsAt, locale).toBe(SALON_END);
+      expect(salon!.cta.href, locale).toBe(SALON_URL);
+      expect(platform!.startsAt, locale).toBe(PLATFORM_START);
+      expect(platform!.endsAt, locale).toBe(PLATFORM_END);
+      expect(platform!.cta.href, locale).toBe(PLATFORM_URL);
     }
 
     // Identity across locales is the standing localization rule: translate
     // labels, never the destination or the machine-readable instant.
-    const urls = new Set(locales.map((locale) => getContent(locale).coalition.events[0].cta.href));
-    const starts = new Set(
-      locales.map((locale) => getContent(locale).coalition.events[0].startsAt)
+    const salonUrls = new Set(
+      locales.map(
+        (locale) => getContent(locale).coalition.events.find((e) => e.id === SALON_ID)!.cta.href
+      )
     );
-    const ends = new Set(locales.map((locale) => getContent(locale).coalition.events[0].endsAt));
-    expect(urls).toEqual(new Set([SALON_URL]));
-    expect(starts).toEqual(new Set([SALON_START]));
-    expect(ends).toEqual(new Set([SALON_END]));
+    const platformUrls = new Set(
+      locales.map(
+        (locale) => getContent(locale).coalition.events.find((e) => e.id === PLATFORM_ID)!.cta.href
+      )
+    );
+    const starts = new Set(
+      locales.flatMap((locale) => getContent(locale).coalition.events.map((e) => e.startsAt))
+    );
+    const ends = new Set(
+      locales.flatMap((locale) => getContent(locale).coalition.events.map((e) => e.endsAt))
+    );
+    expect(salonUrls).toEqual(new Set([SALON_URL]));
+    expect(platformUrls).toEqual(new Set([PLATFORM_URL]));
+    expect(starts).toEqual(new Set([SALON_START, PLATFORM_START]));
+    expect(ends).toEqual(new Set([SALON_END, PLATFORM_END]));
   });
 
-  test('still lists the salon before it ends and drops it afterward', () => {
+  test('lists events in chronological order', () => {
     const events = getContent('en').coalition.events;
-    expect(upcomingEvents(events, new Date('2026-08-24T20:59:59.000Z'))).toHaveLength(1);
-    expect(upcomingEvents(events, new Date(SALON_END))).toHaveLength(1);
-    expect(upcomingEvents(events, new Date('2026-08-24T21:00:00.001Z'))).toHaveLength(0);
+    expect(events.map((item) => item.id)).toEqual([SALON_ID, PLATFORM_ID]);
+  });
+
+  test('drops each event only after its own endsAt', () => {
+    const events = getContent('en').coalition.events;
+    // Before the salon ends, both are listed.
+    expect(upcomingEvents(events, new Date('2026-08-24T20:59:59.000Z')).map((e) => e.id)).toEqual([
+      SALON_ID,
+      PLATFORM_ID,
+    ]);
+    // After the salon ends but before the talk ends, only the talk remains.
+    expect(upcomingEvents(events, new Date('2026-08-24T21:00:00.001Z')).map((e) => e.id)).toEqual([
+      PLATFORM_ID,
+    ]);
+    // After the talk ends, nothing remains.
+    expect(upcomingEvents(events, new Date('2026-08-29T08:30:00.001Z'))).toEqual([]);
   });
 });
 
@@ -149,7 +192,7 @@ describe('isEventExpired', () => {
   });
 
   test('agrees with the build-time filter on the shipped salon', () => {
-    const salon = getContent('en').coalition.events[0];
+    const salon = getContent('en').coalition.events.find((e) => e.id === SALON_ID)!;
     const beforeEnd = new Date('2026-08-24T20:30:00.000Z');
     const afterEnd = new Date('2026-08-24T21:00:00.001Z');
     expect(isEventExpired(salon.endsAt, beforeEnd)).toBe(false);
