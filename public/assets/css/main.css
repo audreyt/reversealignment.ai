@@ -2380,7 +2380,6 @@ main {
   position: relative;
   display: grid;
   gap: 0;
-  overflow: hidden;
   padding: 0;
   background: transparent;
 }
@@ -2419,12 +2418,18 @@ main {
 }
 .person__bio {
   position: absolute;
-  inset: 0;
+  inset: 0 0 auto;
+  /* Blanket the card like inset:0, but let long bios grow over the row below
+     instead of scrolling inside a card-sized cage. The cap keeps the panel
+     bounded; only bios past it scroll. */
+  min-height: 100%;
+  max-height: calc(100% + 7rem);
   z-index: 2;
   overflow: auto;
   overscroll-behavior: contain;
   touch-action: pan-y;
   padding: 0.75rem;
+  border-bottom: 1px solid var(--line-dark);
   background: var(--paper);
   color: var(--ink);
   cursor: text;
@@ -2453,7 +2458,6 @@ main {
   padding: 0.75rem 0.75rem 0.5rem;
   background: var(--paper);
 }
-.person__bio-label,
 .person__bio-role {
   margin: 0;
   color: var(--violet);
@@ -2465,7 +2469,7 @@ main {
   text-transform: uppercase;
 }
 .person__bio-name {
-  margin: 0.25rem 0 0;
+  margin: 0;
   font-size: 0.875rem;
   line-height: 1.25;
 }

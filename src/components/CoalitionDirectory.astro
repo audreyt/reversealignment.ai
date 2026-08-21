@@ -104,7 +104,6 @@ const seedJson = JSON.stringify(people).replace(/</g, '\\u003c');
                 aria-label={`${person.fullName}: ${directory.bioLabel}`}
               >
                 <div class="person__bio-header">
-                  <p class="person__bio-label">{directory.bioLabel}</p>
                   <h4 class="person__bio-name">{person.fullName}</h4>
                   <p class="person__bio-role">{person.role}</p>
                 </div>
