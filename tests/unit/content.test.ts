@@ -60,7 +60,7 @@ describe('multilingual static catalog', () => {
     });
   });
 
-  test('keeps static 25-person catalogs and translated directory controls', () => {
+  test('keeps static 26-person catalogs and translated directory controls', () => {
     for (const locale of listLocales()) {
       const copy = getContent(locale);
       const people = catalogPeopleAsDirectory(locale);
@@ -86,8 +86,8 @@ describe('multilingual static catalog', () => {
       } else {
         expect(join.form.mode, locale).toBe('cta-only');
       }
-      expect(copy.coalition.people, locale).toHaveLength(25);
-      expect(people, locale).toHaveLength(25);
+      expect(copy.coalition.people, locale).toHaveLength(26);
+      expect(people, locale).toHaveLength(26);
       expect(
         people.filter((person) => person.fullName === 'Tenzin Yangtso'),
         locale
@@ -328,13 +328,18 @@ describe('multilingual static catalog', () => {
       fullName: 'Eric Glen Weyl',
       sortIndex: 0,
     });
-    expect(catalogPeopleAsDirectory().at(-1)).toMatchObject({
-      id: 'canonical:person-tenzin-yangtso',
-      fullName: 'Tenzin Yangtso',
-      affiliation: 'Civic.AI',
-      sector: 'Research',
-      sortIndex: 24,
+    expect(catalogPeopleAsDirectory('en').at(-1)).toMatchObject({
+      id: 'canonical:person-vitalik-buterin',
+      fullName: 'Vitalik Buterin',
+      affiliation: 'Ethereum',
+      sector: 'Technology',
+      sortIndex: 25,
     });
+    const englishPeople = catalogPeopleAsDirectory('en');
+    expect(englishPeople.filter((person) => person.bio)).toHaveLength(25);
+    expect(englishPeople[0].bio).toContain('Plural Technology Collaboratory');
+    expect(englishPeople.at(-1)?.bio).toContain('conceived Ethereum');
+    expect(catalogPeopleAsDirectory('zh-tw').some((person) => person.bio)).toBe(false);
     expect(
       catalogPersonAsDirectory(
         {

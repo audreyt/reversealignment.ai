@@ -1,5 +1,6 @@
 import content from '../data/content.json';
 import site from '../data/site.json';
+import { englishDirectoryBios } from '../data/directory-bios';
 import type { DirectoryPerson } from './directory';
 import type { Locale, SiteContent } from './types';
 
@@ -147,7 +148,8 @@ export function hreflangAlternates(): HreflangAlternate[] {
 /** Map one fixed catalog person into the browser directory contract. */
 export function catalogPersonAsDirectory(
   person: { name: string; role: string; image: string; sector: string },
-  index: number
+  index: number,
+  bio?: string
 ): DirectoryPerson {
   const imageKey = person.image.trim();
   if (!imageKey) throw new Error(`Static directory person "${person.name}" needs an image key`);
@@ -160,12 +162,19 @@ export function catalogPersonAsDirectory(
     sector: person.sector,
     imageKey,
     sortIndex: index,
+    ...(bio ? { bio } : {}),
   };
 }
 
 /** Fixed localized directory data, embedded in each static build. */
 export function catalogPeopleAsDirectory(locale: Locale = DEFAULT_LOCALE): DirectoryPerson[] {
-  return getContent(locale).coalition.people.map(catalogPersonAsDirectory);
+  return getContent(locale).coalition.people.map((person, index) =>
+    catalogPersonAsDirectory(
+      person,
+      index,
+      locale === 'en' ? englishDirectoryBios[person.image.trim()] : undefined
+    )
+  );
 }
 
 /** Valid HTML id fragment from a form field name or explicit id. */

@@ -195,6 +195,7 @@ export type DirectoryCopy = {
   countTemplate: string;
   empty: string;
   keyboardHint: string;
+  bioLabel: string;
 };
 
 export type FooterColumn = {

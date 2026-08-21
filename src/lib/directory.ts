@@ -4,6 +4,8 @@ export type DirectoryPerson = {
   role: string;
   affiliation: string;
   sector: string;
+  /** Optional profile copy for catalog entries that have an archived biography. */
+  bio?: string;
   /** Catalog portrait key, or empty when the card uses monogram/API art. */
   imageKey: string;
   sortIndex: number;

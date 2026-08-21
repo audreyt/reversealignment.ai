@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 const EN_JOIN_URL = 'https://reversealignment.ai/join/';
-const FOUNDING_COUNT = 25;
+const FOUNDING_COUNT = 26;
 const MEMBERS_API_ROUTE = 'https://join.reversealignment.tw/api/members?**';
 const LIVE_COMMUNITY_NAMES = [
   'Aba Quill',
@@ -163,7 +163,7 @@ test.describe('static multilingual site', () => {
     await page.goto('/en/');
     await waitForDirectoryHydration(page);
 
-    const card = page.locator('[data-person][data-name="Tenzin Yangtso"]');
+    const card = page.locator('[data-person][data-name="Vitalik Buterin"]');
     await expect(card).toHaveCount(1);
     await card.scrollIntoViewIfNeeded();
     // `complete` is also true for a failed load, so assert the decode.
@@ -176,6 +176,33 @@ test.describe('static multilingual site', () => {
       return Math.round(edge('.people-grid') - edge('#coalition'));
     });
     expect(spill).toBeLessThanOrEqual(0);
+  });
+  test('reveals recovered biographies on hover and keyboard focus', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/en/');
+
+    const card = page.locator('[data-person][data-name="Audrey Tang"]');
+    const bio = card.locator('[data-person-bio]');
+    await card.scrollIntoViewIfNeeded();
+    await expect(bio).toHaveCSS('opacity', '0');
+
+    await card.hover();
+    await expect(bio).toHaveCSS('opacity', '1');
+    await expect(bio).toContainText('Civic hacker');
+
+    await page.mouse.move(0, 0);
+    await expect(bio).toHaveCSS('opacity', '0');
+
+    await bio.focus();
+    await expect(bio).toHaveCSS('opacity', '1');
+    await page.keyboard.press('Escape');
+    await expect(bio).not.toBeFocused();
+    await expect(bio).toHaveCSS('opacity', '0');
+
+    await waitForDirectoryHydration(page);
+    await expect(
+      page.locator('[data-person][data-name="Aba Quill"] [data-person-bio]')
+    ).toHaveCount(0);
   });
 
   /*

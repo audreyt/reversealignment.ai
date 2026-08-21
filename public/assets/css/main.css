@@ -2318,8 +2318,10 @@ main {
   /* desktop coalition grid overrides above at #coalition .people-grid */
 }
 .person {
+  position: relative;
   display: grid;
   gap: 0;
+  overflow: hidden;
   padding: 0;
   background: transparent;
 }
@@ -2355,6 +2357,73 @@ main {
   text-transform: uppercase;
   color: var(--violet);
   line-height: 1.4;
+}
+.person__bio {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: 0.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: text;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  scrollbar-color: var(--violet) transparent;
+  scrollbar-width: thin;
+}
+.person:hover .person__bio,
+.person:focus-within .person__bio {
+  opacity: 1;
+  transform: translateY(0);
+}
+.person__bio:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: -3px;
+}
+.person__bio-header {
+  position: sticky;
+  top: -0.75rem;
+  z-index: 1;
+  margin: -0.75rem -0.75rem 0;
+  padding: 0.75rem 0.75rem 0.5rem;
+  background: var(--paper);
+}
+.person__bio-label,
+.person__bio-role {
+  margin: 0;
+  color: var(--violet);
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.person__bio-name {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+.person__bio-role {
+  margin-top: 0.1rem;
+}
+.person__bio-text {
+  margin: 0.65rem 0 0;
+  font-size: clamp(0.625rem, 0.78vw, 0.68rem);
+  line-height: 1.5;
+  white-space: pre-line;
+}
+@media (prefers-reduced-motion: reduce) {
+  .person__bio {
+    transform: none;
+    transition: none;
+  }
 }
 .btn--ghost {
   background: transparent;

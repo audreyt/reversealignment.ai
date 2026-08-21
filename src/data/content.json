@@ -547,6 +547,13 @@
           "role": "Researcher, Civic.AI",
           "image": "person-tenzin-yangtso",
           "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vitalik Buterin",
+          "role": "Founder, Ethereum",
+          "image": "person-vitalik-buterin",
+          "sector": "Technology"
         }
       ],
       "directory": {
@@ -575,7 +582,8 @@
         ],
         "countTemplate": "Showing {shown} of {total}",
         "empty": "No people match these filters.",
-        "keyboardHint": "Use filters to narrow; results update as you type."
+        "keyboardHint": "Use filters to narrow; results update as you type.",
+        "bioLabel": "Biography · Scroll"
       }
     },
     "closing": {
@@ -713,6 +721,7 @@
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
       "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "person-vitalik-buterin": "/assets/images/person-vitalik-buterin.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
       "icon-dot-3": "/assets/images/icon-dot-3.png",
@@ -1457,6 +1466,13 @@
           "role": "研究員，Civic.AI",
           "image": "person-tenzin-yangtso",
           "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vitalik Buterin",
+          "role": "以太坊創辦人",
+          "image": "person-vitalik-buterin",
+          "sector": "Technology"
         }
       ],
       "directory": {
@@ -1485,7 +1501,8 @@
         ],
         "countTemplate": "顯示 {shown} / {total}",
         "empty": "沒有符合條件的成員。",
-        "keyboardHint": "使用篩選縮小範圍；輸入時結果即時更新。"
+        "keyboardHint": "使用篩選縮小範圍；輸入時結果即時更新。",
+        "bioLabel": "人物簡介 · 捲動"
       }
     },
     "closing": {
@@ -1623,6 +1640,7 @@
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
       "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "person-vitalik-buterin": "/assets/images/person-vitalik-buterin.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
       "icon-dot-3": "/assets/images/icon-dot-3.png",
@@ -2004,6 +2022,7 @@
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
       "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "person-vitalik-buterin": "/assets/images/person-vitalik-buterin.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
       "icon-dot-3": "/assets/images/icon-dot-3.png",
@@ -2516,6 +2535,13 @@
           "role": "Civic.AI、研究員",
           "image": "person-tenzin-yangtso",
           "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vitalik Buterin",
+          "role": "Ethereum、創設者",
+          "image": "person-vitalik-buterin",
+          "sector": "Technology"
         }
       ],
       "directory": {
@@ -2544,7 +2570,8 @@
         ],
         "countTemplate": "{shown} / {total} 件",
         "empty": "条件に一致する人がいません。",
-        "keyboardHint": "フィルタで絞り込み。入力と同時に結果が更新されます。"
+        "keyboardHint": "フィルタで絞り込み。入力と同時に結果が更新されます。",
+        "bioLabel": "略歴 · スクロール"
       }
     },
     "join": {
@@ -3277,6 +3304,13 @@
           "role": "Investigador, Civic.AI",
           "image": "person-tenzin-yangtso",
           "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vitalik Buterin",
+          "role": "Fundador, Ethereum",
+          "image": "person-vitalik-buterin",
+          "sector": "Technology"
         }
       ],
       "directory": {
@@ -3305,7 +3339,8 @@
         ],
         "countTemplate": "Mostrando {shown} de {total}",
         "empty": "Nadie coincide con estos filtros.",
-        "keyboardHint": "Usa los filtros; los resultados se actualizan al escribir."
+        "keyboardHint": "Usa los filtros; los resultados se actualizan al escribir.",
+        "bioLabel": "Biografía · Desplazar"
       }
     },
     "closing": {
@@ -3443,6 +3478,7 @@
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
       "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "person-vitalik-buterin": "/assets/images/person-vitalik-buterin.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
       "icon-dot-3": "/assets/images/icon-dot-3.png",
@@ -4177,6 +4213,13 @@
           "role": "Pesquisador, Civic.AI",
           "image": "person-tenzin-yangtso",
           "sector": "Research"
+        },
+        {
+          "kind": "person",
+          "name": "Vitalik Buterin",
+          "role": "Fundador, Ethereum",
+          "image": "person-vitalik-buterin",
+          "sector": "Technology"
         }
       ],
       "directory": {
@@ -4205,7 +4248,8 @@
         ],
         "countTemplate": "Mostrando {shown} de {total}",
         "empty": "Ninguém corresponde a estes filtros.",
-        "keyboardHint": "Use os filtros; os resultados atualizam enquanto você digita."
+        "keyboardHint": "Use os filtros; os resultados atualizam enquanto você digita.",
+        "bioLabel": "Biografia · Role"
       }
     },
     "closing": {
@@ -4343,6 +4387,7 @@
       "person-tim-oreilly": "/assets/images/person-tim-oreilly.png",
       "person-zoe-weinberg": "/assets/images/person-zoe-weinberg.png",
       "person-tenzin-yangtso": "/assets/images/person-tenzin-yangtso.png",
+      "person-vitalik-buterin": "/assets/images/person-vitalik-buterin.png",
       "icon-dot-1": "/assets/images/icon-dot-1.png",
       "icon-dot-2": "/assets/images/icon-dot-2.png",
       "icon-dot-3": "/assets/images/icon-dot-3.png",
