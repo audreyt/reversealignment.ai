@@ -9,7 +9,9 @@ const SALON_START = '2026-08-24T20:00:00.000Z';
 const SALON_END = '2026-08-24T21:00:00.000Z';
 
 const PLATFORM_ID = 'platform-originals-2026-08';
-const PLATFORM_URL = 'https://luma.com/pzkyaeuz';
+const PLATFORM_LUMA_URL = 'https://luma.com/pzkyaeuz';
+const PLATFORM_PAGE_HREF = 'events/you-are-here/';
+const QUESTION_POOL_URL = 'https://sli.do/20260829';
 const PLATFORM_START = '2026-08-29T06:00:00.000Z';
 const PLATFORM_END = '2026-08-29T08:30:00.000Z';
 
@@ -100,7 +102,6 @@ describe('coalition event catalog', () => {
       expect(platform, locale).toBeDefined();
 
       for (const item of [salon, platform]) {
-        expect(item!.cta.external, locale).toBe(true);
         expect(item!.cta.label.length, locale).toBeGreaterThan(0);
         expect(item!.title.length, locale).toBeGreaterThan(0);
         expect(item!.body.length, locale).toBeGreaterThan(0);
@@ -113,9 +114,15 @@ describe('coalition event catalog', () => {
       expect(salon!.startsAt, locale).toBe(SALON_START);
       expect(salon!.endsAt, locale).toBe(SALON_END);
       expect(salon!.cta.href, locale).toBe(SALON_URL);
+      expect(salon!.cta.external, locale).toBe(true);
       expect(platform!.startsAt, locale).toBe(PLATFORM_START);
       expect(platform!.endsAt, locale).toBe(PLATFORM_END);
-      expect(platform!.cta.href, locale).toBe(PLATFORM_URL);
+      // The Taipei talk sends readers to our own page first, which carries both
+      // the room and a way in that needs no flight. The href stays
+      // page-relative so the /en/ tree links inside itself instead of jumping
+      // to the zh-TW apex.
+      expect(platform!.cta.href, locale).toBe(PLATFORM_PAGE_HREF);
+      expect(platform!.cta.external, locale).toBeUndefined();
     }
 
     // Identity across locales is the standing localization rule: translate
@@ -137,7 +144,7 @@ describe('coalition event catalog', () => {
       locales.flatMap((locale) => getContent(locale).coalition.events.map((e) => e.endsAt))
     );
     expect(salonUrls).toEqual(new Set([SALON_URL]));
-    expect(platformUrls).toEqual(new Set([PLATFORM_URL]));
+    expect(platformUrls).toEqual(new Set([PLATFORM_PAGE_HREF]));
     expect(starts).toEqual(new Set([SALON_START, PLATFORM_START]));
     expect(ends).toEqual(new Set([SALON_END, PLATFORM_END]));
   });
@@ -145,6 +152,107 @@ describe('coalition event catalog', () => {
   test('lists events in chronological order', () => {
     const events = getContent('en').coalition.events;
     expect(events.map((item) => item.id)).toEqual([SALON_ID, PLATFORM_ID]);
+  });
+
+  test('lands the Taipei talk on a page that offers a way in from anywhere', () => {
+    for (const locale of listLocales()) {
+      const { event, assets } = getContent(locale);
+      expect(event.eventId, locale).toBe(PLATFORM_ID);
+
+      // Luma is reachable from the page; the question pool is the path for
+      // everyone who cannot get to Taipei, and it is what a non-zh-TW reader
+      // meets first.
+      expect(event.attend.inPerson.href, locale).toBe(PLATFORM_LUMA_URL);
+      expect(event.attend.inPerson.external, locale).toBe(true);
+      expect(event.attend.remote.href, locale).toBe(QUESTION_POOL_URL);
+      expect(event.attend.remote.external, locale).toBe(true);
+      expect(event.prep.cta.href, locale).toBe(QUESTION_POOL_URL);
+      expect(event.attend.lead, locale).toBe(locale === 'zh-tw' ? 'in-person' : 'remote');
+
+      // The five readings and the four arcs are the same editorial data in
+      // every locale; only the names are translated.
+      expect(
+        event.archetypes.items.map((item) => item.id),
+        locale
+      ).toEqual(['bridgewright', 'weaver', 'craftkeeper', 'companion', 'translator']);
+      // Registrations keep coming in, so a headcount printed here is wrong by
+      // the time anyone reads it. Every badge on the page names a quadrant.
+      for (const item of event.archetypes.items) {
+        expect(item.quadrant.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
+      }
+      expect(
+        event.stats.map((stat) => stat.value),
+        locale
+      ).toEqual(['5', '4', '1']);
+      expect(
+        event.cycles.items.map((item) => item.step),
+        locale
+      ).toEqual(['A', 'B', 'C', 'D']);
+      expect(
+        event.map.axes.map((axis) => axis.id),
+        locale
+      ).toEqual(['crowd', 'govern', 'self', 'build']);
+
+      // Portraits and the map artwork resolve through the same asset map every
+      // other page uses, so a missing key fails the build.
+      expect(assets['event-archetype-map'], locale).toBeDefined();
+      for (const speaker of event.speakers.items) {
+        expect(assets[speaker.image], locale).toBeDefined();
+      }
+    }
+  });
+
+  test('translates every line of the event page, leaving no English fallback', () => {
+    const locales = listLocales();
+    const proseByLocale: Record<string, string[]> = {};
+    for (const locale of locales) {
+      const event = getContent(locale).event;
+      proseByLocale[locale] = [
+        event.metaTitle,
+        event.metaDescription,
+        event.eyebrow,
+        event.title,
+        event.subtitle,
+        event.body,
+        event.homeLabel,
+        event.attend.title,
+        event.attend.when,
+        event.attend.venue,
+        event.attend.inPerson.label,
+        event.attend.remote.label,
+        event.map.title,
+        event.map.lead,
+        event.map.imageAlt,
+        event.archetypes.title,
+        event.cycles.title,
+        event.speakers.title,
+        event.prep.title,
+        event.prep.cta.label,
+        event.source,
+        ...event.stats.map((stat) => stat.label),
+        ...event.map.axes.map((axis) => axis.label),
+        ...event.archetypes.items.map((item) => item.name),
+        ...event.cycles.items.map((item) => item.arc),
+        ...event.prep.steps.map((step) => step.title),
+      ];
+    }
+
+    const reference = proseByLocale.en!;
+    for (const locale of locales) {
+      const lines = proseByLocale[locale]!;
+      expect(lines.length, locale).toBe(reference.length);
+      for (const line of lines) {
+        expect(line.trim().length, locale).toBeGreaterThan(0);
+        expect(line, locale).not.toMatch(/TODO|FIXME|Lorem ipsum/i);
+      }
+      if (locale === 'en') continue;
+      // Every one of these lines is prose, so a line that still reads exactly
+      // like the English is an untranslated fallback, not a coincidence.
+      expect(
+        lines.filter((line, index) => line === reference[index]),
+        locale
+      ).toEqual([]);
+    }
   });
 
   test('drops each event only after its own endsAt', () => {

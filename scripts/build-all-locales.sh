@@ -37,6 +37,13 @@ test -f dist/join/index.html
 test -f dist/en/join/index.html
 test -f dist/join/manage/index.html
 test -f dist/en/join/manage/index.html
+
+# The event page is the landing surface for the 29 Aug 2026 talk in every
+# locale, including the brochure-only ones that have no join form to ship.
+test -f dist/events/you-are-here/index.html
+test -f dist/en/events/you-are-here/index.html
+test -f dist/es/events/you-are-here/index.html
+test -f dist/pt-BR/events/you-are-here/index.html
 test ! -e dist/es/join
 test ! -e dist/pt-BR/join
 test ! -e dist/en/en

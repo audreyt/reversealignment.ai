@@ -17,7 +17,7 @@
     "test:e2e": "vp exec playwright test",
     "test:e2e:live": "bash scripts/join-live-e2e.sh",
     "test:e2e:install": "vp exec playwright install --with-deps",
-    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\" \"dist/en/index.html\" \"dist/en/404.html\" \"dist/join/index.html\" \"dist/en/join/index.html\" \"dist/join/manage/index.html\" \"dist/en/join/manage/index.html\" \"dist/es/index.html\" \"dist/es/404.html\" \"dist/pt-BR/index.html\" \"dist/pt-BR/404.html\" \"dist/halftone-lab/index.html\" \"dist/en/halftone-lab/index.html\" \"dist/es/halftone-lab/index.html\" \"dist/pt-BR/halftone-lab/index.html\"",
+    "lint:html": "html-validate \"dist/index.html\" \"dist/404.html\" \"dist/en/index.html\" \"dist/en/404.html\" \"dist/join/index.html\" \"dist/en/join/index.html\" \"dist/join/manage/index.html\" \"dist/en/join/manage/index.html\" \"dist/es/index.html\" \"dist/es/404.html\" \"dist/pt-BR/index.html\" \"dist/pt-BR/404.html\" \"dist/events/you-are-here/index.html\" \"dist/en/events/you-are-here/index.html\" \"dist/es/events/you-are-here/index.html\" \"dist/pt-BR/events/you-are-here/index.html\" \"dist/halftone-lab/index.html\" \"dist/en/halftone-lab/index.html\" \"dist/es/halftone-lab/index.html\" \"dist/pt-BR/halftone-lab/index.html\"",
     "ci": "vp run clean && vp check && vp run build:all && vp test && vp run lint:html",
     "dev:api": "wrangler dev",
     "db:migrate:local": "wrangler d1 migrations apply reversealignment-coalition --local",

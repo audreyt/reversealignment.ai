@@ -1,0 +1,308 @@
+---
+/**
+ * /events/you-are-here/ — the pre-read for the 29 Aug 2026 Taipei talk.
+ *
+ * Built for every SITE_LOCALE, because this page and not Luma is where the
+ * event's inbound links point: someone who cannot reach Taipei still has a way
+ * to take part. Only zh-TW leads with the room; `attend.lead` puts the
+ * question pool first everywhere else.
+ *
+ * The page sits two levels deep, so every asset and every link home is built
+ * from `relativeRootPath`. An absolute `/events/you-are-here/` would escape the
+ * `/en/` tree on the zh-TW host and silently serve the other locale's page.
+ */
+import CtaLink from '../../components/CtaLink.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../../lib/i18n';
+
+const locale = getDefaultLocale();
+const catalog = getContent(locale);
+const event = catalog.event;
+const { attend, map, archetypes, cycles, speakers, prep } = event;
+const rootPath = relativeRootPath(Astro.url.pathname);
+
+// Every nav and footer link is a homepage anchor. From two levels down they
+// have to climb, or they resolve against this page and go nowhere.
+const copy = {
+  ...catalog,
+  nav: {
+    ...catalog.nav,
+    coalition: { ...catalog.nav.coalition, href: `${rootPath}${catalog.nav.coalition.href}` },
+  },
+  footer: {
+    ...catalog.footer,
+    columns: catalog.footer.columns.map((column) => ({
+      ...column,
+      links: column.links.map((link) => ({ ...link, href: `${rootPath}${link.href}` })),
+    })),
+  },
+};
+
+// The machine-readable instant lives once, in the catalog listing this page
+// belongs to. A missing id means the page is advertising an event the site does
+// not list, which must fail the build rather than ship a dateless page.
+const listing = catalog.coalition.events.find((item) => item.id === event.eventId);
+if (!listing) {
+  throw new Error(`event.eventId "${event.eventId}" has no coalition.events entry`);
+}
+
+const title = `${event.metaTitle} — ${catalog.brand.name}`;
+const mapImage = assetPath('event-archetype-map', locale, rootPath);
+
+const remoteWay = { id: 'remote', cta: attend.remote, note: attend.remoteNote };
+const inPersonWay = { id: 'in-person', cta: attend.inPerson, note: attend.inPersonNote };
+const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay, inPersonWay];
+---
+
+<Base locale={locale} title={title} description={event.metaDescription}>
+  <div id="top" class="page page--event">
+    <SiteHeader copy={copy} showNavigation={false} />
+
+    <main id="main">
+      <!-- HERO — title beside the archetype artwork on wide screens, under it on narrow -->
+      <section class="section section--dark event-hero" aria-labelledby="event-title">
+        <div class="section__inner event-hero__grid">
+          <div class="event-hero__copy">
+            <p class="eyebrow">{event.eyebrow}</p>
+            <h1 id="event-title" class="display display--xl event-hero__title">{event.title}</h1>
+            <p class="lede event-hero__subtitle">{event.subtitle}</p>
+            <p class="body event-hero__body">{event.body}</p>
+
+            <dl class="event-stats">
+              {
+                event.stats.map((stat) => (
+                  <div class="event-stats__item">
+                    <dt class="event-stats__label">{stat.label}</dt>
+                    <dd class="event-stats__value">{stat.value}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </div>
+
+          <figure class="event-hero__figure">
+            <img
+              class="event-hero__image"
+              src={mapImage}
+              alt={map.imageAlt}
+              width="1254"
+              height="1254"
+              loading="eager"
+              decoding="async"
+            />
+            <figcaption class="body--sm event-hero__caption">{map.caption}</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ATTEND — both affordances, the locale's own one first -->
+      <section class="event-attend" aria-labelledby="event-attend-title">
+        <div class="event-attend__inner">
+          <h2 id="event-attend-title" class="display display--md event-attend__title">
+            {attend.title}
+          </h2>
+
+          <p class="event-attend__when">
+            <time datetime={listing.startsAt}>{attend.when}</time>
+          </p>
+          <p class="event-attend__venue">{attend.venue}</p>
+
+          <ul class="event-ways">
+            {
+              ways.map((way, index) => (
+                <li class:list={['event-way', index === 0 && 'event-way--lead']} data-way={way.id}>
+                  <p class="event-way__note">{way.note}</p>
+                  <CtaLink
+                    cta={way.cta}
+                    class={index === 0 ? 'btn btn--dark event-way__cta' : 'btn btn--ghost event-way__cta'}
+                    externalLabel={copy.a11y.externalLink}
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <!-- MAP LEGEND — the artwork is lettered in Chinese and English; this is the translation -->
+      <section class="section section--event-light event-map" aria-labelledby="event-map-title">
+        <div class="section__inner">
+          <div class="event-head">
+            <h2 id="event-map-title" class="display display--md">{map.title}</h2>
+            <p class="body event-head__lead">{map.lead}</p>
+          </div>
+
+          <div class="event-map__grid">
+            <div class="event-axes">
+              <h3 class="body--mono event-panel__title">{map.axesTitle}</h3>
+              <dl class="event-axes__list">
+                {
+                  map.axes.map((axis) => (
+                    <div class="event-axis" data-axis={axis.id}>
+                      <dt class="event-axis__label">{axis.label}</dt>
+                      <dd class="event-axis__body">{axis.body}</dd>
+                    </div>
+                  ))
+                }
+              </dl>
+            </div>
+
+            <div class="event-legend">
+              <h3 class="body--mono event-panel__title">{map.legendTitle}</h3>
+              <p class="body--sm event-legend__note">{map.legendNote}</p>
+              <ul class="event-legend__list">
+                {
+                  archetypes.items.map((item) => (
+                    <li class="event-legend__item" data-archetype={item.id}>
+                      <a class="event-legend__link" href={`#archetype-${item.id}`}>
+                        <span class="event-legend__swatch" aria-hidden="true" />
+                        <span class="event-legend__name">{item.name}</span>
+                        <span class="event-legend__quadrant">{item.quadrant}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FIVE ARCHETYPES — accent colours match each figure's robe in the artwork -->
+      <section class="section section--dark event-archetypes" aria-labelledby="event-archetypes-title">
+        <div class="section__inner">
+          <div class="event-head">
+            <h2 id="event-archetypes-title" class="display display--md">{archetypes.title}</h2>
+            <p class="body event-head__lead">{archetypes.lead}</p>
+          </div>
+
+          <div class="event-archetype-grid">
+            {
+              archetypes.items.map((item) => (
+                <article
+                  class="event-archetype"
+                  id={`archetype-${item.id}`}
+                  data-archetype={item.id}
+                >
+                  <p class="event-archetype__meta">
+                    <span class="event-archetype__quadrant">{item.quadrant}</span>
+                  </p>
+                  <h3 class="event-archetype__name">{item.name}</h3>
+                  <p class="body event-archetype__body">{item.body}</p>
+                  <ul class="event-roles">
+                    {item.roles.map((role) => (
+                      <li class="event-role">{role}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- FOUR ARCS -->
+      <section class="section section--dark event-cycles" aria-labelledby="event-cycles-title">
+        <div class="section__inner">
+          <div class="event-head">
+            <h2 id="event-cycles-title" class="display display--md">{cycles.title}</h2>
+            <p class="body event-head__lead">{cycles.lead}</p>
+          </div>
+
+          <ol class="event-cycle-grid">
+            {
+              cycles.items.map((cycle) => (
+                <li class="event-cycle" data-cycle={cycle.id}>
+                  <p class="event-cycle__step" aria-hidden="true">{cycle.step}</p>
+                  <h3 class="event-cycle__arc">{cycle.arc}</h3>
+                  <p class="body event-cycle__body">{cycle.body}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <!-- WHO IS HOLDING THE ROOM -->
+      <section
+        class="section section--event-light event-speakers"
+        aria-labelledby="event-speakers-title"
+      >
+        <div class="section__inner">
+          <div class="event-head">
+            <h2 id="event-speakers-title" class="display display--md">{speakers.title}</h2>
+            <p class="body event-head__lead">{speakers.lead}</p>
+          </div>
+
+          <div class="event-speaker-grid">
+            {
+              speakers.items.map((speaker) => (
+                <article class="event-speaker">
+                  <img
+                    class="event-speaker__photo"
+                    src={assetPath(speaker.image, locale, rootPath)}
+                    alt={speaker.name}
+                    width="146"
+                    height="146"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="event-speaker__copy">
+                    <h3 class="event-speaker__name">{speaker.name}</h3>
+                    <p class="body--mono event-speaker__role">{speaker.role}</p>
+                    <p class="body event-speaker__body">{speaker.body}</p>
+                    <CtaLink
+                      cta={speaker.link}
+                      class="btn btn--ghost btn--inline event-speaker__link"
+                      externalLabel={copy.a11y.externalLink}
+                    />
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- TWO ACTIONS BEFORE ARRIVAL -->
+      <section class="section section--dark event-prep" aria-labelledby="event-prep-title">
+        <div class="section__inner">
+          <div class="event-head">
+            <h2 id="event-prep-title" class="display display--md">{prep.title}</h2>
+            <p class="body event-head__lead">{prep.lead}</p>
+          </div>
+
+          <ol class="event-step-grid">
+            {
+              prep.steps.map((step) => (
+                <li class="event-step">
+                  <p class="event-step__index" aria-hidden="true">{step.index}</p>
+                  <h3 class="event-step__title">{step.title}</h3>
+                  <p class="body event-step__body">{step.body}</p>
+                </li>
+              ))
+            }
+          </ol>
+
+          <p class="body--sm event-prep__note">{prep.note}</p>
+          <CtaLink
+            cta={prep.cta}
+            class="btn btn--lime-ink event-prep__cta"
+            externalLabel={copy.a11y.externalLink}
+          />
+        </div>
+      </section>
+
+      <section class="section section--dark event-close">
+        <div class="section__inner event-close__inner">
+          <p class="body--sm event-close__source">{event.source}</p>
+          <a class="btn btn--quiet" href={rootPath}>{event.homeLabel}</a>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter copy={copy} />
+  </div>
+</Base>

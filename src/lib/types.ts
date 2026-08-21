@@ -211,6 +211,129 @@ export type NotFoundCopy = {
   code: string;
 };
 
+/** One of the five ways of carrying a question, as read off the event map. */
+export type EventArchetype = {
+  /** Stable English key, identical across locales; also the DOM id fragment. */
+  id: string;
+  name: string;
+  /**
+   * Quadrant, phrased in the same axis words the map rim uses. This is the
+   * card's badge: headcounts are live and go stale between builds, a quadrant
+   * does not.
+   */
+  quadrant: string;
+  body: string;
+  roles: string[];
+};
+
+/** One dashed arc on the map: a perspective handing off to the next. */
+export type EventCycle = {
+  id: string;
+  /** Ordinal printed on the card — A, B, C, D. */
+  step: string;
+  arc: string;
+  body: string;
+};
+
+/** One of the four directions printed on the map rim. */
+export type EventAxis = {
+  id: string;
+  label: string;
+  body: string;
+};
+
+export type EventSpeaker = {
+  id: string;
+  name: string;
+  role: string;
+  body: string;
+  /** Key into `assets`. */
+  image: string;
+  link: Cta;
+};
+
+/** Label over value, as rendered in the hero's definition list. */
+export type EventStat = {
+  label: string;
+  value: string;
+};
+
+export type EventStep = {
+  /** Printed ordinal, e.g. `01`. */
+  index: string;
+  title: string;
+  body: string;
+};
+
+/**
+ * Copy for `/events/you-are-here/`, the pre-read for the 29 Aug 2026 Taipei
+ * talk. Every locale ships the page, because it is where the event's inbound
+ * links land: a reader who cannot reach Taipei still has a way to take part.
+ */
+export type EventCopy = {
+  /** The `coalition.events` id this page belongs to. */
+  eventId: string;
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  stats: EventStat[];
+  /** Label on the link back to the locale's own home page. */
+  homeLabel: string;
+  attend: {
+    /**
+     * Which affordance leads. Taipei's own locale opens with the room; every
+     * other locale opens with the way in that needs no flight.
+     */
+    lead: 'in-person' | 'remote';
+    title: string;
+    when: string;
+    venue: string;
+    inPerson: Cta;
+    inPersonNote: string;
+    remote: Cta;
+    remoteNote: string;
+  };
+  map: {
+    title: string;
+    lead: string;
+    /** Describes the artwork for readers who cannot see it, in this locale. */
+    imageAlt: string;
+    caption: string;
+    axesTitle: string;
+    axes: EventAxis[];
+    legendTitle: string;
+    /** Names the artwork's own baked-in bilingual labels, so the legend reads as the translation of them rather than a second set. */
+    legendNote: string;
+  };
+  archetypes: {
+    title: string;
+    lead: string;
+    items: EventArchetype[];
+  };
+  cycles: {
+    title: string;
+    lead: string;
+    items: EventCycle[];
+  };
+  speakers: {
+    title: string;
+    lead: string;
+    items: EventSpeaker[];
+  };
+  prep: {
+    title: string;
+    lead: string;
+    note: string;
+    steps: EventStep[];
+    cta: Cta;
+  };
+  /** Provenance line: where the 42 readings came from, and how firm they are. */
+  source: string;
+};
+
 export type SiteContent = {
   meta: {
     title: string;
@@ -311,6 +434,7 @@ export type SiteContent = {
     people: CoalitionPerson[];
     directory: DirectoryCopy;
   };
+  event: EventCopy;
   join: {
     eyebrow: string;
     title: string;

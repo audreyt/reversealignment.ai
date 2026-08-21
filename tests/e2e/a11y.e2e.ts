@@ -44,4 +44,22 @@ test.describe('multilingual static accessibility', () => {
     await expect(page.locator('[data-join-input="email"]')).toHaveCount(0);
     await assertNoSeriousA11y(page, 'zh-TW join');
   });
+
+  test('zh-TW event page has no serious or critical violations', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/events/you-are-here/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
+    // Taipei's own locale leads with the room.
+    await expect(page.locator('.event-way').first()).toHaveAttribute('data-way', 'in-person');
+    await assertNoSeriousA11y(page, 'zh-TW event page');
+  });
+
+  test('English event page has no serious or critical violations on mobile', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/en/events/you-are-here/');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    // Everywhere else leads with the way in that needs no flight.
+    await expect(page.locator('.event-way').first()).toHaveAttribute('data-way', 'remote');
+    await assertNoSeriousA11y(page, 'en event page mobile');
+  });
 });
