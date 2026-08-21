@@ -348,7 +348,18 @@ describe('multilingual static catalog', () => {
     expect(englishPeople.find((person) => person.fullName === 'Vitalik Buterin')?.bio).toContain(
       'conceived Ethereum'
     );
-    expect(catalogPeopleAsDirectory('zh-tw').some((person) => person.bio)).toBe(false);
+    for (const locale of ['zh-tw', 'ja', 'es', 'pt-br'] as const) {
+      expect(catalogPeopleAsDirectory(locale).filter((person) => person.bio)).toHaveLength(25);
+    }
+    expect(catalogPeopleAsDirectory('zh-tw')[0].bio).toContain('多元宇宙');
+    expect(catalogPeopleAsDirectory('ja')[0].bio).toContain('プルラリティ');
+    const audreyZhBio = catalogPeopleAsDirectory('zh-tw').find(
+      (person) => person.fullName === 'Audrey Tang'
+    )?.bio;
+    expect(audreyZhBio).toContain('公民黑客');
+    expect(audreyZhBio).toContain('《仁工智慧》');
+    expect(audreyZhBio).toContain('「諾貝爾替代獎」');
+    expect(audreyZhBio).toContain('Right Livelihood Award（正命獎）');
     expect(
       catalogPersonAsDirectory(
         {

@@ -1,10 +1,21 @@
 import content from '../data/content.json';
+import esDirectoryBios from '../data/directory-bios.es.json';
+import jaDirectoryBios from '../data/directory-bios.ja.json';
+import ptBrDirectoryBios from '../data/directory-bios.pt-br.json';
+import zhTwDirectoryBios from '../data/directory-bios.zh-tw.json';
 import site from '../data/site.json';
 import { englishDirectoryBios } from '../data/directory-bios';
 import type { DirectoryPerson } from './directory';
 import type { Locale, SiteContent } from './types';
 
 const catalog = content as Record<Locale, SiteContent>;
+const directoryBiosByLocale: Record<Locale, Readonly<Record<string, string>>> = {
+  en: englishDirectoryBios,
+  'zh-tw': zhTwDirectoryBios,
+  ja: jaDirectoryBios,
+  es: esDirectoryBios,
+  'pt-br': ptBrDirectoryBios,
+};
 const localeList = Object.keys(catalog) as Locale[];
 const configuredLocale = process.env.SITE_LOCALE ?? site.defaultLocale;
 
@@ -169,11 +180,7 @@ export function catalogPersonAsDirectory(
 /** Fixed localized directory data, embedded in each static build. */
 export function catalogPeopleAsDirectory(locale: Locale = DEFAULT_LOCALE): DirectoryPerson[] {
   return getContent(locale).coalition.people.map((person, index) =>
-    catalogPersonAsDirectory(
-      person,
-      index,
-      locale === 'en' ? englishDirectoryBios[person.image.trim()] : undefined
-    )
+    catalogPersonAsDirectory(person, index, directoryBiosByLocale[locale][person.image.trim()])
   );
 }
 
