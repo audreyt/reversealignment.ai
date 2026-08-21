@@ -624,7 +624,7 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterward — whether or not you were in the room."
+        "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterwards — whether or not you were in the room."
       },
       "map": {
         "title": "Field map",
@@ -776,7 +776,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Author · Co-facilitator",
-            "body": "From Hualien; co-author of Plurality and Civic AI. Focused on data soil, care settings and the rights to refuse and exit.",
+            "body": "From Hualien in eastern Taiwan; co-author of Plurality, Civic AI and 6-Pack of Care.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -789,7 +789,7 @@
       "prep": {
         "title": "Two actions before arrival",
         "lead": "The question pool begins with ten anonymous seed questions. Signal resonance with an upvote, then add the question that has not yet been asked, in your own words.",
-        "note": "Seed questions are a starting point, not a fixed agenda, and the pool keeps growing in the room. Zero votes is not rejection: every question receives a written response afterward.",
+        "note": "Seed questions are a starting point, not a fixed agenda, and the pool keeps growing in the room. Zero votes is not rejection: Every question receives a written response afterwards.",
         "steps": [
           {
             "index": "01",
@@ -799,7 +799,7 @@
           {
             "index": "02",
             "title": "Revise and add",
-            "body": "When your thinking has changed since you registered, publish a new question in your own words. Rewriting it yourself is truer than an editorial paraphrase."
+            "body": "If your thinking has changed since registering, publish a new question in your own words. Rewriting it yourself is truer than an editorial paraphrase."
           }
         ],
         "cta": {
@@ -808,7 +808,7 @@
           "external": true
         }
       },
-      "source": "Source: approved Luma registrations, bios and questions as of 16 August 2026. Placement and archetypes are editorial readings."
+      "source": "Source: approved Luma registrations, bios and questions. Placement and archetypes are editorial readings."
     },
     "closing": {
       "lines": [
@@ -825,17 +825,17 @@
           "links": [
             {
               "id": "coalition",
-              "label": "The coalition",
+              "label": "Coalition",
               "href": "#coalition"
             }
           ]
         },
         {
-          "title": "The mission",
+          "title": "Mission",
           "links": [
             {
               "id": "idea",
-              "label": "The other side of alignment",
+              "label": "Other side of alignment",
               "href": "#idea"
             },
             {
@@ -1920,7 +1920,7 @@
             "id": "tenzin-yangtso",
             "name": "丹增央措",
             "role": "作者 · 共同主持",
-            "body": "花蓮人，《多元宇宙》與《仁工智慧》共同作者。關注資料土壤、照顧現場、拒絕與退出的權利。",
+            "body": "台灣東部花蓮人，《多元宇宙》、《仁工智慧》與《6-Pack of Care》共同作者。",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -1952,7 +1952,7 @@
           "external": true
         }
       },
-      "source": "資料來源：Luma 報名自介與提問（截至 2026 年 8 月 16 日）；位置與姿態為編者讀法。"
+      "source": "資料來源：Luma 報名自介與提問；位置與姿態為編者讀法。"
     },
     "closing": {
       "lines": [
@@ -3215,7 +3215,7 @@
             "id": "tenzin-yangtso",
             "name": "テンジン・ヤンツォ",
             "role": "著者 · 共同ファシリテーター",
-            "body": "花蓮出身。PluralityとCivic AIの共同著者。データ土壌、ケアの現場、そして拒否と退出の権利を主な関心としています。",
+            "body": "台湾東部の花蓮出身。Plurality、Civic AI、6-Pack of Care の共同著者。",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -3247,7 +3247,7 @@
           "external": true
         }
       },
-      "source": "出典：2026年8月16日時点の承認済みLuma登録情報、自己紹介、質問。位置づけとアーキタイプは編集側の読み解きです。"
+      "source": "出典：承認済みLuma登録情報、自己紹介、質問。位置づけとアーキタイプは編集側の読み解きです。"
     },
     "join": {
       "eyebrow": "連合に参加する",
@@ -4208,7 +4208,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Autora · Cofacilitadora",
-            "body": "De Hualien; coautora de Plurality y Civic AI. Se centra en el suelo de datos, los entornos de cuidado y los derechos a negarse y a salir.",
+            "body": "De Hualien, en el este de Taiwán; coautora de Plurality, Civic AI y 6-Pack of Care.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -4240,7 +4240,7 @@
           "external": true
         }
       },
-      "source": "Fuente: registros de Luma aprobados, biografías y preguntas hasta el 16 de agosto de 2026. La ubicación y los arquetipos son lecturas editoriales."
+      "source": "Fuente: registros de Luma aprobados, biografías y preguntas. La ubicación y los arquetipos son lecturas editoriales."
     },
     "closing": {
       "lines": [
@@ -4257,17 +4257,17 @@
           "links": [
             {
               "id": "coalition",
-              "label": "La coalición",
+              "label": "Coalición",
               "href": "#coalition"
             }
           ]
         },
         {
-          "title": "La misión",
+          "title": "Misión",
           "links": [
             {
               "id": "idea",
-              "label": "La otra cara de la alineación",
+              "label": "Otra cara de la alineación",
               "href": "#idea"
             },
             {
@@ -5342,7 +5342,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Autora · Cofacilitadora",
-            "body": "De Hualien; coautora de Plurality e Civic AI. Focada no solo de dados, nos contextos de cuidado e nos direitos de recusar e de sair.",
+            "body": "De Hualien, no leste de Taiwan; coautora de Plurality, Civic AI e 6-Pack of Care.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -5374,7 +5374,7 @@
           "external": true
         }
       },
-      "source": "Fonte: inscrições aprovadas no Luma, biografias e perguntas até 16 de agosto de 2026. Posicionamento e arquétipos são leituras editoriais."
+      "source": "Fonte: inscrições aprovadas no Luma, biografias e perguntas. Posicionamento e arquétipos são leituras editoriais."
     },
     "closing": {
       "lines": [
@@ -5391,17 +5391,17 @@
           "links": [
             {
               "id": "coalition",
-              "label": "A coalizão",
+              "label": "Coalizão",
               "href": "#coalition"
             }
           ]
         },
         {
-          "title": "A missão",
+          "title": "Missão",
           "links": [
             {
               "id": "idea",
-              "label": "O outro lado do alinhamento",
+              "label": "Outro lado do alinhamento",
               "href": "#idea"
             },
             {
