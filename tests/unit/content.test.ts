@@ -351,15 +351,23 @@ describe('multilingual static catalog', () => {
     expect(englishPeople.find((person) => person.fullName === 'Tenzin Yangtso')?.bio).toContain(
       'data soil'
     );
-    expect(catalogPeopleAsDirectory('zh-tw').filter((person) => person.bio)).toHaveLength(26);
-    for (const locale of ['ja', 'es', 'pt-br'] as const) {
-      expect(catalogPeopleAsDirectory(locale).filter((person) => person.bio)).toHaveLength(25);
+    for (const locale of ['zh-tw', 'ja', 'es', 'pt-br'] as const) {
+      expect(catalogPeopleAsDirectory(locale).filter((person) => person.bio)).toHaveLength(26);
     }
     expect(catalogPeopleAsDirectory('zh-tw')[0].bio).toContain('多元宇宙');
     expect(
       catalogPeopleAsDirectory('zh-tw').find((person) => person.fullName === 'Tenzin Yangtso')?.bio
     ).toContain('資料土壤');
     expect(catalogPeopleAsDirectory('ja')[0].bio).toContain('プルラリティ');
+    expect(
+      catalogPeopleAsDirectory('ja').find((person) => person.fullName === 'Tenzin Yangtso')?.bio
+    ).toContain('データの土壌');
+    expect(
+      catalogPeopleAsDirectory('es').find((person) => person.fullName === 'Tenzin Yangtso')?.bio
+    ).toContain('suelo de datos');
+    expect(
+      catalogPeopleAsDirectory('pt-br').find((person) => person.fullName === 'Tenzin Yangtso')?.bio
+    ).toContain('solo de dados');
     const audreyZhBio = catalogPeopleAsDirectory('zh-tw').find(
       (person) => person.fullName === 'Audrey Tang'
     )?.bio;

@@ -123,7 +123,7 @@ test.describe('static multilingual site', () => {
     await expect(page.locator('[data-dir-count]')).toHaveText(
       `顯示 ${DIRECTORY_TOTAL} / ${DIRECTORY_TOTAL}`
     );
-    await expect(page.getByText('Tenzin Yangtso', { exact: true })).toHaveCount(1);
+    await expect(page.locator('[data-person][data-name="Tenzin Yangtso"]')).toHaveCount(1);
     await expect(page.getByText(LIVE_ALPHABETICAL_FIRST, { exact: true })).toHaveCount(1);
     await expect(page.getByText(LIVE_ALPHABETICAL_LAST, { exact: true })).toHaveCount(1);
 
