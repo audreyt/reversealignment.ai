@@ -122,19 +122,44 @@ html[lang='zh-TW'] {
  * the 12–14px this site sets its copy, on a near-black page, it reads frail.
  * So reading copy takes the 700. Nothing here is a synthesized weight: both
  * cuts are separate files registered with the loader.
- *
- * Emphasis then has to leave the family, because bold-inside-bold says nothing.
- * Hei carries it, which is also where the headings already are.
  */
 html[lang='zh-TW'] body,
 html[lang='zh-TW'] .body {
   font-weight: 700;
 }
+
+/**
+ * Headings are display type, but most of them never name a family — they were
+ * written when one face served the whole site — so they would inherit the
+ * reading face. Hei has three cuts here: 800 carries the large type, and 700
+ * the card-scale titles that 800 would overpower at 14–25px.
+ */
+html[lang='zh-TW'] :is(h1, h2),
+html[lang='zh-TW'] .display,
+html[lang='zh-TW'] .footer-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+html[lang='zh-TW'] :is(h3, h4, h5, h6) {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Emphasis has to leave the family: bold inside bold says nothing. */
 html[lang='zh-TW'] .lede,
 html[lang='zh-TW'] .term,
 html[lang='zh-TW'] strong,
 html[lang='zh-TW'] b {
   font-family: var(--font-display);
+}
+
+/**
+ * The band's Latin title wraps to three lines, so it hangs from the bottom of
+ * its row to finish level with the meta column. Chinese fits on one line, where
+ * the same rule reads as a title that has slipped down the poster.
+ */
+html[lang='zh-TW'] .events-band__title {
+  align-self: start;
 }
 
 @media (min-width: 900px) {
@@ -5107,6 +5132,10 @@ textarea.form__control {
    in this locale to a character on the map.
    ========================================================================== */
 .page--event {
+  /* One voice on this page. The artwork's own lettering is a hei, and a serif
+     reading face beside it reads as two publications arguing. Every locale but
+     zh-TW points both tokens at plfh, so this is a no-op there. */
+  font-family: var(--font-display);
   --arch-bridgewright: #2f638a;
   --arch-weaver: #526f46;
   --arch-craftkeeper: #a65436;
