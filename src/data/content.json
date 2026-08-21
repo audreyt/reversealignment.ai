@@ -592,7 +592,7 @@
       "eyebrow": "Field note · 29 Aug 2026",
       "title": "You Are Here",
       "subtitle": "A map of what we carry",
-      "body": "Not a personality test, but a shared coordinate system before we enter the room. Find your position, your nearby archetypes, and the people arriving at the same question from another arc.",
+      "body": "Not a personality test, but a shared coordinate system before we enter the room. Find your position, your nearby archetypes and the people arriving at the same question from another arc.",
       "stats": [
         {
           "label": "Archetypes",
@@ -611,14 +611,14 @@
       "attend": {
         "lead": "remote",
         "title": "Two ways to take part",
-        "when": "Saturday 29 August 2026. Check-in 13:30, start 14:00, finish 16:30; the venue stays open until 18:00. Taipei time, UTC+8.",
+        "when": "Saturday, Aug. 29, 2026. Check-in 13:30, start 14:00, finish 16:30; the venue stays open until 18:00. Taipei time, UTC+8.",
         "venue": "SPARKFUL Office 12F — 1-1, Sec. 1, Chongqing N. Rd., Datong, Taipei, beside Taipei City Mall exit Y15.",
         "inPerson": {
           "label": "Register on Luma",
           "href": "https://luma.com/pzkyaeuz",
           "external": true
         },
-        "inPersonNote": "In the room, in Taipei. Free, and approved by the host.",
+        "inPersonNote": "In the room, in Taipei, free and approved by the host.",
         "remote": {
           "label": "Add your question to the pool",
           "href": "https://sli.do/20260829",
@@ -627,7 +627,7 @@
         "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterward — whether or not you were in the room."
       },
       "map": {
-        "title": "The field map",
+        "title": "Field map",
         "lead": "Read the archetypes first, then find yourself. The four arcs are not rankings; they show perspective cycling through crowd, governance, self and building.",
         "imageAlt": "Five illustrated figures around a lit centre: the Translator in the middle, the Bridgewright and the Weaver above, the Craftkeeper and the Companion below, with arrows running between four rim labels for crowd, governance, self and building.",
         "caption": "Placement and archetypes are editorial readings of what people wrote when they registered.",
@@ -636,7 +636,7 @@
           {
             "id": "crowd",
             "label": "Crowd",
-            "body": "Outward, to the many: what a question does once it leaves you."
+            "body": "Outward, to the many: What a question does once it leaves you."
           },
           {
             "id": "govern",
@@ -646,7 +646,7 @@
           {
             "id": "self",
             "label": "Self",
-            "body": "Inward: what you can carry alone, and what carrying it costs you."
+            "body": "Inward: What you can carry alone and what carrying it costs you."
           },
           {
             "id": "build",
@@ -655,7 +655,7 @@
           }
         ],
         "legendTitle": "Who is on the map",
-        "legendNote": "The artwork is lettered in Chinese and English; the list below is the same five names in this language."
+        "legendNote": "The artwork is lettered in Han characters and English; the list below is the same five names in this language."
       },
       "archetypes": {
         "title": "Five ways of carrying",
@@ -663,7 +663,7 @@
         "items": [
           {
             "id": "bridgewright",
-            "name": "The Bridgewright",
+            "name": "Bridgewright",
             "quadrant": "Crowd · Build",
             "body": "Makes systems for the many: infrastructure, agents and public tools.",
             "roles": [
@@ -677,7 +677,7 @@
           },
           {
             "id": "weaver",
-            "name": "The Weaver",
+            "name": "Weaver",
             "quadrant": "Crowd · Govern",
             "body": "Weaves institutions, markets, communities and ecosystems; the largest group in the room.",
             "roles": [
@@ -690,7 +690,7 @@
           },
           {
             "id": "craftkeeper",
-            "name": "The Craftkeeper",
+            "name": "Craftkeeper",
             "quadrant": "Self · Build",
             "body": "Keeps craft and self intact inside the generative wave; the rarest archetype here.",
             "roles": [
@@ -702,7 +702,7 @@
           },
           {
             "id": "companion",
-            "name": "The Companion",
+            "name": "Companion",
             "quadrant": "Self · Govern",
             "body": "Walks beside people through change: classrooms, families, care settings and the next generation.",
             "roles": [
@@ -715,7 +715,7 @@
           },
           {
             "id": "translator",
-            "name": "The Translator",
+            "name": "Translator",
             "quadrant": "The centre",
             "body": "Lives at the quadrant boundaries, carrying a problem from one world into another. Being central is not neutrality; it is continuous translation.",
             "roles": [
@@ -3094,7 +3094,7 @@
           }
         ],
         "legendTitle": "地図の上にいるのは誰か",
-        "legendNote": "アートワークのラベルは中国語と英語の併記です。下のリストは、同じ5つの名前をこの言語で示したものです。"
+        "legendNote": "アートワークのラベルは漢字と英語の併記です。下のリストは、同じ5つの名前をこの言語で示したものです。"
       },
       "archetypes": {
         "title": "5つの担い方",
@@ -4050,7 +4050,7 @@
           "href": "https://luma.com/pzkyaeuz",
           "external": true
         },
-        "inPersonNote": "En la sala, en Taipéi. Gratis, con aprobación del organizador.",
+        "inPersonNote": "En la sala, en Taipéi, gratis y con aprobación del organizador.",
         "remote": {
           "label": "Añade tu pregunta al banco",
           "href": "https://sli.do/20260829",
@@ -4059,7 +4059,7 @@
         "remoteNote": "No hace falta viajar. El banco está abierto antes y durante la charla, y después cada pregunta recibe una respuesta por escrito, estuvieras o no en la sala."
       },
       "map": {
-        "title": "El mapa del campo compartido",
+        "title": "Mapa del campo compartido",
         "lead": "Lee primero los arquetipos y luego encuéntrate. Los cuatro arcos no son una clasificación; muestran cómo la perspectiva circula entre la multitud, la gobernanza, uno mismo y la construcción.",
         "imageAlt": "Cinco figuras ilustradas alrededor de un centro iluminado: el Traductor en el medio, el Constructor de puentes y el Tejedor arriba, el Guardián del oficio y el Acompañante abajo, con flechas que corren entre cuatro etiquetas del borde para multitud, gobernanza, uno mismo y construcción.",
         "caption": "La ubicación y los arquetipos son lecturas editoriales de lo que cada persona escribió al registrarse.",
@@ -4078,7 +4078,7 @@
           {
             "id": "self",
             "label": "Uno mismo",
-            "body": "Hacia adentro: lo que puedes cargar en solitario, y lo que cuesta cargarlo."
+            "body": "Hacia adentro: lo que puedes cargar en solitario y lo que cuesta cargarlo."
           },
           {
             "id": "build",
@@ -4087,7 +4087,7 @@
           }
         ],
         "legendTitle": "Quién está en el mapa",
-        "legendNote": "La ilustración está rotulada en chino e inglés; la lista de abajo son los mismos cinco nombres en este idioma."
+        "legendNote": "La ilustración está rotulada en caracteres han e inglés; la lista de abajo son los mismos cinco nombres en este idioma."
       },
       "archetypes": {
         "title": "Cinco formas de cargar",
@@ -4095,7 +4095,7 @@
         "items": [
           {
             "id": "bridgewright",
-            "name": "El Constructor de puentes",
+            "name": "Constructor de puentes",
             "quadrant": "Multitud · Construcción",
             "body": "Crea sistemas para la multitud: infraestructura, agentes y herramientas públicas.",
             "roles": [
@@ -4109,7 +4109,7 @@
           },
           {
             "id": "weaver",
-            "name": "El Tejedor",
+            "name": "Tejedor",
             "quadrant": "Multitud · Gobernanza",
             "body": "Teje instituciones, mercados, comunidades y ecosistemas; el grupo más grande de la sala.",
             "roles": [
@@ -4122,7 +4122,7 @@
           },
           {
             "id": "craftkeeper",
-            "name": "El Guardián del oficio",
+            "name": "Guardián del oficio",
             "quadrant": "Uno mismo · Construcción",
             "body": "Mantiene intactos el oficio y el ser dentro de la ola generativa; el arquetipo más escaso de la sala.",
             "roles": [
@@ -4134,7 +4134,7 @@
           },
           {
             "id": "companion",
-            "name": "El Acompañante",
+            "name": "Acompañante",
             "quadrant": "Uno mismo · Gobernanza",
             "body": "Acompaña a las personas en el cambio: aulas, familias, entornos de cuidado y la próxima generación.",
             "roles": [
@@ -4147,7 +4147,7 @@
           },
           {
             "id": "translator",
-            "name": "El Traductor",
+            "name": "Traductor",
             "quadrant": "El centro",
             "body": "Vive en los límites entre cuadrantes y lleva un problema de un mundo a otro. Estar en el centro no es neutralidad; es traducción continua.",
             "roles": [
@@ -5184,7 +5184,7 @@
           "href": "https://luma.com/pzkyaeuz",
           "external": true
         },
-        "inPersonNote": "Na sala, em Taipéi. Gratuito, sujeito à aprovação do anfitrião.",
+        "inPersonNote": "Na sala, em Taipéi, gratuito e sujeito à aprovação do anfitrião.",
         "remote": {
           "label": "Adicione sua pergunta ao banco de perguntas",
           "href": "https://sli.do/20260829",
@@ -5193,7 +5193,7 @@
         "remoteNote": "Não é preciso viajar. O banco de perguntas fica aberto antes e durante a conversa, e toda pergunta recebe uma resposta escrita depois — quer você esteja na sala ou não."
       },
       "map": {
-        "title": "O mapa do campo",
+        "title": "Mapa do campo",
         "lead": "Leia primeiro os arquétipos, depois encontre-se. Os quatro arcos não são um ranking; eles mostram a perspectiva circulando entre multidão, governança, interior e construção.",
         "imageAlt": "Cinco figuras ilustradas ao redor de um centro iluminado: o Tradutor no meio, o Construtor de Pontes e o Tecelão acima, o Guardião do Ofício e o Companheiro abaixo, com setas circulando entre quatro rótulos na borda para multidão, governança, interior e construção.",
         "caption": "Posicionamento e arquétipos são leituras editoriais do que as pessoas escreveram ao se inscrever.",
@@ -5212,7 +5212,7 @@
           {
             "id": "self",
             "label": "Interior",
-            "body": "Para dentro: o que você consegue carregar sozinho, e o que carregá-lo custa."
+            "body": "Para dentro: o que você consegue carregar sozinho e o que carregá-lo custa."
           },
           {
             "id": "build",
@@ -5221,7 +5221,7 @@
           }
         ],
         "legendTitle": "Quem está no mapa",
-        "legendNote": "A arte traz os nomes em chinês e em inglês; a lista abaixo traz os mesmos cinco nomes neste idioma."
+        "legendNote": "A arte traz os nomes em caracteres han e em inglês; a lista abaixo traz os mesmos cinco nomes neste idioma."
       },
       "archetypes": {
         "title": "Cinco formas de carregar",
@@ -5229,7 +5229,7 @@
         "items": [
           {
             "id": "bridgewright",
-            "name": "O Construtor de Pontes",
+            "name": "Construtor de Pontes",
             "quadrant": "Multidão · Construção",
             "body": "Faz sistemas para as muitas pessoas: infraestrutura, agentes e ferramentas públicas.",
             "roles": [
@@ -5243,7 +5243,7 @@
           },
           {
             "id": "weaver",
-            "name": "O Tecelão",
+            "name": "Tecelão",
             "quadrant": "Multidão · Governança",
             "body": "Tece instituições, mercados, comunidades e ecossistemas; o maior grupo da sala.",
             "roles": [
@@ -5256,7 +5256,7 @@
           },
           {
             "id": "craftkeeper",
-            "name": "O Guardião do Ofício",
+            "name": "Guardião do Ofício",
             "quadrant": "Interior · Construção",
             "body": "Preserva o ofício e o próprio interior dentro da onda generativa; o arquétipo mais raro aqui.",
             "roles": [
@@ -5268,7 +5268,7 @@
           },
           {
             "id": "companion",
-            "name": "O Companheiro",
+            "name": "Companheiro",
             "quadrant": "Interior · Governança",
             "body": "Caminha ao lado das pessoas nas mudanças: salas de aula, famílias, contextos de cuidado e a próxima geração.",
             "roles": [
@@ -5281,7 +5281,7 @@
           },
           {
             "id": "translator",
-            "name": "O Tradutor",
+            "name": "Tradutor",
             "quadrant": "O centro",
             "body": "Vive nas fronteiras entre quadrantes, levando um problema de um mundo para outro. Estar no centro não é neutralidade; é tradução contínua.",
             "roles": [
