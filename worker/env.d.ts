@@ -16,6 +16,14 @@ interface Env {
   IMPORT_SALT?: string;
   /** Bearer token for the admin moderation API: wrangler secret put ADMIN_TOKEN */
   ADMIN_TOKEN?: string;
+  /** Google Desktop OAuth client ID for operational Sheet mirroring. */
+  SHEETS_CLIENT_ID?: string;
+  /** Google Desktop OAuth client secret: wrangler secret put SHEETS_CLIENT_SECRET */
+  SHEETS_CLIENT_SECRET?: string;
+  /** Google OAuth refresh token with Drive + Sheets scopes. */
+  SHEETS_REFRESH_TOKEN?: string;
+  /** Destination coalition spreadsheet ID. */
+  SHEETS_SPREADSHEET_ID?: string;
   /**
    * Comma-separated Access application AUD(s) gating /join/* on every deployment.
    * Empty string fails closed — every join API request returns 401.

@@ -28,6 +28,7 @@ import {
   type PortraitKind,
 } from './portrait';
 import { takeToken } from './rate-limit';
+import { writeSignupToSheet } from './sheets';
 import {
   classifyJoinIntent,
   parseJoinBody,
@@ -327,6 +328,16 @@ async function handleJoinApi(
     email: identity.email,
   };
   const intent = classifyJoinIntent(payload.contribution);
+  let sourceUrl = '';
+  const sourceHeader = request.headers.get('Referer') || request.headers.get('Origin');
+  if (sourceHeader) {
+    try {
+      const source = new URL(sourceHeader);
+      sourceUrl = `${source.origin}${source.pathname}`;
+    } catch {
+      sourceUrl = '';
+    }
+  }
 
   const result = await createPendingMember(env, ctx, {
     emailHash,
@@ -336,6 +347,7 @@ async function handleJoinApi(
     intent,
     portraitBytes,
     portraitMime,
+    sourceUrl,
   });
 
   if (result.kind === 'already_recorded') {
@@ -377,6 +389,7 @@ async function createPendingMember(
     intent: JoinIntent;
     portraitBytes: Uint8Array | null;
     portraitMime: PortraitKind | null;
+    sourceUrl: string;
   }
 ): Promise<CreatePendingResult> {
   // Directory intents still fail closed through moderation. Updates-only rows are
@@ -445,6 +458,18 @@ async function createPendingMember(
   }
 
   ctx.waitUntil(recordModeration(env, { memberId, result: moderation }));
+  ctx.waitUntil(
+    writeSignupToSheet(env, {
+      memberId,
+      fullName: opts.payload.fullName,
+      affiliation: opts.payload.affiliation,
+      sector: opts.payload.sector,
+      email: opts.payload.email,
+      contribution: opts.payload.contribution,
+      sourceUrl: opts.sourceUrl,
+      createdAt: now,
+    })
+  );
 
   let portraitStored = false;
   if (opts.portraitBytes && opts.portraitBytes.byteLength > 0 && opts.portraitMime) {
