@@ -131,14 +131,16 @@ html[lang='zh-TW'] .body {
 /**
  * Headings are display type, but most of them never name a family — they were
  * written when one face served the whole site — so they would inherit the
- * reading face. Hei has three cuts here: 800 carries the large type, and 700
- * the card-scale titles that 800 would overpower at 14–25px.
+ * reading face. The justfont project ships hei at two weights, Bold and Heavy:
+ * Heavy carries the large type, Bold the card-scale titles it would overpower
+ * at 14–25px. Asking for a weight the project does not ship would resolve
+ * upward silently, so these name the cuts that exist.
  */
 html[lang='zh-TW'] :is(h1, h2),
 html[lang='zh-TW'] .display,
 html[lang='zh-TW'] .footer-brand {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-weight: 900;
 }
 html[lang='zh-TW'] :is(h3, h4, h5, h6) {
   font-family: var(--font-display);
