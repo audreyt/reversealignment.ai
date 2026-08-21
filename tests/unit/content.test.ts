@@ -328,17 +328,26 @@ describe('multilingual static catalog', () => {
       fullName: 'Eric Glen Weyl',
       sortIndex: 0,
     });
-    expect(catalogPeopleAsDirectory('en').at(-1)).toMatchObject({
+    expect(catalogPeopleAsDirectory('en').at(-2)).toMatchObject({
       id: 'canonical:person-vitalik-buterin',
       fullName: 'Vitalik Buterin',
       affiliation: 'Ethereum',
       sector: 'Technology',
+      sortIndex: 24,
+    });
+    expect(catalogPeopleAsDirectory('en').at(-1)).toMatchObject({
+      id: 'canonical:person-tenzin-yangtso',
+      fullName: 'Tenzin Yangtso',
+      affiliation: 'Civic.AI',
+      sector: 'Research',
       sortIndex: 25,
     });
     const englishPeople = catalogPeopleAsDirectory('en');
     expect(englishPeople.filter((person) => person.bio)).toHaveLength(25);
     expect(englishPeople[0].bio).toContain('Plural Technology Collaboratory');
-    expect(englishPeople.at(-1)?.bio).toContain('conceived Ethereum');
+    expect(englishPeople.find((person) => person.fullName === 'Vitalik Buterin')?.bio).toContain(
+      'conceived Ethereum'
+    );
     expect(catalogPeopleAsDirectory('zh-tw').some((person) => person.bio)).toBe(false);
     expect(
       catalogPersonAsDirectory(

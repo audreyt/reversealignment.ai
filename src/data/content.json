@@ -543,17 +543,17 @@
         },
         {
           "kind": "person",
-          "name": "Tenzin Yangtso",
-          "role": "Researcher, Civic.AI",
-          "image": "person-tenzin-yangtso",
-          "sector": "Research"
-        },
-        {
-          "kind": "person",
           "name": "Vitalik Buterin",
           "role": "Founder, Ethereum",
           "image": "person-vitalik-buterin",
           "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Researcher, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
       ],
       "directory": {
@@ -1462,17 +1462,17 @@
         },
         {
           "kind": "person",
-          "name": "Tenzin Yangtso",
-          "role": "研究員，Civic.AI",
-          "image": "person-tenzin-yangtso",
-          "sector": "Research"
-        },
-        {
-          "kind": "person",
           "name": "Vitalik Buterin",
           "role": "以太坊創辦人",
           "image": "person-vitalik-buterin",
           "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "研究員，Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
       ],
       "directory": {
@@ -2531,17 +2531,17 @@
         },
         {
           "kind": "person",
-          "name": "Tenzin Yangtso",
-          "role": "Civic.AI、研究員",
-          "image": "person-tenzin-yangtso",
-          "sector": "Research"
-        },
-        {
-          "kind": "person",
           "name": "Vitalik Buterin",
           "role": "Ethereum、創設者",
           "image": "person-vitalik-buterin",
           "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Civic.AI、研究員",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
       ],
       "directory": {
@@ -3300,17 +3300,17 @@
         },
         {
           "kind": "person",
-          "name": "Tenzin Yangtso",
-          "role": "Investigador, Civic.AI",
-          "image": "person-tenzin-yangtso",
-          "sector": "Research"
-        },
-        {
-          "kind": "person",
           "name": "Vitalik Buterin",
           "role": "Fundador, Ethereum",
           "image": "person-vitalik-buterin",
           "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Investigador, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
       ],
       "directory": {
@@ -4209,17 +4209,17 @@
         },
         {
           "kind": "person",
-          "name": "Tenzin Yangtso",
-          "role": "Pesquisador, Civic.AI",
-          "image": "person-tenzin-yangtso",
-          "sector": "Research"
-        },
-        {
-          "kind": "person",
           "name": "Vitalik Buterin",
           "role": "Fundador, Ethereum",
           "image": "person-vitalik-buterin",
           "sector": "Technology"
+        },
+        {
+          "kind": "person",
+          "name": "Tenzin Yangtso",
+          "role": "Pesquisador, Civic.AI",
+          "image": "person-tenzin-yangtso",
+          "sector": "Research"
         }
       ],
       "directory": {
