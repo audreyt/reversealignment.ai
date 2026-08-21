@@ -343,15 +343,22 @@ describe('multilingual static catalog', () => {
       sortIndex: 25,
     });
     const englishPeople = catalogPeopleAsDirectory('en');
-    expect(englishPeople.filter((person) => person.bio)).toHaveLength(25);
+    expect(englishPeople.filter((person) => person.bio)).toHaveLength(26);
     expect(englishPeople[0].bio).toContain('Plural Technology Collaboratory');
     expect(englishPeople.find((person) => person.fullName === 'Vitalik Buterin')?.bio).toContain(
       'conceived Ethereum'
     );
-    for (const locale of ['zh-tw', 'ja', 'es', 'pt-br'] as const) {
+    expect(englishPeople.find((person) => person.fullName === 'Tenzin Yangtso')?.bio).toContain(
+      'data soil'
+    );
+    expect(catalogPeopleAsDirectory('zh-tw').filter((person) => person.bio)).toHaveLength(26);
+    for (const locale of ['ja', 'es', 'pt-br'] as const) {
       expect(catalogPeopleAsDirectory(locale).filter((person) => person.bio)).toHaveLength(25);
     }
     expect(catalogPeopleAsDirectory('zh-tw')[0].bio).toContain('多元宇宙');
+    expect(
+      catalogPeopleAsDirectory('zh-tw').find((person) => person.fullName === 'Tenzin Yangtso')?.bio
+    ).toContain('資料土壤');
     expect(catalogPeopleAsDirectory('ja')[0].bio).toContain('プルラリティ');
     const audreyZhBio = catalogPeopleAsDirectory('zh-tw').find(
       (person) => person.fullName === 'Audrey Tang'
