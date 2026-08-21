@@ -41,6 +41,15 @@ const robots = Astro.props.robots ?? (isIndexableLocale(locale) ? null : 'noinde
 const alternateOgLocales = listLocales()
   .filter((candidate) => candidate !== locale)
   .map(toOgLocale);
+/**
+ * Traditional Chinese is the only script the Lanyang faces cover, so the
+ * loader ships on the zh-TW deployment and nowhere else — every other locale
+ * would pay for a webfont service it cannot render a glyph from. The families
+ * enter as aliases at the front of the stacks in main.css, gated on
+ * `html[lang="zh-TW"]`, so a slow or blocked ds.justfont.com degrades to plfh
+ * with nothing hidden in the meantime.
+ */
+const usesJustfont = locale === 'zh-tw';
 ---
 
 <!doctype html>
@@ -77,6 +86,14 @@ const alternateOgLocales = listLocales()
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <link rel="stylesheet" href={`${rootPath}assets/css/main.css`} />
+    {
+      usesJustfont && (
+        <Fragment>
+          <link rel="preconnect" href="https://ds.justfont.com" crossorigin />
+          <script is:inline src={`${rootPath}assets/js/justfont-loader.js`} />
+        </Fragment>
+      )
+    }
   </head>
   <body>
     <a class="skip-link" href="#main">{copy.a11y.skipToContent}</a>

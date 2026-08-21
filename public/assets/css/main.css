@@ -78,6 +78,8 @@
   --line-dark: rgba(14, 14, 14, 0.18);
   --font-display: 'plfh', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* Reading copy. Same face as the display stack until a locale says otherwise. */
+  --font-body: var(--font-display);
   /* Live Readymag stage is designWidth≈1024 scaled onto 1440; content inset ≈28 design */
   --stage: 1440px;
   --max: 1360px;
@@ -101,6 +103,38 @@
   --challenge-card-min: 350px;
   --person-photo: 295px;
   --person-row-gap: 1.35rem;
+}
+
+/**
+ * Traditional Chinese only. Base.astro loads justfont on the zh-TW build alone,
+ * and this attribute is what that build writes on <html>, so the /en/, /es/ and
+ * /pt-BR/ trees share this stylesheet without inheriting a face they have no
+ * glyphs for. Both aliases sit in front of plfh: if ds.justfont.com is slow or
+ * blocked, the next family in the stack renders and nothing is hidden.
+ */
+html[lang='zh-TW'] {
+  --font-display: 'jf-lanyanghei', 'plfh', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'jf-lanyangming', 'plfh', 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+}
+
+/**
+ * Ming ships two real cuts, 200 and 700. The 200 is for large quiet type; at
+ * the 12–14px this site sets its copy, on a near-black page, it reads frail.
+ * So reading copy takes the 700. Nothing here is a synthesized weight: both
+ * cuts are separate files registered with the loader.
+ *
+ * Emphasis then has to leave the family, because bold-inside-bold says nothing.
+ * Hei carries it, which is also where the headings already are.
+ */
+html[lang='zh-TW'] body,
+html[lang='zh-TW'] .body {
+  font-weight: 700;
+}
+html[lang='zh-TW'] .lede,
+html[lang='zh-TW'] .term,
+html[lang='zh-TW'] strong,
+html[lang='zh-TW'] b {
+  font-family: var(--font-display);
 }
 
 @media (min-width: 900px) {
@@ -145,7 +179,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.45;
