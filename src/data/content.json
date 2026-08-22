@@ -354,7 +354,7 @@
           "endsAt": "2026-08-29T08:30:00.000Z",
           "when": "29 August 2026 · 2pm Taipei · 11pm Pacific (28 Aug) · 2am Eastern · 3am Buenos Aires · 8am CEST · 4pm Sydney · two and a half hours, in person, Taipei",
           "title": "Platform Originals: Audrey Tang",
-          "body": "Platform 月台 hosts Audrey Tang and Tenzin Yangtso for a two-hour conversation on reverse alignment — how institutions, norms, skills, and governance can absorb AI safely and share its gains widely — with time for audience questions, in person in Taipei.",
+          "body": "Platform 月台's Originals series gives a whole afternoon to one guest. Audrey Tang and Tenzin Yangtso spend two hours on work transition, information credibility, accountability and checks on power, looking back at how industrialisation, electrification and the internet each forced a society to redesign its rules, and then take the room's questions.",
           "cta": {
             "label": "Two ways to take part",
             "href": "events/you-are-here/"
@@ -588,11 +588,11 @@
     "event": {
       "eventId": "platform-originals-2026-08",
       "metaTitle": "You Are Here · 29 August 2026, Taipei",
-      "metaDescription": "The pre-read for Platform 月台's Reverse Alignment talk in Taipei on 29 August 2026: five archetypes, four perspective arcs, and a question pool that is open from anywhere.",
+      "metaDescription": "The pre-read for Platform 月台's Reverse Alignment talk in Taipei on 29 August 2026: five archetypes, four uncommon-ground arcs, and the anonymous question pool that is open from anywhere.",
       "eyebrow": "Field note · 29 Aug 2026",
       "title": "You Are Here",
       "subtitle": "A map of what we carry",
-      "body": "Not a personality test, but a shared coordinate system before we enter the room. Find your position, your nearby archetypes and the people arriving at the same question from another arc.",
+      "body": "A shared coordinate system for the room, read off what people wrote when they registered. Find your position, the corners next to you, and the person who reached your question from the far side.",
       "stats": [
         {
           "label": "Archetypes",
@@ -612,7 +612,7 @@
         "lead": "remote",
         "title": "Two ways to take part",
         "when": "Saturday, Aug. 29, 2026. Check-in 13:30, start 14:00, finish 16:30; the venue stays open until 18:00. Taipei time, UTC+8.",
-        "venue": "SPARKFUL Office 12F — 1-1, Sec. 1, Chongqing N. Rd., Datong, Taipei, beside Taipei City Mall exit Y15.",
+        "venue": "SPARKFUL Office, 12F, 1-1 Sec. 1 Chongqing N. Rd., Datong, Taipei, beside Taipei City Mall exit Y15.",
         "inPerson": {
           "label": "Register on Luma",
           "href": "https://luma.com/pzkyaeuz",
@@ -624,11 +624,11 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterwards — whether or not you were in the room."
+        "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterwards, whether or not you were in the room."
       },
       "map": {
         "title": "Field map",
-        "lead": "Read the archetypes first, then find yourself. The four arcs are not rankings; they show perspective cycling through crowd, governance, self and building.",
+        "lead": "Read the five, then find yourself. Each arc links two far-apart corners that turn out to want the same thing.",
         "imageAlt": "Five illustrated figures around a lit centre: the Translator in the middle, the Bridgewright and the Weaver above, the Craftkeeper and the Companion below, with arrows running between four rim labels for crowd, governance, self and building.",
         "caption": "Placement and archetypes are editorial readings of what people wrote when they registered.",
         "axesTitle": "Four directions",
@@ -639,14 +639,14 @@
             "body": "Outward, to the many: What a question does once it leaves you."
           },
           {
-            "id": "govern",
-            "label": "Govern",
-            "body": "Toward rules, markets and institutions — the shapes that outlast one afternoon."
-          },
-          {
             "id": "self",
             "label": "Self",
             "body": "Inward: What you can carry alone and what carrying it costs you."
+          },
+          {
+            "id": "govern",
+            "label": "Govern",
+            "body": "Toward rules, markets and institutions: the shapes that outlast one afternoon."
           },
           {
             "id": "build",
@@ -654,105 +654,69 @@
             "body": "Toward made things: infrastructure, tools and craft solid enough to hold a decision."
           }
         ],
-        "legendTitle": "Who is on the map",
-        "legendNote": "The artwork is lettered in Han characters and English; the list below is the same five names in this language."
+        "legendTitle": "Who is on the map"
       },
       "archetypes": {
-        "title": "Five ways of carrying",
-        "lead": "Not identity labels, but the primary action each person carries into this room. Everyone may cross into another quadrant at another moment.",
         "items": [
           {
             "id": "bridgewright",
             "name": "Bridgewright",
             "quadrant": "Crowd · Build",
-            "body": "Makes systems for the many: infrastructure, agents and public tools.",
-            "roles": [
-              "Initiate",
-              "Connect",
-              "Build",
-              "Diplomacy",
-              "Catalyse",
-              "Pathfind"
-            ]
+            "emoji": "🌉"
           },
           {
             "id": "weaver",
             "name": "Weaver",
             "quadrant": "Crowd · Govern",
-            "body": "Weaves institutions, markets, communities and ecosystems; the largest group in the room.",
-            "roles": [
-              "Steward",
-              "Harmonise",
-              "Diplomacy",
-              "Archive",
-              "Systems think"
-            ]
+            "emoji": "🧶"
           },
           {
             "id": "craftkeeper",
             "name": "Craftkeeper",
             "quadrant": "Self · Build",
-            "body": "Keeps craft and self intact inside the generative wave; the rarest archetype here.",
-            "roles": [
-              "Make",
-              "Finish",
-              "Curate",
-              "Refine"
-            ]
+            "emoji": "🛠️"
           },
           {
             "id": "companion",
             "name": "Companion",
             "quadrant": "Self · Govern",
-            "body": "Walks beside people through change: classrooms, families, care settings and the next generation.",
-            "roles": [
-              "Listen",
-              "Support",
-              "Empathise",
-              "Guide",
-              "Mirror"
-            ]
+            "emoji": "🫂"
           },
           {
             "id": "translator",
             "name": "Translator",
             "quadrant": "The centre",
-            "body": "Lives at the quadrant boundaries, carrying a problem from one world into another. Being central is not neutrality; it is continuous translation.",
-            "roles": [
-              "Center",
-              "Between",
-              "Across"
-            ]
+            "emoji": "🔀"
           }
         ]
       },
       "cycles": {
-        "title": "Four perspective cycles",
-        "lead": "The arcs are handoffs, not a ladder. Each one is a way a question changes hands during the afternoon.",
+        "title": "Four uncommon-ground arcs",
+        "lead": "Common ground is what puts us in one room. These four arcs go one step further: two kinds of people who start in far-apart corners and arrive at the same conclusion. Each carries one move for the day itself.",
         "items": [
           {
-            "id": "crowd-govern",
-            "step": "A",
-            "arc": "Crowd → Govern",
-            "body": "From many voices to shared patterns."
+            "id": "tool-and-uncaught",
+            "from": "bridgewright",
+            "to": "companion",
+            "body": "One side has built the tool and has no people; the other has the people and no tool. The move: put the tool in the group the carer is already in, one group before any talk of scale."
           },
           {
-            "id": "govern-self",
-            "step": "B",
-            "arc": "Govern → Self",
-            "body": "From systems to personal clarity."
+            "id": "guilt-and-rule",
+            "from": "craftkeeper",
+            "to": "weaver",
+            "body": "Private guilt about using these systems meets other people's question about who gets the gains. The move: provenance and credit. Give a craft an origin and it is worth something again."
           },
           {
-            "id": "self-build",
-            "step": "C",
-            "arc": "Self → Build",
-            "body": "From inner knowing to crafted work."
+            "id": "graduation-deadline",
+            "from": "weaver",
+            "to": "companion",
+            "body": "One person asks which institution most needs redesigning; another asks what the world looks like the day she graduates. The move: set the review date on one real child's graduation."
           },
           {
-            "id": "build-crowd",
-            "step": "D",
-            "arc": "Build → Crowd",
-            "body": "From what we build back to the many."
+            "id": "right-to-refuse",
+            "from": "bridgewright",
+            "to": "craftkeeper",
+            "body": "The right to know, to question and to refuse is being written into agent systems at one end, and into one working life at the other. The move: write the same rights in both places."
           }
         ]
       },
@@ -763,8 +727,8 @@
           {
             "id": "audrey-tang",
             "name": "Audrey Tang",
-            "role": "Independent collaborator",
-            "body": "Works on Civic AI, digital resilience, Plurality and institutional co-creation.",
+            "role": "Cyber Ambassador",
+            "body": "Right Livelihood Laureate; Senior Accelerator Fellow at the Oxford Institute for Ethics in AI.",
             "image": "person-audrey-tang",
             "link": {
               "label": "audreyt.org",
@@ -776,7 +740,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Author · Co-facilitator",
-            "body": "From Hualien in eastern Taiwan; co-author of Plurality, Civic AI and 6-Pack of Care.",
+            "body": "Co-author of Plurality.net and Civic.AI.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -788,18 +752,106 @@
       },
       "prep": {
         "title": "Two actions before arrival",
-        "lead": "The question pool begins with ten anonymous seed questions. Signal resonance with an upvote, then add the question that has not yet been asked, in your own words.",
-        "note": "Seed questions are a starting point, not a fixed agenda, and the pool keeps growing in the room. Zero votes is not rejection: Every question receives a written response afterwards.",
+        "lead": "The pool is already seeded with anonymous questions, each one rewritten from what several people wrote at registration. Signal resonance with an upvote, then add the question nobody has asked yet, in your own words.",
+        "note": "Seeds are a starting point, and the pool keeps growing in the room. Every question receives a written response afterwards, at any vote count.",
         "steps": [
           {
             "index": "01",
             "title": "Upvote",
-            "body": "Browse the seed questions and upvote what resonates. It is a live signal to the facilitators, not a gate on who may speak."
+            "body": "Browse the seeds and upvote what resonates. The facilitators watch the count live, and anyone can still raise a question on the day."
           },
           {
             "index": "02",
             "title": "Revise and add",
-            "body": "If your thinking has changed since registering, publish a new question in your own words. Rewriting it yourself is truer than an editorial paraphrase."
+            "body": "If your thinking has changed since registering, publish a new question in your own words."
+          }
+        ],
+        "seedsTitle": "Already in the pool",
+        "seedsNote": "Anonymous, and each one is a rewrite of several people at once. If none of these is your question, that is the useful result: publish yours.",
+        "seeds": [
+          {
+            "id": "seed-01",
+            "text": "What kind of future does AI finally take a society towards? A sober reading of it, and the hope that is still held onto.",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-02",
+            "text": "Taiwan keeps getting cited as a precedent. Which parts have been told too beautifully, and which still have a long way to go?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-03",
+            "text": "Public fact-checking, and the uses that reduce everyday harm: could those be free services, carried by local compute?",
+            "archetype": "bridgewright",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-04",
+            "text": "Things are moving this fast. Standing where one person stands, how is a day lived, and where does the mind rest?",
+            "archetype": "craftkeeper",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-05",
+            "text": "Every use of a large language model brings a guilt that is hard to name. Where can it be set down, or eased?",
+            "archetype": "craftkeeper",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-06",
+            "text": "If only one institutional change can be pushed first, which is most likely to actually land? Could it be tried small and locally first?",
+            "archetype": "weaver",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-07",
+            "text": "People shaped by a system's decisions who were never in its design: by what mechanism do they get to know, to question, to say no, and to change the rules together?",
+            "archetype": "bridgewright",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-08",
+            "text": "When generated content is past reading and human and machine are hard to tell apart, how is the last gate designed? What is trust still resting on?",
+            "archetype": "weaver"
+          },
+          {
+            "id": "seed-09",
+            "text": "To help each other out of the circle where only similar voices are heard: what can be started tonight?",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-10",
+            "text": "AI's fast answers are good at pleasing. How do you keep a slower judgement, for yourself and for the people learning alongside you?",
+            "archetype": "companion",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-11",
+            "text": "Who is accommodating whom in reverse alignment? If a society would slowly catch up anyway, what makes this time different?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-12",
+            "text": "The data comes off us, and the gains tend to flow elsewhere. How do the gains come back, how does the local hold the say, and how does anyone say no?",
+            "archetype": "weaver",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-13",
+            "text": "Answers have become very easy to get. What is still worth leaving for a person to learn? In teaching and in care work, what gets adjusted first?",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-14",
+            "text": "When work is being rewritten by AI, is the thing that jams the technology, the process, or the people? And when it goes wrong, on whom does the responsibility land?",
+            "archetype": "weaver",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-15",
+            "text": "Without leaning on big government or big business, what new ways of working could bring partners from all over the world together?",
+            "archetype": "weaver"
           }
         ],
         "cta": {
@@ -808,7 +860,7 @@
           "external": true
         }
       },
-      "source": "Source: approved Luma registrations, bios and questions. Placement and archetypes are editorial readings."
+      "source": "Source: approved Luma registrations, bios and questions."
     },
     "closing": {
       "lines": [
@@ -1498,7 +1550,7 @@
           "endsAt": "2026-08-29T08:30:00.000Z",
           "when": "2026 年 8 月 29 日 · 台北時間下午 2 點 · 台北實體、兩個半小時",
           "title": "月台專列：唐鳳",
-          "body": "Platform 月台邀請唐鳳與丹增央措，以兩小時深度對談探討反向對齊——制度、規範、技能與治理如何安全接住 AI 並廣為共享其成果，並保留時間與現場觀眾交流。台北實體活動，免費，需經審核報名。",
+          "body": "月台專列把整個下午留給一位主角。唐鳳與丹增央措以兩小時深談工作轉型、資訊可信度、責任歸屬與權力制衡，並回望工業化、電氣化與網際網路如何逼一個社會重新設計制度，最後把時間留給現場的提問。",
           "cta": {
             "label": "兩種參與方式",
             "href": "events/you-are-here/"
@@ -1732,11 +1784,11 @@
     "event": {
       "eventId": "platform-originals-2026-08",
       "metaTitle": "你在這裡 · 2026 年 8 月 29 日，台北",
-      "metaDescription": "Platform 月台 2026 年 8 月 29 日台北反向對齊講座的行前地圖：五種姿態、四條視角弧線，以及一個不必到場也能參與的提問池。",
+      "metaDescription": "月台專列「反向對齊」8 月 29 日臺北場的行前頁：五種姿態、四條罕見共識的弧線，以及一個從任何地方都打得開的匿名提問池。",
       "eyebrow": "行前一頁 · 2026.08.29",
       "title": "你在這裡",
       "subtitle": "一張關於我們所承載之物的地圖",
-      "body": "這不是人格測驗，而是一張進場前的共同座標。找到你的位置，看看誰與你同象限、誰沿著另一條弧線抵達同一個問題。",
+      "body": "一張進場前的共同座標，從大家報名時寫下的字裡讀出來。找到你的位置、你旁邊的角落，以及從最遠那一端抵達同一個問題的人。",
       "stats": [
         {
           "label": "姿態",
@@ -1768,11 +1820,11 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "不必到場。提問池在講座前與進行中都開放，會後每一題都會有文字回覆——不論你是否在現場。"
+        "remoteNote": "不必到場。提問池在講座前與進行中都開放，會後每一題都會有文字回覆，不論你是否在現場。"
       },
       "map": {
         "title": "關懷地圖",
-        "lead": "先讀姿態，再找自己。四條弧線不是排名，而是視角如何在群體、治理、自我與建造之間循環。",
+        "lead": "先讀這五種，再找自己。每一條弧線把離得最遠的兩個角落接起來，結果他們要的是同一件事。",
         "imageAlt": "五個角色圍繞著發亮的中心：轉譯者在正中，造橋者與織網者在上方，手藝人與陪走者在下方，四邊分別標著為眾人、織造制度、為自身與打造系統，箭頭在其間流動。",
         "caption": "位置與姿態是編者根據報名自介所做的讀法。",
         "axesTitle": "四個方向",
@@ -1783,14 +1835,14 @@
             "body": "向外，朝著眾人：一個問題離開你之後會發生什麼。"
           },
           {
-            "id": "govern",
-            "label": "織造制度",
-            "body": "朝著規則、市場與制度——那些比一個下午更久的形狀。"
-          },
-          {
             "id": "self",
             "label": "為自身",
             "body": "向內：你一個人能承載什麼，承載它又要付出什麼。"
+          },
+          {
+            "id": "govern",
+            "label": "織造制度",
+            "body": "朝著規則、市場與制度：那些比一個下午更久的形狀。"
           },
           {
             "id": "build",
@@ -1798,105 +1850,69 @@
             "body": "朝著被做出來的東西：足以承住一個決定的基礎設施、工具與手藝。"
           }
         ],
-        "legendTitle": "地圖上有誰",
-        "legendNote": "圖上同時印著中文與英文標籤；下面這份清單是同樣的五個名字。"
+        "legendTitle": "地圖上有誰"
       },
       "archetypes": {
-        "title": "五種姿態",
-        "lead": "不是身份標籤，而是此刻帶進房間的主要動作。每個人都可能在不同時刻穿越其他象限。",
         "items": [
           {
             "id": "bridgewright",
             "name": "造橋者",
             "quadrant": "為眾人 · 打造系統",
-            "body": "把系統做給眾人用；打造基礎設施、代理人與公共工具。",
-            "roles": [
-              "發起",
-              "連結",
-              "建構",
-              "協調",
-              "催化",
-              "開路"
-            ]
+            "emoji": "🌉"
           },
           {
             "id": "weaver",
             "name": "織網者",
             "quadrant": "為眾人 · 織造制度",
-            "body": "織造制度、市場、社群與生態系；今天人數最多的一型。",
-            "roles": [
-              "照管",
-              "調和",
-              "協調",
-              "典藏",
-              "系統思考"
-            ]
+            "emoji": "🧶"
           },
           {
             "id": "craftkeeper",
             "name": "手藝人",
             "quadrant": "為自身 · 打造系統",
-            "body": "在生成浪潮裡守住手藝與自我；全場最稀有的一型。",
-            "roles": [
-              "創作",
-              "完成",
-              "策展",
-              "淬鍊"
-            ]
+            "emoji": "🛠️"
           },
           {
             "id": "companion",
             "name": "陪走者",
             "quadrant": "為自身 · 織造制度",
-            "body": "陪身邊的人走過變化；教室、家庭、照顧現場與下一代。",
-            "roles": [
-              "傾聽",
-              "支持",
-              "共感",
-              "引導",
-              "映照"
-            ]
+            "emoji": "🫂"
           },
           {
             "id": "translator",
             "name": "轉譯者",
             "quadrant": "正中央",
-            "body": "住在象限交界，把問題從一個世界搬到另一個世界；居中不是中立，而是持續跨界。",
-            "roles": [
-              "核心",
-              "居中",
-              "跨界"
-            ]
+            "emoji": "🔀"
           }
         ]
       },
       "cycles": {
-        "title": "四條視角路徑",
-        "lead": "弧線是交接，不是階梯；每一條都是問題在這個下午換手的方式。",
+        "title": "四條罕見共識的弧線",
+        "lead": "共同地面把我們湊進一間房；這四條弧線再往前一步：起點離得最遠的兩種人，最後抵達同一個結論。每一條都附一個當天就能開工的做法。",
         "items": [
           {
-            "id": "crowd-govern",
-            "step": "A",
-            "arc": "群體 → 治理",
-            "body": "從眾聲紛陳，走向共同的脈絡。"
+            "id": "tool-and-uncaught",
+            "from": "bridgewright",
+            "to": "companion",
+            "body": "一邊有工具、還沒有人；一邊有人、還沒有工具。做法：把工具放進照顧者已經在用的群組，先進一個群，再談普及。"
           },
           {
-            "id": "govern-self",
-            "step": "B",
-            "arc": "治理 → 自我",
-            "body": "從系統之中，回到個人的清明。"
+            "id": "guilt-and-rule",
+            "from": "craftkeeper",
+            "to": "weaver",
+            "body": "使用這些系統的私下愧疚，遇上別人「成果歸誰」的問題。做法：出處與署名。手藝有了出處，就重新值錢。"
           },
           {
-            "id": "self-build",
-            "step": "C",
-            "arc": "自我 → 建造",
-            "body": "從內在所知，化為精心打造之物。"
+            "id": "graduation-deadline",
+            "from": "weaver",
+            "to": "companion",
+            "body": "一個人問最該重新設計的是哪個制度；另一個人問她畢業那天世界長什麼樣。做法：把驗收日訂在一個具體孩子的畢業典禮。"
           },
           {
-            "id": "build-crowd",
-            "step": "D",
-            "arc": "建造 → 群體",
-            "body": "將我們所建造的，再帶回眾人之中。"
+            "id": "right-to-refuse",
+            "from": "bridgewright",
+            "to": "craftkeeper",
+            "body": "知情、質疑、拒絕，一端正被寫進代理人系統，另一端是一個人的工作日常。做法：同一組權利，兩處都寫。"
           }
         ]
       },
@@ -1907,8 +1923,8 @@
           {
             "id": "audrey-tang",
             "name": "唐鳳",
-            "role": "自由協作者",
-            "body": "關注 Civic AI、數位韌性、《Plurality 多元宇宙》與制度共創。",
+            "role": "數位治理大使",
+            "body": "正命獎得主，牛津 AI 倫理研究院加速哲人。",
             "image": "person-audrey-tang",
             "link": {
               "label": "audreyt.org",
@@ -1920,7 +1936,7 @@
             "id": "tenzin-yangtso",
             "name": "丹增央措",
             "role": "作者 · 共同主持",
-            "body": "台灣東部花蓮人，《多元宇宙》、《仁工智慧》與《6-Pack of Care》共同作者。",
+            "body": "Plurality.net 與 Civic.AI 共同作者。",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -1932,18 +1948,106 @@
       },
       "prep": {
         "title": "行前兩件事",
-        "lead": "問題池已放入 10 題匿名種子題。先用按讚傳遞共鳴，再用自己的文字補上尚未被問出的問題。",
-        "note": "種子題只是起點，不是固定議程；提問池會在現場持續長出新題。零票不是落選，會後每一題都會有文字回覆。",
+        "lead": "提問池裡已經有一批匿名的種子題，每一題都是把好幾個人報名時寫的字重寫成一問。先用贊成票標出共鳴，再把還沒有人問的那一題，用你自己的話發出來。",
+        "note": "種子題是起點，提問池會在現場持續長出新題。會後每一題都會有文字回覆，票數多少都一樣。",
         "steps": [
           {
             "index": "01",
             "title": "按讚",
-            "body": "瀏覽種子題，為有共鳴的問題按讚。這是給主持人的即時訊號，不是誰能發言的門檻。"
+            "body": "瀏覽種子題，為有共鳴的問題按讚。主持人會即時看到票數，現場也隨時可以舉手提問。"
           },
           {
             "index": "02",
             "title": "重寫與新增",
-            "body": "若報名後有了新想法，請直接用自己的文字發布新題；自己重寫，比由編者轉述更真切。"
+            "body": "若報名後有了新想法，請直接用自己的文字發布新題。"
+          }
+        ],
+        "seedsTitle": "池子裡已經有的",
+        "seedsNote": "都是匿名的，每一題都是好幾個人的合寫。如果沒有一題是你的問題，那正是有用的結果：把你的發出來。",
+        "seeds": [
+          {
+            "id": "seed-01",
+            "text": "AI 最終會把社會帶向什麼樣的未來？想聽務實的評估，也想聽不放棄的希望。",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-02",
+            "text": "臺灣常被當成先例：哪些被講得太漂亮？哪些其實還有很長的路要走？",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-03",
+            "text": "公共查證、減少民生損害的用途，能否做成免費、由在地運算支撐的服務？",
+            "archetype": "bridgewright",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-04",
+            "text": "變化這麼快，站在個人的位置，日子可以怎麼過、心可以怎麼安？",
+            "archetype": "craftkeeper",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-05",
+            "text": "每次使用大型語言模型都有股說不清的愧疚，可以怎麼安放、怎麼緩一緩？",
+            "archetype": "craftkeeper",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-06",
+            "text": "若只能先推一項制度改變，哪一項最可能真正落地？能不能在本地先小規模嘗試？",
+            "archetype": "weaver",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-07",
+            "text": "被系統決定影響、卻沒參與設計的人，靠什麼機制知情、質疑、說不、一起改規則？",
+            "archetype": "bridgewright",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-08",
+            "text": "生成內容多到看不完、人機愈來愈難分時，最後的把關怎麼設計？我們還能憑什麼信任？",
+            "archetype": "weaver"
+          },
+          {
+            "id": "seed-09",
+            "text": "想幫彼此走出只聽見相似聲音的圈子，有哪些今晚就能開始的做法？",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-10",
+            "text": "AI 快速生成的答案很會討好人：怎麼幫自己和一起學習的人，守住慢下來的判斷力？",
+            "archetype": "companion",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-11",
+            "text": "「反向對齊」到底是誰配合誰？如果社會本來就會慢慢跟上，這次為什麼不一樣？",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-12",
+            "text": "資料從我們身上來，好處卻常流向別處。要怎麼讓好處回得來、在地作主、也能說不？",
+            "archetype": "weaver",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-13",
+            "text": "答案變得很容易拿到，還有什麼值得留給人自己學？在教學和照顧的現場，要先做什麼調整？",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-14",
+            "text": "工作被 AI 改寫的時候，卡住的是技術、流程，還是人？出了錯，責任落在誰身上？",
+            "archetype": "weaver",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-15",
+            "text": "如果不靠大政府也不靠大企業，要用哪些新的做事方式，才能結合全世界的夥伴？",
+            "archetype": "weaver"
           }
         ],
         "cta": {
@@ -1952,7 +2056,7 @@
           "external": true
         }
       },
-      "source": "資料來源：Luma 報名自介與提問；位置與姿態為編者讀法。"
+      "source": "資料來源：Luma 報名自介與提問。"
     },
     "closing": {
       "lines": [
@@ -2793,7 +2897,7 @@
           "endsAt": "2026-08-29T08:30:00.000Z",
           "when": "2026年8月29日 · 台北時間午後2時 · 日本時間午後3時 · 台北・対面・2時間半",
           "title": "Platform Originals：唐鳳",
-          "body": "Platform 月台が唐鳳とテンジン・ヤンツォを迎え、リバース・アラインメント——制度・規範・スキル・ガバナンスがAIを安全に受け止め、その成果を広く分かち合うには——をめぐる2時間の対談を開催。観客との質疑の時間も設けます。台北・対面、無料、主催者承認制。",
+          "body": "Platform 月台のOriginalsシリーズでは、午後いっぱいを一人のゲストに充てます。唐鳳とテンジン・ヤンツォが2時間にわたり、働き方の転換、情報の信頼性、責任の所在、権力への抑制を掘り下げます。工業化、電化、インターネットがそれぞれ社会に制度の再設計を迫った過程を振り返り、最後に会場からの質問に時間を取ります。",
           "cta": {
             "label": "2つの参加方法",
             "href": "events/you-are-here/"
@@ -3027,11 +3131,11 @@
     "event": {
       "eventId": "platform-originals-2026-08",
       "metaTitle": "あなたはここにいる · 2026年8月29日、台北",
-      "metaDescription": "Platform 月台が2026年8月29日に台北で開催するリバース・アラインメントのトークの事前読み物。5つのアーキタイプ、4本の視点の弧、そしてどこからでも参加できる質問プール。",
+      "metaDescription": "Platform 月台が2026年8月29日に台北で開催する「リバース・アラインメント」の事前読み物。5つのアーキタイプ、意外な共通点を結ぶ4本の弧、そしてどこからでも開ける匿名の質問プール。",
       "eyebrow": "フィールドノート · 2026年8月29日",
       "title": "あなたはここにいる",
       "subtitle": "私たちが担うものの地図",
-      "body": "人格診断ではなく、入場の前に共有する座標系です。自分の位置と、近くにいるアーキタイプ、そして別の弧から同じ問いに向かっている人たちを見つけてください。",
+      "body": "入場前に共有する座標系です。皆さんが申し込み時に書いた言葉から読み取りました。自分の位置と、その隣の立場、そして最も遠い側から同じ問いにたどり着いた人を見つけてください。",
       "stats": [
         {
           "label": "アーキタイプ",
@@ -3051,7 +3155,7 @@
         "lead": "remote",
         "title": "2つの参加方法",
         "when": "2026年8月29日（土）。受付は午後1時30分、開始は午後2時、終了は午後4時30分。会場は午後6時まで開放されています。台北時間（UTC+8）。",
-        "venue": "SPARKFULオフィス12F — 台北市大同区重慶北路一段1-1号、台北地下街 Y15 出口そば。",
+        "venue": "SPARKFULオフィス12F、台北市大同区重慶北路一段1-1号、台北地下街 Y15 出口そば。",
         "inPerson": {
           "label": "Lumaで申し込む",
           "href": "https://luma.com/pzkyaeuz",
@@ -3063,11 +3167,11 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "移動は不要です。プールは講演の前から講演中も開かれており、すべての質問には後ほど文章で回答します — 会場にいたかどうかは問いません。"
+        "remoteNote": "移動は不要です。質問プールは講演前から講演中まで開いており、どこから参加しても、終了後にすべての質問へ文章で回答します。"
       },
       "map": {
         "title": "場の地図",
-        "lead": "まずアーキタイプを読み、それから自分を見つけてください。4本の弧はランキングではなく、視点が群衆・統治・自己・構築のあいだを循環するようすを示すものです。",
+        "lead": "まず5つのアーキタイプを読み、その中に自分を見つけてください。それぞれの弧は遠く離れた2つの立場を結び、どちらも同じものを求めていることを示します。",
         "imageAlt": "光る中心を囲む5人のイラスト人物像。中央に翻訳者、上に橋架け師と織り手、下に技の守り手と伴走者がおり、外周の4つのラベル（群衆・統治・自己・構築）のあいだを矢印が流れています。",
         "caption": "位置づけとアーキタイプは、申し込み時に書かれた内容をもとにした編集側の読み解きです。",
         "axesTitle": "4つの方向",
@@ -3078,14 +3182,14 @@
             "body": "外へ、多くの人へ。問いがあなたのもとを離れたあと、何を起こすのか。"
           },
           {
-            "id": "govern",
-            "label": "統治",
-            "body": "ルール、市場、制度 — ひとつの午後よりも長く残る形へ。"
-          },
-          {
             "id": "self",
             "label": "自己",
             "body": "内へ。ひとりで担えるもの、そしてそれを担うことの代償。"
+          },
+          {
+            "id": "govern",
+            "label": "統治",
+            "body": "ルール、市場、制度へ。ひとつの午後よりも長く残る形へ。"
           },
           {
             "id": "build",
@@ -3093,105 +3197,69 @@
             "body": "作られたものへ。決定を支えるに足る、インフラと道具と技。"
           }
         ],
-        "legendTitle": "地図の上にいるのは誰か",
-        "legendNote": "アートワークのラベルは漢字と英語の併記です。下のリストは、同じ5つの名前をこの言語で示したものです。"
+        "legendTitle": "地図の上にいるのは誰か"
       },
       "archetypes": {
-        "title": "5つの担い方",
-        "lead": "アイデンティティのラベルではなく、それぞれがこの部屋に持ち込む主な動きです。誰もが、別の瞬間には別の象限へ足を踏み入れるかもしれません。",
         "items": [
           {
             "id": "bridgewright",
             "name": "橋架け師",
             "quadrant": "群衆 · 構築",
-            "body": "多くの人のためのシステムを作ります。インフラ、エージェント、公共の道具。",
-            "roles": [
-              "発起",
-              "連結",
-              "構築",
-              "外交",
-              "触媒",
-              "道開き"
-            ]
+            "emoji": "🌉"
           },
           {
             "id": "weaver",
             "name": "織り手",
             "quadrant": "群衆 · 統治",
-            "body": "制度、市場、コミュニティ、エコシステムを織り上げます。この場で最も人数の多いグループです。",
-            "roles": [
-              "世話役",
-              "調和",
-              "外交",
-              "記録",
-              "システム思考"
-            ]
+            "emoji": "🧶"
           },
           {
             "id": "craftkeeper",
             "name": "技の守り手",
             "quadrant": "自己 · 構築",
-            "body": "生成の波のただなかで、技と自分を保ち続けます。この場で最も数の少ないアーキタイプです。",
-            "roles": [
-              "制作",
-              "完成",
-              "キュレーション",
-              "磨き上げ"
-            ]
+            "emoji": "🛠️"
           },
           {
             "id": "companion",
             "name": "伴走者",
             "quadrant": "自己 · 統治",
-            "body": "変化のただなかを、人に寄り添って歩きます。教室、家庭、ケアの現場、そして次の世代。",
-            "roles": [
-              "傾聴",
-              "支援",
-              "共感",
-              "導き",
-              "反映"
-            ]
+            "emoji": "🫂"
           },
           {
             "id": "translator",
             "name": "翻訳者",
             "quadrant": "中央",
-            "body": "象限の境界に住み、問題をひとつの世界からもうひとつの世界へ運びます。中央にいることは中立ではなく、絶え間ない翻訳です。",
-            "roles": [
-              "中心",
-              "あいだ",
-              "越境"
-            ]
+            "emoji": "🔀"
           }
         ]
       },
       "cycles": {
-        "title": "4つの視点の循環",
-        "lead": "弧は階段ではなく、バトンの受け渡しです。それぞれ、問いがこの午後のあいだに手から手へ渡っていく一つのやり方を示します。",
+        "title": "意外な共通点を結ぶ4本の弧",
+        "lead": "共通点があるから、私たちは同じ部屋に集まります。この4本の弧はそこからもう一歩進み、遠く離れた2つの立場から始めた人たちが同じ結論にたどり着く道筋を示します。それぞれに、当日から始められる行動を1つ添えています。",
         "items": [
           {
-            "id": "crowd-govern",
-            "step": "A",
-            "arc": "群衆 → 統治",
-            "body": "多くの声から、共有されるパターンへ。"
+            "id": "tool-and-uncaught",
+            "from": "bridgewright",
+            "to": "companion",
+            "body": "一方には道具があり、まだ人がいません。もう一方には人がいて、まだ道具がありません。やることは、ケアする人がすでに参加しているグループに道具を入れることです。規模を広げる話は、まず1つのグループで試してからです。"
           },
           {
-            "id": "govern-self",
-            "step": "B",
-            "arc": "統治 → 自己",
-            "body": "システムから、個人の明晰さへ。"
+            "id": "guilt-and-rule",
+            "from": "craftkeeper",
+            "to": "weaver",
+            "body": "こうしたシステムを使う個人的な罪悪感が、成果は誰のものかという他の人の問いと出会います。やることは、出どころとクレジットを示すことです。技に出どころがあれば、再び価値を持ちます。"
           },
           {
-            "id": "self-build",
-            "step": "C",
-            "arc": "自己 → 構築",
-            "body": "内なる知から、丁寧に作られた仕事へ。"
+            "id": "graduation-deadline",
+            "from": "weaver",
+            "to": "companion",
+            "body": "一人は、どの制度を最も作り直す必要があるかを問い、もう一人は、自分の卒業日に世界がどうなっているかを問います。やることは、実際にいる一人の子どもの卒業日を見直しの日にすることです。"
           },
           {
-            "id": "build-crowd",
-            "step": "D",
-            "arc": "構築 → 群衆",
-            "body": "私たちが作ったものから、再び多くの人へ。"
+            "id": "right-to-refuse",
+            "from": "bridgewright",
+            "to": "craftkeeper",
+            "body": "知り、問い、拒む権利が、一方ではエージェントシステムに、もう一方では一人の働き方に書き込まれつつあります。やることは、同じ権利を両方に書くことです。"
           }
         ]
       },
@@ -3202,8 +3270,8 @@
           {
             "id": "audrey-tang",
             "name": "唐鳳",
-            "role": "独立した協働者",
-            "body": "Civic AI、デジタルレジリエンス、Plurality、制度の共創に取り組んでいます。",
+            "role": "サイバー大使",
+            "body": "ライト・ライブリフッド賞受賞者。Oxford Institute for Ethics in AI の Senior Accelerator Fellow。",
             "image": "person-audrey-tang",
             "link": {
               "label": "audreyt.org",
@@ -3215,7 +3283,7 @@
             "id": "tenzin-yangtso",
             "name": "テンジン・ヤンツォ",
             "role": "著者 · 共同ファシリテーター",
-            "body": "台湾東部の花蓮出身。Plurality、Civic AI、6-Pack of Care の共同著者。",
+            "body": "Plurality.net と Civic.AI の共同著者。",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -3227,18 +3295,106 @@
       },
       "prep": {
         "title": "来場前の2つのアクション",
-        "lead": "質問プールは、匿名の種となる10の質問から始まります。共鳴するものに高評価で応え、そのうえで、まだ問われていない問いを自分の言葉で追加してください。",
-        "note": "種となる質問は出発点であって、固定された議題ではありません。プールは会場の中でも育ち続けます。票がゼロであることは拒否ではありません。すべての質問に、後ほど文章で回答します。",
+        "lead": "質問プールには、すでに匿名の種となる質問が入っています。どれも、複数の人が登録時に書いた言葉を1つの問いに書き直したものです。共感する問いに賛成票を入れ、まだ誰も問うていないことを自分の言葉で追加してください。",
+        "note": "種となる質問を出発点に、質問プールは会場でも育ち続けます。終了後には、票数が何票でも、すべての質問へ文章で回答します。",
         "steps": [
           {
             "index": "01",
             "title": "高評価",
-            "body": "種となる質問を眺めて、共鳴するものに高評価を付けましょう。これはファシリテーターへのリアルタイムの合図であり、誰が発言できるかを決める門ではありません。"
+            "body": "種となる質問を眺め、共鳴するものに高評価を付けてください。ファシリテーターは票数をリアルタイムで見ています。当日も、誰でもその場で質問できます。"
           },
           {
             "index": "02",
             "title": "書き直して追加",
-            "body": "申し込んだときから考えが変わっていたら、新しい問いを自分の言葉で投稿してください。自分で書き直すことは、編集者による言い換えよりも真実です。"
+            "body": "申し込み後に考えが変わったら、新しい問いを自分の言葉で投稿してください。"
+          }
+        ],
+        "seedsTitle": "プールにすでにある質問",
+        "seedsNote": "すべて匿名で、1つ1つが複数の人の言葉をまとめて書き直した質問です。自分の問いがこの中に見つからないことも、有意義な結果です。自分の問いを投稿してください。",
+        "seeds": [
+          {
+            "id": "seed-01",
+            "text": "AIは最終的に、社会をどのような未来へ連れていくのでしょうか？ 現実的に見ても、なお手放さない希望はどこにありますか？",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-02",
+            "text": "台湾は先例としてよく引かれますが、どの部分がきれいに語られすぎていて、どの部分にはまだ長い道のりがありますか？",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-03",
+            "text": "公共のファクトチェックや、暮らしの被害を減らす用途を、地域の計算資源で支える無料サービスにできますか？",
+            "archetype": "bridgewright",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-04",
+            "text": "変化がこれほど速い中で、一人の人間として日々をどう過ごし、心をどう落ち着かせればよいですか？",
+            "archetype": "craftkeeper",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-05",
+            "text": "大規模言語モデルを使うたび、うまく言葉にできない罪悪感があります。どう受け止め、どう和らげればよいですか？",
+            "archetype": "craftkeeper",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-06",
+            "text": "制度の変更を1つだけ先に進めるなら、実際に定着しそうなのはどれですか？ まず地域で小さく試せますか？",
+            "archetype": "weaver",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-07",
+            "text": "システムの決定に影響されながら、その設計には参加できなかった人が、知り、問い、拒み、ともにルールを変えるには、どんな仕組みが必要ですか？",
+            "archetype": "bridgewright",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-08",
+            "text": "生成コンテンツが読み切れないほど増え、人と機械の区別が難しくなったとき、最後の確認をどう設計しますか？ 何を根拠に信頼できますか？",
+            "archetype": "weaver"
+          },
+          {
+            "id": "seed-09",
+            "text": "似た声しか聞こえない輪から互いに抜け出すには、今夜から何を始められますか？",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-10",
+            "text": "AIがすぐに生成する答えは、人を喜ばせるのが得意です。自分と一緒に学ぶ人が、立ち止まって判断する力を保つにはどうすればよいですか？",
+            "archetype": "companion",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-11",
+            "text": "「リバース・アラインメント」とは、そもそも誰が誰に合わせることですか？ 社会がいずれゆっくり追いつくなら、今回は何が違うのでしょうか？",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-12",
+            "text": "データは私たちから集められるのに、恩恵はよそへ流れがちです。恩恵をこちらに戻し、地域が決定権を持ち、誰もが拒めるようにするにはどうすればよいですか？",
+            "archetype": "weaver",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-13",
+            "text": "答えが簡単に手に入るようになった今、それでも人が自分で学ぶ価値があるのは何ですか？ 教育とケアの現場では、まず何を変えるべきですか？",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-14",
+            "text": "AIによって仕事が書き換えられるとき、行き詰まるのは技術、進め方、それとも人ですか？ 問題が起きたとき、責任は誰が負うのでしょうか？",
+            "archetype": "weaver",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-15",
+            "text": "大きな政府や大企業に頼らず、世界中の仲間とつながり、規模を広げるには、どんな新しいやり方がありますか？",
+            "archetype": "weaver"
           }
         ],
         "cta": {
@@ -3247,7 +3403,7 @@
           "external": true
         }
       },
-      "source": "出典：承認済みLuma登録情報、自己紹介、質問。位置づけとアーキタイプは編集側の読み解きです。"
+      "source": "出典：Lumaの登録情報、自己紹介、質問。"
     },
     "join": {
       "eyebrow": "連合に参加する",
@@ -3786,7 +3942,7 @@
           "endsAt": "2026-08-29T08:30:00.000Z",
           "when": "29 de agosto de 2026 · 2 p. m. de Taipéi · 3 a. m. de Buenos Aires · 8 a. m. CEST · dos horas y media, presencial en Taipéi",
           "title": "Platform Originals: Audrey Tang",
-          "body": "Platform 月台 reúne a Audrey Tang y Tenzin Yangtso para una conversación de dos horas sobre reverse alignment —cómo las instituciones, normas, habilidades y gobernanza pueden absorber la IA con seguridad y compartir ampliamente sus beneficios—, con tiempo para preguntas del público, en persona en Taipéi.",
+          "body": "La serie Originals de Platform 月台 dedica una tarde entera a una sola persona invitada. Audrey Tang y Tenzin Yangtso conversan durante dos horas sobre la transición laboral, la credibilidad de la información, la rendición de cuentas y los contrapesos al poder. Repasan cómo la industrialización, la electrificación e internet obligaron a una sociedad a rediseñar sus reglas en cada ocasión y al final dejan tiempo para las preguntas del público.",
           "cta": {
             "label": "Dos formas de participar",
             "href": "events/you-are-here/"
@@ -4020,11 +4176,11 @@
     "event": {
       "eventId": "platform-originals-2026-08",
       "metaTitle": "Estás aquí · 29 de agosto de 2026, Taipéi",
-      "metaDescription": "La lectura previa a la charla Reverse Alignment de Platform 月台 en Taipéi, el 29 de agosto de 2026: cinco arquetipos, cuatro arcos de perspectiva y un banco de preguntas abierto desde cualquier lugar.",
+      "metaDescription": "La lectura previa a la charla Reverse Alignment de Platform 月台 en Taipéi, el 29 de agosto de 2026: cinco arquetipos, cuatro arcos de terreno común inesperado y un banco anónimo de preguntas abierto desde cualquier lugar.",
       "eyebrow": "Nota de campo · 29 de agosto de 2026",
       "title": "Estás aquí",
       "subtitle": "Un mapa de lo que cargamos",
-      "body": "No es una prueba de personalidad, sino un sistema de coordenadas compartido antes de entrar a la sala. Encuentra tu posición, los arquetipos cercanos y a las personas que llegan a la misma pregunta desde otro arco.",
+      "body": "Un sistema de coordenadas compartido antes de entrar a la sala, trazado a partir de lo que cada persona escribió al registrarse. Encuentra tu posición, los rincones cercanos y a quien llegó a la misma pregunta desde el extremo más lejano.",
       "stats": [
         {
           "label": "Arquetipos",
@@ -4044,7 +4200,7 @@
         "lead": "remote",
         "title": "Dos formas de participar",
         "when": "Sábado 29 de agosto de 2026. Acreditación 13:30, comienzo 14:00, cierre 16:30; el espacio permanece abierto hasta las 18:00. Hora de Taipéi, UTC+8.",
-        "venue": "Oficina de SPARKFUL, planta 12 — 1-1, Sec. 1, Chongqing N. Rd., Datong, Taipéi, junto a la salida Y15 de Taipei City Mall.",
+        "venue": "Oficina de SPARKFUL, planta 12, 1-1, Sec. 1, Chongqing N. Rd., Datong, Taipéi, junto a la salida Y15 de Taipei City Mall.",
         "inPerson": {
           "label": "Regístrate en Luma",
           "href": "https://luma.com/pzkyaeuz",
@@ -4056,11 +4212,11 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "No hace falta viajar. El banco está abierto antes y durante la charla, y después cada pregunta recibe una respuesta por escrito, estuvieras o no en la sala."
+        "remoteNote": "Puedes participar desde cualquier lugar. El banco está abierto antes y durante la charla, y después cada pregunta recibe una respuesta por escrito, incluidas las enviadas por quienes participan a distancia."
       },
       "map": {
         "title": "Mapa del campo compartido",
-        "lead": "Lee primero los arquetipos y luego encuéntrate. Los cuatro arcos no son una clasificación; muestran cómo la perspectiva circula entre la multitud, la gobernanza, uno mismo y la construcción.",
+        "lead": "Lee primero los cinco arquetipos y luego encuéntrate. Cada arco une dos rincones muy alejados que al final quieren lo mismo.",
         "imageAlt": "Cinco figuras ilustradas alrededor de un centro iluminado: el Traductor en el medio, el Constructor de puentes y el Tejedor arriba, el Guardián del oficio y el Acompañante abajo, con flechas que corren entre cuatro etiquetas del borde para multitud, gobernanza, uno mismo y construcción.",
         "caption": "La ubicación y los arquetipos son lecturas editoriales de lo que cada persona escribió al registrarse.",
         "axesTitle": "Cuatro direcciones",
@@ -4071,14 +4227,14 @@
             "body": "Hacia afuera, hacia la multitud: lo que una pregunta hace una vez que sale de ti."
           },
           {
-            "id": "govern",
-            "label": "Gobernanza",
-            "body": "Hacia las reglas, los mercados y las instituciones —las formas que duran más de una tarde."
-          },
-          {
             "id": "self",
             "label": "Uno mismo",
             "body": "Hacia adentro: lo que puedes cargar en solitario y lo que cuesta cargarlo."
+          },
+          {
+            "id": "govern",
+            "label": "Gobernanza",
+            "body": "Hacia las reglas, los mercados y las instituciones: las formas que duran más de una tarde."
           },
           {
             "id": "build",
@@ -4086,105 +4242,69 @@
             "body": "Hacia lo construido: infraestructura, herramientas y oficio lo bastante sólidos para sostener una decisión."
           }
         ],
-        "legendTitle": "Quién está en el mapa",
-        "legendNote": "La ilustración está rotulada en caracteres han e inglés; la lista de abajo son los mismos cinco nombres en este idioma."
+        "legendTitle": "Quién está en el mapa"
       },
       "archetypes": {
-        "title": "Cinco formas de cargar",
-        "lead": "No son etiquetas de identidad, sino la acción principal que cada persona carga en esta sala. Cualquiera puede cruzar a otro cuadrante en otro momento.",
         "items": [
           {
             "id": "bridgewright",
             "name": "Constructor de puentes",
             "quadrant": "Multitud · Construcción",
-            "body": "Crea sistemas para la multitud: infraestructura, agentes y herramientas públicas.",
-            "roles": [
-              "Iniciar",
-              "Conectar",
-              "Construir",
-              "Diplomacia",
-              "Catalizar",
-              "Abrir camino"
-            ]
+            "emoji": "🌉"
           },
           {
             "id": "weaver",
             "name": "Tejedor",
             "quadrant": "Multitud · Gobernanza",
-            "body": "Teje instituciones, mercados, comunidades y ecosistemas; el grupo más grande de la sala.",
-            "roles": [
-              "Custodiar",
-              "Armonizar",
-              "Diplomacia",
-              "Archivar",
-              "Pensamiento sistémico"
-            ]
+            "emoji": "🧶"
           },
           {
             "id": "craftkeeper",
             "name": "Guardián del oficio",
             "quadrant": "Uno mismo · Construcción",
-            "body": "Mantiene intactos el oficio y el ser dentro de la ola generativa; el arquetipo más escaso de la sala.",
-            "roles": [
-              "Crear",
-              "Completar",
-              "Curar",
-              "Refinar"
-            ]
+            "emoji": "🛠️"
           },
           {
             "id": "companion",
             "name": "Acompañante",
             "quadrant": "Uno mismo · Gobernanza",
-            "body": "Acompaña a las personas en el cambio: aulas, familias, entornos de cuidado y la próxima generación.",
-            "roles": [
-              "Escuchar",
-              "Apoyar",
-              "Empatizar",
-              "Guiar",
-              "Reflejar"
-            ]
+            "emoji": "🫂"
           },
           {
             "id": "translator",
             "name": "Traductor",
             "quadrant": "El centro",
-            "body": "Vive en los límites entre cuadrantes y lleva un problema de un mundo a otro. Estar en el centro no es neutralidad; es traducción continua.",
-            "roles": [
-              "Centro",
-              "Entre",
-              "A través"
-            ]
+            "emoji": "🔀"
           }
         ]
       },
       "cycles": {
-        "title": "Cuatro ciclos de perspectiva",
-        "lead": "Los arcos son relevos, no una escalera. Cada uno es una manera en que una pregunta cambia de manos durante la tarde.",
+        "title": "Cuatro arcos de terreno común inesperado",
+        "lead": "El terreno común nos reúne en una sala. Estos cuatro arcos avanzan un paso más: dos tipos de personas parten de los rincones más alejados y llegan a la misma conclusión. Cada arco propone una forma de ponerse en marcha ese mismo día.",
         "items": [
           {
-            "id": "crowd-govern",
-            "step": "A",
-            "arc": "Multitud → Gobernanza",
-            "body": "De muchas voces a patrones compartidos."
+            "id": "tool-and-uncaught",
+            "from": "bridgewright",
+            "to": "companion",
+            "body": "Un lado ha construido la herramienta pero aún no tiene grupo; el otro ya tiene el grupo pero no la herramienta. El paso: poner la herramienta en el grupo en el que ya está quien cuida; primero un grupo, antes de hablar de escala."
           },
           {
-            "id": "govern-self",
-            "step": "B",
-            "arc": "Gobernanza → Uno mismo",
-            "body": "De los sistemas a la claridad personal."
+            "id": "guilt-and-rule",
+            "from": "craftkeeper",
+            "to": "weaver",
+            "body": "La culpa privada por usar estos sistemas se encuentra con la pregunta de otras personas sobre quién se queda con los beneficios. El paso: procedencia y autoría. Cuando queda constancia de dónde viene un trabajo hecho con oficio, este recupera su valor."
           },
           {
-            "id": "self-build",
-            "step": "C",
-            "arc": "Uno mismo → Construcción",
-            "body": "Del saber interior a la obra hecha con oficio."
+            "id": "graduation-deadline",
+            "from": "weaver",
+            "to": "companion",
+            "body": "Una persona pregunta qué institución urge más rediseñar; otra, cómo será el mundo el día en que se gradúe. El paso: fijar la fecha de revisión para la graduación de una niña concreta."
           },
           {
-            "id": "build-crowd",
-            "step": "D",
-            "arc": "Construcción → Multitud",
-            "body": "De lo que construimos de vuelta a la multitud."
+            "id": "right-to-refuse",
+            "from": "bridgewright",
+            "to": "craftkeeper",
+            "body": "El derecho a estar informado, a cuestionar y a negarse se está incorporando, en un extremo, a los sistemas de agentes y, en el otro, a la vida laboral de una persona. El paso: dejar por escrito los mismos derechos en ambos lugares."
           }
         ]
       },
@@ -4195,8 +4315,8 @@
           {
             "id": "audrey-tang",
             "name": "Audrey Tang",
-            "role": "Colaboradora independiente",
-            "body": "Trabaja en Civic AI, resiliencia digital, Plurality y cocreación institucional.",
+            "role": "Embajadora cibernética",
+            "body": "Galardonada con el Right Livelihood Award; Senior Accelerator Fellow en el Oxford Institute for Ethics in AI.",
             "image": "person-audrey-tang",
             "link": {
               "label": "audreyt.org",
@@ -4208,7 +4328,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Autora · Cofacilitadora",
-            "body": "De Hualien, en el este de Taiwán; coautora de Plurality, Civic AI y 6-Pack of Care.",
+            "body": "Coautora de Plurality.net y Civic.AI.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -4220,18 +4340,106 @@
       },
       "prep": {
         "title": "Dos acciones antes de llegar",
-        "lead": "El banco de preguntas arranca con diez preguntas semilla anónimas. Señala resonancia con un voto positivo y añade, con tus palabras, la pregunta que aún no se ha hecho.",
-        "note": "Las preguntas semilla son un punto de partida, no una agenda fija, y el banco sigue creciendo en la sala. Tener cero votos no es un rechazo: cada pregunta recibe una respuesta por escrito después.",
+        "lead": "El banco ya contiene preguntas semilla anónimas, cada una reformulada a partir de lo que varias personas escribieron al inscribirse. Marca con un voto positivo las que resuenen y añade, con palabras propias, la pregunta que nadie haya hecho aún.",
+        "note": "Las preguntas semilla son el punto de partida y el banco sigue creciendo durante el encuentro. Después, cada pregunta recibe una respuesta por escrito, tenga los votos que tenga.",
         "steps": [
           {
             "index": "01",
             "title": "Vota a favor",
-            "body": "Explora las preguntas semilla y vota a favor de lo que resuene. Es una señal en vivo para quienes facilitan, no un filtro sobre quién puede hablar."
+            "body": "Explora las preguntas semilla y vota a favor de las que resuenen contigo. Quienes facilitan ven el recuento en directo, y durante el encuentro cualquier persona puede plantear una pregunta."
           },
           {
             "index": "02",
             "title": "Revisa y añade",
-            "body": "Si tu forma de pensar cambió desde que te registraste, publica una pregunta nueva con tus propias palabras. Reescribirla por tu cuenta es más fiel que una paráfrasis editorial."
+            "body": "Si tus ideas han cambiado desde que te registraste, publica una pregunta nueva con tus propias palabras."
+          }
+        ],
+        "seedsTitle": "Ya están en el banco",
+        "seedsNote": "Todas son anónimas y cada una reúne en una nueva redacción lo que escribieron varias personas. Si tu pregunta es distinta de todas ellas, ese es el resultado útil: publícala.",
+        "seeds": [
+          {
+            "id": "seed-01",
+            "text": "¿Hacia qué tipo de futuro acabará llevando la IA a la sociedad? Se busca una evaluación realista, pero también una esperanza a la que no renunciar.",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-02",
+            "text": "A menudo se presenta a Taiwán como precedente. ¿Qué partes se han embellecido al contarlas y cuáles tienen aún un largo camino por recorrer?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-03",
+            "text": "¿Podrían la verificación pública de hechos y las aplicaciones que reducen los daños cotidianos ofrecerse como servicios gratuitos, sostenidos por capacidad de cálculo local?",
+            "archetype": "bridgewright",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-04",
+            "text": "Ante cambios tan rápidos, ¿cómo se vive el día a día desde una posición individual y cómo se encuentra calma?",
+            "archetype": "craftkeeper",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-05",
+            "text": "Cada vez que se usa un gran modelo de lenguaje aparece una culpa difícil de explicar. ¿Dónde puede depositarse o cómo puede aliviarse?",
+            "archetype": "craftkeeper",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-06",
+            "text": "Si solo pudiera impulsarse primero un cambio institucional, ¿cuál tendría más posibilidades de hacerse realidad? ¿Podría probarse antes a pequeña escala y en el ámbito local?",
+            "archetype": "weaver",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-07",
+            "text": "¿Qué mecanismo permite a quienes se ven afectados por las decisiones de un sistema sin haber participado en su diseño informarse, cuestionarlo, decir que no y cambiar las reglas de forma conjunta?",
+            "archetype": "bridgewright",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-08",
+            "text": "Cuando el contenido generado supera lo que se puede leer y resulta difícil distinguir a las personas de las máquinas, ¿cómo se diseña el último control? ¿En qué puede seguir basándose la confianza?",
+            "archetype": "weaver"
+          },
+          {
+            "id": "seed-09",
+            "text": "Para ayudarnos mutuamente a salir del círculo en el que solo se oyen voces parecidas, ¿qué se puede empezar a hacer esta misma noche?",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-10",
+            "text": "Las respuestas rápidas de la IA saben cómo agradar. ¿Cómo se ayuda a uno mismo y a quienes aprenden a su lado a conservar un juicio más pausado?",
+            "archetype": "companion",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-11",
+            "text": "En la «alineación inversa», ¿quién se adapta realmente a quién? Si la sociedad de todos modos acaba poniéndose al día poco a poco, ¿qué hace que esta vez sea diferente?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-12",
+            "text": "Los datos vienen de nosotros, pero los beneficios suelen ir a otra parte. ¿Cómo lograr que vuelvan, que las decisiones se tomen en el ámbito local y que también se pueda decir que no?",
+            "archetype": "weaver",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-13",
+            "text": "Ahora que las respuestas son tan fáciles de obtener, ¿qué sigue mereciendo la pena que una persona aprenda por sí misma y qué habría que cambiar primero en la enseñanza y los cuidados?",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-14",
+            "text": "Cuando la IA reescribe el trabajo, ¿qué se atasca: la tecnología, el proceso o las personas? Si algo sale mal, ¿sobre quién recae la responsabilidad?",
+            "archetype": "weaver",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-15",
+            "text": "Sin depender de grandes gobiernos ni de grandes empresas, ¿qué nuevas formas de trabajar permitirían reunir a socios de todo el mundo?",
+            "archetype": "weaver"
           }
         ],
         "cta": {
@@ -4240,7 +4448,7 @@
           "external": true
         }
       },
-      "source": "Fuente: registros de Luma aprobados, biografías y preguntas. La ubicación y los arquetipos son lecturas editoriales."
+      "source": "Fuente: biografías y preguntas de las inscripciones en Luma."
     },
     "closing": {
       "lines": [
@@ -4920,7 +5128,7 @@
           "endsAt": "2026-08-29T08:30:00.000Z",
           "when": "29 de agosto de 2026 · 14h de Taipéi · 3h de Brasília · 8h CEST · duas horas e meia, presencial em Taipéi",
           "title": "Platform Originals: Audrey Tang",
-          "body": "A Platform 月台 reúne Audrey Tang e Tenzin Yangtso para uma conversa de duas horas sobre reverse alignment — como instituições, normas, habilidades e governança podem absorver a IA com segurança e compartilhar amplamente seus ganhos —, com tempo para perguntas do público, presencial em Taipéi.",
+          "body": "A série Originals da Platform 月台 dedica uma tarde inteira a uma só pessoa convidada. Audrey Tang e Tenzin Yangtso passam duas horas falando sobre transição no trabalho, credibilidade da informação, responsabilização e controle do poder, relembrando como a industrialização, a eletrificação e a internet forçaram a sociedade a redesenhar suas regras. Por fim, respondem às perguntas do público.",
           "cta": {
             "label": "Duas formas de participar",
             "href": "events/you-are-here/"
@@ -5154,11 +5362,11 @@
     "event": {
       "eventId": "platform-originals-2026-08",
       "metaTitle": "Você está aqui · 29 de agosto de 2026, Taipéi",
-      "metaDescription": "A leitura prévia da conversa sobre reverse alignment da Platform 月台 em Taipéi, em 29 de agosto de 2026: cinco arquétipos, quatro arcos de perspectiva e um banco de perguntas do qual é possível participar de qualquer lugar.",
+      "metaDescription": "A leitura prévia da conversa sobre reverse alignment da Platform 月台 em Taipéi, em 29 de agosto de 2026: cinco arquétipos, quatro arcos de convergência improvável e o banco de perguntas anônimas, aberto à participação de qualquer lugar.",
       "eyebrow": "Nota de campo · 29 ago 2026",
       "title": "Você está aqui",
       "subtitle": "Um mapa do que carregamos",
-      "body": "Não é um teste de personalidade, e sim um sistema de coordenadas compartilhado antes de entrarmos na sala. Encontre a sua posição, os arquétipos vizinhos e as pessoas que chegam à mesma pergunta vindas de outro arco.",
+      "body": "Um sistema de coordenadas comum, traçado antes de entrarmos na sala a partir do que as pessoas escreveram ao se inscrever. Encontre a sua posição, os cantos próximos a você e quem, partindo do lado mais distante, chegou à mesma pergunta.",
       "stats": [
         {
           "label": "Arquétipos",
@@ -5178,7 +5386,7 @@
         "lead": "remote",
         "title": "Duas formas de participar",
         "when": "Sábado, 29 de agosto de 2026. Check-in às 13h30, início às 14h, encerramento às 16h30; o espaço permanece aberto até as 18h. Horário de Taipéi, UTC+8.",
-        "venue": "Escritório da SPARKFUL, 12º andar — Rua Chongqing Norte, 1-1, Seção 1, Datong, Taipéi, ao lado da saída Y15 do Taipei City Mall.",
+        "venue": "Escritório da SPARKFUL, 12º andar, Rua Chongqing Norte, 1-1, Seção 1, Datong, Taipéi, ao lado da saída Y15 do Taipei City Mall.",
         "inPerson": {
           "label": "Inscreva-se no Luma",
           "href": "https://luma.com/pzkyaeuz",
@@ -5190,11 +5398,11 @@
           "href": "https://sli.do/20260829",
           "external": true
         },
-        "remoteNote": "Não é preciso viajar. O banco de perguntas fica aberto antes e durante a conversa, e toda pergunta recebe uma resposta escrita depois — quer você esteja na sala ou não."
+        "remoteNote": "Você pode participar de qualquer lugar. O banco de perguntas fica aberto antes e durante a conversa. Depois, todas as perguntas recebem uma resposta por escrito, inclusive as enviadas por quem participa a distância."
       },
       "map": {
         "title": "Mapa do campo",
-        "lead": "Leia primeiro os arquétipos, depois encontre-se. Os quatro arcos não são um ranking; eles mostram a perspectiva circulando entre multidão, governança, interior e construção.",
+        "lead": "Leia primeiro os cinco arquétipos e encontre-se no mapa. Cada arco liga dois cantos distantes que acabam querendo a mesma coisa.",
         "imageAlt": "Cinco figuras ilustradas ao redor de um centro iluminado: o Tradutor no meio, o Construtor de Pontes e o Tecelão acima, o Guardião do Ofício e o Companheiro abaixo, com setas circulando entre quatro rótulos na borda para multidão, governança, interior e construção.",
         "caption": "Posicionamento e arquétipos são leituras editoriais do que as pessoas escreveram ao se inscrever.",
         "axesTitle": "Quatro direções",
@@ -5205,14 +5413,14 @@
             "body": "Para fora, para as muitas pessoas: o que uma pergunta faz depois que sai de você."
           },
           {
-            "id": "govern",
-            "label": "Governança",
-            "body": "Para as regras, os mercados e as instituições — as formas que duram mais do que uma tarde."
-          },
-          {
             "id": "self",
             "label": "Interior",
             "body": "Para dentro: o que você consegue carregar sozinho e o que carregá-lo custa."
+          },
+          {
+            "id": "govern",
+            "label": "Governança",
+            "body": "Para as regras, os mercados e as instituições: as formas que duram mais do que uma tarde."
           },
           {
             "id": "build",
@@ -5220,105 +5428,69 @@
             "body": "Para as coisas feitas: infraestrutura, ferramentas e ofício sólidos o suficiente para sustentar uma decisão."
           }
         ],
-        "legendTitle": "Quem está no mapa",
-        "legendNote": "A arte traz os nomes em caracteres han e em inglês; a lista abaixo traz os mesmos cinco nomes neste idioma."
+        "legendTitle": "Quem está no mapa"
       },
       "archetypes": {
-        "title": "Cinco formas de carregar",
-        "lead": "Não são rótulos de identidade, mas a ação principal que cada pessoa carrega para dentro desta sala. Qualquer pessoa pode cruzar para outro quadrante em outro momento.",
         "items": [
           {
             "id": "bridgewright",
             "name": "Construtor de Pontes",
             "quadrant": "Multidão · Construção",
-            "body": "Faz sistemas para as muitas pessoas: infraestrutura, agentes e ferramentas públicas.",
-            "roles": [
-              "Iniciar",
-              "Conectar",
-              "Construir",
-              "Diplomacia",
-              "Catalisar",
-              "Abrir caminhos"
-            ]
+            "emoji": "🌉"
           },
           {
             "id": "weaver",
             "name": "Tecelão",
             "quadrant": "Multidão · Governança",
-            "body": "Tece instituições, mercados, comunidades e ecossistemas; o maior grupo da sala.",
-            "roles": [
-              "Zelar",
-              "Harmonizar",
-              "Diplomacia",
-              "Arquivar",
-              "Pensamento sistêmico"
-            ]
+            "emoji": "🧶"
           },
           {
             "id": "craftkeeper",
             "name": "Guardião do Ofício",
             "quadrant": "Interior · Construção",
-            "body": "Preserva o ofício e o próprio interior dentro da onda generativa; o arquétipo mais raro aqui.",
-            "roles": [
-              "Criar",
-              "Concluir",
-              "Curadoria",
-              "Refinar"
-            ]
+            "emoji": "🛠️"
           },
           {
             "id": "companion",
             "name": "Companheiro",
             "quadrant": "Interior · Governança",
-            "body": "Caminha ao lado das pessoas nas mudanças: salas de aula, famílias, contextos de cuidado e a próxima geração.",
-            "roles": [
-              "Escutar",
-              "Apoiar",
-              "Empatizar",
-              "Guiar",
-              "Espelhar"
-            ]
+            "emoji": "🫂"
           },
           {
             "id": "translator",
             "name": "Tradutor",
             "quadrant": "O centro",
-            "body": "Vive nas fronteiras entre quadrantes, levando um problema de um mundo para outro. Estar no centro não é neutralidade; é tradução contínua.",
-            "roles": [
-              "Centro",
-              "Entre",
-              "Através"
-            ]
+            "emoji": "🔀"
           }
         ]
       },
       "cycles": {
-        "title": "Quatro ciclos de perspectiva",
-        "lead": "Os arcos são revezamentos, não uma escada. Cada um é uma maneira de a pergunta mudar de mãos ao longo da tarde.",
+        "title": "Quatro arcos de convergência improvável",
+        "lead": "O terreno comum nos reúne na mesma sala. Estes quatro arcos dão mais um passo: dois tipos de pessoa partem de cantos distantes e chegam à mesma conclusão. Cada arco traz uma ação para colocar em prática no próprio dia.",
         "items": [
           {
-            "id": "crowd-govern",
-            "step": "A",
-            "arc": "Multidão → Governança",
-            "body": "De muitas vozes a padrões compartilhados."
+            "id": "tool-and-uncaught",
+            "from": "bridgewright",
+            "to": "companion",
+            "body": "De um lado, há uma ferramenta, mas ainda não há pessoas; do outro, há pessoas, mas falta a ferramenta. O passo: coloque a ferramenta no grupo que quem cuida já usa. Comece por um grupo antes de falar em escala."
           },
           {
-            "id": "govern-self",
-            "step": "B",
-            "arc": "Governança → Interior",
-            "body": "Dos sistemas à clareza pessoal."
+            "id": "guilt-and-rule",
+            "from": "craftkeeper",
+            "to": "weaver",
+            "body": "A culpa íntima de usar esses sistemas encontra a pergunta dos outros sobre quem fica com os ganhos. O passo: procedência e crédito. Dê ao ofício uma origem reconhecida e ele volta a ter valor."
           },
           {
-            "id": "self-build",
-            "step": "C",
-            "arc": "Interior → Construção",
-            "body": "Do saber interior ao trabalho bem-feito."
+            "id": "graduation-deadline",
+            "from": "weaver",
+            "to": "companion",
+            "body": "Uma pessoa pergunta qual instituição mais precisa ser redesenhada; outra pergunta como será o mundo no dia em que ela se formar. O passo: defina a data de revisão para a formatura de uma criança específica."
           },
           {
-            "id": "build-crowd",
-            "step": "D",
-            "arc": "Construção → Multidão",
-            "body": "Do que construímos, de volta para as muitas pessoas."
+            "id": "right-to-refuse",
+            "from": "bridgewright",
+            "to": "craftkeeper",
+            "body": "O direito de saber, questionar e recusar está sendo escrito em sistemas de agentes em uma ponta e no cotidiano de trabalho de uma pessoa na outra. O passo: escreva os mesmos direitos nos dois lugares."
           }
         ]
       },
@@ -5329,8 +5501,8 @@
           {
             "id": "audrey-tang",
             "name": "Audrey Tang",
-            "role": "Colaboradora independente",
-            "body": "Trabalha com Civic AI, resiliência digital, Plurality e cocriação institucional.",
+            "role": "Embaixadora cibernética",
+            "body": "Laureada com o Right Livelihood Award; Senior Accelerator Fellow no Oxford Institute for Ethics in AI.",
             "image": "person-audrey-tang",
             "link": {
               "label": "audreyt.org",
@@ -5342,7 +5514,7 @@
             "id": "tenzin-yangtso",
             "name": "Tenzin Yangtso",
             "role": "Autora · Cofacilitadora",
-            "body": "De Hualien, no leste de Taiwan; coautora de Plurality, Civic AI e 6-Pack of Care.",
+            "body": "Coautora de Plurality.net e Civic.AI.",
             "image": "person-tenzin-yangtso",
             "link": {
               "label": "ty.civic.ai",
@@ -5354,18 +5526,106 @@
       },
       "prep": {
         "title": "Duas ações antes de chegar",
-        "lead": "O banco de perguntas começa com dez perguntas-semente anônimas. Sinalize ressonância com um voto positivo e depois adicione a pergunta que ainda não foi feita, com suas próprias palavras.",
-        "note": "As perguntas-semente são um ponto de partida, não uma agenda fixa, e o banco segue crescendo na sala. Zero votos não é rejeição: toda pergunta recebe uma resposta escrita depois.",
+        "lead": "O banco já contém perguntas-semente anônimas, cada uma reformulada a partir do que várias pessoas escreveram ao se inscrever. Marque com um voto positivo as que ressoam com você e depois publique, com suas próprias palavras, a pergunta que ainda ninguém fez.",
+        "note": "As perguntas-semente são o ponto de partida, e o banco continua crescendo na sala. Depois, todas as perguntas recebem uma resposta por escrito, inclusive as que tiverem poucos votos ou voto algum.",
         "steps": [
           {
             "index": "01",
             "title": "Voto positivo",
-            "body": "Navegue pelas perguntas-semente e dê um voto positivo ao que ressoar. É um sinal em tempo real para os facilitadores, não um filtro de quem pode falar."
+            "body": "Navegue pelas perguntas-semente e dê um voto positivo às que ressoarem com você. Os facilitadores acompanham a contagem em tempo real, e qualquer pessoa ainda pode fazer uma pergunta no dia."
           },
           {
             "index": "02",
             "title": "Reescreva e adicione",
-            "body": "Se a sua forma de pensar mudou depois da inscrição, publique uma nova pergunta com suas próprias palavras. Reescrever você mesmo é mais fiel do que uma paráfrase editorial."
+            "body": "Se a sua forma de pensar mudou desde a inscrição, publique uma nova pergunta com suas próprias palavras."
+          }
+        ],
+        "seedsTitle": "O que já está no banco",
+        "seedsNote": "Todas são anônimas, e cada uma reformula contribuições de várias pessoas em uma só pergunta. Se nenhuma delas corresponder à sua pergunta, esse é o resultado útil: publique a sua.",
+        "seeds": [
+          {
+            "id": "seed-01",
+            "text": "Para que tipo de futuro a IA vai acabar levando a sociedade? Quero ouvir uma avaliação realista e também a esperança da qual não devemos abrir mão.",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-02",
+            "text": "Taiwan costuma ser citado como precedente. Que partes dessa história foram embelezadas demais, e quais ainda têm um longo caminho pela frente?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-03",
+            "text": "A checagem pública de fatos e os usos que reduzem danos no dia a dia poderiam ser serviços gratuitos, sustentados por computação local?",
+            "archetype": "bridgewright",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-04",
+            "text": "Com tudo mudando tão rápido, como uma pessoa pode viver seus dias e aquietar a mente?",
+            "archetype": "craftkeeper",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-05",
+            "text": "Cada uso de um modelo de linguagem de grande porte traz uma culpa difícil de explicar. Como lidar com ela ou torná-la mais leve?",
+            "archetype": "craftkeeper",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-06",
+            "text": "Se pudermos priorizar apenas uma mudança institucional, qual delas tem mais chance de realmente acontecer? Seria possível testá-la primeiro em pequena escala, localmente?",
+            "archetype": "weaver",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-07",
+            "text": "Por qual mecanismo as pessoas afetadas pelas decisões de um sistema, mas que não participaram de seu projeto, podem saber, questionar, dizer não e mudar as regras em conjunto?",
+            "archetype": "bridgewright",
+            "arc": "right-to-refuse"
+          },
+          {
+            "id": "seed-08",
+            "text": "Quando houver mais conteúdo gerado do que se consegue ler e for difícil distinguir pessoas de máquinas, como deve ser projetada a última etapa de controle? Em que a confiança ainda pode se apoiar?",
+            "archetype": "weaver"
+          },
+          {
+            "id": "seed-09",
+            "text": "Para ajudar uns aos outros a sair do círculo em que só se ouvem vozes parecidas, o que podemos começar a fazer hoje à noite?",
+            "archetype": "bridgewright"
+          },
+          {
+            "id": "seed-10",
+            "text": "As respostas rápidas da IA são muito boas em agradar. Como ajudar a nós mesmos e a quem aprende conosco a preservar a capacidade de julgar com calma?",
+            "archetype": "companion",
+            "arc": "graduation-deadline"
+          },
+          {
+            "id": "seed-11",
+            "text": "No alinhamento reverso, quem se adapta a quem? Se a sociedade acaba acompanhando as mudanças aos poucos de qualquer maneira, por que desta vez seria diferente?",
+            "archetype": "translator"
+          },
+          {
+            "id": "seed-12",
+            "text": "Os dados vêm de nós, mas os ganhos costumam ir para outros lugares. Como fazer esses ganhos voltarem para nós, preservar o poder de decisão local e garantir o direito de dizer não?",
+            "archetype": "weaver",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-13",
+            "text": "As respostas ficaram muito fáceis de obter. O que ainda vale a pena aprender por conta própria? No ensino e no trabalho de cuidado, o que deve mudar primeiro?",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught"
+          },
+          {
+            "id": "seed-14",
+            "text": "Quando a IA está reescrevendo o trabalho, o que trava: a tecnologia, o processo ou as pessoas? Se algo dá errado, sobre quem recai a responsabilidade?",
+            "archetype": "weaver",
+            "arc": "guilt-and-rule"
+          },
+          {
+            "id": "seed-15",
+            "text": "Sem depender de grandes governos nem de grandes empresas, que novas formas de trabalhar poderiam reunir parceiros do mundo inteiro?",
+            "archetype": "weaver"
           }
         ],
         "cta": {
@@ -5374,7 +5634,7 @@
           "external": true
         }
       },
-      "source": "Fonte: inscrições aprovadas no Luma, biografias e perguntas. Posicionamento e arquétipos são leituras editoriais."
+      "source": "Fonte: inscrições aprovadas no Luma, biografias e perguntas."
     },
     "closing": {
       "lines": [

@@ -54,6 +54,39 @@ const mapImage = assetPath('event-archetype-map', locale, rootPath);
 const remoteWay = { id: 'remote', cta: attend.remote, note: attend.remoteNote };
 const inPersonWay = { id: 'in-person', cta: attend.inPerson, note: attend.inPersonNote };
 const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay, inPersonWay];
+
+// One reading is a name plus a glyph; an arc is two of them, composed here
+// rather than stored. The arc card spells both ends out; the seed tag carries
+// the glyphs alone, because two spelled-out names in a chip read as one
+// repeated name — a Craftkeeper seed on the Bridgewright arc would say
+// "Craftkeeper / Bridgewright → Craftkeeper".
+const reading = (id: string) => {
+  const found = archetypes.items.find((item) => item.id === id);
+  if (!found) {
+    throw new Error(`"${id}" is not one of the five readings in archetypes.items`);
+  }
+  return found;
+};
+
+const arcRows = cycles.items.map((cycle) => {
+  const from = reading(cycle.from);
+  const to = reading(cycle.to);
+  return { ...cycle, from, to, label: `${from.name} → ${to.name}` };
+});
+
+// Resolve every label once, so the markup never reaches for a lookup that can
+// miss and quietly render a blank tag. `arcRow` must not be named `arc`: it
+// would shadow the id that `data-arc` and the `#cycle-…` href are built from,
+// and an object stringifies into both without failing the build.
+const seedRows = prep.seeds.map((seed) => {
+  const own = reading(seed.archetype);
+  const arcRow = seed.arc ? arcRows.find((row) => row.id === seed.arc) : undefined;
+  if (seed.arc && !arcRow) {
+    throw new Error(`seed "${seed.id}" names arc "${seed.arc}", which is not in cycles.items`);
+  }
+  return { ...seed, readingName: own.name, readingEmoji: own.emoji, arcRow };
+});
+const seedNumber = (id: string) => id.replace('seed-', '');
 ---
 
 <Base locale={locale} title={title} description={event.metaDescription}>
@@ -151,54 +184,18 @@ const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay
 
             <div class="event-legend">
               <h3 class="body--mono event-panel__title">{map.legendTitle}</h3>
-              <p class="body--sm event-legend__note">{map.legendNote}</p>
               <ul class="event-legend__list">
                 {
                   archetypes.items.map((item) => (
                     <li class="event-legend__item" data-archetype={item.id}>
-                      <a class="event-legend__link" href={`#archetype-${item.id}`}>
-                        <span class="event-legend__swatch" aria-hidden="true" />
-                        <span class="event-legend__name">{item.name}</span>
-                        <span class="event-legend__quadrant">{item.quadrant}</span>
-                      </a>
+                      <span class="event-legend__glyph" aria-hidden="true">{item.emoji}</span>
+                      <span class="event-legend__name">{item.name}</span>
+                      <span class="event-legend__quadrant">{item.quadrant}</span>
                     </li>
                   ))
                 }
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FIVE ARCHETYPES — accent colours match each figure's robe in the artwork -->
-      <section class="section section--dark event-archetypes" aria-labelledby="event-archetypes-title">
-        <div class="section__inner">
-          <div class="event-head">
-            <h2 id="event-archetypes-title" class="display display--md">{archetypes.title}</h2>
-            <p class="body event-head__lead">{archetypes.lead}</p>
-          </div>
-
-          <div class="event-archetype-grid">
-            {
-              archetypes.items.map((item) => (
-                <article
-                  class="event-archetype"
-                  id={`archetype-${item.id}`}
-                  data-archetype={item.id}
-                >
-                  <p class="event-archetype__meta">
-                    <span class="event-archetype__quadrant">{item.quadrant}</span>
-                  </p>
-                  <h3 class="event-archetype__name">{item.name}</h3>
-                  <p class="body event-archetype__body">{item.body}</p>
-                  <ul class="event-roles">
-                    {item.roles.map((role) => (
-                      <li class="event-role">{role}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))
-            }
           </div>
         </div>
       </section>
@@ -213,10 +210,19 @@ const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay
 
           <ol class="event-cycle-grid">
             {
-              cycles.items.map((cycle) => (
-                <li class="event-cycle" data-cycle={cycle.id}>
-                  <p class="event-cycle__step" aria-hidden="true">{cycle.step}</p>
-                  <h3 class="event-cycle__arc">{cycle.arc}</h3>
+              arcRows.map((cycle) => (
+                <li class="event-cycle" id={`cycle-${cycle.id}`} data-cycle={cycle.id}>
+                  <h3 class="event-cycle__arc">
+                    <span class="event-cycle__end">
+                      <span aria-hidden="true">{cycle.from.emoji}</span>
+                      {cycle.from.name}
+                    </span>
+                    <span class="event-cycle__joint">→</span>
+                    <span class="event-cycle__end">
+                      <span aria-hidden="true">{cycle.to.emoji}</span>
+                      {cycle.to.name}
+                    </span>
+                  </h3>
                   <p class="body event-cycle__body">{cycle.body}</p>
                 </li>
               ))
@@ -285,6 +291,48 @@ const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay
               ))
             }
           </ol>
+
+          <div class="event-seeds">
+            <h3 class="body--mono event-panel__title">{prep.seedsTitle}</h3>
+            <p class="body--sm event-seeds__note">{prep.seedsNote}</p>
+            <ol class="event-seed-list">
+              {
+                seedRows.map((seed) => (
+                  <li
+                    class="event-seed"
+                    id={seed.id}
+                    data-seed={seed.id}
+                    data-archetype={seed.archetype}
+                    data-arc={seed.arc}
+                  >
+                    {/* The glyph stands where the ordinal used to. It carries no
+                        visible label, so the reading's name rides along for
+                        anyone who cannot see the mark. */}
+                    <p class="event-seed__glyph">
+                      <span aria-hidden="true">{seed.readingEmoji}</span>
+                      <span class="sr-only">{seed.readingName}</span>
+                    </p>
+                    <p class="event-seed__text">{seed.text}</p>
+                    {seed.arcRow && (
+                      <p class="event-seed__foot">
+                        <a
+                          class="event-seed__arc"
+                          href={`#cycle-${seed.arc}`}
+                          aria-label={seed.arcRow.label}
+                        >
+                          <span aria-hidden="true">
+                            {seed.arcRow.from.emoji}
+                            <span class="event-seed__joint">→</span>
+                            {seed.arcRow.to.emoji}
+                          </span>
+                        </a>
+                      </p>
+                    )}
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
 
           <p class="body--sm event-prep__note">{prep.note}</p>
           <CtaLink

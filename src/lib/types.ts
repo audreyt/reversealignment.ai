@@ -211,27 +211,38 @@ export type NotFoundCopy = {
   code: string;
 };
 
-/** One of the five ways of carrying a question, as read off the event map. */
+/**
+ * One of the five ways of carrying a question, as read off the event map. The
+ * page no longer defines these in prose: the axis panel defines the four
+ * directions, and a name beside its quadrant composes the rest.
+ */
 export type EventArchetype = {
   /** Stable English key, identical across locales; also the DOM id fragment. */
   id: string;
   name: string;
   /**
-   * Quadrant, phrased in the same axis words the map rim uses. This is the
-   * card's badge: headcounts are live and go stale between builds, a quadrant
-   * does not.
+   * Quadrant, phrased in the same axis words the map rim uses. Headcounts are
+   * live and go stale between builds; a quadrant does not.
    */
   quadrant: string;
-  body: string;
-  roles: string[];
+  /**
+   * The reading's glyph, locale-invariant. It is what makes an arc legible as
+   * a pair at a glance, where two spelled-out names read as one repeated name.
+   * Always decorative in the markup: the name carries the accessible text.
+   */
+  emoji: string;
 };
 
-/** One dashed arc on the map: a perspective handing off to the next. */
+/** One dashed arc on the map: two far-apart readings that want one thing. */
 export type EventCycle = {
   id: string;
-  /** Ordinal printed on the card — A, B, C, D. */
-  step: string;
-  arc: string;
+  /**
+   * The arc's two ends, as `EventArchetype.id`. The label a reader sees is
+   * composed from these plus each reading's name and glyph, so there is no
+   * second copy of the pairing for a translator to reorder.
+   */
+  from: string;
+  to: string;
   body: string;
 };
 
@@ -263,6 +274,24 @@ export type EventStep = {
   index: string;
   title: string;
   body: string;
+};
+
+/**
+ * One anonymous seed already posted to the live question pool. Each is a
+ * rewrite of what several people wrote when they registered, so no seed points
+ * back at a single respondent. The page shows the set the pool holds, not a
+ * live mirror of it.
+ *
+ * `archetype` and `arc` are ids, not prose, so they are the same in every
+ * locale and the board reads its labels from `archetypes` and `cycles`.
+ */
+export type EventSeed = {
+  id: string;
+  text: string;
+  /** `EventArchetype.id` of the reading this seed was rewritten out of. */
+  archetype: string;
+  /** `EventCycle.id` when this seed sits at one end of an arc. */
+  arc?: string;
 };
 
 /**
@@ -305,12 +334,12 @@ export type EventCopy = {
     axesTitle: string;
     axes: EventAxis[];
     legendTitle: string;
-    /** Names the artwork's own baked-in bilingual labels, so the legend reads as the translation of them rather than a second set. */
-    legendNote: string;
   };
+  /**
+   * Not a section any more: the legend, the board and the seed tags all read
+   * their labels out of here.
+   */
   archetypes: {
-    title: string;
-    lead: string;
     items: EventArchetype[];
   };
   cycles: {
@@ -328,9 +357,13 @@ export type EventCopy = {
     lead: string;
     note: string;
     steps: EventStep[];
+    seedsTitle: string;
+    /** Sits under `seedsTitle`: says what a reader should do when none of the seeds is theirs. */
+    seedsNote: string;
+    seeds: EventSeed[];
     cta: Cta;
   };
-  /** Provenance line: where the 42 readings came from, and how firm they are. */
+  /** Provenance line: where the readings came from, and how firm they are. */
   source: string;
 };
 

@@ -5164,6 +5164,33 @@ textarea.form__control {
   --arch: var(--arch-translator);
 }
 
+/* Type floor for this page: nothing renders under 15px. The site base is 14px
+   and the shared utilities go down to 10px, which is unreadable for the CJK
+   this page is mostly written in. Scoped rather than global so the homepage,
+   the join flow and the geometry their e2e specs measure stay as they are. */
+.page--event {
+  font-size: 17px;
+}
+.page--event .body {
+  font-size: 17px;
+}
+.page--event .body--sm {
+  font-size: 15px;
+}
+.page--event .body--mono {
+  font-size: 15px;
+}
+.page--event .eyebrow {
+  font-size: 15px;
+}
+.page--event .btn,
+.page--event .btn--lime-ink,
+.page--event .btn--ghost,
+.page--event .btn--dark,
+.page--event .btn--quiet {
+  font-size: 15px;
+}
+
 .section--event-light {
   background: var(--paper);
   color: var(--ink);
@@ -5237,7 +5264,7 @@ textarea.form__control {
 }
 .event-stats__label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   /* Every dim value on this page is set so 10-12px text clears 4.5:1. */
@@ -5275,14 +5302,14 @@ textarea.form__control {
   padding-top: 0.85rem;
   border-top: 2px solid var(--ink);
   font-family: var(--font-mono);
-  font-size: clamp(0.78rem, 1.15vw, 0.95rem);
+  font-size: clamp(15px, 1.15vw, 1.05rem);
   font-weight: 600;
   letter-spacing: 0.04em;
 }
 .event-attend__venue {
   margin: 0.5rem 0 0;
   font-family: var(--font-mono);
-  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  font-size: clamp(15px, 1vw, 1rem);
   opacity: 0.7;
 }
 .event-ways {
@@ -5307,7 +5334,7 @@ textarea.form__control {
 .event-way__note {
   margin: 0;
   max-width: 46ch;
-  font-size: clamp(0.9rem, 1.15vw, 1rem);
+  font-size: clamp(15px, 1.15vw, 1.06rem);
   line-height: 1.5;
 }
 .event-way__cta {
@@ -5330,20 +5357,16 @@ textarea.form__control {
 }
 .event-axis__label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .event-axis__body {
   margin: 0.35rem 0 0;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.5;
   opacity: 0.7;
-}
-.event-legend__note {
-  margin: 0 0 1rem;
-  opacity: 0.6;
 }
 .event-legend__list {
   display: grid;
@@ -5352,23 +5375,21 @@ textarea.form__control {
   padding: 0;
   list-style: none;
 }
-.event-legend__link {
+.event-legend__item {
   display: grid;
-  grid-template-columns: 0.75rem minmax(0, 1fr);
+  grid-template-columns: 1.1rem minmax(0, 1fr);
   gap: 0.75rem;
   align-items: baseline;
   padding: 0.7rem 0;
   border-bottom: 1px solid var(--line-dark);
 }
-.event-legend__link:hover .event-legend__name {
-  color: var(--arch);
-}
-.event-legend__swatch {
-  width: 0.75rem;
-  height: 0.75rem;
+/* The glyph replaces the old colour swatch: it survives greyscale and colour
+   blindness, and it is the same mark the seed tags and the arc cards carry. */
+.event-legend__glyph {
   align-self: center;
-  border: 1px solid var(--ink);
-  background: var(--arch);
+  font-size: 0.95rem;
+  line-height: 1;
+  text-align: center;
 }
 .event-legend__name {
   font-family: var(--font-display);
@@ -5379,76 +5400,15 @@ textarea.form__control {
 .event-legend__quadrant {
   grid-column: 2;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 15px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   opacity: 0.7;
 }
 
-/* Five archetypes */
-.event-archetype-grid {
-  display: grid;
-  gap: 1.1rem;
-}
-.event-archetype {
-  position: relative;
-  padding: 1.35rem 1.25rem;
-  background: #0b0b0b;
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--arch);
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
-}
-.event-archetype__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 0 0 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.event-archetype__quadrant {
-  padding: 0.15rem 0.5rem;
-  color: var(--paper);
-  background: var(--arch);
-  font-weight: 700;
-}
-.event-archetype__name {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-.event-archetype__body {
-  margin: 0.7rem 0 0;
-  opacity: 0.76;
-}
-.event-roles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 1.1rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-.event-role {
-  padding: 0.2rem 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.72;
-}
-
-/* Four arcs */
-.event-cycles {
-  padding-top: 0;
-}
+/* Four arcs. No padding override: this section used to butt against the
+   archetype cards above it, and those are gone, so it takes the same top
+   spacing every other section on the page takes. */
 .event-cycle-grid {
   display: grid;
   gap: 1.1rem;
@@ -5460,20 +5420,32 @@ textarea.form__control {
   padding: 1.2rem 1.15rem;
   border: 1px solid var(--line);
 }
-.event-cycle__step {
-  margin: 0 0 0.6rem;
-  color: var(--lime);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-}
+/* One line: glyph beside its own name at each end, joined by the arrow. The
+   glyph sits with the name it belongs to, so the pair reads as two places
+   rather than as one name printed twice. Wrapping breaks between the ends,
+   never between a glyph and its name. */
 .event-cycle__arc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
   margin: 0;
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
+}
+.event-cycle__end {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.event-cycle__joint {
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 400;
 }
 .event-cycle__body {
   margin: 0.55rem 0 0;
@@ -5537,7 +5509,7 @@ textarea.form__control {
   margin: 0 0 0.55rem;
   color: var(--lime);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.2em;
 }
@@ -5551,6 +5523,82 @@ textarea.form__control {
 .event-step__body {
   margin: 0.55rem 0 0;
   opacity: 0.76;
+}
+
+/* The seeds. The glyph occupies the left gutter where an ordinal used to sit:
+   which corner a question came from is worth more at a glance than its rank in
+   the pool. */
+.event-seeds {
+  margin-top: 2.5rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+.event-seeds__note {
+  margin: 0 0 1.2rem;
+  max-width: 62ch;
+  opacity: 0.6;
+}
+.event-seed-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.event-seed {
+  padding: 0.85rem 1.05rem 0.9rem 3rem;
+  position: relative;
+  background: #0b0b0b;
+  border: 1px solid var(--line);
+  /* The left rule is the robe colour of that corner's figure in the artwork,
+     so colour and glyph say the same thing twice. Colour alone never carries
+     it: the `--arch-*` tokens are mid-tone and some readers see none of them. */
+  border-left: 3px solid var(--arch);
+  text-wrap: pretty;
+  transition: border-color 180ms ease-out;
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.event-seed__glyph {
+  position: absolute;
+  top: 0.72rem;
+  left: 0.9rem;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+/* A seed is deep-linkable on its own, so a shared `#seed-07` marks its target. */
+.event-seed:target {
+  border-color: var(--lime);
+}
+.event-seed__text {
+  margin: 0;
+}
+/* The arc sits at the trailing edge, clear of the question it belongs to. One
+   child, so the row only has to push it over: no wrap, no gap. */
+.event-seed__foot {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0.55rem 0 0;
+}
+/* Glyphs only. Spelling both readings out repeated the seed's own corner and
+   read as one name twice; `aria-label` still gives the pair in words. */
+.event-seed__arc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+  opacity: 0.9;
+}
+.event-seed__joint {
+  margin: 0 0.05rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 15px;
+}
+.event-seed__arc:hover,
+.event-seed__arc:focus-visible {
+  opacity: 1;
 }
 .event-prep__note {
   margin: 1.5rem 0 0;
@@ -5597,9 +5645,6 @@ textarea.form__control {
   .event-step-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .event-archetype-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .event-speaker-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -5618,7 +5663,7 @@ textarea.form__control {
   .event-cycle-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  .event-archetype-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .event-seed-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
