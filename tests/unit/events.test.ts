@@ -286,6 +286,7 @@ describe('coalition event catalog', () => {
         event.map.imageAlt,
         event.cycles.title,
         event.speakers.title,
+        ...event.speakers.items.flatMap((item) => [item.role, item.body]),
         event.prep.title,
         event.prep.cta.label,
         event.source,

@@ -375,6 +375,42 @@ describe('multilingual static catalog', () => {
     expect(audreyZhBio).toContain('《仁工智慧》');
     expect(audreyZhBio).toContain('「諾貝爾替代獎」');
     expect(audreyZhBio).toContain('Right Livelihood Award（正命獎）');
+    const audreyEnBio = catalogPeopleAsDirectory('en').find(
+      (person) => person.fullName === 'Audrey Tang'
+    )?.bio;
+    expect(audreyEnBio).toContain(
+      'Carnegie Distinguished Fellow at the Institute of Global Politics, Columbia SIPA'
+    );
+    expect(audreyEnBio).toContain('Oxford Institute for Ethics in AI');
+    expect(audreyZhBio).toContain('哥倫比亞大學國際公共事務學院全球政治研究所的卡內基傑出學人');
+    for (const locale of listLocales()) {
+      const bio = catalogPeopleAsDirectory(locale).find(
+        (person) => person.imageKey === 'person-audrey-tang'
+      )?.bio;
+      expect(bio, locale).toBeTruthy();
+      if (locale === 'zh-tw') {
+        expect(bio, locale).toContain('全球政治研究所');
+        expect(bio, locale).toContain('卡內基傑出學人');
+      } else {
+        expect(bio, locale).toContain('Institute of Global Politics');
+        expect(bio, locale).toContain('Columbia SIPA');
+        expect(bio, locale).toContain('Carnegie Distinguished Fellow');
+      }
+      expect(bio, locale).toContain('Oxford');
+    }
+    for (const locale of listLocales()) {
+      const speaker = getContent(locale).event.speakers.items.find(
+        (item) => item.id === 'audrey-tang'
+      );
+      expect(speaker?.body, locale).toBeTruthy();
+      if (locale === 'zh-tw') {
+        expect(speaker?.body, locale).toContain('全球政治研究所');
+        expect(speaker?.body, locale).toContain('卡內基傑出學人');
+      } else {
+        expect(speaker?.body, locale).toContain('Institute of Global Politics');
+        expect(speaker?.body, locale).toContain('Columbia SIPA');
+      }
+    }
     expect(
       catalogPersonAsDirectory(
         {
