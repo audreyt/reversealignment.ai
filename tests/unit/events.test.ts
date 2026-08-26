@@ -219,7 +219,7 @@ describe('coalition event catalog', () => {
         event.prep.seeds.map((seed) => seed.id),
         locale
       ).toEqual(
-        Array.from({ length: 15 }, (_, index) => `seed-${String(index + 1).padStart(2, '0')}`)
+        Array.from({ length: 16 }, (_, index) => `seed-${String(index + 1).padStart(2, '0')}`)
       );
       // The board is derived from these two pointers, so a typo would render an
       // unlabelled chip rather than fail loudly.

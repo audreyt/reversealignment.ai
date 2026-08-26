@@ -852,6 +852,12 @@
             "id": "seed-15",
             "text": "Without leaning on big government or big business, what new ways of working could bring partners from all over the world together?",
             "archetype": "weaver"
+          },
+          {
+            "id": "seed-16",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught",
+            "text": "Who still gets left behind in a transition? Carers, people who learn more slowly, people who do not share the gains: which of them should be caught first?"
           }
         ],
         "cta": {
@@ -2048,6 +2054,12 @@
             "id": "seed-15",
             "text": "如果不靠大政府也不靠大企業，要用哪些新的做事方式，才能結合全世界的夥伴？",
             "archetype": "weaver"
+          },
+          {
+            "id": "seed-16",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught",
+            "text": "轉型時誰會被落下？照顧者、學得慢的人、分不到成果的人，要先接住哪一處？"
           }
         ],
         "cta": {
@@ -3395,6 +3407,12 @@
             "id": "seed-15",
             "text": "大きな政府や大企業に頼らず、世界中の仲間とつながり、規模を広げるには、どんな新しいやり方がありますか？",
             "archetype": "weaver"
+          },
+          {
+            "id": "seed-16",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught",
+            "text": "移行のなかで、誰が取り残されてしまうでしょうか？ ケアを担う人、学ぶのに時間がかかる人、成果の恩恵を受け取れない人。まずどこから受け止めるべきですか？"
           }
         ],
         "cta": {
@@ -4440,6 +4458,12 @@
             "id": "seed-15",
             "text": "Sin depender de grandes gobiernos ni de grandes empresas, ¿qué nuevas formas de trabajar permitirían reunir a socios de todo el mundo?",
             "archetype": "weaver"
+          },
+          {
+            "id": "seed-16",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught",
+            "text": "¿Quién se queda atrás en una transición? Quienes cuidan, quienes aprenden más despacio, quienes no participan de los beneficios: ¿a quién habría que sostener primero?"
           }
         ],
         "cta": {
@@ -5626,6 +5650,12 @@
             "id": "seed-15",
             "text": "Sem depender de grandes governos nem de grandes empresas, que novas formas de trabalhar poderiam reunir parceiros do mundo inteiro?",
             "archetype": "weaver"
+          },
+          {
+            "id": "seed-16",
+            "archetype": "companion",
+            "arc": "tool-and-uncaught",
+            "text": "Quem ainda fica para trás em uma transição? Quem cuida, quem aprende mais devagar, quem não participa dos ganhos: qual dessas frentes devemos acolher primeiro?"
           }
         ],
         "cta": {
