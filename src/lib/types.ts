@@ -320,6 +320,12 @@ export type EventCopy = {
     title: string;
     when: string;
     venue: string;
+    /**
+     * Public record of the talk. zh-TW points at the 華文 transcript; every
+     * other locale points at English. archive.tw hosts the language toggle.
+     */
+    transcript: Cta;
+    transcriptNote: string;
     inPerson: Cta;
     inPersonNote: string;
     remote: Cta;

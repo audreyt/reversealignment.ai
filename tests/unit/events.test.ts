@@ -12,6 +12,8 @@ const PLATFORM_ID = 'platform-originals-2026-08';
 const PLATFORM_LUMA_URL = 'https://luma.com/pzkyaeuz';
 const PLATFORM_PAGE_HREF = 'events/you-are-here/';
 const QUESTION_POOL_URL = 'https://sli.do/20260829';
+const TRANSCRIPT_EN_URL = 'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al';
+const TRANSCRIPT_ZH_URL = 'https://archive.tw/2026-08-29-platform-originals-對齊的另一面';
 const PLATFORM_START = '2026-08-29T06:00:00.000Z';
 const PLATFORM_END = '2026-08-29T08:30:00.000Z';
 
@@ -161,13 +163,17 @@ describe('coalition event catalog', () => {
 
       // Luma is reachable from the page; the question pool is the path for
       // everyone who cannot get to Taipei, and it is what a non-zh-TW reader
-      // meets first.
+      // meets first among the two ways in. The transcript sits above both.
       expect(event.attend.inPerson.href, locale).toBe(PLATFORM_LUMA_URL);
       expect(event.attend.inPerson.external, locale).toBe(true);
       expect(event.attend.remote.href, locale).toBe(QUESTION_POOL_URL);
       expect(event.attend.remote.external, locale).toBe(true);
       expect(event.prep.cta.href, locale).toBe(QUESTION_POOL_URL);
       expect(event.attend.lead, locale).toBe(locale === 'zh-tw' ? 'in-person' : 'remote');
+      expect(event.attend.transcript.external, locale).toBe(true);
+      expect(event.attend.transcript.href, locale).toBe(
+        locale === 'zh-tw' ? TRANSCRIPT_ZH_URL : TRANSCRIPT_EN_URL
+      );
 
       // The five readings and the four arcs are the same editorial data in
       // every locale; only the names are translated.
@@ -281,6 +287,8 @@ describe('coalition event catalog', () => {
         event.attend.venue,
         event.attend.inPerson.label,
         event.attend.remote.label,
+        event.attend.transcript.label,
+        event.attend.transcriptNote,
         event.map.title,
         event.map.lead,
         event.map.imageAlt,

@@ -4,8 +4,9 @@
  *
  * Built for every SITE_LOCALE, because this page and not Luma is where the
  * event's inbound links point: someone who cannot reach Taipei still has a way
- * to take part. Only zh-TW leads with the room; `attend.lead` puts the
- * question pool first everywhere else.
+ * to take part. The lime band carries the public transcript first (華文 on
+ * zh-TW, English everywhere else). Only zh-TW leads the remaining two ways
+ * with the room; `attend.lead` puts the question pool first everywhere else.
  *
  * The page sits two levels deep, so every asset and every link home is built
  * from `relativeRootPath`. An absolute `/events/you-are-here/` would escape the
@@ -129,8 +130,7 @@ const seedNumber = (id: string) => id.replace('seed-', '');
           </figure>
         </div>
       </section>
-
-      <!-- ATTEND — both affordances, the locale's own one first -->
+      <!-- ATTEND — transcript first, then both affordances, locale's own one first -->
       <section class="event-attend" aria-labelledby="event-attend-title">
         <div class="event-attend__inner">
           <h2 id="event-attend-title" class="display display--md event-attend__title">
@@ -141,6 +141,15 @@ const seedNumber = (id: string) => id.replace('seed-', '');
             <time datetime={listing.startsAt}>{attend.when}</time>
           </p>
           <p class="event-attend__venue">{attend.venue}</p>
+
+          <div class="event-record" data-record="transcript">
+            <p class="event-record__note">{attend.transcriptNote}</p>
+            <CtaLink
+              cta={attend.transcript}
+              class="btn btn--dark event-record__cta"
+              externalLabel={copy.a11y.externalLink}
+            />
+          </div>
 
           <ul class="event-ways">
             {

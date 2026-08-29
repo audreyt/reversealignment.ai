@@ -49,6 +49,10 @@ test.describe('multilingual static accessibility', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/events/you-are-here/');
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh-TW');
+    await expect(page.locator('.event-record a')).toHaveAttribute(
+      'href',
+      'https://archive.tw/2026-08-29-platform-originals-對齊的另一面'
+    );
     // Taipei's own locale leads with the room.
     await expect(page.locator('.event-way').first()).toHaveAttribute('data-way', 'in-person');
     await assertNoSeriousA11y(page, 'zh-TW event page');
@@ -58,6 +62,10 @@ test.describe('multilingual static accessibility', () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/en/events/you-are-here/');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('.event-record a')).toHaveAttribute(
+      'href',
+      'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al'
+    );
     // Everywhere else leads with the way in that needs no flight.
     await expect(page.locator('.event-way').first()).toHaveAttribute('data-way', 'remote');
     await assertNoSeriousA11y(page, 'en event page mobile');

@@ -5315,7 +5315,7 @@ textarea.form__control {
 .event-ways {
   display: grid;
   gap: 1.25rem;
-  margin: 1.9rem 0 0;
+  margin: 1.25rem 0 0;
   padding: 0;
   list-style: none;
 }
@@ -5338,6 +5338,27 @@ textarea.form__control {
   line-height: 1.5;
 }
 .event-way__cta {
+  justify-self: start;
+}
+
+/* Transcript — same poster voice as the lead way, full width above the pair */
+.event-record {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  margin: 1.9rem 0 0;
+  padding: 1.25rem;
+  background: var(--paper-strong);
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.event-record__note {
+  margin: 0;
+  max-width: 46ch;
+  font-size: clamp(15px, 1.15vw, 1.06rem);
+  line-height: 1.5;
+}
+.event-record__cta {
   justify-self: start;
 }
 
