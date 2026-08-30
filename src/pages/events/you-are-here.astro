@@ -1,16 +1,11 @@
 ---
 /**
- * /events/you-are-here/ — the pre-read for the 29 Aug 2026 Taipei talk.
+ * /events/you-are-here/ — the post-event record for the 29 Aug 2026 Taipei talk.
  *
- * Built for every SITE_LOCALE, because this page and not Luma is where the
- * event's inbound links point: someone who cannot reach Taipei still has a way
- * to take part. The lime band carries the public transcript first (華文 on
- * zh-TW, English everywhere else). Only zh-TW leads the remaining two ways
- * with the room; `attend.lead` puts the question pool first everywhere else.
- *
- * The page sits two levels deep, so every asset and every link home is built
- * from `relativeRootPath`. An absolute `/events/you-are-here/` would escape the
- * `/en/` tree on the zh-TW host and silently serve the other locale's page.
+ * The public transcript is canonical. This page keeps the five-role map as
+ * provenance, then recodes the eleven answer chapters into a navigable spine.
+ * It sits two levels deep, so every asset and home link is relative to the
+ * current locale tree rather than escaping `/en/` on the zh-TW host.
  */
 import CtaLink from '../../components/CtaLink.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -21,7 +16,7 @@ import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../..
 const locale = getDefaultLocale();
 const catalog = getContent(locale);
 const event = catalog.event;
-const { attend, map, archetypes, cycles, speakers, prep } = event;
+const { record, principles, questions, map, archetypes, speakers } = event;
 const rootPath = relativeRootPath(Astro.url.pathname);
 
 // Every nav and footer link is a homepage anchor. From two levels down they
@@ -42,8 +37,7 @@ const copy = {
 };
 
 // The machine-readable instant lives once, in the catalog listing this page
-// belongs to. A missing id means the page is advertising an event the site does
-// not list, which must fail the build rather than ship a dateless page.
+// belongs to. A missing id means the page is advertising an unlisted event.
 const listing = catalog.coalition.events.find((item) => item.id === event.eventId);
 if (!listing) {
   throw new Error(`event.eventId "${event.eventId}" has no coalition.events entry`);
@@ -52,42 +46,14 @@ if (!listing) {
 const title = `${event.metaTitle} — ${catalog.brand.name}`;
 const mapImage = assetPath('event-archetype-map', locale, rootPath);
 
-const remoteWay = { id: 'remote', cta: attend.remote, note: attend.remoteNote };
-const inPersonWay = { id: 'in-person', cta: attend.inPerson, note: attend.inPersonNote };
-const ways = attend.lead === 'in-person' ? [inPersonWay, remoteWay] : [remoteWay, inPersonWay];
-
-// One reading is a name plus a glyph; an arc is two of them, composed here
-// rather than stored. The arc card spells both ends out; the seed tag carries
-// the glyphs alone, because two spelled-out names in a chip read as one
-// repeated name — a Craftkeeper seed on the Bridgewright arc would say
-// "Craftkeeper / Bridgewright → Craftkeeper".
-const reading = (id: string) => {
-  const found = archetypes.items.find((item) => item.id === id);
-  if (!found) {
-    throw new Error(`"${id}" is not one of the five readings in archetypes.items`);
-  }
-  return found;
-};
-
-const arcRows = cycles.items.map((cycle) => {
-  const from = reading(cycle.from);
-  const to = reading(cycle.to);
-  return { ...cycle, from, to, label: `${from.name} → ${to.name}` };
-});
-
-// Resolve every label once, so the markup never reaches for a lookup that can
-// miss and quietly render a blank tag. `arcRow` must not be named `arc`: it
-// would shadow the id that `data-arc` and the `#cycle-…` href are built from,
-// and an object stringifies into both without failing the build.
-const seedRows = prep.seeds.map((seed) => {
-  const own = reading(seed.archetype);
-  const arcRow = seed.arc ? arcRows.find((row) => row.id === seed.arc) : undefined;
-  if (seed.arc && !arcRow) {
-    throw new Error(`seed "${seed.id}" names arc "${seed.arc}", which is not in cycles.items`);
-  }
-  return { ...seed, readingName: own.name, readingEmoji: own.emoji, arcRow };
-});
-const seedNumber = (id: string) => id.replace('seed-', '');
+let questionOrdinal = 0;
+const questionGroups = questions.groups.map((group) => ({
+  ...group,
+  items: group.items.map((item) => ({
+    ...item,
+    number: String(++questionOrdinal).padStart(2, '0'),
+  })),
+}));
 ---
 
 <Base locale={locale} title={title} description={event.metaDescription}>
@@ -95,7 +61,6 @@ const seedNumber = (id: string) => id.replace('seed-', '');
     <SiteHeader copy={copy} showNavigation={false} />
 
     <main id="main">
-      <!-- HERO — title beside the archetype artwork on wide screens, under it on narrow -->
       <section class="section section--dark event-hero" aria-labelledby="event-title">
         <div class="section__inner event-hero__grid">
           <div class="event-hero__copy">
@@ -130,48 +95,126 @@ const seedNumber = (id: string) => id.replace('seed-', '');
           </figure>
         </div>
       </section>
-      <!-- ATTEND — transcript first, then both affordances, locale's own one first -->
-      <section class="event-attend" aria-labelledby="event-attend-title">
-        <div class="event-attend__inner">
-          <h2 id="event-attend-title" class="display display--md event-attend__title">
-            {attend.title}
-          </h2>
 
-          <p class="event-attend__when">
-            <time datetime={listing.startsAt}>{attend.when}</time>
-          </p>
-          <p class="event-attend__venue">{attend.venue}</p>
-
-          <div class="event-record" data-record="transcript">
-            <p class="event-record__note">{attend.transcriptNote}</p>
+      <section class="event-record-band" aria-labelledby="event-record-title">
+        <div class="event-record">
+          <div class="event-record__mast">
+            <p class="eyebrow event-record__eyebrow">{record.eyebrow}</p>
+            <h2 id="event-record-title" class="display display--md event-record__title">
+              {record.title}
+            </h2>
+          </div>
+          <div class="event-record__copy">
+            <p class="event-record__meta">
+              <time datetime={listing.startsAt}>{record.when}</time>
+              <span aria-hidden="true"> · </span>
+              {record.place}
+            </p>
+            <p class="event-record__body">{record.body}</p>
             <CtaLink
-              cta={attend.transcript}
+              cta={record.transcript}
               class="btn btn--dark event-record__cta"
               externalLabel={copy.a11y.externalLink}
             />
           </div>
-
-          <ul class="event-ways">
-            {
-              ways.map((way, index) => (
-                <li class:list={['event-way', index === 0 && 'event-way--lead']} data-way={way.id}>
-                  <p class="event-way__note">{way.note}</p>
-                  <CtaLink
-                    cta={way.cta}
-                    class={index === 0 ? 'btn btn--dark event-way__cta' : 'btn btn--ghost event-way__cta'}
-                    externalLabel={copy.a11y.externalLink}
-                  />
-                </li>
-              ))
-            }
-          </ul>
         </div>
       </section>
 
-      <!-- MAP LEGEND — the artwork is lettered in Chinese and English; this is the translation -->
+      <section
+        class="section section--event-light event-principles"
+        aria-labelledby="event-principles-title"
+      >
+        <div class="section__inner">
+          <div class="event-head event-head--split">
+            <h2 id="event-principles-title" class="display display--md">{principles.title}</h2>
+            <p class="body event-head__lead">{principles.lead}</p>
+          </div>
+
+          <ol class="event-principle-list">
+            {
+              principles.items.map((principle, index) => (
+                <li class="event-principle" data-principle={principle.id}>
+                  <p class="event-principle__index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
+                  <h3 class="event-principle__title">{principle.title}</h3>
+                  <p class="event-principle__body">{principle.body}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </section>
+
+      <section class="section section--dark event-answers" aria-labelledby="event-answers-title">
+        <div class="section__inner">
+          <div class="event-answers__intro">
+            <p class="eyebrow">{questions.eyebrow}</p>
+            <h2 id="event-answers-title" class="display display--lg event-answers__title">
+              {questions.title}
+            </h2>
+            <p class="body event-answers__lead">{questions.lead}</p>
+          </div>
+
+          <div class="event-answer-groups">
+            {
+              questionGroups.map((group, groupIndex) => (
+                <section
+                  class="event-answer-group"
+                  id={`answer-group-${group.id}`}
+                  aria-labelledby={`answer-group-${group.id}-title`}
+                >
+                  <header class="event-answer-group__head">
+                    <p class="event-answer-group__index" aria-hidden="true">
+                      {String(groupIndex + 1).padStart(2, '0')}
+                    </p>
+                    <h3 id={`answer-group-${group.id}-title`} class="event-answer-group__title">
+                      {group.title}
+                    </h3>
+                    <p class="event-answer-group__lead">{group.lead}</p>
+                  </header>
+
+                  <ol class="event-answer-list">
+                    {
+                      group.items.map((item) => (
+                        <li>
+                          <article class="event-answer" id={item.id}>
+                            <div class="event-answer__rail">
+                              <a
+                                class="event-answer__number"
+                                href={`#${item.id}`}
+                                aria-label={`${questions.linkLabel}: ${item.question}`}
+                              >
+                                {item.number}
+                              </a>
+                            </div>
+                            <div class="event-answer__main">
+                              <p class="event-answer__chapter">
+                                <span>{questions.chapterLabel}</span>
+                                <span aria-hidden="true"> / </span>
+                                {item.chapter}
+                              </p>
+                              <h4 class="event-answer__question">{item.question}</h4>
+                              <div class="event-answer__response">
+                                <p class="event-answer__label">{questions.answerLabel}</p>
+                                <p class="event-answer__text">{item.answer}</p>
+                              </div>
+                            </div>
+                          </article>
+                        </li>
+                      ))
+                    }
+                  </ol>
+                </section>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
       <section class="section section--event-light event-map" aria-labelledby="event-map-title">
         <div class="section__inner">
-          <div class="event-head">
+          <div class="event-head event-head--split">
             <h2 id="event-map-title" class="display display--md">{map.title}</h2>
             <p class="body event-head__lead">{map.lead}</p>
           </div>
@@ -209,44 +252,9 @@ const seedNumber = (id: string) => id.replace('seed-', '');
         </div>
       </section>
 
-      <!-- FOUR ARCS -->
-      <section class="section section--dark event-cycles" aria-labelledby="event-cycles-title">
+      <section class="section section--dark event-speakers" aria-labelledby="event-speakers-title">
         <div class="section__inner">
-          <div class="event-head">
-            <h2 id="event-cycles-title" class="display display--md">{cycles.title}</h2>
-            <p class="body event-head__lead">{cycles.lead}</p>
-          </div>
-
-          <ol class="event-cycle-grid">
-            {
-              arcRows.map((cycle) => (
-                <li class="event-cycle" id={`cycle-${cycle.id}`} data-cycle={cycle.id}>
-                  <h3 class="event-cycle__arc">
-                    <span class="event-cycle__end">
-                      <span aria-hidden="true">{cycle.from.emoji}</span>
-                      {cycle.from.name}
-                    </span>
-                    <span class="event-cycle__joint">→</span>
-                    <span class="event-cycle__end">
-                      <span aria-hidden="true">{cycle.to.emoji}</span>
-                      {cycle.to.name}
-                    </span>
-                  </h3>
-                  <p class="body event-cycle__body">{cycle.body}</p>
-                </li>
-              ))
-            }
-          </ol>
-        </div>
-      </section>
-
-      <!-- WHO IS HOLDING THE ROOM -->
-      <section
-        class="section section--event-light event-speakers"
-        aria-labelledby="event-speakers-title"
-      >
-        <div class="section__inner">
-          <div class="event-head">
+          <div class="event-head event-head--split">
             <h2 id="event-speakers-title" class="display display--md">{speakers.title}</h2>
             <p class="body event-head__lead">{speakers.lead}</p>
           </div>
@@ -278,77 +286,6 @@ const seedNumber = (id: string) => id.replace('seed-', '');
               ))
             }
           </div>
-        </div>
-      </section>
-
-      <!-- TWO ACTIONS BEFORE ARRIVAL -->
-      <section class="section section--dark event-prep" aria-labelledby="event-prep-title">
-        <div class="section__inner">
-          <div class="event-head">
-            <h2 id="event-prep-title" class="display display--md">{prep.title}</h2>
-            <p class="body event-head__lead">{prep.lead}</p>
-          </div>
-
-          <ol class="event-step-grid">
-            {
-              prep.steps.map((step) => (
-                <li class="event-step">
-                  <p class="event-step__index" aria-hidden="true">{step.index}</p>
-                  <h3 class="event-step__title">{step.title}</h3>
-                  <p class="body event-step__body">{step.body}</p>
-                </li>
-              ))
-            }
-          </ol>
-
-          <div class="event-seeds">
-            <h3 class="body--mono event-panel__title">{prep.seedsTitle}</h3>
-            <p class="body--sm event-seeds__note">{prep.seedsNote}</p>
-            <ol class="event-seed-list">
-              {
-                seedRows.map((seed) => (
-                  <li
-                    class="event-seed"
-                    id={seed.id}
-                    data-seed={seed.id}
-                    data-archetype={seed.archetype}
-                    data-arc={seed.arc}
-                  >
-                    {/* The glyph stands where the ordinal used to. It carries no
-                        visible label, so the reading's name rides along for
-                        anyone who cannot see the mark. */}
-                    <p class="event-seed__glyph">
-                      <span aria-hidden="true">{seed.readingEmoji}</span>
-                      <span class="sr-only">{seed.readingName}</span>
-                    </p>
-                    <p class="event-seed__text">{seed.text}</p>
-                    {seed.arcRow && (
-                      <p class="event-seed__foot">
-                        <a
-                          class="event-seed__arc"
-                          href={`#cycle-${seed.arc}`}
-                          aria-label={seed.arcRow.label}
-                        >
-                          <span aria-hidden="true">
-                            {seed.arcRow.from.emoji}
-                            <span class="event-seed__joint">→</span>
-                            {seed.arcRow.to.emoji}
-                          </span>
-                        </a>
-                      </p>
-                    )}
-                  </li>
-                ))
-              }
-            </ol>
-          </div>
-
-          <p class="body--sm event-prep__note">{prep.note}</p>
-          <CtaLink
-            cta={prep.cta}
-            class="btn btn--lime-ink event-prep__cta"
-            externalLabel={copy.a11y.externalLink}
-          />
         </div>
       </section>
 

@@ -233,16 +233,11 @@ export type EventArchetype = {
   emoji: string;
 };
 
-/** One dashed arc on the map: two far-apart readings that want one thing. */
-export type EventCycle = {
+/** One of the five operating moves distilled from the public event record. */
+export type EventPrinciple = {
+  /** Stable key, identical across locales. */
   id: string;
-  /**
-   * The arc's two ends, as `EventArchetype.id`. The label a reader sees is
-   * composed from these plus each reading's name and glyph, so there is no
-   * second copy of the pairing for a translator to reorder.
-   */
-  from: string;
-  to: string;
+  title: string;
   body: string;
 };
 
@@ -269,35 +264,30 @@ export type EventStat = {
   value: string;
 };
 
-export type EventStep = {
-  /** Printed ordinal, e.g. `01`. */
-  index: string;
-  title: string;
-  body: string;
-};
-
-/**
- * One anonymous seed already posted to the live question pool. Each is a
- * rewrite of what several people wrote when they registered, so no seed points
- * back at a single respondent. The page shows the set the pool holds, not a
- * live mirror of it.
- *
- * `archetype` and `arc` are ids, not prose, so they are the same in every
- * locale and the board reads its labels from `archetypes` and `cycles`.
- */
-export type EventSeed = {
+/** One question-and-answer thread that appears in the public transcript. */
+export type EventAnsweredQuestion = {
+  /** Stable deep-link target, identical across locales. */
   id: string;
-  text: string;
-  /** `EventArchetype.id` of the reading this seed was rewritten out of. */
-  archetype: string;
-  /** `EventCycle.id` when this seed sits at one end of an arc. */
-  arc?: string;
+  question: string;
+  /** Editorial compression of the answer; the transcript remains canonical. */
+  answer: string;
+  /** The transcript chapter that carries this answer. */
+  chapter: string;
+};
+
+/** A navigational group in the answered-question spine. */
+export type EventQuestionGroup = {
+  /** Stable section id, identical across locales. */
+  id: string;
+  title: string;
+  lead: string;
+  items: EventAnsweredQuestion[];
 };
 
 /**
- * Copy for `/events/you-are-here/`, the pre-read for the 29 Aug 2026 Taipei
- * talk. Every locale ships the page, because it is where the event's inbound
- * links land: a reader who cannot reach Taipei still has a way to take part.
+ * Copy for `/events/you-are-here/`, the post-event record of the 29 Aug 2026
+ * Taipei talk. Every locale ships the page; archive.tw remains the canonical
+ * turn-by-turn source and this page makes its answered threads navigable.
  */
 export type EventCopy = {
   /** The `coalition.events` id this page belongs to. */
@@ -311,25 +301,31 @@ export type EventCopy = {
   stats: EventStat[];
   /** Label on the link back to the locale's own home page. */
   homeLabel: string;
-  attend: {
-    /**
-     * Which affordance leads. Taipei's own locale opens with the room; every
-     * other locale opens with the way in that needs no flight.
-     */
-    lead: 'in-person' | 'remote';
+  record: {
+    eyebrow: string;
     title: string;
     when: string;
-    venue: string;
+    place: string;
+    body: string;
     /**
-     * Public record of the talk. zh-TW points at the 華文 transcript; every
-     * other locale points at English. archive.tw hosts the language toggle.
+     * zh-TW points at the 華文 transcript; every other locale points at
+     * English. archive.tw hosts the language toggle.
      */
     transcript: Cta;
-    transcriptNote: string;
-    inPerson: Cta;
-    inPersonNote: string;
-    remote: Cta;
-    remoteNote: string;
+  };
+  principles: {
+    title: string;
+    lead: string;
+    items: EventPrinciple[];
+  };
+  questions: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    answerLabel: string;
+    chapterLabel: string;
+    linkLabel: string;
+    groups: EventQuestionGroup[];
   };
   map: {
     title: string;
@@ -341,35 +337,16 @@ export type EventCopy = {
     axes: EventAxis[];
     legendTitle: string;
   };
-  /**
-   * Not a section any more: the legend, the board and the seed tags all read
-   * their labels out of here.
-   */
+  /** Translated labels for the five stable readings drawn on the map. */
   archetypes: {
     items: EventArchetype[];
-  };
-  cycles: {
-    title: string;
-    lead: string;
-    items: EventCycle[];
   };
   speakers: {
     title: string;
     lead: string;
     items: EventSpeaker[];
   };
-  prep: {
-    title: string;
-    lead: string;
-    note: string;
-    steps: EventStep[];
-    seedsTitle: string;
-    /** Sits under `seedsTitle`: says what a reader should do when none of the seeds is theirs. */
-    seedsNote: string;
-    seeds: EventSeed[];
-    cta: Cta;
-  };
-  /** Provenance line: where the readings came from, and how firm they are. */
+  /** Provenance line distinguishing the transcript from editorial compression. */
   source: string;
 };
 

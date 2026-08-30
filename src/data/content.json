@@ -587,56 +587,179 @@
     },
     "event": {
       "eventId": "platform-originals-2026-08",
-      "metaTitle": "You Are Here · 29 August 2026, Taipei",
-      "metaDescription": "The pre-read for Platform 月台's Reverse Alignment talk in Taipei on 29 August 2026: five archetypes, four uncommon-ground arcs, and the anonymous question pool that is open from anywhere.",
-      "eyebrow": "Field note · 29 Aug 2026",
+      "metaTitle": "You Are Here · What the room answered",
+      "metaDescription": "A post-event field note from Platform 月台’s Reverse Alignment talk in Taipei: eleven questions the room actually answered, five governing moves, and the complete public transcript.",
+      "eyebrow": "After the room · 29 Aug 2026",
       "title": "You Are Here",
-      "subtitle": "A map of what we carry",
-      "body": "A shared coordinate system for the room, read off what people wrote when they registered. Find your position, the corners next to you, and the person who reached your question from the far side.",
+      "subtitle": "Eleven questions. Five moves that hold.",
+      "body": "The map got people into position. The record now does the work: eleven questions the room actually answered, recoded from the public transcript into claims, limits and next moves you can inspect.",
       "stats": [
         {
-          "label": "Archetypes",
+          "label": "Answered threads",
+          "value": "11"
+        },
+        {
+          "label": "Governing moves",
           "value": "5"
         },
         {
-          "label": "Paths",
-          "value": "4"
-        },
-        {
-          "label": "Shared field",
-          "value": "1"
+          "label": "Public record",
+          "value": "EN · 華文"
         }
       ],
       "homeLabel": "Back to Reverse Alignment",
-      "attend": {
-        "lead": "remote",
-        "title": "Two ways to take part",
-        "when": "Saturday, Aug. 29, 2026. Check-in 13:30, start 14:00, finish 16:30; the venue stays open until 18:00. Taipei time, UTC+8.",
-        "venue": "SPARKFUL Office, 12F, 1-1 Sec. 1 Chongqing N. Rd., Datong, Taipei, beside Taipei City Mall exit Y15.",
+      "record": {
+        "eyebrow": "Public record",
+        "title": "The room ended. The record stays open.",
+        "when": "29 Aug 2026 · 14:00–16:30 (UTC+8)",
+        "place": "Taipei · SPARKFUL",
+        "body": "Read the complete, turn-by-turn transcript in English or 華文. The cards below compress the answers; they do not replace the speakers’ words.",
         "transcript": {
-          "label": "Read the transcript",
+          "label": "Read the public transcript",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
-        },
-        "transcriptNote": "Now on the record. English and 華文, every turn citable.",
-        "inPerson": {
-          "label": "Register on Luma",
-          "href": "https://luma.com/pzkyaeuz",
-          "external": true
-        },
-        "inPersonNote": "In the room, in Taipei, free and approved by the host.",
-        "remote": {
-          "label": "Add your question to the pool",
-          "href": "https://sli.do/20260829",
-          "external": true
-        },
-        "remoteNote": "No travel required. The pool is open before and during the talk, and every question receives a written response afterwards, whether or not you were in the room."
+        }
+      },
+      "principles": {
+        "title": "Five moves that held",
+        "lead": "Across eleven answered threads, the room kept returning to the same operating moves. They are not slogans; each changes who can stop, inspect or replace a system.",
+        "items": [
+          {
+            "id": "reversible-first",
+            "title": "Sort by reversibility.",
+            "body": "Experiment quickly where harm can be undone. Evaluate and constrain before deployment where biological, cyber or infrastructure harm cannot."
+          },
+          {
+            "id": "consequence-names-risk",
+            "title": "Let consequence name risk.",
+            "body": "A test set is incomplete until affected people can add the harm a lab did not know to name. Otherwise it is only a closed archive."
+          },
+          {
+            "id": "legible-receipts",
+            "title": "Leave legible receipts.",
+            "body": "Decisions, versions, appeals and repairs must remain readable, traceable and teachable after the model that produced them is gone."
+          },
+          {
+            "id": "local-replaceable",
+            "title": "Keep capacity local and replaceable.",
+            "body": "Keep data, compute and accumulated craft close to the community. Make the model and the harness replaceable as separate layers."
+          },
+          {
+            "id": "verify-exit",
+            "title": "Verify, then make exit real.",
+            "body": "A right without proof of what happened, and without a way to carry the record into another system, is a promise rather than a control."
+          }
+        ]
+      },
+      "questions": {
+        "eyebrow": "What was actually answered",
+        "title": "Eleven questions, recoded from the record",
+        "lead": "Not the questions people might have asked. Not a live ranking. These are the eleven answer threads the public transcript actually contains, in the order the conversation opened them.",
+        "answerLabel": "Answer, compressed",
+        "chapterLabel": "Transcript chapter",
+        "linkLabel": "Link to this question",
+        "groups": [
+          {
+            "id": "limits",
+            "title": "Draw the line before the harm",
+            "lead": "Start with consequences: what can be undone, who gets to name the damage, and what translation owes the people left off the chart.",
+            "items": [
+              {
+                "id": "answer-01",
+                "question": "Why not let the market catch up to AI, as it eventually did with earlier technologies?",
+                "answer": "Because the cost of delay can be irreversible. Let reversible experiments run small and fast; require advance evaluation for biological, cyber and infrastructure harms, then version, report and repair everything that ships.",
+                "chapter": "Experiment freely where reversible; constrain where irreversible"
+              },
+              {
+                "id": "answer-02",
+                "question": "How can a community name a risk that a model lab did not know to test?",
+                "answer": "Give affected people standing in the evaluation loop. Community language data, open-weight post-training and a public path from lived harm back to the model turn feedback into an evaluable case instead of a closed archive.",
+                "chapter": "Let those who bear the consequences name the risks"
+              },
+              {
+                "id": "answer-03",
+                "question": "What lies between finding common ground and making an accountable decision?",
+                "answer": "Translation. vTaiwan surfaced uncommon ground in three weeks; policy took roughly three years and still missed people without time or usable access. At work, the analogue is readable artifacts, version history and a human answerable for irreversible choices.",
+                "chapter": "Uncommon ground is not the policy; translation is the governance"
+              }
+            ]
+          },
+          {
+            "id": "judgment",
+            "title": "Keep judgment answerable",
+            "lead": "A decision needs provenance, friction and a person who still carries the irreversible part.",
+            "items": [
+              {
+                "id": "answer-04",
+                "question": "If speed and leaderboard scores are the wrong target, what should an AI system optimize?",
+                "answer": "The health of relationships: whether people can cool conflict, cooperate and care for one another better. A model that wins a benchmark while hollowing out empathy is not aligned to the community it enters.",
+                "chapter": "Align the relationship between groups, not a single leaderboard"
+              },
+              {
+                "id": "answer-05",
+                "question": "When generated content outruns reading, what can trust rest on—and what should a builder do first?",
+                "answer": "Not on detecting ‘AI-ness.’ Start from signatures, provenance, a bill of materials and replayable inputs, weights and versions; then add an Andon cord so affected people can stop or slow the system and make one repaired case reusable.",
+                "chapter": "Only verifiability and replaceability make exit real"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "Put capacity where life is lived",
+            "lead": "Data soil, replaceable tools and community-scale models keep learning from becoming extraction.",
+            "items": [
+              {
+                "id": "answer-06",
+                "question": "How do data, gains and corrections stay with a community—and survive a switch of vendors?",
+                "answer": "Keep data local or encrypted, accumulate lessons in the harness rather than a model vendor, and split adjacent layers across open interfaces. If the horse and saddle can be replaced separately, exit does not mean amnesia.",
+                "chapter": "Care takes root as data soil and local capacity"
+              },
+              {
+                "id": "answer-07",
+                "question": "What remains continuous when roles, titles and tools keep changing?",
+                "answer": "The practice: demonstrate, translate, publish unfinished work and leave artifacts others can maintain. Continuity lives in a method people can carry forward, not in one title, vendor or fixed version of a self.",
+                "chapter": "From roles and titles back to tools we can maintain together"
+              },
+              {
+                "id": "answer-08",
+                "question": "How can a small community use AI without its language and daily needs being flattened?",
+                "answer": "Train small, specialized models on the community’s own corpus and feedback; pool idle compute; subsidize open capacity rather than one mandatory national model. Local translation, speech and grounding are enough to make a real beginning.",
+                "chapter": "Small models, local computing and communities’ own languages"
+              }
+            ]
+          },
+          {
+            "id": "future",
+            "title": "Scale rights, not prophecy",
+            "lead": "The future stays open when dignity is not a score, different worldviews can coexist, and responsibility remains somewhere people can reach.",
+            "items": [
+              {
+                "id": "answer-09",
+                "question": "What is human work worth when machines dominate every automatically graded task?",
+                "answer": "Stop racing the horse. Put dignity and pay around curiosity, cooperation, care, art and the conversion of lose–lose situations into win–wins—the work whose value is not a high score.",
+                "chapter": "The value of work is not a high score on an automated test"
+              },
+              {
+                "id": "answer-10",
+                "question": "How can people who see AI as a tool, a medium or a mind still live and create together?",
+                "answer": "Use political philosophy rather than forced metaphysical agreement: seek overlapping consensus on no-regret actions, disclose replayable creative process, and keep technological diversity local so one vendor’s voice does not become everyone’s.",
+                "chapter": "AI’s social position must accommodate irreconcilable worldviews"
+              },
+              {
+                "id": "answer-11",
+                "question": "As AI scales, how do individual rights grow with it—and where does final responsibility stop?",
+                "answer": "Push decisions to the smallest capable scale, keep processing and post-training local where possible, and make verification plus the right to switch preconditions. Responsibility must stay attached to a reachable layer; it cannot dissolve across models, vendors and committees.",
+                "chapter": "Responsibility must not evaporate along the chain"
+              }
+            ]
+          }
+        ]
       },
       "map": {
-        "title": "Field map",
-        "lead": "Read the five, then find yourself. Each arc links two far-apart corners that turn out to want the same thing.",
+        "title": "Where the questions began",
+        "lead": "The five roles were an editorial reading of registration responses, not a taxonomy of attendees. They remain here as provenance: where questions entered the room, not what the room concluded.",
         "imageAlt": "Five illustrated figures around a lit centre: the Translator in the middle, the Bridgewright and the Weaver above, the Craftkeeper and the Companion below, with arrows running between four rim labels for crowd, governance, self and building.",
-        "caption": "Placement and archetypes are editorial readings of what people wrote when they registered.",
+        "caption": "An editorial map of the questions before the talk. The answered record above now carries the conclusions.",
         "axesTitle": "Four directions",
         "axes": [
           {
@@ -696,39 +819,9 @@
           }
         ]
       },
-      "cycles": {
-        "title": "Four uncommon-ground arcs",
-        "lead": "Common ground is what puts us in one room. These four arcs go one step further: two kinds of people who start in far-apart corners and arrive at the same conclusion. Each carries one move for the day itself.",
-        "items": [
-          {
-            "id": "tool-and-uncaught",
-            "from": "bridgewright",
-            "to": "companion",
-            "body": "One side has built the tool and has no people; the other has the people and no tool. The move: put the tool in the group the carer is already in, one group before any talk of scale."
-          },
-          {
-            "id": "guilt-and-rule",
-            "from": "craftkeeper",
-            "to": "weaver",
-            "body": "Private guilt about using these systems meets other people's question about who gets the gains. The move: provenance and credit. Give a craft an origin and it is worth something again."
-          },
-          {
-            "id": "graduation-deadline",
-            "from": "weaver",
-            "to": "companion",
-            "body": "One person asks which institution most needs redesigning; another asks what the world looks like the day she graduates. The move: set the review date on one real child's graduation."
-          },
-          {
-            "id": "right-to-refuse",
-            "from": "bridgewright",
-            "to": "craftkeeper",
-            "body": "The right to know, to question and to refuse is being written into agent systems at one end, and into one working life at the other. The move: write the same rights in both places."
-          }
-        ]
-      },
       "speakers": {
-        "title": "People holding the room",
-        "lead": "Together they bring abstract alignment questions back to institutions, care and the everyday right to exit.",
+        "title": "Voices on the record",
+        "lead": "The answers above were carried by Audrey Tang and Tenzin Yangtso, in conversation with the host and the room.",
         "items": [
           {
             "id": "audrey-tang",
@@ -756,123 +849,7 @@
           }
         ]
       },
-      "prep": {
-        "title": "Two actions before arrival",
-        "lead": "The pool is already seeded with anonymous questions, each one rewritten from what several people wrote at registration. Signal resonance with an upvote, then add the question nobody has asked yet, in your own words.",
-        "note": "Seeds are a starting point, and the pool keeps growing in the room. Every question receives a written response afterwards, at any vote count.",
-        "steps": [
-          {
-            "index": "01",
-            "title": "Upvote",
-            "body": "Browse the seeds and upvote what resonates. The facilitators watch the count live, and anyone can still raise a question on the day."
-          },
-          {
-            "index": "02",
-            "title": "Revise and add",
-            "body": "If your thinking has changed since registering, publish a new question in your own words."
-          }
-        ],
-        "seedsTitle": "Already in the pool",
-        "seedsNote": "Anonymous, and each one is a rewrite of several people at once. If none of these is your question, that is the useful result: publish yours.",
-        "seeds": [
-          {
-            "id": "seed-01",
-            "text": "What kind of future does AI finally take a society towards? A sober reading of it, and the hope that is still held onto.",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-02",
-            "text": "Taiwan keeps getting cited as a precedent. Which parts have been told too beautifully, and which still have a long way to go?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-03",
-            "text": "Public fact-checking, and the uses that reduce everyday harm: could those be free services, carried by local compute?",
-            "archetype": "bridgewright",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-04",
-            "text": "Things are moving this fast. Standing where one person stands, how is a day lived, and where does the mind rest?",
-            "archetype": "craftkeeper",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-05",
-            "text": "Every use of a large language model brings a guilt that is hard to name. Where can it be set down, or eased?",
-            "archetype": "craftkeeper",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-06",
-            "text": "If only one institutional change can be pushed first, which is most likely to actually land? Could it be tried small and locally first?",
-            "archetype": "weaver",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-07",
-            "text": "People shaped by a system's decisions who were never in its design: by what mechanism do they get to know, to question, to say no, and to change the rules together?",
-            "archetype": "bridgewright",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-08",
-            "text": "When generated content is past reading and human and machine are hard to tell apart, how is the last gate designed? What is trust still resting on?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-09",
-            "text": "To help each other out of the circle where only similar voices are heard: what can be started tonight?",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-10",
-            "text": "AI's fast answers are good at pleasing. How do you keep a slower judgement, for yourself and for the people learning alongside you?",
-            "archetype": "companion",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-11",
-            "text": "Who is accommodating whom in reverse alignment? If a society would slowly catch up anyway, what makes this time different?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-12",
-            "text": "The data comes off us, and the gains tend to flow elsewhere. How do the gains come back, how does the local hold the say, and how does anyone say no?",
-            "archetype": "weaver",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-13",
-            "text": "Answers have become very easy to get. What is still worth leaving for a person to learn? In teaching and in care work, what gets adjusted first?",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-14",
-            "text": "When work is being rewritten by AI, is the thing that jams the technology, the process, or the people? And when it goes wrong, on whom does the responsibility land?",
-            "archetype": "weaver",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-15",
-            "text": "Without leaning on big government or big business, what new ways of working could bring partners from all over the world together?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-16",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught",
-            "text": "Who gets left behind in a transition? Carers, slower learners, people shut out of the gains: where should support begin?"
-          }
-        ],
-        "cta": {
-          "label": "Open the question pool",
-          "href": "https://sli.do/20260829",
-          "external": true
-        }
-      },
-      "source": "Source: approved Luma registrations, bios and questions."
+      "source": "Source: the public event transcript, 29 Aug 2026. The five-role map is an editorial reading of registration responses; the eleven answers are compressions of the record and should be checked against it."
     },
     "closing": {
       "lines": [
@@ -1795,56 +1772,179 @@
     },
     "event": {
       "eventId": "platform-originals-2026-08",
-      "metaTitle": "你在這裡 · 2026 年 8 月 29 日，台北",
-      "metaDescription": "月台專列「反向對齊」8 月 29 日臺北場的行前頁：五種姿態、四條罕見共識的弧線，以及一個從任何地方都打得開的匿名提問池。",
-      "eyebrow": "行前一頁 · 2026.08.29",
+      "metaTitle": "你在這裡 · 現場真正回答了什麼",
+      "metaDescription": "月台「反向對齊」臺北場的會後紀錄：現場真正回答的十一條問題主線、五個治理動作，以及完整公開逐字稿。",
+      "eyebrow": "散場之後 · 2026.08.29",
       "title": "你在這裡",
-      "subtitle": "一張關於我們所承載之物的地圖",
-      "body": "一張進場前的共同座標，從大家報名時寫下的字裡讀出來。找到你的位置、你旁邊的角落，以及從最遠那一端抵達同一個問題的人。",
+      "subtitle": "十一道問題，五個站得住腳的動作。",
+      "body": "那張圖先讓人找到位置；現在，紀錄接手。這裡把公開逐字稿中現場真正回答的十一條主線，重新編成可查驗的主張、界線與下一步。",
       "stats": [
         {
-          "label": "姿態",
+          "label": "回答主線",
+          "value": "11"
+        },
+        {
+          "label": "治理動作",
           "value": "5"
         },
         {
-          "label": "視角路徑",
-          "value": "4"
-        },
-        {
-          "label": "共同場域",
-          "value": "1"
+          "label": "公開逐字稿",
+          "value": "華文 · EN"
         }
       ],
       "homeLabel": "回到 Reverse Alignment",
-      "attend": {
-        "lead": "in-person",
-        "title": "兩種參與方式",
-        "when": "2026 年 8 月 29 日（六）13:30 報到，14:00 準時開始，16:30 結束，場地開放至 18:00（台北時間 UTC+8）。",
-        "venue": "SPARKFUL 12F：台北市大同區重慶北路一段 1-1 號，台北地下街 Y15 出口旁。",
+      "record": {
+        "eyebrow": "公開紀錄",
+        "title": "現場散了，紀錄仍然敞開。",
+        "when": "2026.08.29 · 14:00–16:30（UTC+8）",
+        "place": "臺北 · SPARKFUL",
+        "body": "完整逐字稿保留每一輪問答，提供華文與英文版本。下方卡片是答案的濃縮，不代替講者原話。",
         "transcript": {
-          "label": "閱讀逐字稿",
+          "label": "閱讀公開逐字稿",
           "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
           "external": true
-        },
-        "transcriptNote": "已公開紀錄。華文與英文，每一段都可以引用。",
-        "inPerson": {
-          "label": "前往 Luma 報名",
-          "href": "https://luma.com/pzkyaeuz",
-          "external": true
-        },
-        "inPersonNote": "台北現場，免費，需經主辦審核。",
-        "remote": {
-          "label": "把你的問題放進提問池",
-          "href": "https://sli.do/20260829",
-          "external": true
-        },
-        "remoteNote": "不必到場。提問池在講座前與進行中都開放，會後每一題都會有文字回覆，不論你是否在現場。"
+        }
+      },
+      "principles": {
+        "title": "五個站得住腳的動作",
+        "lead": "十一條已回答的主線，一再回到同五種做法。它們不是口號；每一項都會改變誰能停下系統、檢查系統、換掉系統。",
+        "items": [
+          {
+            "id": "reversible-first",
+            "title": "先分可逆與不可逆。",
+            "body": "能復原的事，小規模快速試；生物、資安、基礎設施等不可逆傷害，必須在部署前驗測並設下約束。"
+          },
+          {
+            "id": "consequence-names-risk",
+            "title": "讓承受後果的人命名風險。",
+            "body": "測試集必須容得下受影響者補上實驗室沒想到的傷害，否則再完整也只是封閉檔案。"
+          },
+          {
+            "id": "legible-receipts",
+            "title": "留下看得懂的憑據。",
+            "body": "決策、版本、申訴與修復都要可讀、可追、可交接，而且要比產生它們的模型活得更久。"
+          },
+          {
+            "id": "local-replaceable",
+            "title": "讓能力留在本地，也能替換。",
+            "body": "資料、算力與累積的技藝靠近社群；模型與駕馭它的工具能作為不同層次分開更換。"
+          },
+          {
+            "id": "verify-exit",
+            "title": "能驗證，才有真的退出權。",
+            "body": "不能證明發生過什麼、也不能帶著紀錄換系統的權利，只是承諾，不是控制。"
+          }
+        ]
+      },
+      "questions": {
+        "eyebrow": "現場真正回答了什麼",
+        "title": "從紀錄重新編成的十一道問題",
+        "lead": "不是可能有人想問的問題，也不是仍在變動的票數。這十一條，就是公開逐字稿實際留下的答案主線，順序依照現場展開的次序。",
+        "answerLabel": "答案濃縮",
+        "chapterLabel": "逐字稿章節",
+        "linkLabel": "連到這道問題",
+        "groups": [
+          {
+            "id": "limits",
+            "title": "在傷害發生前畫線",
+            "lead": "先看後果：什麼可以復原、誰有資格命名傷害，以及轉譯對圖上缺席的人負有什麼責任。",
+            "items": [
+              {
+                "id": "answer-01",
+                "question": "為什麼不能像過去幾波科技一樣，等市場慢慢追上 AI？",
+                "answer": "因為等待的代價可能不可逆。可逆的實驗，小而快地做；生物、資安、基礎設施等不可逆風險，部署前先驗測。上線之後，版本、申訴與修復都要留下紀錄。",
+                "chapter": "可逆處自由試驗；不可逆處加強驗測、問責與制度約束"
+              },
+              {
+                "id": "answer-02",
+                "question": "模型實驗室根本沒想到的風險，在地社群要怎麼送進測試？",
+                "answer": "讓承受後果的人在驗測流程裡有正式位置。社群語料、開放權重的後訓練，以及從生活傷害回到模型的公開路徑，才能把「回饋」變成可驗測的案例，而不是鎖住的檔案。",
+                "chapter": "讓承受後果的人，也能命名風險"
+              },
+              {
+                "id": "answer-03",
+                "question": "找到共識之後，到做出可問責的決定之間，還缺什麼？",
+                "answer": "缺的是轉譯。vTaiwan 三週找到罕見共識，制度與法律卻花了約三年，而且仍漏掉沒時間或用不了工具的人。工作現場也一樣：要有可讀的中介工藝品、版本紀錄，以及為不可逆決定負責的人。",
+                "chapter": "罕見共識不是政策本身，轉譯才是治理"
+              }
+            ]
+          },
+          {
+            "id": "judgment",
+            "title": "讓判斷仍然能被追問",
+            "lead": "一項決定需要溯源、摩擦力，也需要一個仍然承擔不可逆部分的人。",
+            "items": [
+              {
+                "id": "answer-04",
+                "question": "如果速度與排行榜分數都不是目標，AI 系統該最佳化什麼？",
+                "answer": "最佳化群體之間的關係：能不能讓衝突降溫、讓人合作，也讓照顧變得更好。模型若贏了榜單，卻把同理心磨掉，就沒有對齊它進入的社群。",
+                "chapter": "對齊的是群體之間的關係，不是單一榜單"
+              },
+              {
+                "id": "answer-05",
+                "question": "生成內容多到看不完時，信任可以放在哪裡？做系統的人第一步又該做什麼？",
+                "answer": "不要靠偵測「像不像 AI」。從數位簽章、溯源、材料清單，以及可重放的輸入、權重與版本開始；再加一條安燈繩，讓受影響的人能停下或放慢系統，並讓修好的案例可以重用。",
+                "chapter": "可驗證、可替換，才有真正的退出權"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "把能力放回生活發生的地方",
+            "lead": "資料土壤、可替換的工具與社群尺度的模型，讓學習不再等於榨取。",
+            "items": [
+              {
+                "id": "answer-06",
+                "question": "資料、收益與修正怎麼留在社群裡，換供應商時又不會一起消失？",
+                "answer": "資料留在本地或加密，教訓累積在駕馭模型的工具，而不是模型供應商；相鄰層之間用開放介面分開。馬與鞍可以各自替換，退出就不等於失憶。",
+                "chapter": "照顧落地於資料土壤與在地能力"
+              },
+              {
+                "id": "answer-07",
+                "question": "角色、頭銜與工具一直變時，真正延續下來的是什麼？",
+                "answer": "是做法：示範、轉譯、公開未完成的工作，並留下別人能維護的工藝品。延續性存在於可以接手的方法，不在單一頭銜、供應商，或一個固定版本的自己。",
+                "chapter": "從角色與頭銜，回到可以共同維護的工具"
+              },
+              {
+                "id": "answer-08",
+                "question": "小型社群要怎麼用 AI，又不讓自己的語言與日常需求被壓平？",
+                "answer": "用社群自己的語料與回饋，訓練小而專用的模型；集合閒置算力；補助開放算力，而不是強迫所有人用同一個國家模型。在地翻譯、語音與查核，就足以形成真正的起點。",
+                "chapter": "小模型、地端運算與社群自己的語言"
+              }
+            ]
+          },
+          {
+            "id": "future",
+            "title": "擴張權利，不擴張預言",
+            "lead": "當尊嚴不是分數、不同世界觀能共存，而且責任仍留在人找得到的地方，未來才保持開放。",
+            "items": [
+              {
+                "id": "answer-09",
+                "question": "機器主宰所有自動評分的任務之後，人的工作還值在哪裡？",
+                "answer": "不要再跟馬賽跑。讓好奇、合作、照顧、藝術，以及把雙輸變成雙贏的能力，同時帶來尊嚴與生計；這些工作的價值，本來就不在最高分。",
+                "chapter": "工作的價值，不是自動評分裡的高分"
+              },
+              {
+                "id": "answer-10",
+                "question": "有人把 AI 當工具、有人當媒介、有人當心靈；彼此還要怎麼共同生活與創作？",
+                "answer": "靠政治哲學，而不是強迫大家接受同一套形上學：先找理由不同也能同意的無悔行動；創作過程要揭露、可重放；技術多樣性留在本地，避免一家供應商的聲音變成所有人的聲音。",
+                "chapter": "AI 的社會位置，必須容納不可調和的世界觀"
+              },
+              {
+                "id": "answer-11",
+                "question": "AI 擴張時，個人的權利怎麼同步長大？最後責任又停在哪裡？",
+                "answer": "把決定推到有能力承擔的最小尺度，能在地處理與後訓練就留在地端，並把驗證與換系統的權利列為前提。責任必須黏在一個找得到的層次上，不能消散在模型、供應商與委員會之間。",
+                "chapter": "責任不能在模型、供應商與智慧體的鏈條上蒸發"
+              }
+            ]
+          }
+        ]
       },
       "map": {
-        "title": "關懷地圖",
-        "lead": "先讀這五種，再找自己。每一條弧線把離得最遠的兩個角落接起來，結果他們要的是同一件事。",
+        "title": "問題從哪裡出發",
+        "lead": "五種角色是對報名回覆的編輯性閱讀，不是替參與者分類。它現在留下來作為溯源：標出問題進場的位置，不冒充現場得出的結論。",
         "imageAlt": "五個角色圍繞著發亮的中心：轉譯者在正中，造橋者與織網者在上方，手藝人與陪走者在下方，四邊分別標著為眾人、織造制度、為自身與打造系統，箭頭在其間流動。",
-        "caption": "位置與姿態是編者根據報名自介所做的讀法。",
+        "caption": "講座前對提問所作的編輯性地圖；真正回答出的結論，現在由上方公開紀錄承載。",
         "axesTitle": "四個方向",
         "axes": [
           {
@@ -1904,39 +2004,9 @@
           }
         ]
       },
-      "cycles": {
-        "title": "四條罕見共識的弧線",
-        "lead": "共同地面把我們湊進一間房；這四條弧線再往前一步：起點離得最遠的兩種人，最後抵達同一個結論。每一條都附一個當天就能開工的做法。",
-        "items": [
-          {
-            "id": "tool-and-uncaught",
-            "from": "bridgewright",
-            "to": "companion",
-            "body": "一邊有工具、還沒有人；一邊有人、還沒有工具。做法：把工具放進照顧者已經在用的群組，先進一個群，再談普及。"
-          },
-          {
-            "id": "guilt-and-rule",
-            "from": "craftkeeper",
-            "to": "weaver",
-            "body": "使用這些系統的私下愧疚，遇上別人「成果歸誰」的問題。做法：出處與署名。手藝有了出處，就重新值錢。"
-          },
-          {
-            "id": "graduation-deadline",
-            "from": "weaver",
-            "to": "companion",
-            "body": "一個人問最該重新設計的是哪個制度；另一個人問她畢業那天世界長什麼樣。做法：把驗收日訂在一個具體孩子的畢業典禮。"
-          },
-          {
-            "id": "right-to-refuse",
-            "from": "bridgewright",
-            "to": "craftkeeper",
-            "body": "知情、質疑、拒絕，一端正被寫進代理人系統，另一端是一個人的工作日常。做法：同一組權利，兩處都寫。"
-          }
-        ]
-      },
       "speakers": {
-        "title": "講者與主持",
-        "lead": "兩位共同把抽象的對齊問題拉回制度、照顧與可退出的日常實作。",
+        "title": "紀錄中的兩道聲音",
+        "lead": "上方答案由唐鳳與 Tenzin Yangtso 展開，也由主持人與現場共同追問。",
         "items": [
           {
             "id": "audrey-tang",
@@ -1964,123 +2034,7 @@
           }
         ]
       },
-      "prep": {
-        "title": "行前兩件事",
-        "lead": "提問池裡已經有一批匿名的種子題，每一題都是把好幾個人報名時寫的字重寫成一問。先用贊成票標出共鳴，再把還沒有人問的那一題，用你自己的話發出來。",
-        "note": "種子題是起點，提問池會在現場持續長出新題。會後每一題都會有文字回覆，票數多少都一樣。",
-        "steps": [
-          {
-            "index": "01",
-            "title": "按讚",
-            "body": "瀏覽種子題，為有共鳴的問題按讚。主持人會即時看到票數，現場也隨時可以舉手提問。"
-          },
-          {
-            "index": "02",
-            "title": "重寫與新增",
-            "body": "若報名後有了新想法，請直接用自己的文字發布新題。"
-          }
-        ],
-        "seedsTitle": "池子裡已經有的",
-        "seedsNote": "都是匿名的，每一題都是好幾個人的合寫。如果沒有一題是你的問題，那正是有用的結果：把你的發出來。",
-        "seeds": [
-          {
-            "id": "seed-01",
-            "text": "AI 最終會把社會帶向什麼樣的未來？想聽務實的評估，也想聽不放棄的希望。",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-02",
-            "text": "臺灣常被當成先例：哪些被講得太漂亮？哪些其實還有很長的路要走？",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-03",
-            "text": "公共查證、減少民生損害的用途，能否做成免費、由在地運算支撐的服務？",
-            "archetype": "bridgewright",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-04",
-            "text": "變化這麼快，站在個人的位置，日子可以怎麼過、心可以怎麼安？",
-            "archetype": "craftkeeper",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-05",
-            "text": "每次使用大型語言模型都有股說不清的愧疚，可以怎麼安放、怎麼緩一緩？",
-            "archetype": "craftkeeper",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-06",
-            "text": "若只能先推一項制度改變，哪一項最可能真正落地？能不能在本地先小規模嘗試？",
-            "archetype": "weaver",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-07",
-            "text": "被系統決定影響、卻沒參與設計的人，靠什麼機制知情、質疑、說不、一起改規則？",
-            "archetype": "bridgewright",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-08",
-            "text": "生成內容多到看不完、人機愈來愈難分時，最後的把關怎麼設計？我們還能憑什麼信任？",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-09",
-            "text": "想幫彼此走出只聽見相似聲音的圈子，有哪些今晚就能開始的做法？",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-10",
-            "text": "AI 快速生成的答案很會討好人：怎麼幫自己和一起學習的人，守住慢下來的判斷力？",
-            "archetype": "companion",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-11",
-            "text": "「反向對齊」到底是誰配合誰？如果社會本來就會慢慢跟上，這次為什麼不一樣？",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-12",
-            "text": "資料從我們身上來，好處卻常流向別處。要怎麼讓好處回得來、在地作主、也能說不？",
-            "archetype": "weaver",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-13",
-            "text": "答案變得很容易拿到，還有什麼值得留給人自己學？在教學和照顧的現場，要先做什麼調整？",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-14",
-            "text": "工作被 AI 改寫的時候，卡住的是技術、流程，還是人？出了錯，責任落在誰身上？",
-            "archetype": "weaver",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-15",
-            "text": "如果不靠大政府也不靠大企業，要用哪些新的做事方式，才能結合全世界的夥伴？",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-16",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught",
-            "text": "轉型時誰會被落下？照顧者、學得慢的人、分不到成果的人，要先接住哪一處？"
-          }
-        ],
-        "cta": {
-          "label": "開啟提問池",
-          "href": "https://sli.do/20260829",
-          "external": true
-        }
-      },
-      "source": "資料來源：Luma 報名自介與提問。"
+      "source": "來源：2026 年 8 月 29 日公開活動逐字稿。五種角色是對報名回覆的編輯性閱讀；上方十一則答案是紀錄的濃縮，應回到逐字稿查驗。"
     },
     "closing": {
       "lines": [
@@ -3154,56 +3108,179 @@
     },
     "event": {
       "eventId": "platform-originals-2026-08",
-      "metaTitle": "あなたはここにいる · 2026年8月29日、台北",
-      "metaDescription": "Platform 月台が2026年8月29日に台北で開催する「リバース・アラインメント」の事前読み物。5つのアーキタイプ、意外な共通点を結ぶ4本の弧、そしてどこからでも開ける匿名の質問プール。",
-      "eyebrow": "フィールドノート · 2026年8月29日",
+      "metaTitle": "あなたはここにいる · 会場が実際に答えたこと",
+      "metaDescription": "台北のPlatform 月台「リバース・アライメント」トークの会後記録。現場が実際に答えた11の質問、5つの統治の実践、そして完全な公開逐語録。",
+      "eyebrow": "会場終了後 · 2026年8月29日",
       "title": "あなたはここにいる",
-      "subtitle": "私たちが担うものの地図",
-      "body": "入場前に共有する座標系です。皆さんが申し込み時に書いた言葉から読み取りました。自分の位置と、その隣の立場、そして最も遠い側から同じ問いにたどり着いた人を見つけてください。",
+      "subtitle": "11の問い。そこから残った5つの実践。",
+      "body": "地図が人々をその場に置いた。あとは記録が役割を担う。公開逐語録から検証可能な主張・限界・次の一手として再構成した、現場の11の質問に関する回答です。",
       "stats": [
         {
-          "label": "アーキタイプ",
+          "label": "回答済みスレッド",
+          "value": "11"
+        },
+        {
+          "label": "統治の動き",
           "value": "5"
         },
         {
-          "label": "経路",
-          "value": "4"
-        },
-        {
-          "label": "共通の場",
-          "value": "1"
+          "label": "公開記録",
+          "value": "EN · 華文"
         }
       ],
       "homeLabel": "Reverse Alignmentへ戻る",
-      "attend": {
-        "lead": "remote",
-        "title": "2つの参加方法",
-        "when": "2026年8月29日（土）。受付は午後1時30分、開始は午後2時、終了は午後4時30分。会場は午後6時まで開放されています。台北時間（UTC+8）。",
-        "venue": "SPARKFULオフィス12F、台北市大同区重慶北路一段1-1号、台北地下街 Y15 出口そば。",
+      "record": {
+        "eyebrow": "公開記録",
+        "title": "会場は終わった。記録は公開されたまま。",
+        "when": "2026年8月29日 · 14:00–16:30（UTC+8）",
+        "place": "台北 · SPARKFUL",
+        "body": "英語または華文の逐語録を発言ごとに読めます。以下のカードは回答の要約であり、話者の発言の代替ではありません。",
         "transcript": {
-          "label": "文字起こしを読む",
+          "label": "公開逐語録を読む",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
-        },
-        "transcriptNote": "公開記録。華文と英語、すべての発言を引用できます。",
-        "inPerson": {
-          "label": "Lumaで申し込む",
-          "href": "https://luma.com/pzkyaeuz",
-          "external": true
-        },
-        "inPersonNote": "台北の会場への参加。無料、主催者承認制。",
-        "remote": {
-          "label": "質問をプールに追加する",
-          "href": "https://sli.do/20260829",
-          "external": true
-        },
-        "remoteNote": "移動は不要です。質問プールは講演前から講演中まで開いており、どこから参加しても、終了後にすべての質問へ文章で回答します。"
+        }
+      },
+      "principles": {
+        "title": "最後まで残った5つの実践",
+        "lead": "11の回答をたどると、会場は何度も同じ5つの実践に立ち戻っていた。スローガンではない。どれも、誰がシステムを止め、検証し、置き換えられるかを変える。",
+        "items": [
+          {
+            "id": "reversible-first",
+            "title": "可逆性で分類する。",
+            "body": "可逆的な実験は小規模かつ迅速に実施する。生物、サイバー、インフラの害のように不可逆なものは、展開前に評価と制約を課す。"
+          },
+          {
+            "id": "consequence-names-risk",
+            "title": "被害を受ける側にリスクを名付けてもらう。",
+            "body": "実験室が想定していなかった被害を、被害を受ける人自身が加えられるまで評価セットは未完成である。さもなければ、それは閉じたアーカイブにすぎない。"
+          },
+          {
+            "id": "legible-receipts",
+            "title": "読める記録を残す。",
+            "body": "意思決定、バージョン、異議申立て、修復は、意思決定を生んだモデルが消えても、読めて・追跡できて・引き継げる形で残る必要がある。"
+          },
+          {
+            "id": "local-replaceable",
+            "title": "能力は地域内に置き、置換可能にする。",
+            "body": "データ、計算資源、蓄積されたノウハウはコミュニティに近い場所に保つ。モデルとその制御基盤は、別々に交換できる層として設計する。"
+          },
+          {
+            "id": "verify-exit",
+            "title": "検証したうえで、退出権を現実化する。",
+            "body": "何が起きたかの証明も、記録を他のシステムへ移行できる仕組みもない権利は、約束事であって制御ではない。"
+          }
+        ]
+      },
+      "questions": {
+        "eyebrow": "実際に回答された内容",
+        "title": "記録から再構成した11の質問",
+        "lead": "人々が考えうる質問ではない。ライブの投票結果でもない。これが公開逐語録に実際残る11の回答スレッドであり、会話の展開順に並べている。",
+        "answerLabel": "回答（要約）",
+        "chapterLabel": "逐語録の章",
+        "linkLabel": "この質問へのリンク",
+        "groups": [
+          {
+            "id": "limits",
+            "title": "害が生じる前に線を引く",
+            "lead": "結果から入る。何が取り消し可能か、誰が被害を命名する権限を持つか、図から漏れた人へ翻訳が何を負っているかを見極める。",
+            "items": [
+              {
+                "id": "answer-01",
+                "question": "なぜ市場に任せて、AIが過去の技術のように自然に追いつくのを待たないのか。",
+                "answer": "遅延コストは取り返しがつかないことがある。可逆的な実験は小さく、早く回す。生物・サイバー・インフラの害など不可逆なものは事前評価を義務化し、公開するものはすべてバージョン管理・報告・修復の記録を残す。",
+                "chapter": "可逆の領域では自由に実験し、不可逆の領域では検証と制約を強める"
+              },
+              {
+                "id": "answer-02",
+                "question": "モデル研究所が想定しなかったリスクを、コミュニティはどう定義すべきか。",
+                "answer": "被害を受ける人々を評価ループの中核に置く。コミュニティの言語データ、オープンウェイトの後学習、生活上の被害からモデルへ戻る公開経路を通して、フィードバックを閉じたアーカイブではなく評価可能な事例に変える。",
+                "chapter": "結果を負担する人がリスクを命名する"
+              },
+              {
+                "id": "answer-03",
+                "question": "共通点を見つけることと、説明責任を伴う意思決定の間には何が必要か。",
+                "answer": "翻訳である。vTaiwanでは希少な合意が約3週間で得られたが、政策対応は約3年かかり、それでも時間やアクセスを持たない人々は取りこぼされた。現場では、読める中間成果物・版管理・不可逆判断の責任者が必要になる。",
+                "chapter": "希少な合意は政策そのものではなく、統治は翻訳が担う"
+              }
+            ]
+          },
+          {
+            "id": "judgment",
+            "title": "判断が問われ続けるようにする",
+            "lead": "意思決定には起源情報、摩擦、そして不可逆な部分を担い続ける人物が必要だ。",
+            "items": [
+              {
+                "id": "answer-04",
+                "question": "速度やリーダーボードの得点が目的でないなら、AIシステムは何を最適化すべきか。",
+                "answer": "人間関係の健全性である。人々が衝突を鎮め、協力し、互いをケアできるかどうか。ベンチマークで高得点を取っても共感を奪うモデルは、入り込むコミュニティに対してアライメントしていない。",
+                "chapter": "対象は単一のリーダーボードではなく、集団間の関係性"
+              },
+              {
+                "id": "answer-05",
+                "question": "生成コンテンツが読解速度を超えると、信頼はどこに立つのか。そして開発者はまず何をすべきか。",
+                "answer": "「AIらしさ」の検出ではない。署名、来歴、部品表、実行条件を記録した入力・重み・版から始める。次にアンドン・コードを設け、被害を受ける人が停止や減速をできるようにし、修復済みの事例を再利用可能にする。",
+                "chapter": "本当の退出を成立させるのは検証可能性と置換可能性だけだ"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "生活が営まれる場に能力を置く",
+            "lead": "データ土壌、交換可能な道具、コミュニティ規模のモデルが、学習を搾取化へと傾かせない。",
+            "items": [
+              {
+                "id": "answer-06",
+                "question": "データ、利得、訂正はコミュニティ内に残したまま、ベンダーが変わっても消えないためにはどうするか。",
+                "answer": "データはローカル、あるいは暗号化して保持し、学習で得た教訓はモデル提供者ではなく制御ハーネス側に蓄積する。隣接レイヤーはオープンインターフェイスで分離し、馬と鞍が別々に交換できるなら、退出は記憶喪失を意味しない。",
+                "chapter": "ケアはデータ土壌と地域の能力として根づく"
+              },
+              {
+                "id": "answer-07",
+                "question": "役割・肩書・道具が変わり続けても、何が持続するのか。",
+                "answer": "実践である。示し、翻訳し、未完成の作業を公開し、他者が保守できる成果物を残すこと。継続性は、固定的な役割や単一のベンダー、固定バージョンの自己にではなく、引き継げる方法にある。",
+                "chapter": "役割や肩書から、皆で維持できる道具へ戻る"
+              },
+              {
+                "id": "answer-08",
+                "question": "小さなコミュニティはAIを使いながら、言語や日常的な要件を均質化されないようにできるか。",
+                "answer": "コミュニティ自身のコーパスとフィードバックで小型かつ専門化されたモデルを訓練し、遊休計算資源を統合し、一律の国家モデルを強制する代わりに開放的な計算資源を支援する。ローカルな翻訳、音声、照合で十分に良い出発点になる。",
+                "chapter": "小型モデル、地域計算、コミュニティ固有の言語"
+              }
+            ]
+          },
+          {
+            "id": "future",
+            "title": "予言ではなく権利を拡張する",
+            "lead": "尊厳を点数化せず、異なる世界観が併存し、責任が人の手に届く場所に残るとき、未来は開かれたままだ。",
+            "items": [
+              {
+                "id": "answer-09",
+                "question": "機械が自動採点タスクを独占した後、人間の働きの価値はどこにあるか。",
+                "answer": "馬と速さを競うのをやめる。好奇心、協力、ケア、芸術、そして誰もが損をする状況を誰もが得る状況へ変える力に、尊厳と対価を置く。こうした仕事の価値は高得点では測れない。",
+                "chapter": "労働の価値は自動テストの高スコアではない"
+              },
+              {
+                "id": "answer-10",
+                "question": "AIを道具と見る人、媒介と見る人、思考体と見る人が、どうやって同じ場で共に生き、創作できるか。",
+                "answer": "政治哲学を使い、形而上学的な一致を強要しない。立場が違っても後悔しない行動への重なりを先に見つけ、追跡・再実行できる形で創作過程を開示し、技術的多様性を地域内に保って、単一ベンダーの声が全員の声になるのを防ぐ。",
+                "chapter": "AIの社会的位置は、相容れない世界観を受け入れなければならない"
+              },
+              {
+                "id": "answer-11",
+                "question": "AIが拡大するにつれ、個人の権利はどう拡張され、最終的な責任はどこで止まるのか。",
+                "answer": "意思決定は、対応可能な最小スケールへ下ろす。可能な範囲で処理と後学習をローカルに保ち、検証とシステム変更権を前提条件として明記する。責任は人が到達可能な層に接着される必要があり、モデル・ベンダー・委員会の間で蒸発してはならない。",
+                "chapter": "責任はチェーンの途中で蒸発してはならない"
+              }
+            ]
+          }
+        ]
       },
       "map": {
-        "title": "場の地図",
-        "lead": "まず5つのアーキタイプを読み、その中に自分を見つけてください。それぞれの弧は遠く離れた2つの立場を結び、どちらも同じものを求めていることを示します。",
+        "title": "質問はどこから始まったか",
+        "lead": "五つの役割は参加申込時の回答に対する編集上の読みであり、参加者そのものの分類ではない。質問が会場へ入ってきた場所を示す来歴として残すのであって、会場の結論を示すものではない。",
         "imageAlt": "光る中心を囲む5人のイラスト人物像。中央に翻訳者、上に橋架け師と織り手、下に技の守り手と伴走者がおり、外周の4つのラベル（群衆・統治・自己・構築）のあいだを矢印が流れています。",
-        "caption": "位置づけとアーキタイプは、申し込み時に書かれた内容をもとにした編集側の読み解きです。",
+        "caption": "トーク前に作成した質問の編集マップ。回答の結論は、上の公開記録が保持している。",
         "axesTitle": "4つの方向",
         "axes": [
           {
@@ -3263,39 +3340,9 @@
           }
         ]
       },
-      "cycles": {
-        "title": "意外な共通点を結ぶ4本の弧",
-        "lead": "共通点があるから、私たちは同じ部屋に集まります。この4本の弧はそこからもう一歩進み、遠く離れた2つの立場から始めた人たちが同じ結論にたどり着く道筋を示します。それぞれに、当日から始められる行動を1つ添えています。",
-        "items": [
-          {
-            "id": "tool-and-uncaught",
-            "from": "bridgewright",
-            "to": "companion",
-            "body": "一方には道具があり、まだ人がいません。もう一方には人がいて、まだ道具がありません。やることは、ケアする人がすでに参加しているグループに道具を入れることです。規模を広げる話は、まず1つのグループで試してからです。"
-          },
-          {
-            "id": "guilt-and-rule",
-            "from": "craftkeeper",
-            "to": "weaver",
-            "body": "こうしたシステムを使う個人的な罪悪感が、成果は誰のものかという他の人の問いと出会います。やることは、出どころとクレジットを示すことです。技に出どころがあれば、再び価値を持ちます。"
-          },
-          {
-            "id": "graduation-deadline",
-            "from": "weaver",
-            "to": "companion",
-            "body": "一人は、どの制度を最も作り直す必要があるかを問い、もう一人は、自分の卒業日に世界がどうなっているかを問います。やることは、実際にいる一人の子どもの卒業日を見直しの日にすることです。"
-          },
-          {
-            "id": "right-to-refuse",
-            "from": "bridgewright",
-            "to": "craftkeeper",
-            "body": "知り、問い、拒む権利が、一方ではエージェントシステムに、もう一方では一人の働き方に書き込まれつつあります。やることは、同じ権利を両方に書くことです。"
-          }
-        ]
-      },
       "speakers": {
-        "title": "この場を担う人々",
-        "lead": "お二人は、抽象的なアラインメントの問いを、制度、ケア、そして日常に根ざした退出の権利へと結び付け直します。",
+        "title": "記録の中の声",
+        "lead": "上記の回答は唐鳳とテンジン・ヤンツォが、ホストと会場の問いを受けて展開したもの。",
         "items": [
           {
             "id": "audrey-tang",
@@ -3323,123 +3370,7 @@
           }
         ]
       },
-      "prep": {
-        "title": "来場前の2つのアクション",
-        "lead": "質問プールには、すでに匿名の種となる質問が入っています。どれも、複数の人が登録時に書いた言葉を1つの問いに書き直したものです。共感する問いに賛成票を入れ、まだ誰も問うていないことを自分の言葉で追加してください。",
-        "note": "種となる質問を出発点に、質問プールは会場でも育ち続けます。終了後には、票数が何票でも、すべての質問へ文章で回答します。",
-        "steps": [
-          {
-            "index": "01",
-            "title": "高評価",
-            "body": "種となる質問を眺め、共鳴するものに高評価を付けてください。ファシリテーターは票数をリアルタイムで見ています。当日も、誰でもその場で質問できます。"
-          },
-          {
-            "index": "02",
-            "title": "書き直して追加",
-            "body": "申し込み後に考えが変わったら、新しい問いを自分の言葉で投稿してください。"
-          }
-        ],
-        "seedsTitle": "プールにすでにある質問",
-        "seedsNote": "すべて匿名で、1つ1つが複数の人の言葉をまとめて書き直した質問です。自分の問いがこの中に見つからないことも、有意義な結果です。自分の問いを投稿してください。",
-        "seeds": [
-          {
-            "id": "seed-01",
-            "text": "AIは最終的に、社会をどのような未来へ連れていくのでしょうか？ 現実的に見ても、なお手放さない希望はどこにありますか？",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-02",
-            "text": "台湾は先例としてよく引かれますが、どの部分がきれいに語られすぎていて、どの部分にはまだ長い道のりがありますか？",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-03",
-            "text": "公共のファクトチェックや、暮らしの被害を減らす用途を、地域の計算資源で支える無料サービスにできますか？",
-            "archetype": "bridgewright",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-04",
-            "text": "変化がこれほど速い中で、一人の人間として日々をどう過ごし、心をどう落ち着かせればよいですか？",
-            "archetype": "craftkeeper",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-05",
-            "text": "大規模言語モデルを使うたび、うまく言葉にできない罪悪感があります。どう受け止め、どう和らげればよいですか？",
-            "archetype": "craftkeeper",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-06",
-            "text": "制度の変更を1つだけ先に進めるなら、実際に定着しそうなのはどれですか？ まず地域で小さく試せますか？",
-            "archetype": "weaver",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-07",
-            "text": "システムの決定に影響されながら、その設計には参加できなかった人が、知り、問い、拒み、ともにルールを変えるには、どんな仕組みが必要ですか？",
-            "archetype": "bridgewright",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-08",
-            "text": "生成コンテンツが読み切れないほど増え、人と機械の区別が難しくなったとき、最後の確認をどう設計しますか？ 何を根拠に信頼できますか？",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-09",
-            "text": "似た声しか聞こえない輪から互いに抜け出すには、今夜から何を始められますか？",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-10",
-            "text": "AIがすぐに生成する答えは、人を喜ばせるのが得意です。自分と一緒に学ぶ人が、立ち止まって判断する力を保つにはどうすればよいですか？",
-            "archetype": "companion",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-11",
-            "text": "「リバース・アラインメント」とは、そもそも誰が誰に合わせることですか？ 社会がいずれゆっくり追いつくなら、今回は何が違うのでしょうか？",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-12",
-            "text": "データは私たちから集められるのに、恩恵はよそへ流れがちです。恩恵をこちらに戻し、地域が決定権を持ち、誰もが拒めるようにするにはどうすればよいですか？",
-            "archetype": "weaver",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-13",
-            "text": "答えが簡単に手に入るようになった今、それでも人が自分で学ぶ価値があるのは何ですか？ 教育とケアの現場では、まず何を変えるべきですか？",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-14",
-            "text": "AIによって仕事が書き換えられるとき、行き詰まるのは技術、進め方、それとも人ですか？ 問題が起きたとき、責任は誰が負うのでしょうか？",
-            "archetype": "weaver",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-15",
-            "text": "大きな政府や大企業に頼らず、世界中の仲間とつながり、規模を広げるには、どんな新しいやり方がありますか？",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-16",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught",
-            "text": "移行のなかで、誰が取り残されてしまうでしょうか？ ケアを担う人、学ぶのに時間がかかる人、成果の恩恵を受け取れない人。まずどこから受け止めるべきですか？"
-          }
-        ],
-        "cta": {
-          "label": "質問プールを開く",
-          "href": "https://sli.do/20260829",
-          "external": true
-        }
-      },
-      "source": "出典：Lumaの登録情報、自己紹介、質問。"
+      "source": "出典：2026年8月29日公開イベントの逐語録。五役割マップは申し込み回答を編集的に読み替えたものであり、11件の回答は記録の圧縮版で、逐語録と照合して確認すべきである。"
     },
     "join": {
       "eyebrow": "連合に参加する",
@@ -4211,56 +4142,179 @@
     },
     "event": {
       "eventId": "platform-originals-2026-08",
-      "metaTitle": "Estás aquí · 29 de agosto de 2026, Taipéi",
-      "metaDescription": "La lectura previa a la charla Reverse Alignment de Platform 月台 en Taipéi, el 29 de agosto de 2026: cinco arquetipos, cuatro arcos de terreno común inesperado y un banco anónimo de preguntas abierto desde cualquier lugar.",
-      "eyebrow": "Nota de campo · 29 de agosto de 2026",
+      "metaTitle": "Estás aquí · Lo que la sala respondió",
+      "metaDescription": "Una nota de campo tras la charla Reverse Alignment de Platform 月台 en Taipéi: once preguntas que la sala respondió en directo, cinco movimientos de gobernanza que se sostienen y la transcripción pública completa.",
+      "eyebrow": "Tras la sala · 29 de agosto de 2026",
       "title": "Estás aquí",
-      "subtitle": "Un mapa de lo que cargamos",
-      "body": "Un sistema de coordenadas compartido antes de entrar a la sala, trazado a partir de lo que cada persona escribió al registrarse. Encuentra tu posición, los rincones cercanos y a quien llegó a la misma pregunta desde el extremo más lejano.",
+      "subtitle": "Once preguntas. Cinco movimientos que se sostienen.",
+      "body": "El mapa sirvió para ubicarnos. Ahora el registro hace el trabajo: once preguntas que la sala respondió en directo, extraídas de la transcripción pública en forma de afirmaciones, límites y siguientes pasos verificables.",
       "stats": [
         {
-          "label": "Arquetipos",
+          "label": "Hilos respondidos",
+          "value": "11"
+        },
+        {
+          "label": "Movimientos de gobernanza",
           "value": "5"
         },
         {
-          "label": "Caminos",
-          "value": "4"
-        },
-        {
-          "label": "Campo compartido",
-          "value": "1"
+          "label": "Registro público",
+          "value": "EN · 華文"
         }
       ],
       "homeLabel": "Volver a Reverse Alignment",
-      "attend": {
-        "lead": "remote",
-        "title": "Dos formas de participar",
-        "when": "Sábado 29 de agosto de 2026. Acreditación 13:30, comienzo 14:00, cierre 16:30; el espacio permanece abierto hasta las 18:00. Hora de Taipéi, UTC+8.",
-        "venue": "Oficina de SPARKFUL, planta 12, 1-1, Sec. 1, Chongqing N. Rd., Datong, Taipéi, junto a la salida Y15 de Taipei City Mall.",
+      "record": {
+        "eyebrow": "Registro público",
+        "title": "La sala terminó. El registro sigue abierto.",
+        "when": "29 de agosto de 2026 · 14:00–16:30 (UTC+8)",
+        "place": "Taipéi · SPARKFUL",
+        "body": "Lee la transcripción completa, intervención por intervención, en inglés o 華文. Las tarjetas a continuación sintetizan las respuestas; no reemplazan las palabras de quienes hablaron.",
         "transcript": {
-          "label": "Lee la transcripción",
+          "label": "Lee la transcripción pública",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
-        },
-        "transcriptNote": "Ya en el registro público. En inglés y 華文, cada intervención se puede citar.",
-        "inPerson": {
-          "label": "Regístrate en Luma",
-          "href": "https://luma.com/pzkyaeuz",
-          "external": true
-        },
-        "inPersonNote": "En la sala, en Taipéi, gratis y con aprobación del organizador.",
-        "remote": {
-          "label": "Añade tu pregunta al banco",
-          "href": "https://sli.do/20260829",
-          "external": true
-        },
-        "remoteNote": "Puedes participar desde cualquier lugar. El banco está abierto antes y durante la charla, y después cada pregunta recibe una respuesta por escrito, incluidas las enviadas por quienes participan a distancia."
+        }
+      },
+      "principles": {
+        "title": "Cinco movimientos que se sostuvieron",
+        "lead": "A lo largo de once hilos respondidos, la sala volvió una y otra vez a los mismos movimientos operativos. No son consignas: cada uno cambia quién puede detener, auditar o sustituir un sistema.",
+        "items": [
+          {
+            "id": "reversible-first",
+            "title": "Distingue por reversibilidad.",
+            "body": "Experimenta con rapidez donde el daño pueda deshacerse. Evalúa y establece restricciones antes del despliegue donde el daño biológico, cibernético o de infraestructura no tenga vuelta atrás."
+          },
+          {
+            "id": "consequence-names-risk",
+            "title": "Que la consecuencia nombre el riesgo.",
+            "body": "Un conjunto de pruebas está incompleto hasta que las personas afectadas puedan añadir el daño que un laboratorio no supo prever. De lo contrario, solo es un archivo cerrado."
+          },
+          {
+            "id": "legible-receipts",
+            "title": "Deja comprobantes legibles.",
+            "body": "Las decisiones, versiones, apelaciones y reparaciones deben permanecer legibles, trazables y transmisibles mucho después de que el modelo que las produjo ya no esté."
+          },
+          {
+            "id": "local-replaceable",
+            "title": "Mantén la capacidad local y sustituible.",
+            "body": "Conserva los datos, el cómputo y el oficio acumulado cerca de la comunidad. Haz que el modelo y las herramientas que lo operan sean capas separadas y sustituibles."
+          },
+          {
+            "id": "verify-exit",
+            "title": "Verifica; solo entonces la salida es real.",
+            "body": "Un derecho sin pruebas de lo ocurrido y sin una vía para migrar el registro a otro sistema es una promesa, no una salvaguarda."
+          }
+        ]
+      },
+      "questions": {
+        "eyebrow": "Lo que realmente se respondió",
+        "title": "Once preguntas, extraídas del registro",
+        "lead": "No son las preguntas que la gente pudo haber formulado. Tampoco es una votación en directo. Estos son los once hilos de respuesta que la transcripción pública realmente contiene, en el orden en que la conversación los abrió.",
+        "answerLabel": "Respuesta resumida",
+        "chapterLabel": "Capítulo de la transcripción",
+        "linkLabel": "Enlace a esta pregunta",
+        "groups": [
+          {
+            "id": "limits",
+            "title": "Trazar la línea antes del daño",
+            "lead": "Comienza por las consecuencias: qué puede deshacerse, quién tiene legitimidad para nombrar el daño y qué debe la traducción a quienes quedaron fuera del mapa.",
+            "items": [
+              {
+                "id": "answer-01",
+                "question": "¿Por qué no dejar que el mercado alcance a la IA, como ocurrió con tecnologías anteriores?",
+                "answer": "Porque el coste de esperar puede ser irreversible. Deja que los experimentos reversibles avancen de forma ágil y a pequeña escala; exige evaluación previa ante daños biológicos, cibernéticos y de infraestructura; y luego registra versiones, reportes y reparaciones de todo lo que se despliegue.",
+                "chapter": "Experimentar libremente donde sea reversible; restringir donde sea irreversible"
+              },
+              {
+                "id": "answer-02",
+                "question": "¿Cómo puede una comunidad nombrar un riesgo que un laboratorio de modelos no supo probar?",
+                "answer": "Dando a las personas afectadas un lugar legítimo en el ciclo de evaluación. Los datos lingüísticos comunitarios, el postentrenamiento con pesos abiertos y una vía pública que conecte el daño vivido con el modelo convierten la retroalimentación en un caso evaluable en lugar de un archivo cerrado.",
+                "chapter": "Que quienes asumen las consecuencias nombren los riesgos"
+              },
+              {
+                "id": "answer-03",
+                "question": "¿Qué falta entre encontrar terreno común y tomar una decisión con rendición de cuentas?",
+                "answer": "La traducción. vTaiwan halló terreno común inusual en tres semanas; las políticas tardaron cerca de tres años y aun así dejaron fuera a personas sin tiempo o sin acceso efectivo. En el trabajo, el equivalente son artefactos legibles, historial de versiones y una persona responsable de las decisiones irreversibles.",
+                "chapter": "El terreno común inusual no es la política; la traducción es la gobernanza"
+              }
+            ]
+          },
+          {
+            "id": "judgment",
+            "title": "Mantener el juicio sujeto a rendición de cuentas",
+            "lead": "Una decisión necesita trazabilidad, fricción y una persona que aún cargue con la parte irreversible.",
+            "items": [
+              {
+                "id": "answer-04",
+                "question": "Si la velocidad y las tablas de clasificación no son el objetivo correcto, ¿qué debería optimizar un sistema de IA?",
+                "answer": "La salud de las relaciones: si las personas pueden calmar conflictos, cooperar y cuidarse mejor entre sí. Un modelo que encabeza un benchmark mientras erosiona la empatía no está alineado con la comunidad en la que entra.",
+                "chapter": "Alinear la relación entre grupos, no una tabla de clasificación"
+              },
+              {
+                "id": "answer-05",
+                "question": "Cuando el contenido generado desborda nuestra capacidad de lectura, ¿en qué se puede apoyar la confianza y qué debería hacer primero quien construye?",
+                "answer": "No en detectar un supuesto «rastro de IA». Hay que partir de firmas digitales, procedencia, una lista de componentes y entradas, pesos y versiones que permitan repetir la ejecución; después, incorporar una cuerda Andon para que las personas afectadas puedan detener o ralentizar el sistema y reutilizar cada caso reparado.",
+                "chapter": "Solo la auditabilidad y la sustituibilidad hacen real el derecho a salir"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "Poner la capacidad donde transcurre la vida",
+            "lead": "El sustrato de datos, las herramientas sustituibles y los modelos a escala comunitaria evitan que el aprendizaje se convierta en extracción.",
+            "items": [
+              {
+                "id": "answer-06",
+                "question": "¿Cómo permanecen los datos, beneficios y correcciones en la comunidad, y cómo sobreviven al cambio de proveedor?",
+                "answer": "Manteniendo los datos locales o cifrados, acumulando los aprendizajes en el entorno operativo y no en el proveedor del modelo, y separando las capas adyacentes mediante interfaces abiertas. Si el caballo y la silla de montar pueden sustituirse por separado, salir no equivale a sufrir amnesia.",
+                "chapter": "El cuidado echa raíces como sustrato de datos y capacidad local"
+              },
+              {
+                "id": "answer-07",
+                "question": "¿Qué permanece constante cuando los roles, los títulos y las herramientas no dejan de cambiar?",
+                "answer": "La práctica: demostrar, traducir, publicar trabajo en curso y dejar artefactos que otras personas puedan mantener. La continuidad reside en un método que la gente pueda llevar adelante, no en un cargo, un proveedor o una versión fija de uno mismo.",
+                "chapter": "De roles y títulos a herramientas que podemos mantener en común"
+              },
+              {
+                "id": "answer-08",
+                "question": "¿Cómo puede una comunidad pequeña usar la IA sin que su lengua y sus necesidades cotidianas queden aplanadas?",
+                "answer": "Entrenando modelos pequeños y especializados con el corpus y la retroalimentación propios de la comunidad; compartiendo cómputo en desuso; y subsidiando capacidad abierta en lugar de un modelo nacional único y obligatorio. La traducción, la voz y la verificación locales bastan para dar un auténtico primer paso.",
+                "chapter": "Modelos pequeños, cómputo local y las lenguas propias de las comunidades"
+              }
+            ]
+          },
+          {
+            "id": "future",
+            "title": "Escalar derechos, no profecías",
+            "lead": "El futuro permanece abierto cuando la dignidad no es una puntuación, distintas visiones del mundo pueden coexistir y la responsabilidad se mantiene al alcance de las personas.",
+            "items": [
+              {
+                "id": "answer-09",
+                "question": "¿Qué valor tiene el trabajo humano cuando las máquinas dominan todas las tareas de calificación automática?",
+                "answer": "Dejar de competir con el caballo. Respaldar con dignidad e ingresos la curiosidad, la cooperación, el cuidado, el arte y la capacidad de transformar situaciones en las que todos pierden en otras donde todos ganan: el trabajo cuyo valor no es una puntuación alta.",
+                "chapter": "El valor del trabajo no es una puntuación alta en una prueba automatizada"
+              },
+              {
+                "id": "answer-10",
+                "question": "¿Cómo pueden convivir y crear juntas personas que ven la IA como una herramienta, un medio o una mente?",
+                "answer": "Recurriendo a la filosofía política antes que forzar un acuerdo metafísico: buscando consensos superpuestos sobre acciones sin remordimiento, haciendo transparente y reproducible el proceso creativo y preservando la diversidad tecnológica local para que la voz de un solo proveedor no se convierta en la de todos.",
+                "chapter": "La posición social de la IA debe dar cabida a visiones del mundo irreconciliables"
+              },
+              {
+                "id": "answer-11",
+                "question": "A medida que la IA escala, ¿cómo crecen con ella los derechos individuales y dónde se detiene la responsabilidad final?",
+                "answer": "Llevando las decisiones a la escala más pequeña capaz de asumirlas, manteniendo el procesamiento y el postentrenamiento locales siempre que sea posible, y fijando la verificabilidad y el derecho a cambiar de sistema como requisitos previos. La responsabilidad debe quedar vinculada a una instancia accesible; no puede disolverse entre modelos, proveedores y comités.",
+                "chapter": "La responsabilidad no debe evaporarse a lo largo de la cadena"
+              }
+            ]
+          }
+        ]
       },
       "map": {
-        "title": "Mapa del campo compartido",
-        "lead": "Lee primero los cinco arquetipos y luego encuéntrate. Cada arco une dos rincones muy alejados que al final quieren lo mismo.",
+        "title": "Dónde comenzaron las preguntas",
+        "lead": "Los cinco arquetipos fueron una lectura editorial de las respuestas del registro, no una taxonomía de quienes asistieron. Permanecen aquí como trazabilidad: el punto desde el que las preguntas entraron a la sala, no las conclusiones a las que llegó la sala.",
         "imageAlt": "Cinco figuras ilustradas alrededor de un centro iluminado: el Traductor en el medio, el Constructor de puentes y el Tejedor arriba, el Guardián del oficio y el Acompañante abajo, con flechas que corren entre cuatro etiquetas del borde para multitud, gobernanza, uno mismo y construcción.",
-        "caption": "La ubicación y los arquetipos son lecturas editoriales de lo que cada persona escribió al registrarse.",
+        "caption": "Un mapa editorial de las preguntas previo a la charla. El registro con las respuestas, más arriba, recoge ahora las conclusiones.",
         "axesTitle": "Cuatro direcciones",
         "axes": [
           {
@@ -4320,39 +4374,9 @@
           }
         ]
       },
-      "cycles": {
-        "title": "Cuatro arcos de terreno común inesperado",
-        "lead": "El terreno común nos reúne en una sala. Estos cuatro arcos avanzan un paso más: dos tipos de personas parten de los rincones más alejados y llegan a la misma conclusión. Cada arco propone una forma de ponerse en marcha ese mismo día.",
-        "items": [
-          {
-            "id": "tool-and-uncaught",
-            "from": "bridgewright",
-            "to": "companion",
-            "body": "Un lado ha construido la herramienta pero aún no tiene grupo; el otro ya tiene el grupo pero no la herramienta. El paso: poner la herramienta en el grupo en el que ya está quien cuida; primero un grupo, antes de hablar de escala."
-          },
-          {
-            "id": "guilt-and-rule",
-            "from": "craftkeeper",
-            "to": "weaver",
-            "body": "La culpa privada por usar estos sistemas se encuentra con la pregunta de otras personas sobre quién se queda con los beneficios. El paso: procedencia y autoría. Cuando queda constancia de dónde viene un trabajo hecho con oficio, este recupera su valor."
-          },
-          {
-            "id": "graduation-deadline",
-            "from": "weaver",
-            "to": "companion",
-            "body": "Una persona pregunta qué institución urge más rediseñar; otra, cómo será el mundo el día en que se gradúe. El paso: fijar la fecha de revisión para la graduación de una niña concreta."
-          },
-          {
-            "id": "right-to-refuse",
-            "from": "bridgewright",
-            "to": "craftkeeper",
-            "body": "El derecho a estar informado, a cuestionar y a negarse se está incorporando, en un extremo, a los sistemas de agentes y, en el otro, a la vida laboral de una persona. El paso: dejar por escrito los mismos derechos en ambos lugares."
-          }
-        ]
-      },
       "speakers": {
-        "title": "Las personas que sostienen la sala",
-        "lead": "Juntas devuelven las preguntas abstractas de alineación a las instituciones, el cuidado y el derecho cotidiano a salir.",
+        "title": "Las voces en el registro",
+        "lead": "Las respuestas anteriores fueron formuladas por Audrey Tang y Tenzin Yangtso, en conversación con la moderación y la sala.",
         "items": [
           {
             "id": "audrey-tang",
@@ -4380,123 +4404,7 @@
           }
         ]
       },
-      "prep": {
-        "title": "Dos acciones antes de llegar",
-        "lead": "El banco ya contiene preguntas semilla anónimas, cada una reformulada a partir de lo que varias personas escribieron al inscribirse. Marca con un voto positivo las que resuenen y añade, con palabras propias, la pregunta que nadie haya hecho aún.",
-        "note": "Las preguntas semilla son el punto de partida y el banco sigue creciendo durante el encuentro. Después, cada pregunta recibe una respuesta por escrito, tenga los votos que tenga.",
-        "steps": [
-          {
-            "index": "01",
-            "title": "Vota a favor",
-            "body": "Explora las preguntas semilla y vota a favor de las que resuenen contigo. Quienes facilitan ven el recuento en directo, y durante el encuentro cualquier persona puede plantear una pregunta."
-          },
-          {
-            "index": "02",
-            "title": "Revisa y añade",
-            "body": "Si tus ideas han cambiado desde que te registraste, publica una pregunta nueva con tus propias palabras."
-          }
-        ],
-        "seedsTitle": "Ya están en el banco",
-        "seedsNote": "Todas son anónimas y cada una reúne en una nueva redacción lo que escribieron varias personas. Si tu pregunta es distinta de todas ellas, ese es el resultado útil: publícala.",
-        "seeds": [
-          {
-            "id": "seed-01",
-            "text": "¿Hacia qué tipo de futuro acabará llevando la IA a la sociedad? Se busca una evaluación realista, pero también una esperanza a la que no renunciar.",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-02",
-            "text": "A menudo se presenta a Taiwán como precedente. ¿Qué partes se han embellecido al contarlas y cuáles tienen aún un largo camino por recorrer?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-03",
-            "text": "¿Podrían la verificación pública de hechos y las aplicaciones que reducen los daños cotidianos ofrecerse como servicios gratuitos, sostenidos por capacidad de cálculo local?",
-            "archetype": "bridgewright",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-04",
-            "text": "Ante cambios tan rápidos, ¿cómo se vive el día a día desde una posición individual y cómo se encuentra calma?",
-            "archetype": "craftkeeper",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-05",
-            "text": "Cada vez que se usa un gran modelo de lenguaje aparece una culpa difícil de explicar. ¿Dónde puede depositarse o cómo puede aliviarse?",
-            "archetype": "craftkeeper",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-06",
-            "text": "Si solo pudiera impulsarse primero un cambio institucional, ¿cuál tendría más posibilidades de hacerse realidad? ¿Podría probarse antes a pequeña escala y en el ámbito local?",
-            "archetype": "weaver",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-07",
-            "text": "¿Qué mecanismo permite a quienes se ven afectados por las decisiones de un sistema sin haber participado en su diseño informarse, cuestionarlo, decir que no y cambiar las reglas de forma conjunta?",
-            "archetype": "bridgewright",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-08",
-            "text": "Cuando el contenido generado supera lo que se puede leer y resulta difícil distinguir a las personas de las máquinas, ¿cómo se diseña el último control? ¿En qué puede seguir basándose la confianza?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-09",
-            "text": "Para ayudarnos mutuamente a salir del círculo en el que solo se oyen voces parecidas, ¿qué se puede empezar a hacer esta misma noche?",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-10",
-            "text": "Las respuestas rápidas de la IA saben cómo agradar. ¿Cómo se ayuda a uno mismo y a quienes aprenden a su lado a conservar un juicio más pausado?",
-            "archetype": "companion",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-11",
-            "text": "En la «alineación inversa», ¿quién se adapta realmente a quién? Si la sociedad de todos modos acaba poniéndose al día poco a poco, ¿qué hace que esta vez sea diferente?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-12",
-            "text": "Los datos vienen de nosotros, pero los beneficios suelen ir a otra parte. ¿Cómo lograr que vuelvan, que las decisiones se tomen en el ámbito local y que también se pueda decir que no?",
-            "archetype": "weaver",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-13",
-            "text": "Ahora que las respuestas son tan fáciles de obtener, ¿qué sigue mereciendo la pena que una persona aprenda por sí misma y qué habría que cambiar primero en la enseñanza y los cuidados?",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-14",
-            "text": "Cuando la IA reescribe el trabajo, ¿qué se atasca: la tecnología, el proceso o las personas? Si algo sale mal, ¿sobre quién recae la responsabilidad?",
-            "archetype": "weaver",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-15",
-            "text": "Sin depender de grandes gobiernos ni de grandes empresas, ¿qué nuevas formas de trabajar permitirían reunir a socios de todo el mundo?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-16",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught",
-            "text": "¿Quién se queda atrás en una transición? Quienes cuidan, quienes aprenden más despacio, quienes quedan fuera de los beneficios: ¿por dónde debería empezar el apoyo?"
-          }
-        ],
-        "cta": {
-          "label": "Abre el banco de preguntas",
-          "href": "https://sli.do/20260829",
-          "external": true
-        }
-      },
-      "source": "Fuente: biografías y preguntas de las inscripciones en Luma."
+      "source": "Fuente: transcripción pública del encuentro, 29 de agosto de 2026. El mapa de cinco arquetipos es una lectura editorial de las respuestas de inscripción; las once respuestas son síntesis del registro y deben contrastarse con él."
     },
     "closing": {
       "lines": [
@@ -5409,56 +5317,179 @@
     },
     "event": {
       "eventId": "platform-originals-2026-08",
-      "metaTitle": "Você está aqui · 29 de agosto de 2026, Taipéi",
-      "metaDescription": "A leitura prévia da conversa sobre reverse alignment da Platform 月台 em Taipéi, em 29 de agosto de 2026: cinco arquétipos, quatro arcos de convergência improvável e o banco de perguntas anônimas, aberto à participação de qualquer lugar.",
-      "eyebrow": "Nota de campo · 29 ago 2026",
+      "metaTitle": "Você está aqui · O que a sala realmente respondeu",
+      "metaDescription": "Uma nota de campo pós-evento da conversa sobre Reverse Alignment da Platform 月台 em Taipéi: onze perguntas que a sala realmente respondeu, cinco ações de governança e a transcrição pública completa.",
+      "eyebrow": "Depois da sala · 29 ago 2026",
       "title": "Você está aqui",
-      "subtitle": "Um mapa do que carregamos",
-      "body": "Um sistema de coordenadas comum, traçado antes de entrarmos na sala a partir do que as pessoas escreveram ao se inscrever. Encontre a sua posição, os cantos próximos a você e quem, partindo do lado mais distante, chegou à mesma pergunta.",
+      "subtitle": "Onze perguntas. Cinco ações que se sustentam.",
+      "body": "O mapa colocou as pessoas em posição. Agora o registro assume o trabalho: onze perguntas que a sala realmente respondeu, reestruturadas a partir da transcrição pública em afirmações, limites e próximos passos que você pode examinar.",
       "stats": [
         {
-          "label": "Arquétipos",
+          "label": "Trilhas respondidas",
+          "value": "11"
+        },
+        {
+          "label": "Ações de governança",
           "value": "5"
         },
         {
-          "label": "Caminhos",
-          "value": "4"
-        },
-        {
-          "label": "Campo compartilhado",
-          "value": "1"
+          "label": "Registro público",
+          "value": "EN · 華文"
         }
       ],
       "homeLabel": "Voltar para Reverse Alignment",
-      "attend": {
-        "lead": "remote",
-        "title": "Duas formas de participar",
-        "when": "Sábado, 29 de agosto de 2026. Check-in às 13h30, início às 14h, encerramento às 16h30; o espaço permanece aberto até as 18h. Horário de Taipéi, UTC+8.",
-        "venue": "Escritório da SPARKFUL, 12º andar, Rua Chongqing Norte, 1-1, Seção 1, Datong, Taipéi, ao lado da saída Y15 do Taipei City Mall.",
+      "record": {
+        "eyebrow": "Registro público",
+        "title": "A sala encerrou. O registro permanece aberto.",
+        "when": "29 ago 2026 · 14:00–16:30 (UTC+8)",
+        "place": "Taipéi · SPARKFUL",
+        "body": "Leia a transcrição completa, fala por fala, em inglês ou 華文. Os cartões abaixo sintetizam as respostas; eles não substituem as palavras de quem falou.",
         "transcript": {
-          "label": "Leia a transcrição",
+          "label": "Leia a transcrição pública",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
-        },
-        "transcriptNote": "Agora em registro público. Inglês e 華文, cada fala citável.",
-        "inPerson": {
-          "label": "Inscreva-se no Luma",
-          "href": "https://luma.com/pzkyaeuz",
-          "external": true
-        },
-        "inPersonNote": "Na sala, em Taipéi, gratuito e sujeito à aprovação do anfitrião.",
-        "remote": {
-          "label": "Adicione sua pergunta ao banco de perguntas",
-          "href": "https://sli.do/20260829",
-          "external": true
-        },
-        "remoteNote": "Você pode participar de qualquer lugar. O banco de perguntas fica aberto antes e durante a conversa. Depois, todas as perguntas recebem uma resposta por escrito, inclusive as enviadas por quem participa a distância."
+        }
+      },
+      "principles": {
+        "title": "Cinco ações que se sustentaram",
+        "lead": "Ao longo de onze trilhas respondidas, a sala sempre retornou às mesmas ações operacionais. Não são slogans; cada uma muda quem pode interromper, examinar ou substituir um sistema.",
+        "items": [
+          {
+            "id": "reversible-first",
+            "title": "Classifique por reversibilidade.",
+            "body": "Experimente com rapidez onde os danos puderem ser desfeitos. Avalie e imponha restrições antes da implementação onde danos biológicos, cibernéticos ou de infraestrutura não tiverem volta."
+          },
+          {
+            "id": "consequence-names-risk",
+            "title": "Deixe a consequência dar nome ao risco.",
+            "body": "Um conjunto de testes é incompleto até que as pessoas afetadas possam acrescentar os danos que o laboratório não soube nomear. Do contrário, é apenas um arquivo fechado."
+          },
+          {
+            "id": "legible-receipts",
+            "title": "Deixe registros legíveis.",
+            "body": "Decisões, versões, recursos e correções precisam permanecer legíveis, rastreáveis e transmissíveis mesmo depois que o modelo que os gerou deixar de existir."
+          },
+          {
+            "id": "local-replaceable",
+            "title": "Mantenha a capacidade local e substituível.",
+            "body": "Mantenha dados, capacidade computacional e o ofício acumulado próximos à comunidade. Torne o modelo e a estrutura operacional substituíveis como camadas independentes."
+          },
+          {
+            "id": "verify-exit",
+            "title": "Verifique primeiro, torne a saída real depois.",
+            "body": "Um direito sem comprovação do que aconteceu, e sem uma forma de transportar o histórico para outro sistema, é apenas uma promessa, não um controle."
+          }
+        ]
+      },
+      "questions": {
+        "eyebrow": "O que foi realmente respondido",
+        "title": "Onze perguntas, reestruturadas a partir do registro",
+        "lead": "Não as perguntas que as pessoas poderiam ter feito. Não uma votação em tempo real. Estas são as onze trilhas de respostas que a transcrição pública de fato contém, na ordem em que a conversa as abriu.",
+        "answerLabel": "Resposta, sintetizada",
+        "chapterLabel": "Capítulo da transcrição",
+        "linkLabel": "Link para esta pergunta",
+        "groups": [
+          {
+            "id": "limits",
+            "title": "Trace o limite antes do dano",
+            "lead": "Comece pelas consequências: o que pode ser desfeito, quem tem legitimidade para nomear o dano e o que a tradução deve a quem ficou de fora do mapa.",
+            "items": [
+              {
+                "id": "answer-01",
+                "question": "Por que não deixar o mercado alcançar a IA no seu próprio ritmo, como aconteceu com tecnologias anteriores?",
+                "answer": "Porque o custo da demora pode ser irreversível. Deixe experimentos reversíveis rodarem pequenos e rápidos; exija avaliação prévia para danos biológicos, cibernéticos e de infraestrutura, e então registre versões, relate e repare tudo o que for lançado.",
+                "chapter": "Experimente livremente onde for reversível; restrinja onde for irreversível"
+              },
+              {
+                "id": "answer-02",
+                "question": "Como uma comunidade pode nomear um risco que o laboratório do modelo não soube testar?",
+                "answer": "Dê às pessoas afetadas um lugar no ciclo de avaliação. Dados linguísticos da comunidade, pós-treinamento com pesos abertos e um caminho público do dano vivido de volta ao modelo transformam o feedback em um caso avaliável em vez de um arquivo fechado.",
+                "chapter": "Deixe quem suporta as consequências nomear os riscos"
+              },
+              {
+                "id": "answer-03",
+                "question": "O que existe entre encontrar um terreno comum e tomar uma decisão com responsabilização?",
+                "answer": "A tradução. O vTaiwan revelou consensos raros em três semanas; a política pública levou cerca de três anos e ainda assim deixou de fora quem não tinha tempo ou acesso utilizável. No trabalho, o equivalente são artefatos legíveis, histórico de versões e uma pessoa que responda pelas escolhas irreversíveis.",
+                "chapter": "O consenso raro não é a política pública; a tradução é a governança"
+              }
+            ]
+          },
+          {
+            "id": "judgment",
+            "title": "Mantenha o julgamento sujeito a prestação de contas",
+            "lead": "Uma decisão precisa de procedência, fricção e de uma pessoa que continue assumindo a parte irreversível.",
+            "items": [
+              {
+                "id": "answer-04",
+                "question": "Se velocidade e pontuações em rankings não são o objetivo certo, o que um sistema de IA deve otimizar?",
+                "answer": "A saúde dos relacionamentos: se as pessoas conseguem acalmar conflitos, cooperar e cuidar melhor umas das outras. Um modelo que vence um benchmark enquanto esvazia a empatia não está alinhado à comunidade em que se insere.",
+                "chapter": "Alinhe a relação entre grupos, não um único ranking"
+              },
+              {
+                "id": "answer-05",
+                "question": "Quando o conteúdo gerado supera a capacidade de leitura, em que a confiança pode se apoiar — e o que quem constrói deve fazer primeiro?",
+                "answer": "Não na detecção de um suposto “rastro de IA”. Comece com assinaturas, procedência, uma lista de componentes e entradas, pesos e versões que permitam repetir a execução; depois, adicione uma corda Andon para que as pessoas afetadas possam parar ou desacelerar o sistema e tornar um caso reparado reutilizável.",
+                "chapter": "Apenas a verificabilidade e a substituibilidade tornam a saída real"
+              }
+            ]
+          },
+          {
+            "id": "local",
+            "title": "Coloque a capacidade onde a vida acontece",
+            "lead": "Solo de dados, ferramentas substituíveis e modelos na escala da comunidade impedem que o aprendizado se transforme em extração.",
+            "items": [
+              {
+                "id": "answer-06",
+                "question": "Como dados, ganhos e correções permanecem na comunidade — e sobrevivem a uma troca de fornecedores?",
+                "answer": "Mantenha os dados locais ou criptografados, acumule os aprendizados na estrutura operacional em vez de no fornecedor do modelo, e separe camadas adjacentes por meio de interfaces abertas. Se o cavalo e a sela puderem ser substituídos separadamente, sair não significa ter amnésia.",
+                "chapter": "O cuidado cria raízes como solo de dados e capacidade local"
+              },
+              {
+                "id": "answer-07",
+                "question": "O que permanece contínuo quando papéis, cargos e ferramentas não param de mudar?",
+                "answer": "A prática: demonstrar, traduzir, publicar trabalhos inacabados e deixar artefatos que outros possam manter. A continuidade reside em um método que as pessoas possam levar adiante, não em um único cargo, fornecedor ou versão fixa de si mesmo.",
+                "chapter": "De papéis e cargos de volta a ferramentas que podemos manter juntos"
+              },
+              {
+                "id": "answer-08",
+                "question": "Como uma comunidade pequena pode usar IA sem que sua língua e necessidades cotidianas sejam homogeneizadas?",
+                "answer": "Treine modelos pequenos e especializados no próprio corpus e feedback da comunidade; reúna capacidade computacional ociosa; subsidie capacidade aberta em vez de um único modelo nacional obrigatório. Tradução, fala e checagem locais são suficientes para dar um início de verdade.",
+                "chapter": "Pequenos modelos, computação local e a língua própria das comunidades"
+              }
+            ]
+          },
+          {
+            "id": "future",
+            "title": "Amplie direitos, não profecias",
+            "lead": "O futuro permanece aberto quando a dignidade não é uma pontuação, diferentes visões de mundo podem coexistir e a responsabilidade continua ao alcance das pessoas.",
+            "items": [
+              {
+                "id": "answer-09",
+                "question": "Qual é o valor do trabalho humano quando as máquinas dominam todas as tarefas avaliadas automaticamente?",
+                "answer": "Pare de apostar corrida com o cavalo. Atribua dignidade e remuneração à curiosidade, cooperação, cuidado, arte e à transformação de situações de perda mútua em ganhos mútuos — o trabalho cujo valor não é uma pontuação alta.",
+                "chapter": "O valor do trabalho não é uma pontuação alta em um teste automatizado"
+              },
+              {
+                "id": "answer-10",
+                "question": "Como pessoas que veem a IA como ferramenta, meio ou mente ainda podem viver e criar juntas?",
+                "answer": "Recorra à filosofia política em vez de forçar um acordo metafísico: busque consensos sobrepostos em torno de ações sem arrependimento, torne o processo criativo transparente e passível de reexecução e mantenha a diversidade tecnológica local para que a voz de um fornecedor não vire a de todos.",
+                "chapter": "A posição social da IA precisa acomodar visões de mundo inconciliáveis"
+              },
+              {
+                "id": "answer-11",
+                "question": "À medida que a IA se expande, como os direitos individuais crescem junto — e onde termina a responsabilidade final?",
+                "answer": "Leve as decisões para a menor escala capaz, mantenha processamento e pós-treinamento locais sempre que possível e estabeleça a verificação e o direito de troca como pré-requisitos. A responsabilidade precisa ficar atrelada a uma camada acessível; ela não pode se diluir entre modelos, fornecedores e comitês.",
+                "chapter": "A responsabilidade não pode evaporar ao longo da cadeia"
+              }
+            ]
+          }
+        ]
       },
       "map": {
-        "title": "Mapa do campo",
-        "lead": "Leia primeiro os cinco arquétipos e encontre-se no mapa. Cada arco liga dois cantos distantes que acabam querendo a mesma coisa.",
+        "title": "Onde as perguntas começaram",
+        "lead": "Os cinco papéis foram uma leitura editorial das respostas de inscrição, não uma taxonomia dos participantes. Eles permanecem aqui como procedência: onde as perguntas entraram na sala, não o que a sala concluiu.",
         "imageAlt": "Cinco figuras ilustradas ao redor de um centro iluminado: o Tradutor no meio, o Construtor de Pontes e o Tecelão acima, o Guardião do Ofício e o Companheiro abaixo, com setas circulando entre quatro rótulos na borda para multidão, governança, interior e construção.",
-        "caption": "Posicionamento e arquétipos são leituras editoriais do que as pessoas escreveram ao se inscrever.",
+        "caption": "Um mapa editorial das perguntas antes da conversa. O registro respondido acima agora carrega as conclusões.",
         "axesTitle": "Quatro direções",
         "axes": [
           {
@@ -5518,39 +5549,9 @@
           }
         ]
       },
-      "cycles": {
-        "title": "Quatro arcos de convergência improvável",
-        "lead": "O terreno comum nos reúne na mesma sala. Estes quatro arcos dão mais um passo: dois tipos de pessoa partem de cantos distantes e chegam à mesma conclusão. Cada arco traz uma ação para colocar em prática no próprio dia.",
-        "items": [
-          {
-            "id": "tool-and-uncaught",
-            "from": "bridgewright",
-            "to": "companion",
-            "body": "De um lado, há uma ferramenta, mas ainda não há pessoas; do outro, há pessoas, mas falta a ferramenta. O passo: coloque a ferramenta no grupo que quem cuida já usa. Comece por um grupo antes de falar em escala."
-          },
-          {
-            "id": "guilt-and-rule",
-            "from": "craftkeeper",
-            "to": "weaver",
-            "body": "A culpa íntima de usar esses sistemas encontra a pergunta dos outros sobre quem fica com os ganhos. O passo: procedência e crédito. Dê ao ofício uma origem reconhecida e ele volta a ter valor."
-          },
-          {
-            "id": "graduation-deadline",
-            "from": "weaver",
-            "to": "companion",
-            "body": "Uma pessoa pergunta qual instituição mais precisa ser redesenhada; outra pergunta como será o mundo no dia em que ela se formar. O passo: defina a data de revisão para a formatura de uma criança específica."
-          },
-          {
-            "id": "right-to-refuse",
-            "from": "bridgewright",
-            "to": "craftkeeper",
-            "body": "O direito de saber, questionar e recusar está sendo escrito em sistemas de agentes em uma ponta e no cotidiano de trabalho de uma pessoa na outra. O passo: escreva os mesmos direitos nos dois lugares."
-          }
-        ]
-      },
       "speakers": {
-        "title": "As pessoas que conduzem a sala",
-        "lead": "Em conjunto, trazem as perguntas abstratas de alinhamento de volta para as instituições, o cuidado e o direito cotidiano de saída.",
+        "title": "Vozes no registro",
+        "lead": "As respostas acima foram trazidas por Audrey Tang e Tenzin Yangtso, em conversa com o anfitrião e a sala.",
         "items": [
           {
             "id": "audrey-tang",
@@ -5578,123 +5579,7 @@
           }
         ]
       },
-      "prep": {
-        "title": "Duas ações antes de chegar",
-        "lead": "O banco já contém perguntas-semente anônimas, cada uma reformulada a partir do que várias pessoas escreveram ao se inscrever. Marque com um voto positivo as que ressoam com você e depois publique, com suas próprias palavras, a pergunta que ainda ninguém fez.",
-        "note": "As perguntas-semente são o ponto de partida, e o banco continua crescendo na sala. Depois, todas as perguntas recebem uma resposta por escrito, inclusive as que tiverem poucos votos ou voto algum.",
-        "steps": [
-          {
-            "index": "01",
-            "title": "Voto positivo",
-            "body": "Navegue pelas perguntas-semente e dê um voto positivo às que ressoarem com você. Os facilitadores acompanham a contagem em tempo real, e qualquer pessoa ainda pode fazer uma pergunta no dia."
-          },
-          {
-            "index": "02",
-            "title": "Reescreva e adicione",
-            "body": "Se a sua forma de pensar mudou desde a inscrição, publique uma nova pergunta com suas próprias palavras."
-          }
-        ],
-        "seedsTitle": "O que já está no banco",
-        "seedsNote": "Todas são anônimas, e cada uma reformula contribuições de várias pessoas em uma só pergunta. Se nenhuma delas corresponder à sua pergunta, esse é o resultado útil: publique a sua.",
-        "seeds": [
-          {
-            "id": "seed-01",
-            "text": "Para que tipo de futuro a IA vai acabar levando a sociedade? Quero ouvir uma avaliação realista e também a esperança da qual não devemos abrir mão.",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-02",
-            "text": "Taiwan costuma ser citado como precedente. Que partes dessa história foram embelezadas demais, e quais ainda têm um longo caminho pela frente?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-03",
-            "text": "A checagem pública de fatos e os usos que reduzem danos no dia a dia poderiam ser serviços gratuitos, sustentados por computação local?",
-            "archetype": "bridgewright",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-04",
-            "text": "Com tudo mudando tão rápido, como uma pessoa pode viver seus dias e aquietar a mente?",
-            "archetype": "craftkeeper",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-05",
-            "text": "Cada uso de um modelo de linguagem de grande porte traz uma culpa difícil de explicar. Como lidar com ela ou torná-la mais leve?",
-            "archetype": "craftkeeper",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-06",
-            "text": "Se pudermos priorizar apenas uma mudança institucional, qual delas tem mais chance de realmente acontecer? Seria possível testá-la primeiro em pequena escala, localmente?",
-            "archetype": "weaver",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-07",
-            "text": "Por qual mecanismo as pessoas afetadas pelas decisões de um sistema, mas que não participaram de seu projeto, podem saber, questionar, dizer não e mudar as regras em conjunto?",
-            "archetype": "bridgewright",
-            "arc": "right-to-refuse"
-          },
-          {
-            "id": "seed-08",
-            "text": "Quando houver mais conteúdo gerado do que se consegue ler e for difícil distinguir pessoas de máquinas, como deve ser projetada a última etapa de controle? Em que a confiança ainda pode se apoiar?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-09",
-            "text": "Para ajudar uns aos outros a sair do círculo em que só se ouvem vozes parecidas, o que podemos começar a fazer hoje à noite?",
-            "archetype": "bridgewright"
-          },
-          {
-            "id": "seed-10",
-            "text": "As respostas rápidas da IA são muito boas em agradar. Como ajudar a nós mesmos e a quem aprende conosco a preservar a capacidade de julgar com calma?",
-            "archetype": "companion",
-            "arc": "graduation-deadline"
-          },
-          {
-            "id": "seed-11",
-            "text": "No alinhamento reverso, quem se adapta a quem? Se a sociedade acaba acompanhando as mudanças aos poucos de qualquer maneira, por que desta vez seria diferente?",
-            "archetype": "translator"
-          },
-          {
-            "id": "seed-12",
-            "text": "Os dados vêm de nós, mas os ganhos costumam ir para outros lugares. Como fazer esses ganhos voltarem para nós, preservar o poder de decisão local e garantir o direito de dizer não?",
-            "archetype": "weaver",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-13",
-            "text": "As respostas ficaram muito fáceis de obter. O que ainda vale a pena aprender por conta própria? No ensino e no trabalho de cuidado, o que deve mudar primeiro?",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught"
-          },
-          {
-            "id": "seed-14",
-            "text": "Quando a IA está reescrevendo o trabalho, o que trava: a tecnologia, o processo ou as pessoas? Se algo dá errado, sobre quem recai a responsabilidade?",
-            "archetype": "weaver",
-            "arc": "guilt-and-rule"
-          },
-          {
-            "id": "seed-15",
-            "text": "Sem depender de grandes governos nem de grandes empresas, que novas formas de trabalhar poderiam reunir parceiros do mundo inteiro?",
-            "archetype": "weaver"
-          },
-          {
-            "id": "seed-16",
-            "archetype": "companion",
-            "arc": "tool-and-uncaught",
-            "text": "Quem fica para trás em uma transição? Pessoas que cuidam, pessoas que aprendem mais devagar e pessoas excluídas dos ganhos: por onde o apoio deve começar?"
-          }
-        ],
-        "cta": {
-          "label": "Abrir o banco de perguntas",
-          "href": "https://sli.do/20260829",
-          "external": true
-        }
-      },
-      "source": "Fonte: inscrições aprovadas no Luma, biografias e perguntas."
+      "source": "Fonte: transcrição pública do evento, 29 de agosto de 2026. O mapa de cinco papéis é uma leitura editorial das respostas de inscrição; as onze respostas são sínteses do registro e devem ser verificadas em relação a ele."
     },
     "closing": {
       "lines": [

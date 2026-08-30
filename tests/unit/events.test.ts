@@ -9,9 +9,7 @@ const SALON_START = '2026-08-24T20:00:00.000Z';
 const SALON_END = '2026-08-24T21:00:00.000Z';
 
 const PLATFORM_ID = 'platform-originals-2026-08';
-const PLATFORM_LUMA_URL = 'https://luma.com/pzkyaeuz';
 const PLATFORM_PAGE_HREF = 'events/you-are-here/';
-const QUESTION_POOL_URL = 'https://sli.do/20260829';
 const TRANSCRIPT_EN_URL = 'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al';
 const TRANSCRIPT_ZH_URL = 'https://archive.tw/2026-08-29-platform-originals-對齊的另一面';
 const PLATFORM_START = '2026-08-29T06:00:00.000Z';
@@ -156,112 +154,75 @@ describe('coalition event catalog', () => {
     expect(events.map((item) => item.id)).toEqual([SALON_ID, PLATFORM_ID]);
   });
 
-  test('lands the Taipei talk on a page that offers a way in from anywhere', () => {
+  test('lands the Taipei talk as a public record with an answered-question spine', () => {
     for (const locale of listLocales()) {
       const { event, assets } = getContent(locale);
       expect(event.eventId, locale).toBe(PLATFORM_ID);
 
-      // Luma is reachable from the page; the question pool is the path for
-      // everyone who cannot get to Taipei, and it is what a non-zh-TW reader
-      // meets first among the two ways in. The transcript sits above both.
-      expect(event.attend.inPerson.href, locale).toBe(PLATFORM_LUMA_URL);
-      expect(event.attend.inPerson.external, locale).toBe(true);
-      expect(event.attend.remote.href, locale).toBe(QUESTION_POOL_URL);
-      expect(event.attend.remote.external, locale).toBe(true);
-      expect(event.prep.cta.href, locale).toBe(QUESTION_POOL_URL);
-      expect(event.attend.lead, locale).toBe(locale === 'zh-tw' ? 'in-person' : 'remote');
-      expect(event.attend.transcript.external, locale).toBe(true);
-      expect(event.attend.transcript.href, locale).toBe(
+      expect(event.record.transcript.external, locale).toBe(true);
+      expect(event.record.transcript.href, locale).toBe(
         locale === 'zh-tw' ? TRANSCRIPT_ZH_URL : TRANSCRIPT_EN_URL
       );
+      expect(JSON.stringify(event), locale).not.toMatch(/luma\.com|sli\.do/i);
 
-      // The five readings and the four arcs are the same editorial data in
-      // every locale; only the names are translated.
+      expect(
+        event.principles.items.map((item) => item.id),
+        locale
+      ).toEqual([
+        'reversible-first',
+        'consequence-names-risk',
+        'legible-receipts',
+        'local-replaceable',
+        'verify-exit',
+      ]);
+      expect(
+        event.questions.groups.map((group) => group.id),
+        locale
+      ).toEqual(['limits', 'judgment', 'local', 'future']);
+
+      const answered = event.questions.groups.flatMap((group) => group.items);
+      expect(
+        answered.map((item) => item.id),
+        locale
+      ).toEqual(
+        Array.from({ length: 11 }, (_, index) => `answer-${String(index + 1).padStart(2, '0')}`)
+      );
+      expect(new Set(answered.map((item) => item.id)).size, locale).toBe(answered.length);
+      for (const item of answered) {
+        expect(item.question.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
+        expect(item.answer.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
+        expect(item.chapter.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
+      }
+
+      expect(event.stats, locale).toHaveLength(3);
+      expect(
+        event.stats.slice(0, 2).map((stat) => stat.value),
+        locale
+      ).toEqual(['11', '5']);
+
+      // The five readings remain as provenance for the map. Stable ids and
+      // glyphs let every locale describe the same artwork without storing PII.
       expect(
         event.archetypes.items.map((item) => item.id),
         locale
       ).toEqual(['bridgewright', 'weaver', 'craftkeeper', 'companion', 'translator']);
-      // Registrations keep coming in, so a headcount printed here is wrong by
-      // the time anyone reads it. Every badge on the page names a quadrant.
       for (const item of event.archetypes.items) {
         expect(item.quadrant.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
       }
-      // The glyph is the only way an arc reads as a pair rather than as one
-      // repeated name, so it must exist and must not collide. It is not prose:
-      // the same five marks ship in every locale.
       const glyphs = event.archetypes.items.map((item) => item.emoji);
       for (const glyph of glyphs) {
         expect(glyph.trim().length, locale).toBeGreaterThan(0);
       }
       expect(new Set(glyphs).size, locale).toBe(glyphs.length);
       expect(glyphs, locale).toEqual(getContent('en').event.archetypes.items.map((i) => i.emoji));
-      expect(
-        event.stats.map((stat) => stat.value),
-        locale
-      ).toEqual(['5', '4', '1']);
-      // An arc is a pair of readings, and nothing but the pair: the label a
-      // reader sees is composed from the two ids, so there is no second copy
-      // of the pairing that could disagree with them.
-      expect(
-        event.cycles.items.map((item) => item.id),
-        locale
-      ).toEqual(['tool-and-uncaught', 'guilt-and-rule', 'graduation-deadline', 'right-to-refuse']);
-      expect(
-        event.cycles.items.map((item) => [item.from, item.to]),
-        locale
-      ).toEqual([
-        ['bridgewright', 'companion'],
-        ['craftkeeper', 'weaver'],
-        ['weaver', 'companion'],
-        ['bridgewright', 'craftkeeper'],
-      ]);
-      for (const cycle of event.cycles.items) {
-        // An arc between one reading and itself is not an arc.
-        expect(cycle.from, `${locale} ${cycle.id}`).not.toBe(cycle.to);
-      }
-      // The seeds already sit in the live pool, so the page shows the same set
-      // in the same order everywhere; only the wording is translated.
-      expect(
-        event.prep.seeds.map((seed) => seed.id),
-        locale
-      ).toEqual(
-        Array.from({ length: 16 }, (_, index) => `seed-${String(index + 1).padStart(2, '0')}`)
-      );
-      // The board is derived from these two pointers, so a typo would render an
-      // unlabelled chip rather than fail loudly.
-      const archetypeIds = event.archetypes.items.map((item) => item.id);
-      const arcIds = event.cycles.items.map((item) => item.id);
-      for (const seed of event.prep.seeds) {
-        expect(archetypeIds, `${locale} ${seed.id}`).toContain(seed.archetype);
-        if (seed.arc !== undefined) {
-          expect(arcIds, `${locale} ${seed.id}`).toContain(seed.arc);
-        }
-      }
-      // The page claims the pool covers the whole map. Every reading must hold
-      // at least one seed, or a reader in that corner finds an empty cell.
-      for (const id of archetypeIds) {
-        expect(
-          event.prep.seeds.filter((seed) => seed.archetype === id).length,
-          `${locale} ${id}`
-        ).toBeGreaterThan(0);
-      }
-      // An arc with only one end seeded cannot be walked: the far end is
-      // supposed to be someone else's question.
-      for (const id of arcIds) {
-        expect(
-          event.prep.seeds.filter((seed) => seed.arc === id).length,
-          `${locale} ${id}`
-        ).toBeGreaterThan(1);
-      }
-      // Listed as the two opposed axes, not clockwise round the artwork: a
-      // direction is only legible next to the one it is the opposite of.
+
+      // Listed as opposed axes, not clockwise round the artwork: a direction
+      // is only legible next to the one it opposes.
       expect(
         event.map.axes.map((axis) => axis.id),
         locale
       ).toEqual(['crowd', 'self', 'govern', 'build']);
 
-      // Portraits and the map artwork resolve through the same asset map every
-      // other page uses, so a missing key fails the build.
       expect(assets['event-archetype-map'], locale).toBeDefined();
       for (const speaker of event.speakers.items) {
         expect(assets[speaker.image], locale).toBeDefined();
@@ -282,30 +243,39 @@ describe('coalition event catalog', () => {
         event.subtitle,
         event.body,
         event.homeLabel,
-        event.attend.title,
-        event.attend.when,
-        event.attend.venue,
-        event.attend.inPerson.label,
-        event.attend.remote.label,
-        event.attend.transcript.label,
-        event.attend.transcriptNote,
+        ...event.stats.map((stat) => stat.label),
+        event.record.eyebrow,
+        event.record.title,
+        event.record.when,
+        event.record.place,
+        event.record.body,
+        event.record.transcript.label,
+        event.principles.title,
+        event.principles.lead,
+        ...event.principles.items.flatMap((item) => [item.title, item.body]),
+        event.questions.eyebrow,
+        event.questions.title,
+        event.questions.lead,
+        event.questions.answerLabel,
+        event.questions.chapterLabel,
+        event.questions.linkLabel,
+        ...event.questions.groups.flatMap((group) => [
+          group.title,
+          group.lead,
+          ...group.items.flatMap((item) => [item.question, item.answer, item.chapter]),
+        ]),
         event.map.title,
         event.map.lead,
         event.map.imageAlt,
-        event.cycles.title,
+        event.map.caption,
+        event.map.axesTitle,
+        event.map.legendTitle,
+        ...event.map.axes.flatMap((axis) => [axis.label, axis.body]),
+        ...event.archetypes.items.flatMap((item) => [item.name, item.quadrant]),
         event.speakers.title,
+        event.speakers.lead,
         ...event.speakers.items.flatMap((item) => [item.role, item.body]),
-        event.prep.title,
-        event.prep.cta.label,
         event.source,
-        ...event.stats.map((stat) => stat.label),
-        ...event.map.axes.map((axis) => axis.label),
-        ...event.archetypes.items.map((item) => item.name),
-        ...event.prep.steps.map((step) => step.title),
-        ...event.cycles.items.map((item) => item.body),
-        event.prep.seedsTitle,
-        event.prep.seedsNote,
-        ...event.prep.seeds.map((seed) => seed.text),
       ];
     }
 
@@ -315,13 +285,11 @@ describe('coalition event catalog', () => {
       expect(lines.length, locale).toBe(reference.length);
       for (const line of lines) {
         expect(line.trim().length, locale).toBeGreaterThan(0);
-        // Case-sensitive, and anchored on word boundaries: `/TODO/i` matches the
-        // Spanish "todos" and the Portuguese "todo", so it fails real copy.
+        // Case-sensitive, and anchored on word boundaries: `/TODO/i` matches
+        // Spanish "todos" and Portuguese "todo", so it fails real copy.
         expect(line, locale).not.toMatch(/\bTODO\b|\bFIXME\b|[Ll]orem [Ii]psum/);
       }
       if (locale === 'en') continue;
-      // Every one of these lines is prose, so a line that still reads exactly
-      // like the English is an untranslated fallback, not a coincidence.
       expect(
         lines.filter((line, index) => line === reference[index]),
         locale

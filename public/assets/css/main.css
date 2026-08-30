@@ -5132,21 +5132,19 @@ textarea.form__control {
 }
 
 /* ==========================================================================
-   Event page — /events/you-are-here/
-   Each archetype's accent is the robe colour of its figure in the artwork, so
-   a reader who cannot read the picture's Chinese labels can still match a name
-   in this locale to a character on the map.
+   Event record — /events/you-are-here/
+   The map is provenance; the transcript-derived question spine is the page's
+   primary reading order. Everything here is scoped so brochure and join
+   geometry remain untouched.
    ========================================================================== */
 .page--event {
-  /* One voice on this page. The artwork's own lettering is a hei, and a serif
-     reading face beside it reads as two publications arguing. Every locale but
-     zh-TW points both tokens at plfh, so this is a no-op there. */
-  font-family: var(--font-display);
   --arch-bridgewright: #2f638a;
   --arch-weaver: #526f46;
   --arch-craftkeeper: #a65436;
   --arch-companion: #6c4d78;
   --arch-translator: var(--violet);
+  font-family: var(--font-display);
+  font-size: 17px;
 }
 .page--event [data-archetype='bridgewright'] {
   --arch: var(--arch-bridgewright);
@@ -5164,25 +5162,13 @@ textarea.form__control {
   --arch: var(--arch-translator);
 }
 
-/* Type floor for this page: nothing renders under 15px. The site base is 14px
-   and the shared utilities go down to 10px, which is unreadable for the CJK
-   this page is mostly written in. Scoped rather than global so the homepage,
-   the join flow and the geometry their e2e specs measure stay as they are. */
-.page--event {
-  font-size: 17px;
-}
+/* CJK reading floor. Shared utilities intentionally run smaller elsewhere. */
 .page--event .body {
   font-size: 17px;
 }
-.page--event .body--sm {
-  font-size: 15px;
-}
-.page--event .body--mono {
-  font-size: 15px;
-}
-.page--event .eyebrow {
-  font-size: 15px;
-}
+.page--event .body--sm,
+.page--event .body--mono,
+.page--event .eyebrow,
 .page--event .btn,
 .page--event .btn--lime-ink,
 .page--event .btn--ghost,
@@ -5195,48 +5181,59 @@ textarea.form__control {
   background: var(--paper);
   color: var(--ink);
 }
-
 .event-head {
   display: grid;
   gap: 0.9rem;
-  margin-bottom: 2.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3.2rem);
 }
 .event-head__lead {
   max-width: 62ch;
+  margin: 0;
   opacity: 0.78;
 }
 .event-panel__title {
   margin: 0 0 1rem;
   padding-bottom: 0.6rem;
   border-bottom: 1px solid currentcolor;
-  opacity: 0.6;
+  opacity: 0.65;
 }
 
-/* Hero — artwork above the title on narrow screens, beside it from 960px up */
+/* Hero — the old map remains visible, but the record now owns the headline. */
 .event-hero {
   overflow: hidden;
   background:
-    radial-gradient(circle at 74% 46%, rgba(109, 40, 245, 0.22), transparent 30%),
-    radial-gradient(circle at 24% 16%, rgba(205, 252, 86, 0.08), transparent 24%),
+    linear-gradient(105deg, rgba(3, 3, 3, 0.2), rgba(3, 3, 3, 0.82)),
+    radial-gradient(circle at 78% 42%, rgba(109, 40, 245, 0.3), transparent 32%),
+    radial-gradient(circle at 18% 12%, rgba(205, 252, 86, 0.1), transparent 25%),
     var(--bg);
 }
 .event-hero__grid {
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
+}
+.event-hero__copy {
+  position: relative;
+  z-index: 1;
 }
 .event-hero__figure {
   order: -1;
+  position: relative;
   margin: 0;
 }
 .event-hero__image {
+  position: relative;
   width: 100%;
+  background: #0b0b0b;
   border: 1px solid var(--line);
-  border-radius: 2px;
+  outline: 1px solid rgba(205, 252, 86, 0.42);
+  outline-offset: 0.65rem;
+  box-shadow: 1.1rem 1.1rem 0 rgba(109, 40, 245, 0.22);
 }
 .event-hero__caption {
-  margin: 0.75rem 0 0;
-  opacity: 0.5;
+  margin: 1rem 0 0;
+  max-width: 58ch;
+  opacity: 0.62;
 }
 .event-hero__title {
   margin: 0;
@@ -5244,128 +5241,298 @@ textarea.form__control {
 }
 .event-hero__subtitle {
   margin: 1.1rem 0 0;
+  max-width: 28ch;
   color: var(--lime);
+  text-wrap: balance;
 }
 .event-hero__body {
-  max-width: 46ch;
-  margin: 1rem 0 0;
-  opacity: 0.78;
+  max-width: 48ch;
+  margin: 1.15rem 0 0;
+  opacity: 0.82;
 }
 .event-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-  margin: 2rem 0 0;
+  margin: 2.25rem 0 0;
   border-top: 1px solid var(--line);
 }
 .event-stats__item {
-  padding: 0.9rem 0.9rem 0.9rem 0;
+  padding: 1rem 0.8rem 1rem 0;
   border-bottom: 1px solid var(--line);
 }
 .event-stats__label {
   font-family: var(--font-mono);
   font-size: 15px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  /* Every dim value on this page is set so 10-12px text clears 4.5:1. */
-  opacity: 0.6;
+  opacity: 0.68;
 }
 .event-stats__value {
-  margin: 0.25rem 0 0;
-  font-family: var(--font-display);
-  font-size: 1.9rem;
-  font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  margin: 0.35rem 0 0;
   color: var(--lime);
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
 }
 
-/* Attend — hard-edged lime poster, same voice as the homepage events band */
-.event-attend {
+/* Public record — a hard-edged band, not an event-registration poster. */
+.event-record-band {
   position: relative;
   z-index: 1;
   background: var(--lime);
   color: var(--ink);
-  border-top: 3px solid var(--ink);
-  border-bottom: 3px solid var(--ink);
+  border-block: 3px solid var(--ink);
 }
-.event-attend__inner {
-  width: min(100%, var(--max));
-  margin: 0 auto;
-  padding: clamp(2.25rem, 5vw, 3.75rem) var(--gutter);
-}
-.event-attend__title {
-  max-width: 22ch;
-}
-.event-attend__when {
-  margin: 1.1rem 0 0;
-  padding-top: 0.85rem;
-  border-top: 2px solid var(--ink);
-  font-family: var(--font-mono);
-  font-size: clamp(15px, 1.15vw, 1.05rem);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-}
-.event-attend__venue {
-  margin: 0.5rem 0 0;
-  font-family: var(--font-mono);
-  font-size: clamp(15px, 1vw, 1rem);
-  opacity: 0.7;
-}
-.event-ways {
-  display: grid;
-  gap: 1.25rem;
-  margin: 1.25rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-.event-way {
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-  padding: 1.25rem;
-  background: rgba(244, 243, 243, 0.35);
-  border: 2px solid var(--ink);
-}
-.event-way--lead {
-  background: var(--paper-strong);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-.event-way__note {
-  margin: 0;
-  max-width: 46ch;
-  font-size: clamp(15px, 1.15vw, 1.06rem);
-  line-height: 1.5;
-}
-.event-way__cta {
-  justify-self: start;
-}
-
-/* Transcript — same poster voice as the lead way, full width above the pair */
 .event-record {
   display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  width: min(100%, var(--max));
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.6rem) var(--gutter);
+}
+.event-record__eyebrow {
+  margin-bottom: 0.85rem;
+}
+.event-record__title {
+  max-width: 18ch;
+  margin: 0;
+  text-wrap: balance;
+}
+.event-record__copy {
+  display: grid;
   gap: 1rem;
   align-content: start;
-  margin: 1.9rem 0 0;
-  padding: 1.25rem;
-  background: var(--paper-strong);
-  border: 2px solid var(--ink);
-  box-shadow: 6px 6px 0 var(--ink);
 }
-.event-record__note {
+.event-record__meta {
   margin: 0;
-  max-width: 46ch;
-  font-size: clamp(15px, 1.15vw, 1.06rem);
-  line-height: 1.5;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+.event-record__body {
+  max-width: 56ch;
+  margin: 0;
+  font-size: clamp(17px, 1.35vw, 1.16rem);
+  line-height: 1.55;
 }
 .event-record__cta {
   justify-self: start;
+  margin-top: 0.25rem;
 }
 
-/* Map legend — the translated reading of the artwork's own lettering */
+/* Five moves — deliberately one sequence, not five disconnected cards. */
+.event-principles {
+  border-bottom: 1px solid var(--line-dark);
+}
+.event-principle-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line-dark);
+}
+.event-principle {
+  position: relative;
+  min-width: 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--line-dark);
+}
+.event-principle__index {
+  margin: 0 0 1.6rem;
+  color: var(--violet);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+.event-principle__title {
+  max-width: 20ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.event-principle__body {
+  max-width: 36ch;
+  margin: 0.8rem 0 0;
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: 0.75;
+}
+
+/* Answer spine — transcript chapters become durable, deep-linkable rows. */
+.event-answers {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(109, 40, 245, 0.2), transparent 24rem),
+    linear-gradient(180deg, #050505, #090909 55%, #030303);
+}
+.event-answers::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 7vw;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(205, 252, 86, 0.35), transparent);
+  pointer-events: none;
+}
+.event-answers__intro {
+  max-width: 76ch;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+.event-answers__title {
+  max-width: 18ch;
+  margin: 0.7rem 0 0;
+  text-wrap: balance;
+}
+.event-answers__lead {
+  max-width: 62ch;
+  margin: 1.2rem 0 0;
+  opacity: 0.72;
+}
+.event-answer-groups {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+.event-answer-group {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+.event-answer-group__head {
+  margin-bottom: 1.5rem;
+}
+.event-answer-group__index {
+  margin: 0 0 0.7rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+.event-answer-group__title {
+  max-width: 19ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  font-weight: 650;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.event-answer-group__lead {
+  max-width: 36ch;
+  margin: 0.85rem 0 0;
+  line-height: 1.55;
+  opacity: 0.65;
+}
+.event-answer-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+.event-answer {
+  display: grid;
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+  padding: clamp(1.4rem, 3.5vw, 2.25rem) 0;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+  transition:
+    background-color 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+.event-answer:target {
+  background: rgba(205, 252, 86, 0.055);
+  box-shadow: -0.7rem 0 0 rgba(205, 252, 86, 0.9);
+}
+.event-answer__rail {
+  padding-top: 0.15rem;
+}
+.event-answer__number {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.4rem;
+  min-height: 2.4rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: 1px solid rgba(205, 252, 86, 0.42);
+  border-radius: 50%;
+}
+.event-answer__number:hover,
+.event-answer__number:focus-visible {
+  background: var(--lime);
+  color: var(--ink);
+}
+.event-answer__chapter {
+  max-width: 70ch;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  opacity: 0.62;
+}
+.event-answer__chapter > span:first-child {
+  color: var(--lime);
+  font-weight: 650;
+  opacity: 1;
+}
+.event-answer__question {
+  max-width: 34ch;
+  margin: 0.8rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.event-answer__response {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  background: rgba(109, 40, 245, 0.12);
+  border-left: 2px solid var(--violet);
+}
+.event-answer__label {
+  margin: 0;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.event-answer__text {
+  max-width: 64ch;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.62;
+  opacity: 0.88;
+}
+
+/* Provenance map — translated reading of the artwork's own lettering. */
 .event-map__grid {
   display: grid;
-  gap: clamp(1.75rem, 4vw, 3rem);
+  gap: clamp(2rem, 5vw, 4rem);
 }
 .event-axes__list {
   display: grid;
@@ -5373,21 +5540,21 @@ textarea.form__control {
   margin: 0;
 }
 .event-axis {
-  padding: 0.85rem 0;
+  padding: 0.9rem 0;
   border-bottom: 1px solid var(--line-dark);
 }
 .event-axis__label {
   font-family: var(--font-mono);
   font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 .event-axis__body {
   margin: 0.35rem 0 0;
   font-size: 16px;
   line-height: 1.5;
-  opacity: 0.7;
+  opacity: 0.72;
 }
 .event-legend__list {
   display: grid;
@@ -5398,236 +5565,84 @@ textarea.form__control {
 }
 .event-legend__item {
   display: grid;
-  grid-template-columns: 1.1rem minmax(0, 1fr);
+  grid-template-columns: 1.35rem minmax(0, 1fr);
   gap: 0.75rem;
   align-items: baseline;
-  padding: 0.7rem 0;
+  padding: 0.8rem 0;
   border-bottom: 1px solid var(--line-dark);
+  box-shadow: inset 3px 0 0 transparent;
+  transition:
+    padding-left 160ms ease-out,
+    box-shadow 160ms ease-out;
 }
-/* The glyph replaces the old colour swatch: it survives greyscale and colour
-   blindness, and it is the same mark the seed tags and the arc cards carry. */
+.event-legend__item:hover {
+  padding-left: 0.7rem;
+  box-shadow: inset 3px 0 0 var(--arch);
+}
 .event-legend__glyph {
   align-self: center;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1;
   text-align: center;
 }
 .event-legend__name {
   font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.08rem;
+  font-weight: 650;
   letter-spacing: -0.02em;
 }
 .event-legend__quadrant {
   grid-column: 2;
   font-family: var(--font-mono);
   font-size: 15px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  opacity: 0.7;
-}
-
-/* Four arcs. No padding override: this section used to butt against the
-   archetype cards above it, and those are gone, so it takes the same top
-   spacing every other section on the page takes. */
-.event-cycle-grid {
-  display: grid;
-  gap: 1.1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.event-cycle {
-  padding: 1.2rem 1.15rem;
-  border: 1px solid var(--line);
-}
-/* One line: glyph beside its own name at each end, joined by the arrow. The
-   glyph sits with the name it belongs to, so the pair reads as two places
-   rather than as one name printed twice. Wrapping breaks between the ends,
-   never between a glyph and its name. */
-.event-cycle__arc {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.4rem;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.event-cycle__end {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  white-space: nowrap;
-}
-.event-cycle__joint {
-  color: var(--lime);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 400;
-}
-.event-cycle__body {
-  margin: 0.55rem 0 0;
   opacity: 0.72;
 }
 
-/* Speakers */
+/* Speakers — the two voices follow the record instead of preceding it. */
+.event-speakers {
+  background:
+    radial-gradient(circle at 80% 18%, rgba(109, 40, 245, 0.18), transparent 28rem),
+    var(--bg);
+}
 .event-speaker-grid {
   display: grid;
-  gap: 1.75rem;
+  gap: 2rem;
 }
 .event-speaker {
   display: grid;
-  /* The portraits are halftone art authored for 586px. Anything much under a
-     quarter of that turns the dot pattern into noise. */
-  grid-template-columns: 146px minmax(0, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: clamp(96px, 28vw, 146px) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 1.5rem);
   align-items: start;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--line-dark);
+  border-top: 1px solid var(--line);
 }
 .event-speaker__photo {
-  width: 146px;
-  height: 146px;
+  width: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
+  border: 1px solid var(--line);
+  box-shadow: 0.55rem 0.55rem 0 rgba(109, 40, 245, 0.22);
 }
 .event-speaker__name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.45rem;
+  font-weight: 650;
   letter-spacing: -0.03em;
 }
 .event-speaker__role {
-  margin: 0.3rem 0 0;
-  opacity: 0.7;
+  margin: 0.35rem 0 0;
+  opacity: 0.72;
 }
 .event-speaker__body {
-  margin: 0.7rem 0 0;
   max-width: 52ch;
-  opacity: 0.8;
+  margin: 0.75rem 0 0;
+  opacity: 0.82;
 }
 .event-speaker__link {
-  margin-top: 0.9rem;
-}
-
-/* Two actions before arrival */
-.event-step-grid {
-  display: grid;
-  gap: 1.1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.event-step {
-  padding: 1.2rem 1.15rem;
-  background: #0b0b0b;
-  border: 1px solid var(--line);
-}
-.event-step__index {
-  margin: 0 0 0.55rem;
-  color: var(--lime);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-}
-.event-step__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.event-step__body {
-  margin: 0.55rem 0 0;
-  opacity: 0.76;
-}
-
-/* The seeds. The glyph occupies the left gutter where an ordinal used to sit:
-   which corner a question came from is worth more at a glance than its rank in
-   the pool. */
-.event-seeds {
-  margin-top: 2.5rem;
-  padding-top: 1.6rem;
-  border-top: 1px solid var(--line);
-}
-.event-seeds__note {
-  margin: 0 0 1.2rem;
-  max-width: 62ch;
-  opacity: 0.6;
-}
-.event-seed-list {
-  display: grid;
-  gap: 0.7rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.event-seed {
-  padding: 0.85rem 1.05rem 0.9rem 3rem;
-  position: relative;
-  background: #0b0b0b;
-  border: 1px solid var(--line);
-  /* The left rule is the robe colour of that corner's figure in the artwork,
-     so colour and glyph say the same thing twice. Colour alone never carries
-     it: the `--arch-*` tokens are mid-tone and some readers see none of them. */
-  border-left: 3px solid var(--arch);
-  text-wrap: pretty;
-  transition: border-color 180ms ease-out;
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
-}
-.event-seed__glyph {
-  position: absolute;
-  top: 0.72rem;
-  left: 0.9rem;
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1;
-}
-/* A seed is deep-linkable on its own, so a shared `#seed-07` marks its target. */
-.event-seed:target {
-  border-color: var(--lime);
-}
-.event-seed__text {
-  margin: 0;
-}
-/* The arc sits at the trailing edge, clear of the question it belongs to. One
-   child, so the row only has to push it over: no wrap, no gap. */
-.event-seed__foot {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0.55rem 0 0;
-}
-/* Glyphs only. Spelling both readings out repeated the seed's own corner and
-   read as one name twice; `aria-label` still gives the pair in words. */
-.event-seed__arc {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.95rem;
-  text-decoration: none;
-  opacity: 0.9;
-}
-.event-seed__joint {
-  margin: 0 0.05rem;
-  color: var(--lime);
-  font-family: var(--font-mono);
-  font-size: 15px;
-}
-.event-seed__arc:hover,
-.event-seed__arc:focus-visible {
-  opacity: 1;
-}
-.event-prep__note {
-  margin: 1.5rem 0 0;
-  max-width: 62ch;
-  opacity: 0.55;
-}
-.event-prep__cta {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .event-close {
@@ -5641,50 +5656,83 @@ textarea.form__control {
   border-top: 1px solid var(--line);
 }
 .event-close__source {
+  max-width: 78ch;
   margin: 0;
-  max-width: 76ch;
-  opacity: 0.6;
+  opacity: 0.66;
 }
 
 @media (min-width: 640px) {
   .event-stats {
-    /* One track per stat, so the rule above never runs past the last one. */
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .event-stats__item + .event-stats__item {
-    padding-left: 0.9rem;
+    padding-left: 1rem;
     border-left: 1px solid var(--line);
   }
-  .event-ways {
+  .event-principle-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: 1px solid var(--line-dark);
   }
-  .event-cycle-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .event-principle {
+    padding: 1.35rem;
+    border-right: 1px solid var(--line-dark);
   }
-  .event-step-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .event-answer {
+    grid-template-columns: 3.4rem minmax(0, 1fr);
+  }
+  .event-answer__response {
+    grid-template-columns: minmax(7.5rem, 0.28fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    padding: 1.15rem 1.3rem;
+  }
+}
+
+@media (min-width: 780px) {
+  .event-record {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    align-items: start;
+  }
+  .event-head--split {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .event-map__grid {
+    grid-template-columns: minmax(230px, 0.78fr) minmax(0, 1.22fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .event-hero__grid {
+    grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.96fr);
+  }
+  .event-hero__figure {
+    order: 0;
+  }
+  .event-principle-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .event-answer-group {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.36fr) minmax(0, 0.64fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .event-answer-group__head {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.5rem);
+    margin: 0;
   }
   .event-speaker-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 960px) {
-  .event-hero__grid {
-    grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+@media (max-width: 479px) {
+  .event-speaker {
+    grid-template-columns: 1fr;
   }
-  .event-hero__figure {
-    order: 0;
-  }
-  .event-map__grid {
-    grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
-  }
-  .event-cycle-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-  .event-seed-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .event-speaker__photo {
+    width: min(58vw, 146px);
   }
 }
