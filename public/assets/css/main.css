@@ -5626,6 +5626,7 @@ textarea.form__control {
   padding: 0;
 }
 .event-legend__media {
+  position: relative;
   display: grid;
   place-items: center;
   width: 100%;
@@ -5639,6 +5640,8 @@ textarea.form__control {
   transition: border-color 160ms ease-out;
 }
 .event-legend__art {
+  position: absolute;
+  inset: 0.25rem;
   display: block;
   width: calc(100% - 0.5rem);
   height: calc(100% - 0.5rem);
@@ -5661,6 +5664,8 @@ textarea.form__control {
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.45;
+  word-break: keep-all;
+  text-wrap: balance;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   opacity: 0.7;

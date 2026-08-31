@@ -2024,31 +2024,31 @@
           {
             "id": "bridgewright",
             "name": "造橋者",
-            "quadrant": "為眾人 · 打造系統",
+            "quadrant": "為眾人打造系統",
             "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "織網者",
-            "quadrant": "為眾人 · 織造制度",
+            "quadrant": "為眾人織造制度",
             "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "手藝人",
-            "quadrant": "為自身 · 打造系統",
+            "quadrant": "為自身打造系統",
             "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "陪走者",
-            "quadrant": "為自身 · 織造制度",
+            "quadrant": "為自身織造制度",
             "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "轉譯者",
-            "quadrant": "正中央",
+            "quadrant": "看見限制已變，我們就能穿越角色",
             "image": "event-arch-translator"
           }
         ]
