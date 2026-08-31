@@ -14,6 +14,45 @@ const TRANSCRIPT_EN_URL = 'https://archive.tw/2026-08-29-platform-originals-the-
 const TRANSCRIPT_ZH_URL = 'https://archive.tw/2026-08-29-platform-originals-對齊的另一面';
 const PLATFORM_START = '2026-08-29T06:00:00.000Z';
 const PLATFORM_END = '2026-08-29T08:30:00.000Z';
+const ZH_ANCHORS = [
+  's63983970',
+  's63983987',
+  's63984002',
+  's63984053',
+  's63984060',
+  's63984080',
+  's63984107',
+  's63984140',
+  's63984199',
+  's63984239',
+  's63984308',
+];
+const EN_ANCHORS = [
+  's63985755',
+  's63985772',
+  's63985787',
+  's63985833',
+  's63985840',
+  's63985860',
+  's63985887',
+  's63985921',
+  's63985980',
+  's63986020',
+  's63986089',
+];
+const ZH_CHAPTERS = [
+  '可逆處自由試驗；不可逆處加強驗測、問責與制度約束',
+  '讓承受後果的人，也能命名風險',
+  '罕見共識不是政策本身，轉譯才是治理',
+  '對齊的是群體之間的關係，不是單一榜單',
+  '可驗證、可替換，才有真正的退出權',
+  '關懷落地為資料土壤與在地能力',
+  '從角色與職銜，回到可共同維護的工具',
+  '小模型、地端運算與社群自己的語言',
+  '工作的價值，不等於自動驗測的高分',
+  'AI 的社會位置，必須容納不可調和的世界觀',
+  '責任不能在模型、廠商與智慧體鏈條裡蒸發',
+];
 
 function event(overrides: Partial<CoalitionEvent> = {}): CoalitionEvent {
   return {
@@ -200,21 +239,21 @@ describe('coalition event catalog', () => {
         locale
       ).toEqual(['11', '5']);
 
-      // The five readings remain as provenance for the map. Stable ids and
-      // glyphs let every locale describe the same artwork without storing PII.
+      // The five readings remain as provenance for the map. Each locale names
+      // the same five figures cropped from the public, PII-free artwork.
+      const archetypeIds = ['bridgewright', 'weaver', 'craftkeeper', 'companion', 'translator'];
       expect(
         event.archetypes.items.map((item) => item.id),
         locale
-      ).toEqual(['bridgewright', 'weaver', 'craftkeeper', 'companion', 'translator']);
+      ).toEqual(archetypeIds);
+      expect(
+        event.archetypes.items.map((item) => item.image),
+        locale
+      ).toEqual(archetypeIds.map((id) => `event-arch-${id}`));
       for (const item of event.archetypes.items) {
         expect(item.quadrant.trim().length, `${locale} ${item.id}`).toBeGreaterThan(0);
+        expect(assets[item.image], `${locale} ${item.id}`).toBeDefined();
       }
-      const glyphs = event.archetypes.items.map((item) => item.emoji);
-      for (const glyph of glyphs) {
-        expect(glyph.trim().length, locale).toBeGreaterThan(0);
-      }
-      expect(new Set(glyphs).size, locale).toBe(glyphs.length);
-      expect(glyphs, locale).toEqual(getContent('en').event.archetypes.items.map((i) => i.emoji));
 
       // Listed as opposed axes, not clockwise round the artwork: a direction
       // is only legible next to the one it opposes.
@@ -224,10 +263,45 @@ describe('coalition event catalog', () => {
       ).toEqual(['crowd', 'self', 'govern', 'build']);
 
       expect(assets['event-archetype-map'], locale).toBeDefined();
+      expect(assets['og-image-event'], locale).toBeDefined();
       for (const speaker of event.speakers.items) {
         expect(assets[speaker.image], locale).toBeDefined();
       }
     }
+  });
+
+  test('answers deep-link into the locale transcript chapter by chapter', () => {
+    for (const locale of listLocales()) {
+      const answered = getContent(locale).event.questions.groups.flatMap((group) => group.items);
+      const transcript = locale === 'zh-tw' ? TRANSCRIPT_ZH_URL : TRANSCRIPT_EN_URL;
+      const anchors = locale === 'zh-tw' ? ZH_ANCHORS : EN_ANCHORS;
+      expect(
+        answered.map((item) => item.href),
+        locale
+      ).toEqual(anchors.map((anchor) => `${transcript}#${anchor}`));
+    }
+  });
+
+  test('zh-TW chapters quote the published record verbatim', () => {
+    const event = getContent('zh-tw').event;
+    expect(
+      event.questions.groups.flatMap((group) => group.items.map((item) => item.chapter))
+    ).toEqual(ZH_CHAPTERS);
+    expect(
+      event.questions.groups.every(
+        (group) => Boolean(group.quote?.text.trim()) && Boolean(group.quote?.by.trim())
+      )
+    ).toBe(true);
+    expect(event.mottos?.items).toHaveLength(2);
+    for (const motto of event.mottos?.items ?? []) {
+      expect(motto.text.trim().length).toBeGreaterThan(0);
+      expect(motto.by.trim().length).toBeGreaterThan(0);
+    }
+    expect(event.record.altTranscript).toEqual({
+      label: '英文版逐字稿',
+      href: TRANSCRIPT_EN_URL,
+      external: true,
+    });
   });
 
   test('translates every line of the event page, leaving no English fallback', () => {

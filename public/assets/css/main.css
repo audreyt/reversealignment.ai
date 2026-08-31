@@ -5324,6 +5324,21 @@ textarea.form__control {
   justify-self: start;
   margin-top: 0.25rem;
 }
+.event-record__alt {
+  display: inline-flex;
+  gap: 0.4rem;
+  justify-self: start;
+  margin-top: 0.75rem;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.event-record__alt:hover,
+.event-record__alt:focus-visible {
+  text-decoration-thickness: 2px;
+}
 
 /* Five moves — deliberately one sequence, not five disconnected cards. */
 .event-principles {
@@ -5494,6 +5509,19 @@ textarea.form__control {
   font-weight: 650;
   opacity: 1;
 }
+.event-answer__chapter a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(205, 252, 86, 0.35);
+}
+.event-answer__chapter a:hover,
+.event-answer__chapter a:focus-visible {
+  color: var(--lime);
+  border-color: var(--lime);
+}
+.event-answer__chapter-arrow {
+  font-family: var(--font-mono);
+}
 .event-answer__question {
   max-width: 34ch;
   margin: 0.8rem 0 0;
@@ -5528,6 +5556,29 @@ textarea.form__control {
   line-height: 1.62;
   opacity: 0.88;
 }
+.event-quote {
+  margin: clamp(2rem, 5vw, 3rem) 0 0;
+  padding-left: clamp(1.2rem, 3vw, 2rem);
+  border-left: 2px solid var(--lime);
+}
+.event-quote__text {
+  margin: 0;
+}
+.event-quote__text p {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.9rem);
+  font-weight: 500;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+.event-quote__by {
+  margin-top: 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  opacity: 0.75;
+}
 
 /* Provenance map — translated reading of the artwork's own lettering. */
 .event-map__grid {
@@ -5558,46 +5609,45 @@ textarea.form__control {
 }
 .event-legend__list {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.3rem);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .event-legend__item {
-  display: grid;
-  grid-template-columns: 1.35rem minmax(0, 1fr);
-  gap: 0.75rem;
-  align-items: baseline;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--line-dark);
-  box-shadow: inset 3px 0 0 transparent;
-  transition:
-    padding-left 160ms ease-out,
-    box-shadow 160ms ease-out;
+  display: flex;
+  min-width: 0;
+  padding: 0;
+  flex-direction: column;
 }
-.event-legend__item:hover {
-  padding-left: 0.7rem;
-  box-shadow: inset 3px 0 0 var(--arch);
+.event-legend__art {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #0b0b0b;
+  border: 1px solid var(--line-dark);
+  border-radius: 0.6rem;
+  transition: border-color 160ms ease-out;
 }
-.event-legend__glyph {
-  align-self: center;
-  font-size: 1rem;
-  line-height: 1;
-  text-align: center;
+.event-legend__item:hover .event-legend__art,
+.event-legend__item:focus-within .event-legend__art {
+  border-color: var(--arch, var(--ink));
 }
 .event-legend__name {
+  margin-top: 0.6rem;
   font-family: var(--font-display);
-  font-size: 1.08rem;
+  font-size: 1.02rem;
   font-weight: 650;
   letter-spacing: -0.02em;
 }
 .event-legend__quadrant {
-  grid-column: 2;
+  margin-top: 0.2rem;
   font-family: var(--font-mono);
-  font-size: 15px;
-  letter-spacing: 0.09em;
+  font-size: 13px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  opacity: 0.72;
+  opacity: 0.7;
 }
 
 /* Speakers — the two voices follow the record instead of preceding it. */
@@ -5655,6 +5705,45 @@ textarea.form__control {
   padding-top: 2rem;
   border-top: 1px solid var(--line);
 }
+.event-mottos {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.event-mottos__title {
+  margin: 0 0 1.25rem;
+  font-size: 15px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  opacity: 0.68;
+}
+.event-mottos__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+}
+.event-motto {
+  margin: 0;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+}
+.event-motto__text {
+  margin: 0;
+}
+.event-motto__text p {
+  margin: 0;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.6;
+}
+.event-motto__by {
+  margin-top: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  opacity: 0.7;
+}
 .event-close__source {
   max-width: 78ch;
   margin: 0;
@@ -5684,6 +5773,15 @@ textarea.form__control {
     grid-template-columns: minmax(7.5rem, 0.28fr) minmax(0, 1fr);
     gap: 1.25rem;
     padding: 1.15rem 1.3rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .event-legend__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .event-mottos__grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -5722,6 +5820,9 @@ textarea.form__control {
     position: sticky;
     top: calc(var(--nav-h) + 1.5rem);
     margin: 0;
+  }
+  .event-quote {
+    grid-column: 2;
   }
   .event-speaker-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

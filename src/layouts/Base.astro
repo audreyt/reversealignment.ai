@@ -18,6 +18,8 @@ type Props = {
   title?: string;
   description?: string;
   locale?: Locale;
+  /** Site-absolute asset path overriding the locale's default social image. */
+  image?: string;
   /**
    * Overrides the locale-derived default. An auth-walled page must opt out even
    * on a locale that owns its whole domain, or the login wall becomes a result.
@@ -32,7 +34,7 @@ const title = Astro.props.title ?? copy.meta.title;
 const description = Astro.props.description ?? copy.meta.description;
 const canonical = absoluteSiteUrl(Astro.url.pathname, locale);
 const siteRoot = absoluteSiteUrl('/', locale);
-const ogImage = deployedAssetUrl(copy.meta.ogImage, locale);
+const ogImage = deployedAssetUrl(Astro.props.image ?? copy.meta.ogImage, locale);
 const bcp47 = toBcp47(locale);
 const ogLocale = toOgLocale(locale);
 const rootPath = relativeRootPath(Astro.url.pathname);

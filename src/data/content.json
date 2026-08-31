@@ -668,19 +668,22 @@
                 "id": "answer-01",
                 "question": "Why not let the market catch up to AI, as it eventually did with earlier technologies?",
                 "answer": "Because the cost of delay can be irreversible. Let reversible experiments run small and fast; require advance evaluation for biological, cyber and infrastructure harms, then version, report and repair everything that ships.",
-                "chapter": "Experiment freely where reversible; constrain where irreversible"
+                "chapter": "Experiment Freely Where Reversible; Tighten Evaluation, Accountability, and Institutional Constraint Where Irreversible",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985755"
               },
               {
                 "id": "answer-02",
                 "question": "How can a community name a risk that a model lab did not know to test?",
                 "answer": "Give affected people standing in the evaluation loop. Community language data, open-weight post-training and a public path from lived harm back to the model turn feedback into an evaluable case instead of a closed archive.",
-                "chapter": "Let those who bear the consequences name the risks"
+                "chapter": "Let Those Who Bear the Consequences Also Name the Risks",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985772"
               },
               {
                 "id": "answer-03",
                 "question": "What lies between finding common ground and making an accountable decision?",
                 "answer": "Translation. vTaiwan surfaced uncommon ground in three weeks; policy took roughly three years and still missed people without time or usable access. At work, the analogue is readable artifacts, version history and a human answerable for irreversible choices.",
-                "chapter": "Uncommon ground is not the policy; translation is the governance"
+                "chapter": "Uncommon Ground Is Not the Policy; Translation Is the Governance",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985787"
               }
             ]
           },
@@ -693,13 +696,15 @@
                 "id": "answer-04",
                 "question": "If speed and leaderboard scores are the wrong target, what should an AI system optimize?",
                 "answer": "The health of relationships: whether people can cool conflict, cooperate and care for one another better. A model that wins a benchmark while hollowing out empathy is not aligned to the community it enters.",
-                "chapter": "Align the relationship between groups, not a single leaderboard"
+                "chapter": "What We Align Is the Relationship Between Groups, Not a Single Leaderboard",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985833"
               },
               {
                 "id": "answer-05",
                 "question": "When generated content outruns reading, what can trust rest on—and what should a builder do first?",
                 "answer": "Not on detecting ‘AI-ness.’ Start from signatures, provenance, a bill of materials and replayable inputs, weights and versions; then add an Andon cord so affected people can stop or slow the system and make one repaired case reusable.",
-                "chapter": "Only verifiability and replaceability make exit real"
+                "chapter": "Only with Verifiability and Replaceability Is There a Real Right to Exit",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985840"
               }
             ]
           },
@@ -712,19 +717,22 @@
                 "id": "answer-06",
                 "question": "How do data, gains and corrections stay with a community—and survive a switch of vendors?",
                 "answer": "Keep data local or encrypted, accumulate lessons in the harness rather than a model vendor, and split adjacent layers across open interfaces. If the horse and saddle can be replaced separately, exit does not mean amnesia.",
-                "chapter": "Care takes root as data soil and local capacity"
+                "chapter": "Care Takes Root as Data Soil and Local Capacity",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985860"
               },
               {
                 "id": "answer-07",
                 "question": "What remains continuous when roles, titles and tools keep changing?",
                 "answer": "The practice: demonstrate, translate, publish unfinished work and leave artifacts others can maintain. Continuity lives in a method people can carry forward, not in one title, vendor or fixed version of a self.",
-                "chapter": "From roles and titles back to tools we can maintain together"
+                "chapter": "From Roles and Titles Back to Tools We Can Maintain Together",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985887"
               },
               {
                 "id": "answer-08",
                 "question": "How can a small community use AI without its language and daily needs being flattened?",
                 "answer": "Train small, specialized models on the community’s own corpus and feedback; pool idle compute; subsidize open capacity rather than one mandatory national model. Local translation, speech and grounding are enough to make a real beginning.",
-                "chapter": "Small models, local computing and communities’ own languages"
+                "chapter": "Small Models, Local Computing, and Communities’ Own Languages",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985921"
               }
             ]
           },
@@ -737,19 +745,22 @@
                 "id": "answer-09",
                 "question": "What is human work worth when machines dominate every automatically graded task?",
                 "answer": "Stop racing the horse. Put dignity and pay around curiosity, cooperation, care, art and the conversion of lose–lose situations into win–wins—the work whose value is not a high score.",
-                "chapter": "The value of work is not a high score on an automated test"
+                "chapter": "The Value of Work Is Not a High Score on an Automated Test",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985980"
               },
               {
                 "id": "answer-10",
                 "question": "How can people who see AI as a tool, a medium or a mind still live and create together?",
                 "answer": "Use political philosophy rather than forced metaphysical agreement: seek overlapping consensus on no-regret actions, disclose replayable creative process, and keep technological diversity local so one vendor’s voice does not become everyone’s.",
-                "chapter": "AI’s social position must accommodate irreconcilable worldviews"
+                "chapter": "AI’s Social Position Must Accommodate Irreconcilable Worldviews",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986020"
               },
               {
                 "id": "answer-11",
                 "question": "As AI scales, how do individual rights grow with it—and where does final responsibility stop?",
                 "answer": "Push decisions to the smallest capable scale, keep processing and post-training local where possible, and make verification plus the right to switch preconditions. Responsibility must stay attached to a reachable layer; it cannot dissolve across models, vendors and committees.",
-                "chapter": "Responsibility must not evaporate along the chain"
+                "chapter": "Responsibility Must Not Evaporate Along the Chain of Models, Vendors, and Agents",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986089"
               }
             ]
           }
@@ -791,31 +802,31 @@
             "id": "bridgewright",
             "name": "Bridgewright",
             "quadrant": "Crowd · Build",
-            "emoji": "🌉"
+            "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Weaver",
             "quadrant": "Crowd · Govern",
-            "emoji": "🧶"
+            "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Craftkeeper",
             "quadrant": "Self · Build",
-            "emoji": "🛠️"
+            "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Companion",
             "quadrant": "Self · Govern",
-            "emoji": "🫂"
+            "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Translator",
             "quadrant": "The centre",
-            "emoji": "🔀"
+            "image": "event-arch-translator"
           }
         ]
       },
@@ -993,7 +1004,13 @@
       "join-bg": "/assets/images/join-bg.webp",
       "join-sheet": "/assets/images/join-sheet.png",
       "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
-      "event-archetype-map": "/assets/images/event-archetype-map.webp"
+      "event-archetype-map": "/assets/images/event-archetype-map.webp",
+      "event-arch-bridgewright": "/assets/images/event-arch-bridgewright.webp",
+      "event-arch-weaver": "/assets/images/event-arch-weaver.webp",
+      "event-arch-craftkeeper": "/assets/images/event-arch-craftkeeper.webp",
+      "event-arch-companion": "/assets/images/event-arch-companion.webp",
+      "event-arch-translator": "/assets/images/event-arch-translator.webp",
+      "og-image-event": "/assets/images/og-image-you-are-here.jpg"
     },
     "notFound": {
       "title": "Not found",
@@ -1803,6 +1820,11 @@
           "label": "閱讀公開逐字稿",
           "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
           "external": true
+        },
+        "altTranscript": {
+          "label": "英文版逐字稿",
+          "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
+          "external": true
         }
       },
       "principles": {
@@ -1812,7 +1834,7 @@
           {
             "id": "reversible-first",
             "title": "先分可逆與不可逆。",
-            "body": "能復原的事，小規模快速試；生物、資安、基礎設施等不可逆傷害，必須在部署前驗測並設下約束。"
+            "body": "能復原的事，小規模快速試；生物、網路武器、醫院與基礎設施等不可逆傷害，必須在部署前先做先期驗測並設下約束。"
           },
           {
             "id": "consequence-names-risk",
@@ -1821,8 +1843,8 @@
           },
           {
             "id": "legible-receipts",
-            "title": "留下看得懂的憑據。",
-            "body": "決策、版本、申訴與修復都要可讀、可追、可交接，而且要比產生它們的模型活得更久。"
+            "title": "留下記錄，留下收據。",
+            "body": "決策、版本、申訴與修復都要留下記錄與收據，可讀、可追、可交接，而且要比產生它們的模型活得更久。"
           },
           {
             "id": "local-replaceable",
@@ -1848,24 +1870,31 @@
             "id": "limits",
             "title": "在傷害發生前畫線",
             "lead": "先看後果：什麼可以復原、誰有資格命名傷害，以及轉譯對圖上缺席的人負有什麼責任。",
+            "quote": {
+              "text": "所以我們現在在國際上面談 AI 治理，基本上就是去辨認出哪些是不可逆的傷害，然後繞著那些不可逆的傷害去做制度的調適。",
+              "by": "——唐鳳"
+            },
             "items": [
               {
                 "id": "answer-01",
                 "question": "為什麼不能像過去幾波科技一樣，等市場慢慢追上 AI？",
-                "answer": "因為等待的代價可能不可逆。可逆的實驗，小而快地做；生物、資安、基礎設施等不可逆風險，部署前先驗測。上線之後，版本、申訴與修復都要留下紀錄。",
-                "chapter": "可逆處自由試驗；不可逆處加強驗測、問責與制度約束"
+                "answer": "因為等待的代價可能不可逆。可逆的實驗，小而快地做；生物、網路武器、醫院與基礎設施等不可逆風險，部署前先做先期驗測。上線之後，版本、申訴與修復都要留下記錄。",
+                "chapter": "可逆處自由試驗；不可逆處加強驗測、問責與制度約束",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63983970"
               },
               {
                 "id": "answer-02",
                 "question": "模型實驗室根本沒想到的風險，在地社群要怎麼送進測試？",
                 "answer": "讓承受後果的人在驗測流程裡有正式位置。社群語料、開放權重的後訓練，以及從生活傷害回到模型的公開路徑，才能把「回饋」變成可驗測的案例，而不是鎖住的檔案。",
-                "chapter": "讓承受後果的人，也能命名風險"
+                "chapter": "讓承受後果的人，也能命名風險",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63983987"
               },
               {
                 "id": "answer-03",
                 "question": "找到共識之後，到做出可問責的決定之間，還缺什麼？",
-                "answer": "缺的是轉譯。vTaiwan 三週找到罕見共識，制度與法律卻花了約三年，而且仍漏掉沒時間或用不了工具的人。工作現場也一樣：要有可讀的中介工藝品、版本紀錄，以及為不可逆決定負責的人。",
-                "chapter": "罕見共識不是政策本身，轉譯才是治理"
+                "answer": "缺的是轉譯。vTaiwan 三個星期找到罕見共識，轉譯成制度與法律卻整整花了三年，而且仍漏掉沒時間或用不了工具的人。工作現場也一樣：要有可讀的中介工藝品、版本紀錄，以及為不可逆決定負責的人。",
+                "chapter": "罕見共識不是政策本身，轉譯才是治理",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984002"
               }
             ]
           },
@@ -1873,18 +1902,24 @@
             "id": "judgment",
             "title": "讓判斷仍然能被追問",
             "lead": "一項決定需要溯源、摩擦力，也需要一個仍然承擔不可逆部分的人。",
+            "quote": {
+              "text": "最簡單的方法就是，只要沒有人為此擔保，沒有數位簽章的模型所做出來的任何產出，你一律把它當作是假的。其實是把預設值反過來。",
+              "by": "——唐鳳"
+            },
             "items": [
               {
                 "id": "answer-04",
                 "question": "如果速度與排行榜分數都不是目標，AI 系統該最佳化什麼？",
                 "answer": "最佳化群體之間的關係：能不能讓衝突降溫、讓人合作，也讓照顧變得更好。模型若贏了榜單，卻把同理心磨掉，就沒有對齊它進入的社群。",
-                "chapter": "對齊的是群體之間的關係，不是單一榜單"
+                "chapter": "對齊的是群體之間的關係，不是單一榜單",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984053"
               },
               {
                 "id": "answer-05",
                 "question": "生成內容多到看不完時，信任可以放在哪裡？做系統的人第一步又該做什麼？",
-                "answer": "不要靠偵測「像不像 AI」。從數位簽章、溯源、材料清單，以及可重放的輸入、權重與版本開始；再加一條安燈繩，讓受影響的人能停下或放慢系統，並讓修好的案例可以重用。",
-                "chapter": "可驗證、可替換，才有真正的退出權"
+                "answer": "不要靠偵測「像不像 AI」。從數位簽章、溯源、物料清單，以及可重放的輸入、權重與版本開始；再加一條 Andon Cord，讓受影響的人能拉繩停下或放慢系統，並讓修好的案例可以重用。",
+                "chapter": "可驗證、可替換，才有真正的退出權",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984060"
               }
             ]
           },
@@ -1892,24 +1927,31 @@
             "id": "local",
             "title": "把能力放回生活發生的地方",
             "lead": "資料土壤、可替換的工具與社群尺度的模型，讓學習不再等於榨取。",
+            "quote": {
+              "text": "所以一開始最簡單的，就是把那個馬鞍跟那匹馬交由兩家不同的公司做，其實這樣就解決這個問題了。",
+              "by": "——唐鳳"
+            },
             "items": [
               {
                 "id": "answer-06",
                 "question": "資料、收益與修正怎麼留在社群裡，換供應商時又不會一起消失？",
                 "answer": "資料留在本地或加密，教訓累積在駕馭模型的工具，而不是模型供應商；相鄰層之間用開放介面分開。馬與鞍可以各自替換，退出就不等於失憶。",
-                "chapter": "照顧落地於資料土壤與在地能力"
+                "chapter": "關懷落地為資料土壤與在地能力",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984080"
               },
               {
                 "id": "answer-07",
-                "question": "角色、頭銜與工具一直變時，真正延續下來的是什麼？",
+                "question": "角色、職銜與工具一直變時，真正延續下來的是什麼？",
                 "answer": "是做法：示範、轉譯、公開未完成的工作，並留下別人能維護的工藝品。延續性存在於可以接手的方法，不在單一頭銜、供應商，或一個固定版本的自己。",
-                "chapter": "從角色與頭銜，回到可以共同維護的工具"
+                "chapter": "從角色與職銜，回到可共同維護的工具",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984107"
               },
               {
                 "id": "answer-08",
                 "question": "小型社群要怎麼用 AI，又不讓自己的語言與日常需求被壓平？",
                 "answer": "用社群自己的語料與回饋，訓練小而專用的模型；集合閒置算力；補助開放算力，而不是強迫所有人用同一個國家模型。在地翻譯、語音與查核，就足以形成真正的起點。",
-                "chapter": "小模型、地端運算與社群自己的語言"
+                "chapter": "小模型、地端運算與社群自己的語言",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984140"
               }
             ]
           },
@@ -1917,24 +1959,31 @@
             "id": "future",
             "title": "擴張權利，不擴張預言",
             "lead": "當尊嚴不是分數、不同世界觀能共存，而且責任仍留在人找得到的地方，未來才保持開放。",
+            "quote": {
+              "text": "很奇怪，你為什麼不騎馬就好？為什麼一定要跟馬賽跑呢？",
+              "by": "——唐鳳，轉述藏地寓言"
+            },
             "items": [
               {
                 "id": "answer-09",
-                "question": "機器主宰所有自動評分的任務之後，人的工作還值在哪裡？",
-                "answer": "不要再跟馬賽跑。讓好奇、合作、照顧、藝術，以及把雙輸變成雙贏的能力，同時帶來尊嚴與生計；這些工作的價值，本來就不在最高分。",
-                "chapter": "工作的價值，不是自動評分裡的高分"
+                "question": "機器主宰所有自動驗測的任務之後，人的工作還值在哪裡？",
+                "answer": "不要再跟馬賽跑。讓好奇、合作、關懷、藝術，以及把雙輸賽局變成雙贏的能力，同時帶來生計與尊嚴——一種共同的公共尊榮感；這些工作的價值，本來就不在最高分。",
+                "chapter": "工作的價值，不等於自動驗測的高分",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984199"
               },
               {
                 "id": "answer-10",
                 "question": "有人把 AI 當工具、有人當媒介、有人當心靈；彼此還要怎麼共同生活與創作？",
-                "answer": "靠政治哲學，而不是強迫大家接受同一套形上學：先找理由不同也能同意的無悔行動；創作過程要揭露、可重放；技術多樣性留在本地，避免一家供應商的聲音變成所有人的聲音。",
-                "chapter": "AI 的社會位置，必須容納不可調和的世界觀"
+                "answer": "靠政治哲學，而不是強迫大家接受同一套形上學：在「我看成工具，你看成人」之間，先找罕見共識與 no regret 的做法；創作要能揭露、可重放；讓微調夠便宜，技術多樣性才守得住人的聲音。",
+                "chapter": "AI 的社會位置，必須容納不可調和的世界觀",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984239"
               },
               {
                 "id": "answer-11",
-                "question": "AI 擴張時，個人的權利怎麼同步長大？最後責任又停在哪裡？",
-                "answer": "把決定推到有能力承擔的最小尺度，能在地處理與後訓練就留在地端，並把驗證與換系統的權利列為前提。責任必須黏在一個找得到的層次上，不能消散在模型、供應商與委員會之間。",
-                "chapter": "責任不能在模型、供應商與智慧體的鏈條上蒸發"
+                "question": "AI 放大政府、企業與平台的能力時，個人的驗證、異議、申訴、拒絕與退出怎麼同步長大？最後責任又停在哪裡？",
+                "answer": "把決定交給輔助性原則：能在地處理與後訓練的，就留在地端；驗證與換系統的權利列為前置條件，不是出事後的補救。責任必須黏在一個找得到的層次上，不能在模型、廠商與委員會之間蒸發。",
+                "chapter": "責任不能在模型、廠商與智慧體鏈條裡蒸發",
+                "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63984308"
               }
             ]
           }
@@ -1976,37 +2025,37 @@
             "id": "bridgewright",
             "name": "造橋者",
             "quadrant": "為眾人 · 打造系統",
-            "emoji": "🌉"
+            "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "織網者",
             "quadrant": "為眾人 · 織造制度",
-            "emoji": "🧶"
+            "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "手藝人",
             "quadrant": "為自身 · 打造系統",
-            "emoji": "🛠️"
+            "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "陪走者",
             "quadrant": "為自身 · 織造制度",
-            "emoji": "🫂"
+            "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "轉譯者",
             "quadrant": "正中央",
-            "emoji": "🔀"
+            "image": "event-arch-translator"
           }
         ]
       },
       "speakers": {
         "title": "紀錄中的兩道聲音",
-        "lead": "上方答案由唐鳳與 Tenzin Yangtso 展開，也由主持人與現場共同追問。",
+        "lead": "上方答案由唐鳳與丹增央措展開，由主持人布丁與現場共同追問。",
         "items": [
           {
             "id": "audrey-tang",
@@ -2031,6 +2080,19 @@
               "href": "https://ty.civic.ai/zh/bio",
               "external": true
             }
+          }
+        ]
+      },
+      "mottos": {
+        "title": "帶得走的兩句話",
+        "items": [
+          {
+            "text": "我的話一直都是 good enough ancestor 嘛，就是「夠好的祖先」。",
+            "by": "——唐鳳"
+          },
+          {
+            "text": "如果你不能夠幫助別人，但是至少你也不要傷害。",
+            "by": "——丹增央措，引達賴喇嘛"
           }
         ]
       },
@@ -2178,7 +2240,13 @@
       "join-bg": "/assets/images/join-bg.webp",
       "join-sheet": "/assets/images/join-sheet.png",
       "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
-      "event-archetype-map": "/assets/images/event-archetype-map.webp"
+      "event-archetype-map": "/assets/images/event-archetype-map.webp",
+      "event-arch-bridgewright": "/assets/images/event-arch-bridgewright.webp",
+      "event-arch-weaver": "/assets/images/event-arch-weaver.webp",
+      "event-arch-craftkeeper": "/assets/images/event-arch-craftkeeper.webp",
+      "event-arch-companion": "/assets/images/event-arch-companion.webp",
+      "event-arch-translator": "/assets/images/event-arch-translator.webp",
+      "og-image-event": "/assets/images/og-image-you-are-here.jpg"
     },
     "notFound": {
       "title": "找不到頁面",
@@ -2561,7 +2629,13 @@
       "join-bg": "/assets/images/join-bg.webp",
       "join-sheet": "/assets/images/join-sheet.png",
       "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
-      "event-archetype-map": "/assets/images/event-archetype-map.webp"
+      "event-archetype-map": "/assets/images/event-archetype-map.webp",
+      "event-arch-bridgewright": "/assets/images/event-arch-bridgewright.webp",
+      "event-arch-weaver": "/assets/images/event-arch-weaver.webp",
+      "event-arch-craftkeeper": "/assets/images/event-arch-craftkeeper.webp",
+      "event-arch-companion": "/assets/images/event-arch-companion.webp",
+      "event-arch-translator": "/assets/images/event-arch-translator.webp",
+      "og-image-event": "/assets/images/og-image-you-are-here.jpg"
     },
     "hero": {
       "headline": "AIを進歩させる速さに、それを受け止める社会の備えが追いついていません。",
@@ -3189,19 +3263,22 @@
                 "id": "answer-01",
                 "question": "なぜ市場に任せて、AIが過去の技術のように自然に追いつくのを待たないのか。",
                 "answer": "遅延コストは取り返しがつかないことがある。可逆的な実験は小さく、早く回す。生物・サイバー・インフラの害など不可逆なものは事前評価を義務化し、公開するものはすべてバージョン管理・報告・修復の記録を残す。",
-                "chapter": "可逆の領域では自由に実験し、不可逆の領域では検証と制約を強める"
+                "chapter": "可逆の領域では自由に実験し、不可逆の領域では検証と制約を強める",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985755"
               },
               {
                 "id": "answer-02",
                 "question": "モデル研究所が想定しなかったリスクを、コミュニティはどう定義すべきか。",
                 "answer": "被害を受ける人々を評価ループの中核に置く。コミュニティの言語データ、オープンウェイトの後学習、生活上の被害からモデルへ戻る公開経路を通して、フィードバックを閉じたアーカイブではなく評価可能な事例に変える。",
-                "chapter": "結果を負担する人がリスクを命名する"
+                "chapter": "結果を負担する人がリスクを命名する",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985772"
               },
               {
                 "id": "answer-03",
                 "question": "共通点を見つけることと、説明責任を伴う意思決定の間には何が必要か。",
                 "answer": "翻訳である。vTaiwanでは希少な合意が約3週間で得られたが、政策対応は約3年かかり、それでも時間やアクセスを持たない人々は取りこぼされた。現場では、読める中間成果物・版管理・不可逆判断の責任者が必要になる。",
-                "chapter": "希少な合意は政策そのものではなく、統治は翻訳が担う"
+                "chapter": "希少な合意は政策そのものではなく、統治は翻訳が担う",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985787"
               }
             ]
           },
@@ -3214,13 +3291,15 @@
                 "id": "answer-04",
                 "question": "速度やリーダーボードの得点が目的でないなら、AIシステムは何を最適化すべきか。",
                 "answer": "人間関係の健全性である。人々が衝突を鎮め、協力し、互いをケアできるかどうか。ベンチマークで高得点を取っても共感を奪うモデルは、入り込むコミュニティに対してアライメントしていない。",
-                "chapter": "対象は単一のリーダーボードではなく、集団間の関係性"
+                "chapter": "対象は単一のリーダーボードではなく、集団間の関係性",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985833"
               },
               {
                 "id": "answer-05",
                 "question": "生成コンテンツが読解速度を超えると、信頼はどこに立つのか。そして開発者はまず何をすべきか。",
                 "answer": "「AIらしさ」の検出ではない。署名、来歴、部品表、実行条件を記録した入力・重み・版から始める。次にアンドン・コードを設け、被害を受ける人が停止や減速をできるようにし、修復済みの事例を再利用可能にする。",
-                "chapter": "本当の退出を成立させるのは検証可能性と置換可能性だけだ"
+                "chapter": "本当の退出を成立させるのは検証可能性と置換可能性だけだ",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985840"
               }
             ]
           },
@@ -3233,19 +3312,22 @@
                 "id": "answer-06",
                 "question": "データ、利得、訂正はコミュニティ内に残したまま、ベンダーが変わっても消えないためにはどうするか。",
                 "answer": "データはローカル、あるいは暗号化して保持し、学習で得た教訓はモデル提供者ではなく制御ハーネス側に蓄積する。隣接レイヤーはオープンインターフェイスで分離し、馬と鞍が別々に交換できるなら、退出は記憶喪失を意味しない。",
-                "chapter": "ケアはデータ土壌と地域の能力として根づく"
+                "chapter": "ケアはデータ土壌と地域の能力として根づく",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985860"
               },
               {
                 "id": "answer-07",
                 "question": "役割・肩書・道具が変わり続けても、何が持続するのか。",
                 "answer": "実践である。示し、翻訳し、未完成の作業を公開し、他者が保守できる成果物を残すこと。継続性は、固定的な役割や単一のベンダー、固定バージョンの自己にではなく、引き継げる方法にある。",
-                "chapter": "役割や肩書から、皆で維持できる道具へ戻る"
+                "chapter": "役割や肩書から、皆で維持できる道具へ戻る",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985887"
               },
               {
                 "id": "answer-08",
                 "question": "小さなコミュニティはAIを使いながら、言語や日常的な要件を均質化されないようにできるか。",
                 "answer": "コミュニティ自身のコーパスとフィードバックで小型かつ専門化されたモデルを訓練し、遊休計算資源を統合し、一律の国家モデルを強制する代わりに開放的な計算資源を支援する。ローカルな翻訳、音声、照合で十分に良い出発点になる。",
-                "chapter": "小型モデル、地域計算、コミュニティ固有の言語"
+                "chapter": "小型モデル、地域計算、コミュニティ固有の言語",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985921"
               }
             ]
           },
@@ -3258,19 +3340,22 @@
                 "id": "answer-09",
                 "question": "機械が自動採点タスクを独占した後、人間の働きの価値はどこにあるか。",
                 "answer": "馬と速さを競うのをやめる。好奇心、協力、ケア、芸術、そして誰もが損をする状況を誰もが得る状況へ変える力に、尊厳と対価を置く。こうした仕事の価値は高得点では測れない。",
-                "chapter": "労働の価値は自動テストの高スコアではない"
+                "chapter": "労働の価値は自動テストの高スコアではない",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985980"
               },
               {
                 "id": "answer-10",
                 "question": "AIを道具と見る人、媒介と見る人、思考体と見る人が、どうやって同じ場で共に生き、創作できるか。",
                 "answer": "政治哲学を使い、形而上学的な一致を強要しない。立場が違っても後悔しない行動への重なりを先に見つけ、追跡・再実行できる形で創作過程を開示し、技術的多様性を地域内に保って、単一ベンダーの声が全員の声になるのを防ぐ。",
-                "chapter": "AIの社会的位置は、相容れない世界観を受け入れなければならない"
+                "chapter": "AIの社会的位置は、相容れない世界観を受け入れなければならない",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986020"
               },
               {
                 "id": "answer-11",
                 "question": "AIが拡大するにつれ、個人の権利はどう拡張され、最終的な責任はどこで止まるのか。",
                 "answer": "意思決定は、対応可能な最小スケールへ下ろす。可能な範囲で処理と後学習をローカルに保ち、検証とシステム変更権を前提条件として明記する。責任は人が到達可能な層に接着される必要があり、モデル・ベンダー・委員会の間で蒸発してはならない。",
-                "chapter": "責任はチェーンの途中で蒸発してはならない"
+                "chapter": "責任はチェーンの途中で蒸発してはならない",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986089"
               }
             ]
           }
@@ -3312,31 +3397,31 @@
             "id": "bridgewright",
             "name": "橋架け師",
             "quadrant": "群衆 · 構築",
-            "emoji": "🌉"
+            "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "織り手",
             "quadrant": "群衆 · 統治",
-            "emoji": "🧶"
+            "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "技の守り手",
             "quadrant": "自己 · 構築",
-            "emoji": "🛠️"
+            "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "伴走者",
             "quadrant": "自己 · 統治",
-            "emoji": "🫂"
+            "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "翻訳者",
             "quadrant": "中央",
-            "emoji": "🔀"
+            "image": "event-arch-translator"
           }
         ]
       },
@@ -4223,19 +4308,22 @@
                 "id": "answer-01",
                 "question": "¿Por qué no dejar que el mercado alcance a la IA, como ocurrió con tecnologías anteriores?",
                 "answer": "Porque el coste de esperar puede ser irreversible. Deja que los experimentos reversibles avancen de forma ágil y a pequeña escala; exige evaluación previa ante daños biológicos, cibernéticos y de infraestructura; y luego registra versiones, reportes y reparaciones de todo lo que se despliegue.",
-                "chapter": "Experimentar libremente donde sea reversible; restringir donde sea irreversible"
+                "chapter": "Experimentar libremente donde sea reversible; restringir donde sea irreversible",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985755"
               },
               {
                 "id": "answer-02",
                 "question": "¿Cómo puede una comunidad nombrar un riesgo que un laboratorio de modelos no supo probar?",
                 "answer": "Dando a las personas afectadas un lugar legítimo en el ciclo de evaluación. Los datos lingüísticos comunitarios, el postentrenamiento con pesos abiertos y una vía pública que conecte el daño vivido con el modelo convierten la retroalimentación en un caso evaluable en lugar de un archivo cerrado.",
-                "chapter": "Que quienes asumen las consecuencias nombren los riesgos"
+                "chapter": "Que quienes asumen las consecuencias nombren los riesgos",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985772"
               },
               {
                 "id": "answer-03",
                 "question": "¿Qué falta entre encontrar terreno común y tomar una decisión con rendición de cuentas?",
                 "answer": "La traducción. vTaiwan halló terreno común inusual en tres semanas; las políticas tardaron cerca de tres años y aun así dejaron fuera a personas sin tiempo o sin acceso efectivo. En el trabajo, el equivalente son artefactos legibles, historial de versiones y una persona responsable de las decisiones irreversibles.",
-                "chapter": "El terreno común inusual no es la política; la traducción es la gobernanza"
+                "chapter": "El terreno común inusual no es la política; la traducción es la gobernanza",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985787"
               }
             ]
           },
@@ -4248,13 +4336,15 @@
                 "id": "answer-04",
                 "question": "Si la velocidad y las tablas de clasificación no son el objetivo correcto, ¿qué debería optimizar un sistema de IA?",
                 "answer": "La salud de las relaciones: si las personas pueden calmar conflictos, cooperar y cuidarse mejor entre sí. Un modelo que encabeza un benchmark mientras erosiona la empatía no está alineado con la comunidad en la que entra.",
-                "chapter": "Alinear la relación entre grupos, no una tabla de clasificación"
+                "chapter": "Alinear la relación entre grupos, no una tabla de clasificación",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985833"
               },
               {
                 "id": "answer-05",
                 "question": "Cuando el contenido generado desborda nuestra capacidad de lectura, ¿en qué se puede apoyar la confianza y qué debería hacer primero quien construye?",
                 "answer": "No en detectar un supuesto «rastro de IA». Hay que partir de firmas digitales, procedencia, una lista de componentes y entradas, pesos y versiones que permitan repetir la ejecución; después, incorporar una cuerda Andon para que las personas afectadas puedan detener o ralentizar el sistema y reutilizar cada caso reparado.",
-                "chapter": "Solo la auditabilidad y la sustituibilidad hacen real el derecho a salir"
+                "chapter": "Solo la auditabilidad y la sustituibilidad hacen real el derecho a salir",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985840"
               }
             ]
           },
@@ -4267,19 +4357,22 @@
                 "id": "answer-06",
                 "question": "¿Cómo permanecen los datos, beneficios y correcciones en la comunidad, y cómo sobreviven al cambio de proveedor?",
                 "answer": "Manteniendo los datos locales o cifrados, acumulando los aprendizajes en el entorno operativo y no en el proveedor del modelo, y separando las capas adyacentes mediante interfaces abiertas. Si el caballo y la silla de montar pueden sustituirse por separado, salir no equivale a sufrir amnesia.",
-                "chapter": "El cuidado echa raíces como sustrato de datos y capacidad local"
+                "chapter": "El cuidado echa raíces como sustrato de datos y capacidad local",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985860"
               },
               {
                 "id": "answer-07",
                 "question": "¿Qué permanece constante cuando los roles, los títulos y las herramientas no dejan de cambiar?",
                 "answer": "La práctica: demostrar, traducir, publicar trabajo en curso y dejar artefactos que otras personas puedan mantener. La continuidad reside en un método que la gente pueda llevar adelante, no en un cargo, un proveedor o una versión fija de uno mismo.",
-                "chapter": "De roles y títulos a herramientas que podemos mantener en común"
+                "chapter": "De roles y títulos a herramientas que podemos mantener en común",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985887"
               },
               {
                 "id": "answer-08",
                 "question": "¿Cómo puede una comunidad pequeña usar la IA sin que su lengua y sus necesidades cotidianas queden aplanadas?",
                 "answer": "Entrenando modelos pequeños y especializados con el corpus y la retroalimentación propios de la comunidad; compartiendo cómputo en desuso; y subsidiando capacidad abierta en lugar de un modelo nacional único y obligatorio. La traducción, la voz y la verificación locales bastan para dar un auténtico primer paso.",
-                "chapter": "Modelos pequeños, cómputo local y las lenguas propias de las comunidades"
+                "chapter": "Modelos pequeños, cómputo local y las lenguas propias de las comunidades",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985921"
               }
             ]
           },
@@ -4292,19 +4385,22 @@
                 "id": "answer-09",
                 "question": "¿Qué valor tiene el trabajo humano cuando las máquinas dominan todas las tareas de calificación automática?",
                 "answer": "Dejar de competir con el caballo. Respaldar con dignidad e ingresos la curiosidad, la cooperación, el cuidado, el arte y la capacidad de transformar situaciones en las que todos pierden en otras donde todos ganan: el trabajo cuyo valor no es una puntuación alta.",
-                "chapter": "El valor del trabajo no es una puntuación alta en una prueba automatizada"
+                "chapter": "El valor del trabajo no es una puntuación alta en una prueba automatizada",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985980"
               },
               {
                 "id": "answer-10",
                 "question": "¿Cómo pueden convivir y crear juntas personas que ven la IA como una herramienta, un medio o una mente?",
                 "answer": "Recurriendo a la filosofía política antes que forzar un acuerdo metafísico: buscando consensos superpuestos sobre acciones sin remordimiento, haciendo transparente y reproducible el proceso creativo y preservando la diversidad tecnológica local para que la voz de un solo proveedor no se convierta en la de todos.",
-                "chapter": "La posición social de la IA debe dar cabida a visiones del mundo irreconciliables"
+                "chapter": "La posición social de la IA debe dar cabida a visiones del mundo irreconciliables",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986020"
               },
               {
                 "id": "answer-11",
                 "question": "A medida que la IA escala, ¿cómo crecen con ella los derechos individuales y dónde se detiene la responsabilidad final?",
                 "answer": "Llevando las decisiones a la escala más pequeña capaz de asumirlas, manteniendo el procesamiento y el postentrenamiento locales siempre que sea posible, y fijando la verificabilidad y el derecho a cambiar de sistema como requisitos previos. La responsabilidad debe quedar vinculada a una instancia accesible; no puede disolverse entre modelos, proveedores y comités.",
-                "chapter": "La responsabilidad no debe evaporarse a lo largo de la cadena"
+                "chapter": "La responsabilidad no debe evaporarse a lo largo de la cadena",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986089"
               }
             ]
           }
@@ -4346,31 +4442,31 @@
             "id": "bridgewright",
             "name": "Constructor de puentes",
             "quadrant": "Multitud · Construcción",
-            "emoji": "🌉"
+            "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Tejedor",
             "quadrant": "Multitud · Gobernanza",
-            "emoji": "🧶"
+            "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Guardián del oficio",
             "quadrant": "Uno mismo · Construcción",
-            "emoji": "🛠️"
+            "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Acompañante",
             "quadrant": "Uno mismo · Gobernanza",
-            "emoji": "🫂"
+            "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Traductor",
             "quadrant": "El centro",
-            "emoji": "🔀"
+            "image": "event-arch-translator"
           }
         ]
       },
@@ -4548,7 +4644,13 @@
       "join-bg": "/assets/images/join-bg.webp",
       "join-sheet": "/assets/images/join-sheet.png",
       "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
-      "event-archetype-map": "/assets/images/event-archetype-map.webp"
+      "event-archetype-map": "/assets/images/event-archetype-map.webp",
+      "event-arch-bridgewright": "/assets/images/event-arch-bridgewright.webp",
+      "event-arch-weaver": "/assets/images/event-arch-weaver.webp",
+      "event-arch-craftkeeper": "/assets/images/event-arch-craftkeeper.webp",
+      "event-arch-companion": "/assets/images/event-arch-companion.webp",
+      "event-arch-translator": "/assets/images/event-arch-translator.webp",
+      "og-image-event": "/assets/images/og-image-you-are-here.jpg"
     },
     "notFound": {
       "title": "No encontrado",
@@ -5398,19 +5500,22 @@
                 "id": "answer-01",
                 "question": "Por que não deixar o mercado alcançar a IA no seu próprio ritmo, como aconteceu com tecnologias anteriores?",
                 "answer": "Porque o custo da demora pode ser irreversível. Deixe experimentos reversíveis rodarem pequenos e rápidos; exija avaliação prévia para danos biológicos, cibernéticos e de infraestrutura, e então registre versões, relate e repare tudo o que for lançado.",
-                "chapter": "Experimente livremente onde for reversível; restrinja onde for irreversível"
+                "chapter": "Experimente livremente onde for reversível; restrinja onde for irreversível",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985755"
               },
               {
                 "id": "answer-02",
                 "question": "Como uma comunidade pode nomear um risco que o laboratório do modelo não soube testar?",
                 "answer": "Dê às pessoas afetadas um lugar no ciclo de avaliação. Dados linguísticos da comunidade, pós-treinamento com pesos abertos e um caminho público do dano vivido de volta ao modelo transformam o feedback em um caso avaliável em vez de um arquivo fechado.",
-                "chapter": "Deixe quem suporta as consequências nomear os riscos"
+                "chapter": "Deixe quem suporta as consequências nomear os riscos",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985772"
               },
               {
                 "id": "answer-03",
                 "question": "O que existe entre encontrar um terreno comum e tomar uma decisão com responsabilização?",
                 "answer": "A tradução. O vTaiwan revelou consensos raros em três semanas; a política pública levou cerca de três anos e ainda assim deixou de fora quem não tinha tempo ou acesso utilizável. No trabalho, o equivalente são artefatos legíveis, histórico de versões e uma pessoa que responda pelas escolhas irreversíveis.",
-                "chapter": "O consenso raro não é a política pública; a tradução é a governança"
+                "chapter": "O consenso raro não é a política pública; a tradução é a governança",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985787"
               }
             ]
           },
@@ -5423,13 +5528,15 @@
                 "id": "answer-04",
                 "question": "Se velocidade e pontuações em rankings não são o objetivo certo, o que um sistema de IA deve otimizar?",
                 "answer": "A saúde dos relacionamentos: se as pessoas conseguem acalmar conflitos, cooperar e cuidar melhor umas das outras. Um modelo que vence um benchmark enquanto esvazia a empatia não está alinhado à comunidade em que se insere.",
-                "chapter": "Alinhe a relação entre grupos, não um único ranking"
+                "chapter": "Alinhe a relação entre grupos, não um único ranking",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985833"
               },
               {
                 "id": "answer-05",
                 "question": "Quando o conteúdo gerado supera a capacidade de leitura, em que a confiança pode se apoiar — e o que quem constrói deve fazer primeiro?",
                 "answer": "Não na detecção de um suposto “rastro de IA”. Comece com assinaturas, procedência, uma lista de componentes e entradas, pesos e versões que permitam repetir a execução; depois, adicione uma corda Andon para que as pessoas afetadas possam parar ou desacelerar o sistema e tornar um caso reparado reutilizável.",
-                "chapter": "Apenas a verificabilidade e a substituibilidade tornam a saída real"
+                "chapter": "Apenas a verificabilidade e a substituibilidade tornam a saída real",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985840"
               }
             ]
           },
@@ -5442,19 +5549,22 @@
                 "id": "answer-06",
                 "question": "Como dados, ganhos e correções permanecem na comunidade — e sobrevivem a uma troca de fornecedores?",
                 "answer": "Mantenha os dados locais ou criptografados, acumule os aprendizados na estrutura operacional em vez de no fornecedor do modelo, e separe camadas adjacentes por meio de interfaces abertas. Se o cavalo e a sela puderem ser substituídos separadamente, sair não significa ter amnésia.",
-                "chapter": "O cuidado cria raízes como solo de dados e capacidade local"
+                "chapter": "O cuidado cria raízes como solo de dados e capacidade local",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985860"
               },
               {
                 "id": "answer-07",
                 "question": "O que permanece contínuo quando papéis, cargos e ferramentas não param de mudar?",
                 "answer": "A prática: demonstrar, traduzir, publicar trabalhos inacabados e deixar artefatos que outros possam manter. A continuidade reside em um método que as pessoas possam levar adiante, não em um único cargo, fornecedor ou versão fixa de si mesmo.",
-                "chapter": "De papéis e cargos de volta a ferramentas que podemos manter juntos"
+                "chapter": "De papéis e cargos de volta a ferramentas que podemos manter juntos",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985887"
               },
               {
                 "id": "answer-08",
                 "question": "Como uma comunidade pequena pode usar IA sem que sua língua e necessidades cotidianas sejam homogeneizadas?",
                 "answer": "Treine modelos pequenos e especializados no próprio corpus e feedback da comunidade; reúna capacidade computacional ociosa; subsidie capacidade aberta em vez de um único modelo nacional obrigatório. Tradução, fala e checagem locais são suficientes para dar um início de verdade.",
-                "chapter": "Pequenos modelos, computação local e a língua própria das comunidades"
+                "chapter": "Pequenos modelos, computação local e a língua própria das comunidades",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985921"
               }
             ]
           },
@@ -5467,19 +5577,22 @@
                 "id": "answer-09",
                 "question": "Qual é o valor do trabalho humano quando as máquinas dominam todas as tarefas avaliadas automaticamente?",
                 "answer": "Pare de apostar corrida com o cavalo. Atribua dignidade e remuneração à curiosidade, cooperação, cuidado, arte e à transformação de situações de perda mútua em ganhos mútuos — o trabalho cujo valor não é uma pontuação alta.",
-                "chapter": "O valor do trabalho não é uma pontuação alta em um teste automatizado"
+                "chapter": "O valor do trabalho não é uma pontuação alta em um teste automatizado",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985980"
               },
               {
                 "id": "answer-10",
                 "question": "Como pessoas que veem a IA como ferramenta, meio ou mente ainda podem viver e criar juntas?",
                 "answer": "Recorra à filosofia política em vez de forçar um acordo metafísico: busque consensos sobrepostos em torno de ações sem arrependimento, torne o processo criativo transparente e passível de reexecução e mantenha a diversidade tecnológica local para que a voz de um fornecedor não vire a de todos.",
-                "chapter": "A posição social da IA precisa acomodar visões de mundo inconciliáveis"
+                "chapter": "A posição social da IA precisa acomodar visões de mundo inconciliáveis",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986020"
               },
               {
                 "id": "answer-11",
                 "question": "À medida que a IA se expande, como os direitos individuais crescem junto — e onde termina a responsabilidade final?",
                 "answer": "Leve as decisões para a menor escala capaz, mantenha processamento e pós-treinamento locais sempre que possível e estabeleça a verificação e o direito de troca como pré-requisitos. A responsabilidade precisa ficar atrelada a uma camada acessível; ela não pode se diluir entre modelos, fornecedores e comitês.",
-                "chapter": "A responsabilidade não pode evaporar ao longo da cadeia"
+                "chapter": "A responsabilidade não pode evaporar ao longo da cadeia",
+                "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63986089"
               }
             ]
           }
@@ -5521,31 +5634,31 @@
             "id": "bridgewright",
             "name": "Construtor de Pontes",
             "quadrant": "Multidão · Construção",
-            "emoji": "🌉"
+            "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Tecelão",
             "quadrant": "Multidão · Governança",
-            "emoji": "🧶"
+            "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Guardião do Ofício",
             "quadrant": "Interior · Construção",
-            "emoji": "🛠️"
+            "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Companheiro",
             "quadrant": "Interior · Governança",
-            "emoji": "🫂"
+            "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Tradutor",
             "quadrant": "O centro",
-            "emoji": "🔀"
+            "image": "event-arch-translator"
           }
         ]
       },
@@ -5723,7 +5836,13 @@
       "join-bg": "/assets/images/join-bg.webp",
       "join-sheet": "/assets/images/join-sheet.png",
       "join-sheet-overlay": "/assets/images/join-sheet-overlay.png",
-      "event-archetype-map": "/assets/images/event-archetype-map.webp"
+      "event-archetype-map": "/assets/images/event-archetype-map.webp",
+      "event-arch-bridgewright": "/assets/images/event-arch-bridgewright.webp",
+      "event-arch-weaver": "/assets/images/event-arch-weaver.webp",
+      "event-arch-craftkeeper": "/assets/images/event-arch-craftkeeper.webp",
+      "event-arch-companion": "/assets/images/event-arch-companion.webp",
+      "event-arch-translator": "/assets/images/event-arch-translator.webp",
+      "og-image-event": "/assets/images/og-image-you-are-here.jpg"
     },
     "notFound": {
       "title": "Não encontrado",

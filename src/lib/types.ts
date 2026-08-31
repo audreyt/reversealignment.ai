@@ -225,12 +225,9 @@ export type EventArchetype = {
    * live and go stale between builds; a quadrant does not.
    */
   quadrant: string;
-  /**
-   * The reading's glyph, locale-invariant. It is what makes an arc legible as
-   * a pair at a glance, where two spelled-out names read as one repeated name.
-   * Always decorative in the markup: the name carries the accessible text.
-   */
-  emoji: string;
+  /** Key into `assets`; the figure cropped from the map artwork. Decorative:
+   * the adjacent name carries the accessible text. */
+  image: string;
 };
 
 /** One of the five operating moves distilled from the public event record. */
@@ -273,6 +270,14 @@ export type EventAnsweredQuestion = {
   answer: string;
   /** The transcript chapter that carries this answer. */
   chapter: string;
+  /** Deep link to this chapter in the locale's transcript edition. */
+  href: string;
+};
+
+/** Verbatim sentence from the public transcript, with no added quotation marks. */
+export type EventQuote = {
+  text: string;
+  by: string;
 };
 
 /** A navigational group in the answered-question spine. */
@@ -281,6 +286,8 @@ export type EventQuestionGroup = {
   id: string;
   title: string;
   lead: string;
+  /** zh-TW only until other editions are quoted from their own transcripts. */
+  quote?: EventQuote;
   items: EventAnsweredQuestion[];
 };
 
@@ -312,6 +319,8 @@ export type EventCopy = {
      * English. archive.tw hosts the language toggle.
      */
     transcript: Cta;
+    /** Alternate-language transcript link; zh-TW only for now. */
+    altTranscript?: Cta;
   };
   principles: {
     title: string;
@@ -345,6 +354,11 @@ export type EventCopy = {
     title: string;
     lead: string;
     items: EventSpeaker[];
+  };
+  /** Closing take-away lines; zh-TW only until other editions are quoted. */
+  mottos?: {
+    title: string;
+    items: EventQuote[];
   };
   /** Provenance line distinguishing the transcript from editorial compression. */
   source: string;

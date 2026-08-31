@@ -45,6 +45,18 @@ if (!listing) {
 
 const title = `${event.metaTitle} — ${catalog.brand.name}`;
 const mapImage = assetPath('event-archetype-map', locale, rootPath);
+const archetypeImageDimensions: Record<string, { width: number; height: number }> = {
+  bridgewright: { width: 233, height: 435 },
+  weaver: { width: 258, height: 405 },
+  craftkeeper: { width: 258, height: 448 },
+  companion: { width: 251, height: 430 },
+  translator: { width: 460, height: 520 },
+};
+function getArchetypeImageDimensions(id: string) {
+  const dimensions = archetypeImageDimensions[id];
+  if (!dimensions) throw new Error(`Missing event archetype image dimensions for "${id}"`);
+  return dimensions;
+}
 
 let questionOrdinal = 0;
 const questionGroups = questions.groups.map((group) => ({
@@ -56,7 +68,7 @@ const questionGroups = questions.groups.map((group) => ({
 }));
 ---
 
-<Base locale={locale} title={title} description={event.metaDescription}>
+<Base locale={locale} title={title} description={event.metaDescription} image={catalog.assets['og-image-event']}>
   <div id="top" class="page page--event">
     <SiteHeader copy={copy} showNavigation={false} />
 
@@ -116,6 +128,15 @@ const questionGroups = questions.groups.map((group) => ({
               class="btn btn--dark event-record__cta"
               externalLabel={copy.a11y.externalLink}
             />
+            {
+              record.altTranscript && (
+                <CtaLink
+                  cta={record.altTranscript}
+                  class="event-record__alt"
+                  externalLabel={copy.a11y.externalLink}
+                />
+              )
+            }
           </div>
         </div>
       </section>
@@ -192,7 +213,14 @@ const questionGroups = questions.groups.map((group) => ({
                               <p class="event-answer__chapter">
                                 <span>{questions.chapterLabel}</span>
                                 <span aria-hidden="true"> / </span>
-                                {item.chapter}
+                                <a href={item.href} target="_blank" rel="noopener noreferrer">
+                                  {item.chapter}
+                                  <span class="event-answer__chapter-arrow" aria-hidden="true">
+                                    {' '}
+                                    ↗
+                                  </span>
+                                  <span class="sr-only">({copy.a11y.externalLink})</span>
+                                </a>
                               </p>
                               <h4 class="event-answer__question">{item.question}</h4>
                               <div class="event-answer__response">
@@ -205,6 +233,16 @@ const questionGroups = questions.groups.map((group) => ({
                       ))
                     }
                   </ol>
+                  {
+                    group.quote && (
+                      <figure class="event-quote">
+                        <blockquote class="event-quote__text">
+                          <p>{group.quote.text}</p>
+                        </blockquote>
+                        <figcaption class="event-quote__by">{group.quote.by}</figcaption>
+                      </figure>
+                    )
+                  }
                 </section>
               ))
             }
@@ -238,13 +276,24 @@ const questionGroups = questions.groups.map((group) => ({
               <h3 class="body--mono event-panel__title">{map.legendTitle}</h3>
               <ul class="event-legend__list">
                 {
-                  archetypes.items.map((item) => (
-                    <li class="event-legend__item" data-archetype={item.id}>
-                      <span class="event-legend__glyph" aria-hidden="true">{item.emoji}</span>
-                      <span class="event-legend__name">{item.name}</span>
-                      <span class="event-legend__quadrant">{item.quadrant}</span>
-                    </li>
-                  ))
+                  archetypes.items.map((item) => {
+                    const { width, height } = getArchetypeImageDimensions(item.id);
+                    return (
+                      <li class="event-legend__item" data-archetype={item.id}>
+                        <img
+                          class="event-legend__art"
+                          src={assetPath(item.image, locale, rootPath)}
+                          alt=""
+                          width={width}
+                          height={height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="event-legend__name">{item.name}</span>
+                        <span class="event-legend__quadrant">{item.quadrant}</span>
+                      </li>
+                    );
+                  })
                 }
               </ul>
             </div>
@@ -291,6 +340,23 @@ const questionGroups = questions.groups.map((group) => ({
 
       <section class="section section--dark event-close">
         <div class="section__inner event-close__inner">
+          {
+            event.mottos && (
+              <div class="event-mottos">
+                <h2 class="body--mono event-mottos__title">{event.mottos.title}</h2>
+                <div class="event-mottos__grid">
+                  {event.mottos.items.map((motto) => (
+                    <figure class="event-motto">
+                      <blockquote class="event-motto__text">
+                        <p>{motto.text}</p>
+                      </blockquote>
+                      <figcaption class="event-motto__by">{motto.by}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )
+          }
           <p class="body--sm event-close__source">{event.source}</p>
           <a class="btn btn--quiet" href={rootPath}>{event.homeLabel}</a>
         </div>
