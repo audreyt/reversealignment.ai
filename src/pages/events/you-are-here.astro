@@ -280,15 +280,17 @@ const questionGroups = questions.groups.map((group) => ({
                     const { width, height } = getArchetypeImageDimensions(item.id);
                     return (
                       <li class="event-legend__item" data-archetype={item.id}>
-                        <img
-                          class="event-legend__art"
-                          src={assetPath(item.image, locale, rootPath)}
-                          alt=""
-                          width={width}
-                          height={height}
-                          loading="lazy"
-                          decoding="async"
-                        />
+                        <span class="event-legend__media" aria-hidden="true">
+                          <img
+                            class="event-legend__art"
+                            src={assetPath(item.image, locale, rootPath)}
+                            alt=""
+                            width={width}
+                            height={height}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </span>
                         <span class="event-legend__name">{item.name}</span>
                         <span class="event-legend__quadrant">{item.quadrant}</span>
                       </li>
