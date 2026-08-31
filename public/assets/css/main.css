@@ -5664,7 +5664,8 @@ textarea.form__control {
   font-family: var(--font-mono);
   font-size: 13px;
   line-height: 1.45;
-  word-break: keep-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
   text-wrap: balance;
   letter-spacing: 0.06em;
   text-transform: uppercase;

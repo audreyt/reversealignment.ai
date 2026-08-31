@@ -53,12 +53,17 @@ test.describe('multilingual static accessibility', () => {
       'href',
       'https://archive.tw/2026-08-29-platform-originals-對齊的另一面'
     );
+    await expect(page.locator('.event-record__alt')).toHaveAttribute(
+      'href',
+      'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al'
+    );
     await expect(page.locator('.event-answer__chapter a').first()).toHaveAttribute(
       'href',
       'https://archive.tw/2026-08-29-platform-originals-對齊的另一面#s63983970'
     );
     await expect(page.locator('.event-legend__art')).toHaveCount(5);
     await expect(page.locator('.event-quote')).toHaveCount(4);
+    await expect(page.locator('.event-motto')).toHaveCount(2);
     await expect(page.locator('.event-principle')).toHaveCount(5);
     await expect(page.locator('.event-answer')).toHaveCount(11);
     await expect(page.locator('a[href*="luma.com"], a[href*="sli.do"]')).toHaveCount(0);
@@ -73,11 +78,16 @@ test.describe('multilingual static accessibility', () => {
       'href',
       'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al'
     );
+    await expect(page.locator('.event-record__alt')).toHaveAttribute(
+      'href',
+      'https://archive.tw/2026-08-29-platform-originals-對齊的另一面'
+    );
     await expect(page.locator('.event-answer__chapter a').first()).toHaveAttribute(
       'href',
       'https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al#s63985755'
     );
-    await expect(page.locator('.event-quote')).toHaveCount(0);
+    await expect(page.locator('.event-quote')).toHaveCount(4);
+    await expect(page.locator('.event-motto')).toHaveCount(2);
     await expect(page.locator('.event-principle')).toHaveCount(5);
     await expect(page.locator('.event-answer')).toHaveCount(11);
     await expect(page.locator('a[href*="luma.com"], a[href*="sli.do"]')).toHaveCount(0);

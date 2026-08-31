@@ -54,6 +54,18 @@ const ZH_CHAPTERS = [
   '責任不能在模型、廠商與智慧體鏈條裡蒸發',
 ];
 
+const EN_QUOTES = [
+  'So when we discuss AI governance internationally, what we are really doing is naming which harms are irreversible, and then fitting institutions around those.',
+  'The simplest method is this: any output from a model that nobody has vouched for, that carries no digital signature, you treat as fake. You invert the default.',
+  'So the simplest thing to do at the outset is to have the saddle and the horse made by two different companies. That solves it.',
+  'How odd. Why not just ride the horse? Why race it?',
+];
+const EN_MOTTOS = [
+  'Mine has always been good enough ancestor, a “good enough ancestor.”',
+  'If you cannot help others, at least do not harm them.',
+];
+const LOCALE_INVARIANT_LINES: Record<string, true> = { '—Audrey Tang': true };
+
 function event(overrides: Partial<CoalitionEvent> = {}): CoalitionEvent {
   return {
     id: 'fixture',
@@ -282,26 +294,35 @@ describe('coalition event catalog', () => {
     }
   });
 
-  test('zh-TW chapters quote the published record verbatim', () => {
-    const event = getContent('zh-tw').event;
+  test('ships source-faithful quotes, takeaways, and both transcript editions', () => {
+    const zhEvent = getContent('zh-tw').event;
     expect(
-      event.questions.groups.flatMap((group) => group.items.map((item) => item.chapter))
+      zhEvent.questions.groups.flatMap((group) => group.items.map((item) => item.chapter))
     ).toEqual(ZH_CHAPTERS);
-    expect(
-      event.questions.groups.every(
-        (group) => Boolean(group.quote?.text.trim()) && Boolean(group.quote?.by.trim())
-      )
-    ).toBe(true);
-    expect(event.mottos?.items).toHaveLength(2);
-    for (const motto of event.mottos?.items ?? []) {
-      expect(motto.text.trim().length).toBeGreaterThan(0);
-      expect(motto.by.trim().length).toBeGreaterThan(0);
+
+    for (const locale of listLocales()) {
+      const event = getContent(locale).event;
+      for (const group of event.questions.groups) {
+        expect(group.quote.text.trim().length, `${locale} ${group.id} quote`).toBeGreaterThan(0);
+        expect(group.quote.by.trim().length, `${locale} ${group.id} attribution`).toBeGreaterThan(
+          0
+        );
+      }
+      expect(event.mottos.items, locale).toHaveLength(2);
+      for (const motto of event.mottos.items) {
+        expect(motto.text.trim().length, locale).toBeGreaterThan(0);
+        expect(motto.by.trim().length, locale).toBeGreaterThan(0);
+      }
+
+      const alternateTranscript = locale === 'zh-tw' ? TRANSCRIPT_EN_URL : TRANSCRIPT_ZH_URL;
+      expect(event.record.altTranscript.href, locale).toBe(alternateTranscript);
+      expect(event.record.altTranscript.external, locale).toBe(true);
+      expect(event.record.altTranscript.label.trim().length, locale).toBeGreaterThan(0);
     }
-    expect(event.record.altTranscript).toEqual({
-      label: '英文版逐字稿',
-      href: TRANSCRIPT_EN_URL,
-      external: true,
-    });
+
+    const english = getContent('en').event;
+    expect(english.questions.groups.map((group) => group.quote.text)).toEqual(EN_QUOTES);
+    expect(english.mottos.items.map((motto) => motto.text)).toEqual(EN_MOTTOS);
   });
 
   test('translates every line of the event page, leaving no English fallback', () => {
@@ -324,6 +345,7 @@ describe('coalition event catalog', () => {
         event.record.place,
         event.record.body,
         event.record.transcript.label,
+        event.record.altTranscript.label,
         event.principles.title,
         event.principles.lead,
         ...event.principles.items.flatMap((item) => [item.title, item.body]),
@@ -336,6 +358,8 @@ describe('coalition event catalog', () => {
         ...event.questions.groups.flatMap((group) => [
           group.title,
           group.lead,
+          group.quote.text,
+          group.quote.by,
           ...group.items.flatMap((item) => [item.question, item.answer, item.chapter]),
         ]),
         event.map.title,
@@ -349,6 +373,8 @@ describe('coalition event catalog', () => {
         event.speakers.title,
         event.speakers.lead,
         ...event.speakers.items.flatMap((item) => [item.role, item.body]),
+        event.mottos.title,
+        ...event.mottos.items.flatMap((item) => [item.text, item.by]),
         event.source,
       ];
     }
@@ -365,8 +391,9 @@ describe('coalition event catalog', () => {
       }
       if (locale === 'en') continue;
       expect(
-        lines.filter((line, index) => line === reference[index]),
-        locale
+        lines.filter(
+          (line, index) => line === reference[index] && LOCALE_INVARIANT_LINES[line] !== true
+        )
       ).toEqual([]);
     }
   });

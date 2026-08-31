@@ -618,6 +618,11 @@
           "label": "Read the public transcript",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
+        },
+        "altTranscript": {
+          "label": "Traditional Chinese transcript",
+          "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
+          "external": true
         }
       },
       "principles": {
@@ -663,6 +668,10 @@
             "id": "limits",
             "title": "Draw the line before the harm",
             "lead": "Start with consequences: what can be undone, who gets to name the damage, and what translation owes the people left off the chart.",
+            "quote": {
+              "text": "So when we discuss AI governance internationally, what we are really doing is naming which harms are irreversible, and then fitting institutions around those.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-01",
@@ -691,6 +700,10 @@
             "id": "judgment",
             "title": "Keep judgment answerable",
             "lead": "A decision needs provenance, friction and a person who still carries the irreversible part.",
+            "quote": {
+              "text": "The simplest method is this: any output from a model that nobody has vouched for, that carries no digital signature, you treat as fake. You invert the default.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-04",
@@ -712,6 +725,10 @@
             "id": "local",
             "title": "Put capacity where life is lived",
             "lead": "Data soil, replaceable tools and community-scale models keep learning from becoming extraction.",
+            "quote": {
+              "text": "So the simplest thing to do at the outset is to have the saddle and the horse made by two different companies. That solves it.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-06",
@@ -740,6 +757,10 @@
             "id": "future",
             "title": "Scale rights, not prophecy",
             "lead": "The future stays open when dignity is not a score, different worldviews can coexist, and responsibility remains somewhere people can reach.",
+            "quote": {
+              "text": "How odd. Why not just ride the horse? Why race it?",
+              "by": "—Audrey Tang, retelling a Tibetan fable"
+            },
             "items": [
               {
                 "id": "answer-09",
@@ -801,31 +822,31 @@
           {
             "id": "bridgewright",
             "name": "Bridgewright",
-            "quadrant": "Crowd · Build",
+            "quadrant": "Build systems for the many",
             "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Weaver",
-            "quadrant": "Crowd · Govern",
+            "quadrant": "Weave institutions for the many",
             "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Craftkeeper",
-            "quadrant": "Self · Build",
+            "quadrant": "Build systems for oneself",
             "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Companion",
-            "quadrant": "Self · Govern",
+            "quadrant": "Weave institutions for oneself",
             "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Translator",
-            "quadrant": "The centre",
+            "quadrant": "See which limits have changed, then move among roles",
             "image": "event-arch-translator"
           }
         ]
@@ -857,6 +878,19 @@
               "href": "https://ty.civic.ai/zh/bio",
               "external": true
             }
+          }
+        ]
+      },
+      "mottos": {
+        "title": "Two lines to take with you",
+        "items": [
+          {
+            "text": "Mine has always been good enough ancestor, a “good enough ancestor.”",
+            "by": "—Audrey Tang"
+          },
+          {
+            "text": "If you cannot help others, at least do not harm them.",
+            "by": "—Tenzin Yangtso, quoting the Dalai Lama"
           }
         ]
       },
@@ -3213,6 +3247,11 @@
           "label": "公開逐語録を読む",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
+        },
+        "altTranscript": {
+          "label": "繁体字中国語版の逐語録",
+          "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
+          "external": true
         }
       },
       "principles": {
@@ -3258,6 +3297,10 @@
             "id": "limits",
             "title": "害が生じる前に線を引く",
             "lead": "結果から入る。何が取り消し可能か、誰が被害を命名する権限を持つか、図から漏れた人へ翻訳が何を負っているかを見極める。",
+            "quote": {
+              "text": "国際的に AI ガバナンスを論じるとき、実際にしているのは、どの害が不可逆なのかを明らかにし、それらに合わせて制度を調整することです。",
+              "by": "—唐鳳"
+            },
             "items": [
               {
                 "id": "answer-01",
@@ -3286,6 +3329,10 @@
             "id": "judgment",
             "title": "判断が問われ続けるようにする",
             "lead": "意思決定には起源情報、摩擦、そして不可逆な部分を担い続ける人物が必要だ。",
+            "quote": {
+              "text": "いちばん簡単な方法はこうです。モデルが生成した出力のうち、誰も保証しておらず、デジタル署名もないものは、すべて偽物として扱う。判断の前提を反転させるのです。",
+              "by": "—唐鳳"
+            },
             "items": [
               {
                 "id": "answer-04",
@@ -3307,6 +3354,10 @@
             "id": "local",
             "title": "生活が営まれる場に能力を置く",
             "lead": "データ土壌、交換可能な道具、コミュニティ規模のモデルが、学習を搾取化へと傾かせない。",
+            "quote": {
+              "text": "だから、最初にできるいちばん簡単なことは、鞍と馬を別々の会社につくらせることです。それで解決します。",
+              "by": "—唐鳳"
+            },
             "items": [
               {
                 "id": "answer-06",
@@ -3335,6 +3386,10 @@
             "id": "future",
             "title": "予言ではなく権利を拡張する",
             "lead": "尊厳を点数化せず、異なる世界観が併存し、責任が人の手に届く場所に残るとき、未来は開かれたままだ。",
+            "quote": {
+              "text": "妙ですね。なぜ馬に乗るだけではだめなのでしょう？ なぜ馬と競走するのでしょう？",
+              "by": "—唐鳳（チベットの寓話を語り直して）"
+            },
             "items": [
               {
                 "id": "answer-09",
@@ -3396,31 +3451,31 @@
           {
             "id": "bridgewright",
             "name": "橋架け師",
-            "quadrant": "群衆 · 構築",
+            "quadrant": "多くの人のために仕組みをつくる",
             "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "織り手",
-            "quadrant": "群衆 · 統治",
+            "quadrant": "多くの人のために制度を織る",
             "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "技の守り手",
-            "quadrant": "自己 · 構築",
+            "quadrant": "自分のために仕組みをつくる",
             "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "伴走者",
-            "quadrant": "自己 · 統治",
+            "quadrant": "自分のために制度を織る",
             "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "翻訳者",
-            "quadrant": "中央",
+            "quadrant": "制約が変わったと気づけば、役割を越えていける",
             "image": "event-arch-translator"
           }
         ]
@@ -3452,6 +3507,19 @@
               "href": "https://ty.civic.ai/zh/bio",
               "external": true
             }
+          }
+        ]
+      },
+      "mottos": {
+        "title": "持ち帰る二つの言葉",
+        "items": [
+          {
+            "text": "私のモットーはずっと good enough ancestor、つまり「十分によい祖先」です。",
+            "by": "—唐鳳"
+          },
+          {
+            "text": "人を助けられないなら、せめて傷つけないこと。",
+            "by": "—テンジン・ヤンツォ（ダライ・ラマを引用）"
           }
         ]
       },
@@ -4258,6 +4326,11 @@
           "label": "Lee la transcripción pública",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
+        },
+        "altTranscript": {
+          "label": "Transcripción en chino tradicional",
+          "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
+          "external": true
         }
       },
       "principles": {
@@ -4303,6 +4376,10 @@
             "id": "limits",
             "title": "Trazar la línea antes del daño",
             "lead": "Comienza por las consecuencias: qué puede deshacerse, quién tiene legitimidad para nombrar el daño y qué debe la traducción a quienes quedaron fuera del mapa.",
+            "quote": {
+              "text": "Cuando debatimos la gobernanza de la IA a escala internacional, lo que en realidad hacemos es nombrar qué daños son irreversibles y luego ajustar las instituciones en torno a ellos.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-01",
@@ -4331,6 +4408,10 @@
             "id": "judgment",
             "title": "Mantener el juicio sujeto a rendición de cuentas",
             "lead": "Una decisión necesita trazabilidad, fricción y una persona que aún cargue con la parte irreversible.",
+            "quote": {
+              "text": "El método más sencillo es este: tratas como falso cualquier resultado de un modelo que nadie haya avalado y que no lleve firma digital. Inviertes la presunción de partida.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-04",
@@ -4352,6 +4433,10 @@
             "id": "local",
             "title": "Poner la capacidad donde transcurre la vida",
             "lead": "El sustrato de datos, las herramientas sustituibles y los modelos a escala comunitaria evitan que el aprendizaje se convierta en extracción.",
+            "quote": {
+              "text": "Así que lo más sencillo desde el principio es encargar la silla de montar y el caballo a dos empresas distintas. Eso resuelve el problema.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-06",
@@ -4380,6 +4465,10 @@
             "id": "future",
             "title": "Escalar derechos, no profecías",
             "lead": "El futuro permanece abierto cuando la dignidad no es una puntuación, distintas visiones del mundo pueden coexistir y la responsabilidad se mantiene al alcance de las personas.",
+            "quote": {
+              "text": "¡Qué extraño! ¿Por qué no montar simplemente el caballo? ¿Por qué competir con él?",
+              "by": "—Audrey Tang, al volver a contar una fábula tibetana"
+            },
             "items": [
               {
                 "id": "answer-09",
@@ -4441,31 +4530,31 @@
           {
             "id": "bridgewright",
             "name": "Constructor de puentes",
-            "quadrant": "Multitud · Construcción",
+            "quadrant": "Construir sistemas para muchas personas",
             "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Tejedor",
-            "quadrant": "Multitud · Gobernanza",
+            "quadrant": "Tejer instituciones para muchas personas",
             "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Guardián del oficio",
-            "quadrant": "Uno mismo · Construcción",
+            "quadrant": "Construir sistemas para uno mismo",
             "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Acompañante",
-            "quadrant": "Uno mismo · Gobernanza",
+            "quadrant": "Tejer instituciones para uno mismo",
             "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Traductor",
-            "quadrant": "El centro",
+            "quadrant": "Si cambian los límites, podemos movernos entre roles",
             "image": "event-arch-translator"
           }
         ]
@@ -4497,6 +4586,19 @@
               "href": "https://ty.civic.ai/zh/bio",
               "external": true
             }
+          }
+        ]
+      },
+      "mottos": {
+        "title": "Dos frases para llevar contigo",
+        "items": [
+          {
+            "text": "Mi lema siempre ha sido good enough ancestor, «un antepasado suficientemente bueno».",
+            "by": "—Audrey Tang"
+          },
+          {
+            "text": "Si no puedes ayudar a los demás, al menos no les hagas daño.",
+            "by": "—Tenzin Yangtso, citando al dalái lama"
           }
         ]
       },
@@ -5450,6 +5552,11 @@
           "label": "Leia a transcrição pública",
           "href": "https://archive.tw/2026-08-29-platform-originals-the-other-side-of-al",
           "external": true
+        },
+        "altTranscript": {
+          "label": "Transcrição em chinês tradicional",
+          "href": "https://archive.tw/2026-08-29-platform-originals-對齊的另一面",
+          "external": true
         }
       },
       "principles": {
@@ -5495,6 +5602,10 @@
             "id": "limits",
             "title": "Trace o limite antes do dano",
             "lead": "Comece pelas consequências: o que pode ser desfeito, quem tem legitimidade para nomear o dano e o que a tradução deve a quem ficou de fora do mapa.",
+            "quote": {
+              "text": "Quando discutimos a governança da IA internacionalmente, o que fazemos de fato é nomear quais danos são irreversíveis e depois ajustar as instituições em torno deles.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-01",
@@ -5523,6 +5634,10 @@
             "id": "judgment",
             "title": "Mantenha o julgamento sujeito a prestação de contas",
             "lead": "Uma decisão precisa de procedência, fricção e de uma pessoa que continue assumindo a parte irreversível.",
+            "quote": {
+              "text": "O método mais simples é este: você trata como falso qualquer resultado de um modelo pelo qual ninguém tenha se responsabilizado e que não tenha assinatura digital. Você inverte a presunção inicial.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-04",
@@ -5544,6 +5659,10 @@
             "id": "local",
             "title": "Coloque a capacidade onde a vida acontece",
             "lead": "Solo de dados, ferramentas substituíveis e modelos na escala da comunidade impedem que o aprendizado se transforme em extração.",
+            "quote": {
+              "text": "Portanto, o mais simples, desde o início, é encomendar a sela e o cavalo a duas empresas diferentes. Isso resolve o problema.",
+              "by": "—Audrey Tang"
+            },
             "items": [
               {
                 "id": "answer-06",
@@ -5572,6 +5691,10 @@
             "id": "future",
             "title": "Amplie direitos, não profecias",
             "lead": "O futuro permanece aberto quando a dignidade não é uma pontuação, diferentes visões de mundo podem coexistir e a responsabilidade continua ao alcance das pessoas.",
+            "quote": {
+              "text": "Que estranho! Por que não simplesmente montar no cavalo? Por que disputar uma corrida com ele?",
+              "by": "—Audrey Tang, recontando uma fábula tibetana"
+            },
             "items": [
               {
                 "id": "answer-09",
@@ -5633,31 +5756,31 @@
           {
             "id": "bridgewright",
             "name": "Construtor de Pontes",
-            "quadrant": "Multidão · Construção",
+            "quadrant": "Construir sistemas para muitas pessoas",
             "image": "event-arch-bridgewright"
           },
           {
             "id": "weaver",
             "name": "Tecelão",
-            "quadrant": "Multidão · Governança",
+            "quadrant": "Tecer instituições para muitas pessoas",
             "image": "event-arch-weaver"
           },
           {
             "id": "craftkeeper",
             "name": "Guardião do Ofício",
-            "quadrant": "Interior · Construção",
+            "quadrant": "Construir sistemas para si",
             "image": "event-arch-craftkeeper"
           },
           {
             "id": "companion",
             "name": "Companheiro",
-            "quadrant": "Interior · Governança",
+            "quadrant": "Tecer instituições para si",
             "image": "event-arch-companion"
           },
           {
             "id": "translator",
             "name": "Tradutor",
-            "quadrant": "O centro",
+            "quadrant": "Se os limites mudam, podemos transitar entre papéis",
             "image": "event-arch-translator"
           }
         ]
@@ -5689,6 +5812,19 @@
               "href": "https://ty.civic.ai/zh/bio",
               "external": true
             }
+          }
+        ]
+      },
+      "mottos": {
+        "title": "Duas frases para levar com você",
+        "items": [
+          {
+            "text": "Meu lema sempre foi good enough ancestor, “um ancestral bom o bastante”.",
+            "by": "—Audrey Tang"
+          },
+          {
+            "text": "Se você não puder ajudar os outros, pelo menos não faça mal a eles.",
+            "by": "—Tenzin Yangtso, citando o Dalai Lama"
           }
         ]
       },

@@ -274,7 +274,7 @@ export type EventAnsweredQuestion = {
   href: string;
 };
 
-/** Verbatim sentence from the public transcript, with no added quotation marks. */
+/** Public transcript sentence in its published language or a faithful locale translation. */
 export type EventQuote = {
   text: string;
   by: string;
@@ -286,8 +286,8 @@ export type EventQuestionGroup = {
   id: string;
   title: string;
   lead: string;
-  /** zh-TW only until other editions are quoted from their own transcripts. */
-  quote?: EventQuote;
+  /** Public transcript sentence localized for this edition. */
+  quote: EventQuote;
   items: EventAnsweredQuestion[];
 };
 
@@ -315,12 +315,12 @@ export type EventCopy = {
     place: string;
     body: string;
     /**
-     * zh-TW points at the 華文 transcript; every other locale points at
-     * English. archive.tw hosts the language toggle.
+     * Primary transcript: zh-TW points at the 華文 edition; every other locale
+     * points at English.
      */
     transcript: Cta;
-    /** Alternate-language transcript link; zh-TW only for now. */
-    altTranscript?: Cta;
+    /** Other public edition: English for zh-TW, Traditional Chinese otherwise. */
+    altTranscript: Cta;
   };
   principles: {
     title: string;
@@ -355,8 +355,8 @@ export type EventCopy = {
     lead: string;
     items: EventSpeaker[];
   };
-  /** Closing take-away lines; zh-TW only until other editions are quoted. */
-  mottos?: {
+  /** Localized closing take-away lines from the public transcript. */
+  mottos: {
     title: string;
     items: EventQuote[];
   };

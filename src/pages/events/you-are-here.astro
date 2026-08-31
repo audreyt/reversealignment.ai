@@ -128,15 +128,11 @@ const questionGroups = questions.groups.map((group) => ({
               class="btn btn--dark event-record__cta"
               externalLabel={copy.a11y.externalLink}
             />
-            {
-              record.altTranscript && (
-                <CtaLink
-                  cta={record.altTranscript}
-                  class="event-record__alt"
-                  externalLabel={copy.a11y.externalLink}
-                />
-              )
-            }
+            <CtaLink
+              cta={record.altTranscript}
+              class="event-record__alt"
+              externalLabel={copy.a11y.externalLink}
+            />
           </div>
         </div>
       </section>
@@ -233,16 +229,12 @@ const questionGroups = questions.groups.map((group) => ({
                       ))
                     }
                   </ol>
-                  {
-                    group.quote && (
-                      <figure class="event-quote">
-                        <blockquote class="event-quote__text">
-                          <p>{group.quote.text}</p>
-                        </blockquote>
-                        <figcaption class="event-quote__by">{group.quote.by}</figcaption>
-                      </figure>
-                    )
-                  }
+                  <figure class="event-quote">
+                    <blockquote class="event-quote__text">
+                      <p>{group.quote.text}</p>
+                    </blockquote>
+                    <figcaption class="event-quote__by">{group.quote.by}</figcaption>
+                  </figure>
                 </section>
               ))
             }
@@ -342,23 +334,19 @@ const questionGroups = questions.groups.map((group) => ({
 
       <section class="section section--dark event-close">
         <div class="section__inner event-close__inner">
-          {
-            event.mottos && (
-              <div class="event-mottos">
-                <h2 class="body--mono event-mottos__title">{event.mottos.title}</h2>
-                <div class="event-mottos__grid">
-                  {event.mottos.items.map((motto) => (
-                    <figure class="event-motto">
-                      <blockquote class="event-motto__text">
-                        <p>{motto.text}</p>
-                      </blockquote>
-                      <figcaption class="event-motto__by">{motto.by}</figcaption>
-                    </figure>
-                  ))}
-                </div>
-              </div>
-            )
-          }
+          <div class="event-mottos">
+            <h2 class="body--mono event-mottos__title">{event.mottos.title}</h2>
+            <div class="event-mottos__grid">
+              {event.mottos.items.map((motto) => (
+                <figure class="event-motto">
+                  <blockquote class="event-motto__text">
+                    <p>{motto.text}</p>
+                  </blockquote>
+                  <figcaption class="event-motto__by">{motto.by}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
           <p class="body--sm event-close__source">{event.source}</p>
           <a class="btn btn--quiet" href={rootPath}>{event.homeLabel}</a>
         </div>
