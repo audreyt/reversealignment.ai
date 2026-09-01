@@ -43,7 +43,7 @@ if (!listing) {
   throw new Error(`event.eventId "${event.eventId}" has no coalition.events entry`);
 }
 
-const title = `${event.metaTitle} — ${catalog.brand.name}`;
+const title = event.metaTitle;
 const mapImage = assetPath('event-archetype-map', locale, rootPath);
 const archetypeImageDimensions: Record<string, { width: number; height: number }> = {
   bridgewright: { width: 233, height: 435 },
