@@ -11,7 +11,7 @@ import CtaLink from '../../components/CtaLink.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import Base from '../../layouts/Base.astro';
-import { assetPath, getContent, getDefaultLocale, relativeRootPath } from '../../lib/i18n';
+import { assetPath, getContent, getDefaultLocale, relativeRootPath, toBcp47 } from '../../lib/i18n';
 
 const locale = getDefaultLocale();
 const catalog = getContent(locale);
@@ -44,6 +44,9 @@ if (!listing) {
 }
 
 const title = event.metaTitle;
+const talkYoutubeId = 'w19xgnQNZYU';
+const talkEmbedSrc = `https://www.youtube-nocookie.com/embed/${talkYoutubeId}?rel=0&hl=${encodeURIComponent(toBcp47(locale))}`;
+const talkPosterSrc = `https://i.ytimg.com/vi/${talkYoutubeId}/maxresdefault.jpg`;
 const mapImage = assetPath('event-archetype-map', locale, rootPath);
 const archetypeImageDimensions: Record<string, { width: number; height: number }> = {
   bridgewright: { width: 233, height: 435 },
@@ -134,6 +137,48 @@ const questionGroups = questions.groups.map((group) => ({
               externalLabel={copy.a11y.externalLink}
             />
           </div>
+
+          <figure class="event-record__video">
+            <div class="event-record__player" data-talk-embed>
+              <button
+                type="button"
+                class="event-record__play"
+                data-talk-src={talkEmbedSrc}
+                aria-label={record.videoTitle}
+              >
+                <img
+                  class="event-record__poster"
+                  src={talkPosterSrc}
+                  alt=""
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="event-record__play-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </figure>
+          <script is:inline>
+            for (const root of document.querySelectorAll('[data-talk-embed]')) {
+              const button = root.querySelector('[data-talk-src]');
+              if (!(button instanceof HTMLButtonElement)) continue;
+              button.addEventListener('click', () => {
+                const src = button.getAttribute('data-talk-src');
+                const title = button.getAttribute('aria-label') ?? '';
+                if (!src) return;
+                const iframe = document.createElement('iframe');
+                iframe.src = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+                iframe.title = title;
+                iframe.allow =
+                  'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                iframe.allowFullscreen = true;
+                root.replaceChildren(iframe);
+                iframe.focus();
+              });
+            }
+          </script>
         </div>
       </section>
 

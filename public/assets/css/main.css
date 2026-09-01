@@ -5343,6 +5343,71 @@ textarea.form__control {
   text-decoration-thickness: 2px;
 }
 
+.event-record__video {
+  margin: 0;
+}
+.event-record__player {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #030303;
+  border: 3px solid var(--ink);
+  box-shadow: 0.55rem 0.55rem 0 rgba(14, 14, 14, 0.28);
+}
+.event-record__play {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: #030303;
+}
+.event-record__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.event-record__play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  background: var(--lime);
+  box-shadow: 0 0 0 3px var(--ink);
+  transform: translate(-50%, -50%);
+  transition: transform 160ms ease;
+}
+.event-record__play-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: 0.72rem 0 0.72rem 1.2rem;
+  border-color: transparent transparent transparent var(--ink);
+  transform: translate(-40%, -50%);
+}
+.event-record__play:hover .event-record__play-icon,
+.event-record__play:focus-visible .event-record__play-icon {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+.event-record__play:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: -6px;
+}
+.event-record__player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Five moves — deliberately one sequence, not five disconnected cards. */
 .event-principles {
   border-bottom: 1px solid var(--line-dark);
@@ -5850,6 +5915,9 @@ textarea.form__control {
   .event-record {
     grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     align-items: start;
+  }
+  .event-record__video {
+    grid-column: 1 / -1;
   }
   .event-head--split {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);

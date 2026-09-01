@@ -349,6 +349,7 @@ describe('coalition event catalog', () => {
         event.record.body,
         event.record.transcript.label,
         event.record.altTranscript.label,
+        event.record.videoTitle,
         event.principles.title,
         event.principles.lead,
         ...event.principles.items.flatMap((item) => [item.title, item.body]),

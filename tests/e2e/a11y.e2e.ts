@@ -66,8 +66,15 @@ test.describe('multilingual static accessibility', () => {
     await expect(page.locator('.event-motto')).toHaveCount(2);
     await expect(page.locator('.event-principle')).toHaveCount(5);
     await expect(page.locator('.event-answer')).toHaveCount(11);
+    await expect(page.locator('.event-record__play')).toHaveCount(1);
+    await expect(page.locator('.event-record iframe')).toHaveCount(0);
     await expect(page.locator('a[href*="luma.com"], a[href*="sli.do"]')).toHaveCount(0);
     await assertNoSeriousA11y(page, 'zh-TW event page');
+    await page.locator('.event-record__play').focus();
+    await expect(page.locator('.event-record__play')).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.event-record iframe')).toHaveCount(1);
+    await expect(page.locator('.event-record iframe')).toBeFocused();
   });
 
   test('English event page has no serious or critical violations on mobile', async ({ page }) => {
@@ -90,6 +97,8 @@ test.describe('multilingual static accessibility', () => {
     await expect(page.locator('.event-motto')).toHaveCount(2);
     await expect(page.locator('.event-principle')).toHaveCount(5);
     await expect(page.locator('.event-answer')).toHaveCount(11);
+    await expect(page.locator('.event-record__play')).toHaveCount(1);
+    await expect(page.locator('.event-record iframe')).toHaveCount(0);
     await expect(page.locator('a[href*="luma.com"], a[href*="sli.do"]')).toHaveCount(0);
     await assertNoSeriousA11y(page, 'en event page mobile');
   });
