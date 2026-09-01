@@ -64,7 +64,10 @@ const EN_MOTTOS = [
   'Mine has always been good enough ancestor, a “good enough ancestor.”',
   'If you cannot help others, at least do not harm them.',
 ];
-const LOCALE_INVARIANT_LINES: Record<string, true> = { '—Audrey Tang': true };
+const LOCALE_INVARIANT_LINES: Record<string, true> = {
+  '—Audrey Tang': true,
+  'Taipei · SPARKFUL': true,
+};
 
 function event(overrides: Partial<CoalitionEvent> = {}): CoalitionEvent {
   return {
