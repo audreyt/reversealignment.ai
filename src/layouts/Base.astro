@@ -44,7 +44,7 @@ const alternateOgLocales = listLocales()
   .filter((candidate) => candidate !== locale)
   .map(toOgLocale);
 /**
- * Traditional Chinese is the only script the Lanyang faces cover, so the
+ * zh-TW is the only script the Lanyang faces cover, so the
  * loader ships on the zh-TW deployment and nowhere else — every other locale
  * would pay for a webfont service it cannot render a glyph from. The families
  * enter as aliases at the front of the stacks in main.css, gated on

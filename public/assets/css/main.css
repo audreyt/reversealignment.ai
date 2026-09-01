@@ -106,7 +106,7 @@
 }
 
 /**
- * Traditional Chinese only. Base.astro loads justfont on the zh-TW build alone,
+ * zh-TW only. Base.astro loads justfont on the zh-TW build alone,
  * and this attribute is what that build writes on <html>, so the /en/, /es/ and
  * /pt-BR/ trees share this stylesheet without inheriting a face they have no
  * glyphs for. Both aliases sit in front of plfh: if ds.justfont.com is slow or

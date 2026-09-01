@@ -319,7 +319,7 @@ export type EventCopy = {
      * points at English.
      */
     transcript: Cta;
-    /** Other public edition: English for zh-TW, Traditional Chinese otherwise. */
+    /** Other public edition: English for zh-TW, zh-TW otherwise. */
     altTranscript: Cta;
     /** Accessible name for the talk recording iframe. */
     videoTitle: string;
