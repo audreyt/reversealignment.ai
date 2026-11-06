@@ -211,10 +211,9 @@
         "The wager of this coalition is that the institutions able to absorb AI will be the ones that instantiate these same moves at the scale of society. The work is to build them on purpose."
       ],
       "cta": {
-        "label": "Read the full argument — coming soon",
-        "href": "#papers",
-        "disabled": true,
-        "note": "Coming soon"
+        "label": "Read the full argument in Science",
+        "href": "https://www.science.org/doi/10.1126/science.aem6470",
+        "external": true
       }
     },
     "papers": {
@@ -235,16 +234,16 @@
           "tone": "lime"
         },
         {
-          "id": "working-paper",
-          "venue": "Working paper —",
+          "id": "science",
+          "venue": "In Science —",
           "title": "“In the Image of Their Tools”",
           "body": "The crisp engineering principle behind the agenda: why institutions come to resemble the cognitive technology of their age, and what it means to build in the shape of a neural network. The distinctive thesis, with the historical record and the technical mapping.",
           "cta": {
-            "label": "Coming soon",
-            "href": "#",
-            "disabled": true,
-            "note": "Coming soon"
+            "label": "Read in Science",
+            "href": "https://www.science.org/doi/10.1126/science.aem6470",
+            "external": true
           },
+          "image": "science-tools",
           "tone": "violet"
         }
       ],
@@ -993,6 +992,7 @@
       "claim-texture": "/assets/images/claim-texture.png",
       "papers-bg": "/assets/images/papers-bg.webp",
       "noema-cover": "/assets/images/noema-cover.png",
+      "science-tools": "/assets/images/science-tools.svg",
       "playbook-art": "/assets/images/playbook-art.webp",
       "story-portrait-1": "/assets/images/story-portrait-1.webp",
       "story-portrait-2": "/assets/images/story-portrait-2.webp",
@@ -1458,10 +1458,9 @@
         "這個聯盟押的注是：真正能吸納 AI 的制度，會是把這幾套手法放大到整個社會來實現的制度。而我們的工作，就是刻意把它們建造出來。"
       ],
       "cta": {
-        "label": "閱讀完整論證——即將推出",
-        "href": "#papers",
-        "disabled": true,
-        "note": "即將推出"
+        "label": "在 Science 閱讀完整論證（英文原文）",
+        "href": "https://www.science.org/doi/10.1126/science.aem6470",
+        "external": true
       }
     },
     "papers": {
@@ -1482,16 +1481,16 @@
           "tone": "lime"
         },
         {
-          "id": "working-paper",
-          "venue": "工作論文 —",
+          "id": "science",
+          "venue": "刊於 Science —",
           "title": "〈依其工具之形〉",
           "body": "議程背後那條清晰的工程原則：制度為何會長得像當代的認知技術，以及照神經網路的樣子來建造，究竟是什麼意思。這是我們最獨到的論點，佐以歷史紀錄與技術對應。",
           "cta": {
-            "label": "即將推出",
-            "href": "#",
-            "disabled": true,
-            "note": "即將推出"
+            "label": "在 Science 閱讀英文原文",
+            "href": "https://www.science.org/doi/10.1126/science.aem6470",
+            "external": true
           },
+          "image": "science-tools",
           "tone": "violet"
         }
       ],
@@ -2240,6 +2239,7 @@
       "claim-texture": "/assets/images/claim-texture.png",
       "papers-bg": "/assets/images/papers-bg.webp",
       "noema-cover": "/assets/images/noema-cover.png",
+      "science-tools": "/assets/images/science-tools.svg",
       "playbook-art": "/assets/images/playbook-art.webp",
       "story-portrait-1": "/assets/images/story-portrait-1.webp",
       "story-portrait-2": "/assets/images/story-portrait-2.webp",
@@ -2629,6 +2629,7 @@
       "claim-texture": "/assets/images/claim-texture.png",
       "papers-bg": "/assets/images/papers-bg.webp",
       "noema-cover": "/assets/images/noema-cover.png",
+      "science-tools": "/assets/images/science-tools.svg",
       "playbook-art": "/assets/images/playbook-art.webp",
       "story-portrait-1": "/assets/images/story-portrait-1.webp",
       "story-portrait-2": "/assets/images/story-portrait-2.webp",
@@ -2862,10 +2863,9 @@
         "Reverse Alignmentが賭けているのは、AIを受け止めることができる制度は、こうした原理を社会全体で実装した制度であるはずだということです。私たちの仕事は、それを意識的に築くことです。"
       ],
       "cta": {
-        "label": "論考全文を読む（近日公開）",
-        "href": "#papers",
-        "disabled": true,
-        "note": "近日公開"
+        "label": "Scienceで論考全文を読む（英語原文）",
+        "href": "https://www.science.org/doi/10.1126/science.aem6470",
+        "external": true
       }
     },
     "papers": {
@@ -2886,16 +2886,16 @@
           "tone": "lime"
         },
         {
-          "id": "working-paper",
-          "venue": "ワーキングペーパー",
+          "id": "science",
+          "venue": "Science掲載",
           "title": "In the Image of Their Tools",
           "body": "この提言を支えるはっきりした工学的な原則を示します。なぜ制度は、その時代の認知技術に似てくるのか。ニューラルネットワークのかたちで築くとは何を意味するのか。歴史的な記録と技術的な対応関係を示した、独自の主張です。",
           "cta": {
-            "label": "近日公開",
-            "href": "#",
-            "disabled": true,
-            "note": "近日公開"
+            "label": "Scienceで英語原文を読む",
+            "href": "https://www.science.org/doi/10.1126/science.aem6470",
+            "external": true
           },
+          "image": "science-tools",
           "tone": "violet"
         }
       ],
@@ -3952,10 +3952,9 @@
         "La apuesta de esta coalición es que las instituciones capaces de absorber la IA serán las que instancien estos mismos movimientos a escala de la sociedad. La tarea es construirlas deliberadamente."
       ],
       "cta": {
-        "label": "Lee el argumento completo — próximamente",
-        "href": "#papers",
-        "disabled": true,
-        "note": "Próximamente"
+        "label": "Lee el argumento completo en Science (en inglés)",
+        "href": "https://www.science.org/doi/10.1126/science.aem6470",
+        "external": true
       }
     },
     "papers": {
@@ -3976,16 +3975,16 @@
           "tone": "lime"
         },
         {
-          "id": "working-paper",
-          "venue": "Documento de trabajo —",
+          "id": "science",
+          "venue": "En Science —",
           "title": "«A imagen de sus herramientas»",
           "body": "El principio de ingeniería nítido detrás de la agenda: por qué las instituciones llegan a parecerse a la tecnología cognitiva de su época y qué significa construir con la forma de una red neuronal. La tesis distintiva, con el registro histórico y el mapeo técnico.",
           "cta": {
-            "label": "Próximamente",
-            "href": "#",
-            "disabled": true,
-            "note": "Próximamente"
+            "label": "Leer en Science (en inglés)",
+            "href": "https://www.science.org/doi/10.1126/science.aem6470",
+            "external": true
           },
+          "image": "science-tools",
           "tone": "violet"
         }
       ],
@@ -4734,6 +4733,7 @@
       "claim-texture": "/assets/images/claim-texture.png",
       "papers-bg": "/assets/images/papers-bg.webp",
       "noema-cover": "/assets/images/noema-cover.png",
+      "science-tools": "/assets/images/science-tools.svg",
       "playbook-art": "/assets/images/playbook-art.webp",
       "story-portrait-1": "/assets/images/story-portrait-1.webp",
       "story-portrait-2": "/assets/images/story-portrait-2.webp",
@@ -5189,10 +5189,9 @@
         "A aposta desta coalizão é que as instituições capazes de assimilar a IA serão aquelas que incorporarem esses mesmos movimentos na escala da sociedade. O trabalho é construí-las de forma intencional."
       ],
       "cta": {
-        "label": "Leia o argumento completo — em breve",
-        "href": "#papers",
-        "disabled": true,
-        "note": "Em breve"
+        "label": "Leia o argumento completo na Science (em inglês)",
+        "href": "https://www.science.org/doi/10.1126/science.aem6470",
+        "external": true
       }
     },
     "papers": {
@@ -5213,16 +5212,16 @@
           "tone": "lime"
         },
         {
-          "id": "working-paper",
-          "venue": "Documento de trabalho —",
+          "id": "science",
+          "venue": "Na Science —",
           "title": "“À imagem de suas ferramentas”",
-          "body": "O princípio de engenharia nítido por trás da agenda: por que as instituições passam a se assemelhar à tecnologia cognitiva de sua época e o que significa construir segundo a arquitetura de uma rede neural. A tese distintiva, com o registro histórico e o mapeamento técnico.",
+          "body": "Por que as instituições refletem a tecnologia cognitiva de sua época e como construí-las à imagem de uma rede neural. O princípio de engenharia da agenda, com o registro histórico e o mapeamento técnico.",
           "cta": {
-            "label": "Em breve",
-            "href": "#",
-            "disabled": true,
-            "note": "Em breve"
+            "label": "Leia na Science (em inglês)",
+            "href": "https://www.science.org/doi/10.1126/science.aem6470",
+            "external": true
           },
+          "image": "science-tools",
           "tone": "violet"
         }
       ],
@@ -5971,6 +5970,7 @@
       "claim-texture": "/assets/images/claim-texture.png",
       "papers-bg": "/assets/images/papers-bg.webp",
       "noema-cover": "/assets/images/noema-cover.png",
+      "science-tools": "/assets/images/science-tools.svg",
       "playbook-art": "/assets/images/playbook-art.webp",
       "story-portrait-1": "/assets/images/story-portrait-1.webp",
       "story-portrait-2": "/assets/images/story-portrait-2.webp",

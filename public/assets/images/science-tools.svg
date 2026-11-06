@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" fill="none">
+  <rect width="1200" height="640" fill="#F1EFE7"/>
+  <defs>
+    <pattern id="paper" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="2" r=".55" fill="#171717" opacity=".12"/>
+      <circle cx="5" cy="6" r=".4" fill="#171717" opacity=".09"/>
+    </pattern>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(25)">
+      <path d="M0 0V9" stroke="#171717" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="640" fill="url(#paper)"/>
+
+  <!-- One ground plane links the rigid institution and its network-shaped counterpart. -->
+  <path d="M74 505 538 450 1136 485 695 585Z" fill="#DEDCD4"/>
+  <path d="m74 505 621 80 441-100M74 505l464-55 598 35M538 450l157 135" stroke="#171717" stroke-opacity=".24"/>
+  <path d="m227 487 620 72m-462-91 607 49M391 543l448-76m-295 96 443-88" stroke="#171717" stroke-opacity=".16"/>
+
+  <!-- The rectilinear frame is simultaneously a building and a hierarchy. -->
+  <path d="m112 181 233-34 162 56-238 42Z" fill="#171717"/>
+  <path d="m112 181 157 64v269l-157-67Z" fill="#D5D2C8" stroke="#171717" stroke-width="3"/>
+  <path d="m269 245 238-42v268l-238 43Z" fill="#171717"/>
+  <path d="m128 171 220-32 146 50-224 39Z" fill="url(#hatch)"/>
+  <path d="m140 174 210-30 116 39-210 34Z" fill="#F1EFE7" stroke="#171717" stroke-width="3"/>
+  <path d="m130 222 118 48m-118 31 118 49m-118 31 118 49" stroke="#171717" stroke-width="10"/>
+  <path d="M155 231v221m61-198v225" stroke="#171717" stroke-width="6"/>
+  <path d="m293 264 190-33m-190 103 190-33m-190 103 190-33" stroke="#F1EFE7" stroke-width="4"/>
+  <path d="m314 262 1 204m72-219v206m73-219v207" stroke="#F1EFE7" stroke-width="3"/>
+  <path d="m325 275 49-9v43l-49 9Z" fill="#CDFC56"/>
+  <path d="m397 332 51-9v44l-51 9Z" fill="#6D28F5"/>
+  <path d="m326 416 49-9v40l-49 9Z" fill="#F1EFE7"/>
+  <path d="m111 446 158 68 238-43v17l-238 44-158-68Z" fill="#171717"/>
+
+  <!-- The beams continue as connections; the network is structural, not an overlay. -->
+  <g stroke="#6D28F5" stroke-width="2.5">
+    <path d="m506 235 100 40 91-124 115 25 106 54"/>
+    <path d="m505 302 101-27 114 43 92-142 189 126"/>
+    <path d="m505 373 102 30 113-85 154 24 127-40"/>
+    <path d="m506 447 101-44 103 71 164-132 146 101"/>
+    <path d="m606 275 1 128m90-252 23 167-10 156m102-298 62 166"/>
+  </g>
+  <g fill="#F1EFE7" stroke="#6D28F5" stroke-width="3">
+    <circle cx="606" cy="275" r="8"/>
+    <circle cx="607" cy="403" r="8"/>
+    <circle cx="697" cy="151" r="8"/>
+    <circle cx="720" cy="318" r="10"/>
+    <circle cx="710" cy="474" r="8"/>
+    <circle cx="812" cy="176" r="8"/>
+  </g>
+
+  <!-- A civic room built in the same grammar as the network. -->
+  <ellipse cx="908" cy="474" rx="207" ry="62" fill="#171717"/>
+  <ellipse cx="908" cy="464" rx="207" ry="62" fill="#F1EFE7" stroke="#171717" stroke-width="3"/>
+  <path d="M718 356v113m75-137v151m219-151v151m86-127v113" stroke="#171717" stroke-width="9"/>
+  <path d="M716 358c7-94 84-163 189-171 107 11 190 82 193 171-90 62-294 65-382 0Z" fill="#CDFC56" stroke="#171717" stroke-width="3"/>
+  <path d="M717 357c102-4 265-6 380 0" stroke="#171717" stroke-width="2"/>
+  <path d="M736 290c79 40 245 41 335 1M784 233c67 33 171 35 243 1" stroke="#171717" stroke-width="2"/>
+  <path d="M905 187c-48 42-89 108-103 205m103-205c38 49 78 113 95 205m-95-205v220" stroke="#171717" stroke-width="2"/>
+  <path d="M905 187c-87 45-151 116-169 182m169-182c90 44 160 115 178 182" stroke="#171717" stroke-width="2"/>
+  <path d="m736 290 66 102 103-137 95 137 71-101M784 233l34 125 87-171 87 171 35-124" stroke="#171717" stroke-opacity=".55" stroke-width="1.5"/>
+  <path d="M716 357c95 72 290 70 382 0" stroke="#171717" stroke-width="8"/>
+  <g fill="#171717">
+    <circle cx="736" cy="290" r="5"/>
+    <circle cx="784" cy="233" r="5"/>
+    <circle cx="905" cy="187" r="6"/>
+    <circle cx="1027" cy="234" r="5"/>
+    <circle cx="1071" cy="291" r="5"/>
+    <circle cx="818" cy="358" r="5"/>
+    <circle cx="905" cy="255" r="5"/>
+    <circle cx="992" cy="358" r="5"/>
+  </g>
+  <ellipse cx="909" cy="471" rx="76" ry="24" fill="#6D28F5"/>
+  <ellipse cx="909" cy="459" rx="76" ry="24" fill="#F1EFE7" stroke="#171717" stroke-width="3"/>
+  <path d="M870 474v24m78-24v24" stroke="#171717" stroke-width="4"/>
+  <g fill="#171717">
+    <circle cx="805" cy="449" r="8"/>
+    <path d="M795 465q10-10 20 0l5 33h-30Z"/>
+    <circle cx="857" cy="415" r="7"/>
+    <path d="M848 430q9-8 18 0l4 18h-26Z"/>
+    <circle cx="960" cy="417" r="7"/>
+    <path d="M951 431q9-8 18 0l4 18h-26Z"/>
+    <circle cx="1013" cy="451" r="8"/>
+    <path d="M1003 466q10-10 20 0l5 32h-30Z"/>
+    <circle cx="911" cy="497" r="8"/>
+    <path d="M901 512q10-10 20 0l4 17h-28Z"/>
+  </g>
+  <path d="m815 476 23-13m152 0 16 11m-96 26v-18" stroke="#171717" stroke-width="4" stroke-linecap="round"/>
+
+  <path d="M73 565h173m-173 9h112" stroke="#171717" stroke-width="2"/>
+  <circle cx="1104" cy="105" r="24" fill="#6D28F5"/>
+  <circle cx="1104" cy="105" r="8" fill="#F1EFE7"/>
+</svg>

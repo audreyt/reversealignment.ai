@@ -3280,6 +3280,10 @@ main {
     left: -2.59375px;
     width: 365.625px;
   }
+  #papers .paper-card[data-paper-id='science'] .paper-card__media {
+    height: 160px;
+    min-height: 160px;
+  }
 
   /* Source mobile rows are compact: title/action share the first line, copy follows. */
   #papers .resource-list {
